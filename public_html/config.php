@@ -51,7 +51,7 @@ define('MultiLanguage', true);
  * 
  * If your site support multi language then you can fix default language for visitors
  */
-define('DefaultLanguage', 'en_US');
+define('DefaultLanguage', 'fa_IR');
 
 /**
  * SaveAsCookie
