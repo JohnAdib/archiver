@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2015 at 01:25 PM
+-- Generation Time: May 05, 2015 at 11:57 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -17,27 +17,46 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `saloos`
+-- Database: `archiver`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Table structure for table `attachmentmetas`
 --
 
-CREATE TABLE IF NOT EXISTS `comments` (
+CREATE TABLE IF NOT EXISTS `attachmentmetas` (
 `id` int(10) unsigned NOT NULL,
-  `post_id` bigint(20) unsigned DEFAULT NULL,
-  `product_id` int(10) unsigned DEFAULT NULL,
-  `comment_author` varchar(50) DEFAULT NULL,
-  `comment_email` varchar(100) DEFAULT NULL,
-  `comment_url` varchar(100) DEFAULT NULL,
-  `comment_content` varchar(999) NOT NULL DEFAULT '',
-  `comment_status` enum('approved','unapproved','spam','deleted') NOT NULL DEFAULT 'unapproved',
-  `comment_parent` smallint(5) unsigned DEFAULT NULL,
-  `user_id` int(10) unsigned DEFAULT NULL,
-  `Visitor_id` bigint(20) unsigned NOT NULL,
+  `attachment_id` bigint(20) unsigned NOT NULL,
+  `attachmentmeta_cat` varchar(50) NOT NULL,
+  `attachmentmeta_key` varchar(100) NOT NULL,
+  `attachmentmeta_value` varchar(200) DEFAULT NULL,
+  `attachmentmeta_status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
+  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attachments`
+--
+
+CREATE TABLE IF NOT EXISTS `attachments` (
+`id` bigint(20) unsigned NOT NULL,
+  `file_id` bigint(20) unsigned DEFAULT NULL,
+  `attachment_title` varchar(100) DEFAULT NULL,
+  `attachment_desc` varchar(500) DEFAULT NULL,
+  `attachment_type` enum('system','other','file','folder') NOT NULL,
+  `attachment_addr` varchar(1000) DEFAULT NULL,
+  `attachment_name` varchar(100) DEFAULT NULL,
+  `attachment_ext` varchar(255) DEFAULT NULL,
+  `attachment_size` float(12,0) DEFAULT NULL,
+  `attachment_parent` bigint(20) unsigned DEFAULT NULL,
+  `attachment_order` smallint(5) DEFAULT NULL,
+  `attachment_status` enum('normal','trash','deleted','inprogress') NOT NULL DEFAULT 'normal',
+  `attachment_date` datetime DEFAULT NULL,
+  `user_id` int(10) unsigned NOT NULL,
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -65,6 +84,22 @@ CREATE TABLE IF NOT EXISTS `errors` (
   `error_title` varchar(100) NOT NULL,
   `error_solution` varchar(999) DEFAULT NULL,
   `error_priority` enum('critical','high','medium','low') NOT NULL DEFAULT 'medium',
+  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE IF NOT EXISTS `files` (
+  `id` bigint(20) unsigned NOT NULL,
+  `file_server` smallint(5) unsigned NOT NULL,
+  `file_folder` int(10) unsigned NOT NULL,
+  `file_code` varchar(64) NOT NULL,
+  `file_size` bigint(20) unsigned NOT NULL,
+  `file_status` enum('inprogress','ready','temp','delete') NOT NULL,
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -139,79 +174,23 @@ INSERT INTO `options` (`id`, `option_cat`, `option_key`, `option_value`, `option
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postmetas`
---
-
-CREATE TABLE IF NOT EXISTS `postmetas` (
-  `id` bigint(20) unsigned NOT NULL,
-  `post_id` bigint(20) unsigned NOT NULL,
-  `postmeta_cat` varchar(50) NOT NULL,
-  `postmeta_key` varchar(100) NOT NULL,
-  `postmeta_value` varchar(999) DEFAULT NULL,
-  `postmeta_status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `posts`
---
-
-CREATE TABLE IF NOT EXISTS `posts` (
-`id` bigint(20) unsigned NOT NULL,
-  `post_language` char(2) DEFAULT NULL,
-  `post_cat` varchar(50) DEFAULT NULL,
-  `post_title` varchar(100) NOT NULL,
-  `post_slug` varchar(100) NOT NULL,
-  `post_content` text,
-  `post_type` varchar(50) NOT NULL DEFAULT 'post',
-  `post_url` text,
-  `post_comment` enum('open','closed') DEFAULT NULL,
-  `post_count` smallint(5) unsigned DEFAULT NULL,
-  `post_status` enum('publish','draft','schedule','deleted','expire') NOT NULL DEFAULT 'draft',
-  `post_parent` smallint(5) unsigned DEFAULT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  `post_publishdate` datetime DEFAULT NULL,
-  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`id`, `post_language`, `post_cat`, `post_title`, `post_slug`, `post_content`, `post_type`, `post_url`, `post_comment`, `post_count`, `post_status`, `post_parent`, `user_id`, `post_publishdate`, `date_modified`) VALUES
-(1, 'fa', NULL, 'test1', 'page1', 'salam. in test 1 ast', 'page', NULL, 'open', NULL, 'publish', NULL, 150, NULL, '2015-02-11 14:46:49'),
-(2, 'en', 'test', 'post1', 'post1', 'salam. post1 ast', 'post', NULL, 'open', NULL, 'publish', NULL, 150, NULL, '2015-02-11 14:46:52');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `terms`
 --
 
 CREATE TABLE IF NOT EXISTS `terms` (
 `id` int(10) unsigned NOT NULL,
   `term_language` char(2) DEFAULT NULL,
-  `term_cat` varchar(50) NOT NULL,
+  `term_type` varchar(50) NOT NULL DEFAULT 'tag',
   `term_title` varchar(50) NOT NULL,
   `term_slug` varchar(50) NOT NULL,
-  `term_desc` text NOT NULL,
+  `term_desc` text,
+  `term_url` varchar(200) NOT NULL,
   `term_parent` int(10) unsigned DEFAULT NULL,
   `term_count` smallint(5) unsigned DEFAULT NULL,
   `term_status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
+  `user_id` int(10) unsigned DEFAULT NULL,
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `terms`
---
-
-INSERT INTO `terms` (`id`, `term_language`, `term_cat`, `term_title`, `term_slug`, `term_desc`, `term_parent`, `term_count`, `term_status`, `date_modified`) VALUES
-(1, NULL, '', 'news', 'news', '', NULL, NULL, 'enable', '0000-00-00 00:00:00'),
-(5, NULL, '', 'test', 'test', 't', NULL, NULL, 'enable', '2015-01-18 13:33:13'),
-(6, NULL, '', 'news2', 'news2', 'news 2', 1, NULL, 'enable', '2015-01-18 15:45:20'),
-(7, NULL, '', 'tag1', 'tag1', '', NULL, NULL, 'enable', NULL);
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -221,8 +200,7 @@ INSERT INTO `terms` (`id`, `term_language`, `term_cat`, `term_title`, `term_slug
 
 CREATE TABLE IF NOT EXISTS `termusages` (
   `term_id` int(10) unsigned NOT NULL,
-  `object_id` bigint(20) unsigned NOT NULL,
-  `termusage_type` enum('posts','products','attachments','comments') DEFAULT NULL,
+  `attachment_id` bigint(20) unsigned NOT NULL,
   `termusage_order` smallint(5) unsigned DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -256,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `usermetas` (
   `usermeta_value` varchar(500) DEFAULT NULL,
   `usermeta_status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -271,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_pass` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_displayname` varchar(50) DEFAULT NULL,
   `user_status` enum('active','awaiting','deactive','removed','filter') DEFAULT 'awaiting',
-  `permission_id` smallint(5) unsigned DEFAULT NULL,
+  `user_permission` smallint(5) unsigned DEFAULT NULL,
   `user_createdate` datetime NOT NULL,
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8;
@@ -280,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_mobile`, `user_email`, `user_pass`, `user_displayname`, `user_status`, `permission_id`, `user_createdate`, `date_modified`) VALUES
+INSERT INTO `users` (`id`, `user_mobile`, `user_email`, `user_pass`, `user_displayname`, `user_status`, `user_permission`, `user_createdate`, `date_modified`) VALUES
 (15, '989356032043', NULL, '$2y$07$ZRUphEsEn9bK8inKBfYt.efVoZDgBaoNfZz0uVRqRGvH9.che.Bqq', 'Hasan', 'active', 1, '0000-00-00 00:00:00', NULL),
 (150, '989199840989', NULL, '$2y$07$ZRUphEsEn9bK8inKBfYt.efVoZDgBaoNfZz0uVRqRGvH9.che.Bqq', 'Mahdi', 'active', 1, '0000-00-00 00:00:00', NULL),
 (190, '989357269759', NULL, '$2y$07$9wj8/jDeQKyY0t0IcUf.xOEy98uf6BaSS7Tg28swrKUDxdKzUVfsy', 'javad', 'active', 1, '2015-01-25 04:52:07', '2015-02-25 01:19:43'),
@@ -343,10 +321,16 @@ CREATE TABLE IF NOT EXISTS `visitors` (
 --
 
 --
--- Indexes for table `comments`
+-- Indexes for table `attachmentmetas`
 --
-ALTER TABLE `comments`
- ADD PRIMARY KEY (`id`), ADD KEY `comments_posts_id` (`post_id`) USING BTREE, ADD KEY `comments_users_id` (`user_id`) USING BTREE, ADD KEY `comments_products_id` (`product_id`) USING BTREE, ADD KEY `comments_visitors_id` (`Visitor_id`);
+ALTER TABLE `attachmentmetas`
+ ADD PRIMARY KEY (`id`), ADD KEY `attachmentmetas_attachments_id` (`attachment_id`);
+
+--
+-- Indexes for table `attachments`
+--
+ALTER TABLE `attachments`
+ ADD PRIMARY KEY (`id`), ADD KEY `attachments_files_id` (`file_id`), ADD KEY `attachments_users_id` (`user_id`);
 
 --
 -- Indexes for table `errorlogs`
@@ -361,6 +345,12 @@ ALTER TABLE `errors`
  ADD PRIMARY KEY (`id`), ADD KEY `priotity_index` (`error_priority`);
 
 --
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `unique_code` (`file_code`) USING BTREE, ADD KEY `index_folder` (`file_folder`);
+
+--
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
@@ -373,28 +363,16 @@ ALTER TABLE `options`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `cat+name+value` (`option_cat`,`option_key`,`option_value`);
 
 --
--- Indexes for table `postmetas`
---
-ALTER TABLE `postmetas`
- ADD PRIMARY KEY (`id`), ADD KEY `postmeta_posts_id` (`post_id`) USING BTREE;
-
---
--- Indexes for table `posts`
---
-ALTER TABLE `posts`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `slug+catslug_unique` (`post_cat`,`post_slug`), ADD KEY `posts_users_id` (`user_id`) USING BTREE;
-
---
 -- Indexes for table `terms`
 --
 ALTER TABLE `terms`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `slug_unique` (`term_slug`) USING BTREE;
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `slug_unique` (`term_slug`) USING BTREE, ADD UNIQUE KEY `termurl_unique` (`term_url`), ADD KEY `terms_users_id` (`user_id`);
 
 --
 -- Indexes for table `termusages`
 --
 ALTER TABLE `termusages`
- ADD UNIQUE KEY `term+type+object_unique` (`term_id`,`object_id`,`termusage_type`) USING BTREE;
+ ADD UNIQUE KEY `term+type+object_unique` (`term_id`) USING BTREE, ADD KEY `termusages_attachments_id` (`attachment_id`);
 
 --
 -- Indexes for table `userlogs`
@@ -412,7 +390,7 @@ ALTER TABLE `usermetas`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `mobile_unique` (`user_mobile`) USING BTREE, ADD UNIQUE KEY `email_unique` (`user_email`) USING BTREE, ADD KEY `users_permissions_id` (`permission_id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `mobile_unique` (`user_mobile`) USING BTREE, ADD UNIQUE KEY `email_unique` (`user_email`) USING BTREE;
 
 --
 -- Indexes for table `verifications`
@@ -431,10 +409,15 @@ ALTER TABLE `visitors`
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT for table `attachmentmetas`
 --
-ALTER TABLE `comments`
+ALTER TABLE `attachmentmetas`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `attachments`
+--
+ALTER TABLE `attachments`
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `errorlogs`
 --
@@ -451,15 +434,10 @@ MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 ALTER TABLE `options`
 MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
--- AUTO_INCREMENT for table `posts`
---
-ALTER TABLE `posts`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
 -- AUTO_INCREMENT for table `terms`
 --
 ALTER TABLE `terms`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `userlogs`
 --
@@ -469,7 +447,7 @@ MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `usermetas`
 --
 ALTER TABLE `usermetas`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -490,12 +468,17 @@ MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
 
 --
--- Constraints for table `comments`
+-- Constraints for table `attachmentmetas`
 --
-ALTER TABLE `comments`
-ADD CONSTRAINT `comments_posts_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
-ADD CONSTRAINT `comments_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL,
-ADD CONSTRAINT `comments_visitors_id` FOREIGN KEY (`Visitor_id`) REFERENCES `visitors` (`id`);
+ALTER TABLE `attachmentmetas`
+ADD CONSTRAINT `attachmentmetas_attachments_id` FOREIGN KEY (`attachment_id`) REFERENCES `attachments` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `attachments`
+--
+ALTER TABLE `attachments`
+ADD CONSTRAINT `attachments_files_id` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `attachments_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `errorlogs`
@@ -511,22 +494,17 @@ ALTER TABLE `notifications`
 ADD CONSTRAINT `notifications_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `postmetas`
+-- Constraints for table `terms`
 --
-ALTER TABLE `postmetas`
-ADD CONSTRAINT `postmeta_posts_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `posts`
---
-ALTER TABLE `posts`
-ADD CONSTRAINT `posts_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `terms`
+ADD CONSTRAINT `terms_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `termusages`
 --
 ALTER TABLE `termusages`
-ADD CONSTRAINT `termusages_terms_id` FOREIGN KEY (`term_id`) REFERENCES `terms` (`id`) ON DELETE CASCADE;
+ADD CONSTRAINT `termusages_attachments_id` FOREIGN KEY (`attachment_id`) REFERENCES `attachments` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `termusages_terms_id` FOREIGN KEY (`term_id`) REFERENCES `terms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `userlogs`
