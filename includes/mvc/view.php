@@ -3,7 +3,7 @@ namespace mvc;
 
 class view extends \lib\mvc\view
 {
-	function _construct()
+	function config()
 	{
 		// define default value for global
 
