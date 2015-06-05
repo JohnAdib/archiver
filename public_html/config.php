@@ -93,6 +93,6 @@ define('Account', true);
  *
  * List of Site languages
  */
-define('LangList', serialize (['fa_IR' => 'فارسی', 'en_US' => 'English', 'ar_SA' => 'عربي']));
+define('LangList', serialize (['fa_IR' => 'فارسی', 'en_US' => 'English']));
 
 ?>
