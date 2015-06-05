@@ -14,7 +14,7 @@ class view extends \lib\mvc\view
 		$this->data->page['desc']    = T_("Archiver is another archive system!");
 
 
-		$this->url->MainStatic       = false;
+		$this->url->MainStatic       = true;
 
 		// if you need to set a class for body element in html add in this value
 		// $this->data->bodyclass      = null;
