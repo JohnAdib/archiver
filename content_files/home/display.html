@@ -2,7 +2,7 @@
 
 
 {%block head_css%}
- <link rel="stylesheet"    href="{{url.static}}css/style-files.css?v=1.0.5">
+ <link rel="stylesheet"       href="{{url.static}}css/style-files.css?v=1.0.5">
 {%endblock%}
 
 {%block foot_js2%}
@@ -14,17 +14,36 @@
 {%block body%}
   <header id="header">
    <ul id="header-nav">
-    <li><a href="{{url.root}}"><i class="fa fa-home fa-2x"></i></a></li>
     <li id="languages">
      <i class="fa fa-language fa-2x"></i>
      <nav class="vertical-menu">
-{%for key, value in saloos.langlist%}{%if key == global.lang%}
+{%for key, value in site.langlist%}{%if key == global.lang%}
       <a href="{{url.base}}{{url.path}}?lang={{key}}" class="default not-active">{{value}}</a>
 {%else%}
       <a href="{{url.base}}{{url.path}}?lang={{key}}">{{value}}</a>
 {%endif%}{% endfor %}
      </nav>
     </li>
+
+    <li>
+     <a class="labeled icon button" data-modal="upload_modal">
+      <i class="icon fa fa-upload"></i>{%trans "Upload"%}
+     </a>
+    </li>
+
+    <li>
+       <a class="labeled icon button" id="newfolder" data-action>
+        <i class="icon fa fa-folder"></i>{%trans "Create new folder"%}
+       </a>
+    </li>
+
+    <li>
+       <a class="labeled icon button" id="select_all" data-action>
+        <i class="icon fa fa-check-square-o"></i>{%trans "Select All"%}
+       </a>
+    </li>
+
+
    </ul>
 
    <div id="profile" tabindex=1>
@@ -34,61 +53,117 @@
 
     <nav class="vertical-menu">
      <a id="profile-me" href="{{url.base}}profile"><i class="fa fa-user"></i> {%trans "My Profile"%}</a>
-     <!-- <a id="profile-lock" href="{{url.base}}lock"><i class="fa fa-lock"></i> {%trans "Lock Screen"%}</a> -->
      <a id="profile-logout" href="http://{{url.raw}}/logout"><i class="fa fa-sign-out"></i> {%trans "Logout"%}</a>
     </nav>
    </div>
   </header>
 
-<div class="row">
- <div class="span1">1
+<div class="row body auto">
+ <aside class="span1 unselectable" id='page-sidebar'>
+  <nav class='sidebar-items'>
+  <a class='hint--right' data-hint='{%trans "Home"%}' href="#"><i class="fa fa-lg fa-home"></i></a>
+  <a class='hint--right' data-hint='{%trans "favorites"%}' href="#"><i class="fa fa-lg fa-star-o"></i></a>
+  <a class='hint--right' data-hint='{%trans "Tags"%}' href="#"><i class="fa fa-lg fa-tags"></i></a>
+  <a class='hint--right' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
+  <a class='hint--right' data-hint='{%trans "Frequently asked question"%}' href="#"><i class="fa fa-lg fa-question"></i></a>
+  <a class='hint--right' data-hint='{%trans "Analytics"%}' href="#"><i class="fa fa-lg fa-line-chart"></i></a>
+  <a class='hint--right' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>
+  </nav>
+ </aside>
+
+ <div class="span9" id='explorer'>
+  <ul>
+    <li>
+    <span class='id'>1</span>
+      <span class='name'>Folder1</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>2</span>
+      <span class='name'>Folder2</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>3</span>
+      <span class='name'>Folder3</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>4</span>
+      <span class='name'>Folder4</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>5</span>
+      <span class='name'>File1</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>6</span>
+      <span class='name'>File2</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>7</span>
+      <span class='name'>File3</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>5</span>
+      <span class='name'>File1</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>6</span>
+      <span class='name'>File2</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='id'>7</span>
+      <span class='name'>File3</span>
+      <span class='size'>12 item</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+  </ul>
+
+
   
  </div>
 
- <div class="span9">9
-  
- </div>
-
- <div class="span2">2
-  
+ <div class="span2 left-side" id='prop-box'>
+  <h3>{%trans "Properties"%}</h3>
+  <ul>
+    <li>{%trans "Name"%}<span>test</span></li>
+    <li>{%trans "Size"%}<span>123kb</span></li>
+    <li>{%trans "Type"%}<span>image</span></li>
+    <li>{%trans "Date"%} modified<span>2015/6/13</span></li>
+    <li>{%trans "Createdate"%}<span>2015/6/1</span></li>
+    <li>{%trans "Other"%}<span>...</span></li>
+  </ul>
  </div>
 </div>
 
 
- <div class="controls">
-  <div class="bottom">
-   <a class="labeled icon button" data-modal="upload_modal">
-    <i class="icon fa fa-upload"></i>{%trans "Upload"%}
-   </a>
-   <a class="labeled icon button" id="newfolder" data-action>
-    <i class="icon fa fa-folder"></i>{%trans "Create new folder"%}
-   </a>
-   <a class="labeled icon button" id="select_all" data-action>
-    <i class="icon fa fa-check-square-o"></i>{%trans "Select All"%}
-   </a>
-  </div>
- </div>
 
-
-<div class="row" id='header'>
- <div class="logo">
-  <a href='{{url.root}}'>
-   <img src="{{url.static}}images/logo.svg" alt='' />
-   <span>{%trans "Talambar"%}</span>
-  </a>
- </div>
-  <div class="right">
-    <a href="#" class="link"><i class="fa fa-cog"></i></a>
-    <a href="#" class="link"><i class="fa fa-bars"></i></a>
-  </div>
-  <div id='breadcrumb-wrapper'><ul class="fbreadcrumb"></ul></div>
-</div>
-
-
-<div class="row files-box">
- <div class="span2"><div id="tree-wrapper"></div></div>
- <div class="span10"><div class="filemanager" id="files"></div></div>
-</div>
 
 
 <div class='modal hidden' data-modal id="upload_modal">
@@ -108,18 +183,6 @@
 </div>
 
 
-<!-- <br /><hr />Test Area!<br /><br />
-
- <form id='upload_form' method="post" >
-  <label for='file_input'>File</label>
-  <input type='file' id='file_input'>
-  <button id='upload' name="upload">Upload</button>
-  <button id='pause' name="pause">Pause</button>
-  <button id='resume' name="resume">Resume</button>
-  <div style="width: 0%; height:25px; background: #27F16B; clear: both; display: block" id="progress"></div>
- </form>
-<br /><br /><br />
- -->
 
 <footer id="footer">
   <div id="copyright">

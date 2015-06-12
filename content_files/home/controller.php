@@ -5,12 +5,12 @@ class controller extends \mvc\controller
 {
 	function _route()
 	{
-		// if(!$this->login())
-		// {
-		// 	\lib\debug::warn(T_("first of all, you must login to system!"));
-		// 	$this->redirector(null, false)->set_domain($this->url('AccountService'))->set_url('login?dev=y')->redirect();
-		// 	exit();
-		// }
+		if(!$this->login())
+		{
+			\lib\debug::warn(T_("first of all, you must login to system!"));
+			$this->redirector(null, false)->set_domain($this->url('AccountService'))->set_url('login?cp=1')->redirect();
+			exit();
+		}
 
 
 		// $mymodule = $this->module();
