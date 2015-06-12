@@ -18,7 +18,6 @@ class view extends \mvc\view
 		$this->data->site['desc']    = T_("Archiver is new");
 		$this->data->site['slogan']  = T_("Ermile is our company");
 
-		$this->data->page['title']   = T_("Archiver");
 		$this->data->page['desc']    = T_("Archiver is another archive system!");
 	}
 }
