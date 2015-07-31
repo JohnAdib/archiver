@@ -15,8 +15,8 @@ body, html{height: 100%;}
 #header .vertical-menu #profile-lock:hover i{color:#f0ad4e;}
 #header .vertical-menu #profile-logout:hover i{color:#F0433D;}
  
-#header #profile:hover .vertical-menu{display:block;}
-#header #profile:active .vertical-menu{display:block;}
+#header #profile:hover .vertical-menu, #header #profile:active .vertical-menu{display:block;}
+#header #more:hover .vertical-menu, #header #more:active .vertical-menu{display:block;}
 
 #header .button{background-color:#3F5162 }
 #header .button:hover{}
@@ -32,10 +32,10 @@ body, html{height: 100%;}
 /*.vertical-menu .default{background-color: #33414e}*/
 .vertical-menu >.default:after{content:"\f00c";display:inline-block;color:#5cb85c;font: normal normal normal 14px/1 FontAwesome;float:right;}
 .rtl .vertical-menu >.default:after{float: left;}
-.vertical-menu > a{display:block;color:#ddd;padding:5px 10px;font-size:1.5em;border-top:1px solid #33414E;;min-width:150px}
-.vertical-menu > a:hover{color:#fff;background:rgba(0,0,0,0.2)}
-.vertical-menu > a > i{padding:0 10px;}
-
+.vertical-menu a{display:block;color:#ddd;padding:5px 10px;font-size:1.5em;border-top:1px solid #33414E;;min-width:150px}
+.vertical-menu a:hover{color:#fff;background:rgba(0,0,0,0.2)}
+.vertical-menu .fa{padding:0 10px;}
+.vertical-menu input{display:none;}
 
 
 
@@ -73,11 +73,15 @@ body, html{height: 100%;}
 #explorer>ul{margin: 2% 0;}
 #explorer li{line-height:200%;padding:1% 2%;cursor:pointer;overflow:hidden;}
 #explorer li:hover{background-color: #ddd}
-#explorer li span{min-width: 50px;display: inline-block;}
-#explorer .id{width: 10%;}
-#explorer .name{width: 60%;}
-#explorer .size{width: 10%;}
-#explorer .date{width: 15%;}
+#explorer li span{min-width: 40px;display: inline-block;}
+#explorer .id{width: 5%;min-width:10px;max-width:20px;}
+#explorer .name{width: 60%;min-width:100px}
+#explorer .size{width: 10%;min-width:40px}
+#explorer .date{width: 10%;min-width:50px}
+#explorer .tools{width: 5%;min-width:10px;max-width:20px;}
+
+#explorer .tools{vertical-align: middle;}
+
 
 
 

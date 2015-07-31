@@ -27,7 +27,7 @@
 
     <li>
      <a class="labeled icon button" data-modal="upload_modal">
-      <i class="icon fa fa-upload"></i>{%trans "Upload"%}
+      <i class="icon fa fa-cloud-upload"></i>{%trans "Upload"%}
      </a>
     </li>
 
@@ -38,9 +38,43 @@
     </li>
 
     <li>
-       <a class="labeled icon button" id="select_all" data-action>
-        <i class="icon fa fa-check-square-o"></i>{%trans "Select All"%}
-       </a>
+     <a class="labeled icon button">
+      <i class="icon fa fa-download"></i>{%trans "Download"%}
+     </a>
+    </li>
+
+    <li>
+     <a class="labeled icon button">
+      <i class="icon fa fa-times"></i>{%trans "Delete"%}
+     </a>
+    </li>
+
+    <li id="more">
+      <a class="labeled icon button">
+       <i class="icon fa fa-bars"></i>{%trans "More ..."%}
+      </a>
+      <nav class="vertical-menu">
+       <a id="more-selectall" href="#"><i class="fa fa-check-square-o"></i> {%trans "Select All"%}</a>
+       <a id="more-copy" href="#"><i class="fa fa-files-o"></i> {%trans "Copy to"%}</a>
+       <a id="more-move" href="#"><i class="fa fa-scissors"></i> {%trans "Move to"%}</a>
+       <a id="more-rename" href="#"><i class="fa fa-pencil-square-o"></i> {%trans "Rename"%}</a>
+
+
+        <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1
+         <form action="http://www.google.com/search" data-action id="more-app1">
+          <input type="hidden" name="q" size="31" maxlength="255" value="Iran">
+          <input type="submit" value=''>
+         </form>
+        </a>
+
+        <a href="javascript:{}" onclick="document.getElementById('more-app2').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 2
+         <form action="http://www.google.com/search" data-action id="more-app2">
+          <input type="hidden" name="q" size="31" maxlength="255" value="Tehran">
+          <input type="submit" value=''>
+         </form>
+        </a>
+
+      </nav>
     </li>
 
 
@@ -104,42 +138,42 @@
     <li>
       <span class='id'>5</span>
       <span class='name'>File1</span>
-      <span class='size'>12 item</span>
+      <span class='size'>129 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
       <span class='id'>6</span>
       <span class='name'>File2</span>
-      <span class='size'>12 item</span>
+      <span class='size'>120 MB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
       <span class='id'>7</span>
       <span class='name'>File3</span>
-      <span class='size'>12 item</span>
+      <span class='size'>141 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
       <span class='id'>5</span>
       <span class='name'>File1</span>
-      <span class='size'>12 item</span>
+      <span class='size'>12 MB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
       <span class='id'>6</span>
       <span class='name'>File2</span>
-      <span class='size'>12 item</span>
+      <span class='size'>160 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
       <span class='id'>7</span>
       <span class='name'>File3</span>
-      <span class='size'>12 item</span>
+      <span class='size'>24 MB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
