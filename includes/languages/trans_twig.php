@@ -9,23 +9,30 @@ function transtext()
 	//-------------------------------------------------content_files\home\display.html
 	echo T_("Upload");                                                                // Line 30
 	echo T_("Create new folder");                                                     // Line 36
-	echo T_("Select All");                                                            // Line 42
-	echo T_("My Profile");                                                            // Line 55
-	echo T_("Logout");                                                                // Line 56
-	echo T_("Home");                                                                  // Line 64
-	echo T_("favorites");                                                             // Line 65
-	echo T_("Tags");                                                                  // Line 66
-	echo T_("Categories");                                                            // Line 67
-	echo T_("Frequently asked question");                                             // Line 68
-	echo T_("Analytics");                                                             // Line 69
-	echo T_("Options");                                                               // Line 70
-	echo T_("Properties");                                                            // Line 153
-	echo T_("Name");                                                                  // Line 155
-	echo T_("Size");                                                                  // Line 156
-	echo T_("Type");                                                                  // Line 157
-	echo T_("Date");                                                                  // Line 158
-	echo T_("Createdate");                                                            // Line 159
-	echo T_("Other");                                                                 // Line 160
+	echo T_("Download");                                                              // Line 42
+	echo T_("Delete");                                                                // Line 48
+	echo T_("More ...");                                                              // Line 54
+	echo T_("Select All");                                                            // Line 57
+	echo T_("Copy to");                                                               // Line 58
+	echo T_("Move to");                                                               // Line 59
+	echo T_("Rename");                                                                // Line 60
+	echo T_("Send to app");                                                           // Line 70
+	echo T_("My Profile");                                                            // Line 89
+	echo T_("Logout");                                                                // Line 90
+	echo T_("Home");                                                                  // Line 98
+	echo T_("favorites");                                                             // Line 99
+	echo T_("Tags");                                                                  // Line 100
+	echo T_("Categories");                                                            // Line 101
+	echo T_("Frequently asked question");                                             // Line 102
+	echo T_("Analytics");                                                             // Line 103
+	echo T_("Options");                                                               // Line 104
+	echo T_("Properties");                                                            // Line 187
+	echo T_("Name");                                                                  // Line 189
+	echo T_("Size");                                                                  // Line 190
+	echo T_("Type");                                                                  // Line 191
+	echo T_("Date");                                                                  // Line 192
+	echo T_("Createdate");                                                            // Line 193
+	echo T_("Other");                                                                 // Line 194
 
 	//----------------------public_html\static\js\datatable\datatable-langs\index.html
 
