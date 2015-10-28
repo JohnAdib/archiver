@@ -36,7 +36,7 @@ route('*', function()
         ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span><i></i></li>');
 
       // Append the file name and file size
-      tpl.find('p').text(data.files[0].name)
+      tpl.find('p').text(data.files[0].name).attr('title', data.files[0].name)
              .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
 
       // Add the HTML to the UL element

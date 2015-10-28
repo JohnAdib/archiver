@@ -67,7 +67,7 @@ body, html{height: 100%;}
 #prop-box{height: 100%; background-color: #eee;font-size:1.2em}
 #prop-box h3{padding:2% 5%;border-bottom: 1px solid #ccc}
 #prop-box li {line-height:200%;padding:2% 5%;}
-#prop-box li:hover{background-color:#ddd}
+#prop-box li:hover{background-color:#33414e}
 #prop-box li span{float: right}
 .rtl #prop-box li span{float: left}
 
@@ -249,40 +249,43 @@ input.upload {
     display:none;
 }
 
-#form_uploader ul{
+#upload-notify{
     list-style:none;
     direction: ltr;
-    margin:0 -30px;
-    border-top:1px solid #2b2e31;
-    border-bottom:1px solid #3d4043;
+    margin:0;
+    /*border-top:1px solid #2b2e31;
+    border-bottom:1px solid #3d4043;*/
     font-family: sans-serif;
+    width:100%;
 }
 
-#form_uploader ul li{
+#upload-notify li{
+    opacity: 0.9;
+    background-color: #33414e;
 
-    background-color:#333639;
+    /*background-color:#333639;
 
     background-image:-webkit-linear-gradient(top, #333639, #303335);
     background-image:-moz-linear-gradient(top, #333639, #303335);
-    background-image:linear-gradient(top, #333639, #303335);
+    background-image:linear-gradient(top, #333639, #303335);*/
 
-    border-top:1px solid #3d4043;
-    border-bottom:1px solid #2b2e31;
+    /*border-top:1px solid #3d4043;*/
+    /*border-bottom:1px solid #2b2e31;*/
     height: 62px;
     position: relative;
-    opacity: 0.6;
+    /*opacity: 0.6;*/
     transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;
 }
-#form_uploader ul li:hover{
+#upload-notify li:hover{
   opacity: 1;
 
 }
 
-#form_uploader ul li input{
+#upload-notify li input{
     display: none;
 }
 
-#form_uploader ul li p{
+#upload-notify li p{
     overflow: hidden;
     text-align: left;
     white-space: nowrap;
@@ -291,24 +294,26 @@ input.upload {
     line-height: 150%;
     font-weight: bold;
     position: absolute;
-    top: 17px;
+    top: 10px;
     left: 100px;
+    width: 50%;
+    text-overflow: ellipsis;
 }
 
-#form_uploader ul li i{
+#upload-notify li i{
     font-weight: normal;
     font-style:normal;
     color:#7f7f7f;
     display:block;
 }
 
-#form_uploader ul li canvas{
-    top: 10px;
-    left: 32px;
+#upload-notify li canvas{
+    /*top: 10px;
+    left: 32px;*/
     position: absolute;
 }
 
-#form_uploader ul li span{
+#upload-notify li span{
     position: absolute;
     top: 20px;
     right: 60px;
@@ -317,26 +322,26 @@ input.upload {
     line-height: 2rem;
     padding: 0 10px;
 }
-#form_uploader ul li > i{position: absolute;width:30px;float:right;font-size:3rem;font-family: "FontAwesome";top:15px;right:30px;text-align:center;cursor:pointer;}
-#form_uploader ul li > i:after{
+#upload-notify li > i{position: absolute;width:30px;float:right;font-size:3rem;font-family: "FontAwesome";top:15px;right:10px;text-align:center;cursor:pointer;}
+#upload-notify li > i:after{
   content: "\f00c";
   color: #24C279;
 }
 
-#form_uploader ul li.working > i:after{
+#upload-notify li.working > i:after{
     content: "\f00d";
     color: #D11F49;
 }
 
-#form_uploader ul li.error{
+#upload-notify li.error{
   box-shadow: 2px 0 0 0 #D7CD21 inset;
 }
-#form_uploader ul li.error > i:after{
+#upload-notify li.error > i:after{
     content: "\f12a";
     color: #D7CD21;
 }
 
-#form_uploader ul li.error p{
+#upload-notify li.error p{
     color:#D7CD21;
 }
 
@@ -346,13 +351,4 @@ input.upload {
 
 #explorer {
   /*position: relative;*/
-}
-
-#upload-notify {
-  width:100%;
-  margin: 0 !important;
-  /*position:absolute;*/
-  /*bottom:0;*/
-  /*right:0;*/
-  background-color:#ddd;
 }
