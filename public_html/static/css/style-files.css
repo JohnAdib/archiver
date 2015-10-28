@@ -355,6 +355,7 @@ input.upload {
   border: none;
   outline: none;
   font-size: 10px;
+  width: 80%;
 }
 
 #explorer .name input::selection {
@@ -368,7 +369,7 @@ input.upload {
   font-size: 10px;
   background: #3F85C0;
   color: #fff;
-  float: left;
-  margin: 0 10px;
+  margin: 0 1%;
   cursor: pointer;
+  width: 10%;
 }
