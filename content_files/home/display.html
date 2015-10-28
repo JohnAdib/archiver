@@ -5,6 +5,11 @@
  <link rel="stylesheet"       href="{{url.static}}css/style-files.css?v=1.0.5">
 {%endblock%}
 
+{%block foot_js%}
+ <script src='{{url.static}}js/uploader.js'></script>
+{%endblock%}
+
+
 {%block foot_js2%}
  <script src='{{url.static}}js/filemanager.js'></script>
  <script src='{{url.static}}js/files-folders.js'></script>
@@ -105,85 +110,101 @@
   </nav>
  </aside>
 
- <div class="span9" id='explorer'>
+ <div class="span8" id='explorer'>
   <ul>
     <li>
-    <span class='id'>1</span>
+      <span class='type fa fa-folder'></span>
       <span class='name'>Folder1</span>
       <span class='size'>12 item</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>2</span>
+      <span class='type fa fa-folder'></span>
       <span class='name'>Folder2</span>
       <span class='size'>12 item</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>3</span>
+      <span class='type fa fa-folder'></span>
       <span class='name'>Folder3</span>
       <span class='size'>12 item</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>4</span>
+      <span class='type fa fa-folder'></span>
       <span class='name'>Folder4</span>
       <span class='size'>12 item</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>5</span>
+      <span class='type fa fa-file-archive-o'></span>
       <span class='name'>File1</span>
       <span class='size'>129 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>6</span>
+      <span class='type fa fa-file-audio-o'></span>
       <span class='name'>File2</span>
       <span class='size'>120 MB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>7</span>
+      <span class='type fa fa-file-image-o'></span>
       <span class='name'>File3</span>
       <span class='size'>141 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>5</span>
+      <span class='type fa fa-file-video-o'></span>
       <span class='name'>File1</span>
       <span class='size'>12 MB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>6</span>
+      <span class='type fa fa-file-pdf-o'></span>
       <span class='name'>File2</span>
       <span class='size'>160 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
     <li>
-      <span class='id'>7</span>
-      <span class='name'>File3</span>
-      <span class='size'>24 MB</span>
+      <span class='type fa fa-file-word-o'></span>
+      <span class='name'>File2</span>
+      <span class='size'>160 KB</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='type fa fa-file-excel-o'></span>
+      <span class='name'>File2</span>
+      <span class='size'>160 KB</span>
+      <span class='date'>2015/6/13</span>
+    </li>
+
+    <li>
+      <span class='type fa fa-file-powerpoint-o'></span>
+      <span class='name'>File2</span>
+      <span class='size'>160 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
   </ul>
 
 
+  <ul id='upload-notify'></ul>
+
   
  </div>
 
- <div class="span2 left-side" id='prop-box'>
+ <div class="span3 left-side" id='prop-box'>
   <h3>{%trans "Properties"%}</h3>
   <ul>
     <li>{%trans "Name"%}<span>test</span></li>
@@ -200,30 +221,29 @@
 
 
 
-<div class='modal hidden' data-modal id="upload_modal">
+
+
+ <div class='modal' data-modal id="upload_modal">
   <div class='modal-dialog'>
-    <form id="upload_form">
-      <img class='hidden' id='file_preview'>
-      <label for='file_input'>Select your file</label>
-      <input type='file' id='file_input'>
-      <button id="upload">Upload</button>
-      <button id="pause" type="button">Pause</button>
-      <button id="resume" type="button">Resume</button>
-      <button data-cancel type="button">Cancel</button>
+   <h3 class='modal-title'>ایجاد یک پاورقی خارجی</h3>
+   <div class='modal-body'>
+    <form method="post" id="form_uploader" action="attachments/add" enctype="multipart/form-data" class="unselectable">
+     <div id="drop">{%trans "Drag & Drop Files Here"%}<br />{%trans "or"%}<a>{%trans "Choose File"%}</a>
+      <input type="file" name="upfile" multiple />
+      <small>{%trans "Maximum size allowed"%} {{maxSize}}</small>
+     </div>
 
-      <div id="progress" style="height: 30px; width: 0%; background: #8AD1FD;"></div>
+    <ul></ul>
     </form>
-  </div>
-</div>
-
-
-
-<footer id="footer">
-  <div id="copyright">
-   <div class='hint--right' data-hint='{{site.desc}}'>
-    <span>&copy; {{'now'|date('Y')}}</span>
-    <a href="{{url.root}}" title="{{site.desc}}" tabindex="-1">{{site.title}}</a>
+   </div>
+   <div class='modal-footer buttons'>
    </div>
   </div>
-</footer>
+ </div>
+
+
+
+
+
+
 {%endblock%}
