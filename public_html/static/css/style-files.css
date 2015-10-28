@@ -256,7 +256,11 @@ input.upload {
     /*border-top:1px solid #2b2e31;
     border-bottom:1px solid #3d4043;*/
     font-family: sans-serif;
-    width:100%;
+    position: fixed;
+    bottom: 0;
+    width: 23.404251999999996%;
+    left: 0;
+    max-height: 50vh;
 }
 
 #upload-notify li{
