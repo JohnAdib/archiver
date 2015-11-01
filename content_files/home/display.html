@@ -204,7 +204,7 @@
  <div class="span3 left-side" id='prop-box'>
   <ul id='upload-notify'></ul>
   <h3>{%trans "Properties"%}</h3>
-  <ul>
+  <ul id="prop-box-ul">
     <li>{%trans "Name"%}<span>test</span></li>
     <li>{%trans "Size"%}<span>123kb</span></li>
     <li>{%trans "Type"%}<span>image</span></li>
@@ -221,11 +221,10 @@
 
 
 
- <div class='modal' data-modal id="upload_modal">
+ <div class='modal' data-modal data-cancel id="upload_modal">
   <div class='modal-dialog'>
-   <h3 class='modal-title'>ایجاد یک پاورقی خارجی</h3>
    <div class='modal-body'>
-    <form method="post" id="form_uploader" action="attachments/add" enctype="multipart/form-data" class="unselectable">
+    <form method="post" id="form_uploader" action="$/upload" enctype="multipart/form-data" class="unselectable">
      <div id="drop">{%trans "Drag & Drop Files Here"%}<br />{%trans "or"%}<a>{%trans "Choose File"%}</a>
       <input type="file" name="upfile" multiple />
       <small>{%trans "Maximum size allowed"%} {{maxSize}}</small>

@@ -40,7 +40,7 @@ body, html{height: 100%;}
 
 
 
-#page-sidebar{background-color:#33414e;opacity:0.9;color:#fff;height:100%;z-index:1000;text-align: center}
+#page-sidebar{background-color:#3F5162;color:#fff;height:100%;z-index:1000;text-align: center}
 #page-sidebar a{display:block;color:#999;padding:0 5%;line-height:300%}
 #page-sidebar a:hover{color:#fff;background:rgba(255,255,255,0.2)}
 #page-sidebar #page-logo{height:45px;padding:0 5px;margin:0;background-color:#3fbae4;overflow:hidden;}
@@ -67,9 +67,12 @@ body, html{height: 100%;}
 #prop-box{height: 100%; background-color: #eee;font-size:1.2em}
 #prop-box h3{padding:2% 5%;border-bottom: 1px solid #ccc}
 #prop-box li {line-height:200%;padding:2% 5%;}
-#prop-box li:hover{background-color:#ddd}
+/*#prop-box li:hover{background-color:#ddd}*/
 #prop-box li span{float: right}
 .rtl #prop-box li span{float: left}
+#prop-box-ul li:hover {
+  background-color:#ddd
+}
 
 #explorer>ul{margin: 2% 0;}
 #explorer li{line-height:200%;padding:1% 2%;overflow:hidden;}
@@ -260,6 +263,7 @@ input.upload {
     bottom: 0;
     width: 23.404251999999996%;
     left: 0;
+    z-index: 1001;
 }
 
 #upload-notify li{
@@ -367,9 +371,24 @@ input.upload {
   padding: 0px 5px;
   border-radius: 2px;
   font-size: 10px;
-  background: #3F85C0;
   color: #fff;
   margin: 0 1%;
   cursor: pointer;
-  width: 10%;
+  width: 5%;
+}
+
+.btn-fa-check {
+  background-color: #21b384;
+  opacity: 0.9;
+}
+.btn-fa-times {
+  background-color: #c7254e;
+  opacity: 0.9;
+}
+.btn-fa-check:hover, .btn-fa-times:hover {
+  opacity: 1;
+}
+
+#upload_modal > .modal-dialog {
+  background: transparent;
 }
