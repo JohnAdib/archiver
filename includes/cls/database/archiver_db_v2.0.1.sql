@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2015 at 05:16 PM
+-- Generation Time: Nov 01, 2015 at 05:32 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment_author` varchar(50) DEFAULT NULL,
   `comment_email` varchar(100) DEFAULT NULL,
   `comment_url` varchar(100) DEFAULT NULL,
-  `comment_content` text NOT NULL,
+  `comment_content` mediumtext NOT NULL,
   `comment_meta` mediumtext,
   `comment_status` enum('approved','unapproved','spam','deleted') NOT NULL DEFAULT 'unapproved',
   `comment_parent` smallint(5) unsigned DEFAULT NULL,
