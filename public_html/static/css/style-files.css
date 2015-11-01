@@ -75,8 +75,8 @@ body, html{height: 100%;}
 }
 
 #explorer>ul{margin: 2% 0;}
-#explorer li{line-height:200%;padding:1% 2%;overflow:hidden;}
-#explorer li:hover{background-color: #ddd}
+#explorer li{line-height:200%;padding:0.5% 1%;overflow:hidden; border: 1px solid transparent}
+#explorer li:hover{background-color: #E5F3FF; border: 1px solid #E5F3FF;}
 #explorer li span{min-width: 40px;display: inline-block;}
 #explorer .type{font-size: 2em;}
 #explorer .type.fa-folder{color: #ffe78f}
@@ -144,7 +144,8 @@ input.upload {
 #files ul li span#createFolder{min-width: 50px;}
 #files ul li span#cancelCreateFolder{min-width: 50px;}
 
-#explorer ul li.selected{background-color:#ddd;}
+#explorer ul li.selected{background-color:#CCE8FF; border: 1px dotted #99D1FF;}
+#explorer ul li.focused{border: 1px dotted #99D1FF;}
 
 
 /* Tree */
