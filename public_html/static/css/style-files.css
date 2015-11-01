@@ -144,8 +144,9 @@ input.upload {
 #files ul li span#createFolder{min-width: 50px;}
 #files ul li span#cancelCreateFolder{min-width: 50px;}
 
-#explorer ul li.selected{background-color:#CCE8FF; border: 1px dotted #99D1FF;}
-#explorer ul li.focused{border: 1px dotted #99D1FF;}
+#explorer ul li.selected{background-color:#CCE8FF; border: 1px dotted #99D1FF}
+#explorer ul li.focused{border: 1px dotted #99D1FF}
+#explorer ul li.cutted{opacity: 0.5}
 
 
 /* Tree */

@@ -24,14 +24,14 @@ $(document).ready(function() {
 
 	$('#explorer>ul li').click(function(e) {
 		if (e.ctrlKey && e.shiftKey) {
-			console.log(1);
+			// console.log(1);
 		} else if (e.ctrlKey) {
 			$(this).toggleClass('selected');
-			console.log('ctrl');
+			// console.log('ctrl');
 		} else if(e.shiftKey) {
-			console.log(3)
+			// console.log(3)
 		} else {
-			console.log(4);
+			// console.log(4);
 			$('#explorer>ul li').removeClass('selected');
 			$(this).addClass('selected');
 		}
@@ -39,7 +39,6 @@ $(document).ready(function() {
 	});
 
 	$(document).keydown(function(e) {
-		console.log(e);
         if (e.ctrlKey && e.keyCode == 65) {
         	if ($('#explorer>ul').hasClass('select-all'))  {
     			$('#explorer>ul li').removeClass('selected');
@@ -95,4 +94,29 @@ $(document).ready(function() {
              return; // exit this handler for other keys
         }
     });
+
+	$('#more-selectall').click(function() {
+    	if ($('#explorer>ul').hasClass('select-all'))  {
+			$('#explorer>ul li').removeClass('selected');
+    	} else {
+			$('#explorer>ul li').addClass('selected');
+    	}
+
+    	if ($('#explorer>ul li').is('#create-new-folder')) {
+    		$('#create-new-folder').fadeOut().remove();
+    	}
+
+    	$('#explorer>ul').toggleClass('select-all');
+	});
+
+	$('#more-move').click(function() {
+		$('#explorer>ul li.selected').addClass('cutted');
+	});
+
+	$('#more-rename').click(function() {
+		if ($('#explorer>ul li').hasClass('selected')) {
+			var name = $('#explorer>ul li.selected span.name').text();
+			$('#explorer>ul li.selected span.name').html('<input type="text" placeholder=""> <button class="btn-fa-check"><i class="fa fa-check"></i></button><button class="btn-fa-times"><i class="fa fa-times"></i></button>').children('input').val(name).select();
+		}
+	});
 });
