@@ -22,7 +22,7 @@ function ex_new_folder()
 function ex_select_all()
 {
     if ($('#explorer>ul').hasClass('select-all'))  {
-        $('#explorer>ul li').removeClass('selected');
+        ex_items_remove_class('selected');
     } else {
         $('#explorer>ul li').addClass('selected');
     }
@@ -58,6 +58,28 @@ function ex_rename()
     }
 }
 
+// remove input class from all of items
+function ex_items_remove_class(_className)
+{
+    $('#explorer>ul li').removeClass(_className);
+
+}
+
+
+function ex_item_select(_id)
+{
+    $('#explorer>ul li[data-row='+ _id +']').addClass('selected');
+}
+
+function ex_item_focus(_id)
+{
+    $('#explorer>ul li[data-row='+ _id +']').addClass('focused');
+}
+
+function ex_item_select_focus(_id)
+{
+    $('#explorer>ul li[data-row='+ _id +']').addClass('selected focused');
+}
 
 
 function event_corridor(_ctrl, _shift, _self, _key)
@@ -77,12 +99,14 @@ function event_corridor(_ctrl, _shift, _self, _key)
     {
         case '32':              // space
         case '32shift':         // space + shift
-            $('#explorer>ul li').eq(cid).addClass('selected');
+            _self.addClass('selected');
+
         break;
 
         case '32ctrl':          // space + ctrl
         case '32ctrlshift':     // space + ctrl + shift
-            $('#explorer>ul li').eq(cid).toggleClass('selected');
+            _self.toggleClass('selected');
+
         break;
         
 
@@ -93,8 +117,20 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
         case '38':              // up
             next = cid > 0 ? cid - 1 : 0;
-            $('#explorer>ul li').removeClass('focused selected');
-            $('#explorer>ul li').eq(next).addClass('focused selected');
+            ex_items_remove_class('selected focused');
+            ex_item_select_focus(next);
+        break;
+
+       case '38ctrl':           // up + ctrl
+            next = cid > 0 ? cid - 1 : 0;
+            ex_items_remove_class('focused');
+            ex_item_focus(next);
+        break;
+
+       case '38shift':          // up + shift
+            next = cid > 0 ? cid - 1 : 0;
+            ex_items_remove_class('focused');
+            ex_item_select_focus(next);
         break;
 
 
@@ -105,9 +141,22 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
         case '40':              // down
             next = cid>= lastid ? lastid : cid + 1;
-            $('#explorer>ul li').removeClass('focused selected');
-            $('#explorer>ul li').eq(next).addClass('focused selected');
+            ex_items_remove_class('selected focused');
+            ex_item_select_focus(next);
         break;
+
+       case '40ctrl':           // down + ctrl
+            next = cid>= lastid ? lastid : cid + 1;
+            ex_items_remove_class('focused');
+            ex_item_focus(next);
+        break;
+
+       case '40shift':          // down + shift
+            next = cid>= lastid ? lastid : cid + 1;
+            ex_items_remove_class('focused');
+            ex_item_select_focus(next);
+        break;
+
 
 
 
@@ -140,13 +189,15 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
 
         // ---------------------------------------------------------------------- mouse
-        case 'clickctrl':       // click + ctrl
-            _self.toggleClass('selected');
+        case 'click':           // click
+            ex_items_remove_class('selected focused');
+            _self.addClass('selected focused');
         break;
 
 
-        case 'clickctrlshift':  // click + ctrl + shift
-            console.log('click ctrl shift');
+        case 'clickctrl':       // click + ctrl
+            ex_items_remove_class('focused');
+            _self.toggleClass('selected focused');
         break;
 
 
@@ -154,9 +205,9 @@ function event_corridor(_ctrl, _shift, _self, _key)
             console.log('click shift');
         break;
 
-        case 'click':           // click
-            $('#explorer>ul li').removeClass('selected');
-            _self.addClass('selected');
+
+        case 'clickctrlshift':  // click + ctrl + shift
+            console.log('click ctrl shift');
         break;
 
 
