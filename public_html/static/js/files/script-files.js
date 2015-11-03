@@ -76,11 +76,37 @@ function ex_item_focus(_id)
     $('#explorer>ul li[data-row='+ _id +']').addClass('focused');
 }
 
+function ex_item_zero(_id)
+{
+    $('#explorer>ul li[data-row='+ _id +']').addClass('zero');
+}
+
 function ex_item_select_focus(_id)
 {
     $('#explorer>ul li[data-row='+ _id +']').addClass('selected focused');
 }
 
+function ex_item_select_focus_zero(_id)
+{
+    $('#explorer>ul li[data-row='+ _id +']').addClass('selected focused zero');
+}
+
+
+function ex_items_select_until(_id)
+{
+    var zero = $('#explorer>ul li.zero').attr("data-row");
+    console.log(zero);
+    var start = zero < _id ? zero : _id; 
+    start = parseInt(start);
+    var end   = zero > _id ? zero : _id; 
+    end = parseInt(end);
+
+    for (var i = start; i <= end; i++)
+    {
+        console.log(i);
+        $('#explorer>ul li[data-row='+ i +']').addClass('selected');
+    }
+}
 
 function event_corridor(_ctrl, _shift, _self, _key)
 {
@@ -117,8 +143,8 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
         case '38':              // up
             next = cid > 0 ? cid - 1 : 0;
-            ex_items_remove_class('selected focused');
-            ex_item_select_focus(next);
+            ex_items_remove_class('selected focused zero');
+            ex_item_select_focus_zero(next);
         break;
 
        case '38ctrl':           // up + ctrl
@@ -129,8 +155,15 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
        case '38shift':          // up + shift
             next = cid > 0 ? cid - 1 : 0;
-            ex_items_remove_class('focused');
-            ex_item_select_focus(next);
+            ex_items_remove_class('focused selected');
+            ex_items_select_until(next);
+            ex_item_focus(next);
+        break;
+
+       case '38ctrlshift':      // up + ctrl + shift
+            next = cid > 0 ? cid - 1 : 0;
+            ex_items_remove_class('focused zero');
+            ex_item_select_focus_zero(next);
         break;
 
 
@@ -141,8 +174,8 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
         case '40':              // down
             next = cid>= lastid ? lastid : cid + 1;
-            ex_items_remove_class('selected focused');
-            ex_item_select_focus(next);
+            ex_items_remove_class('selected focused zero');
+            ex_item_select_focus_zero(next);
         break;
 
        case '40ctrl':           // down + ctrl
@@ -153,8 +186,15 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
        case '40shift':          // down + shift
             next = cid>= lastid ? lastid : cid + 1;
-            ex_items_remove_class('focused');
-            ex_item_select_focus(next);
+            ex_items_remove_class('focused selected');
+            ex_items_select_until(next);
+            ex_item_focus(next);
+        break;
+
+       case '40ctrlshift':     // down + shift
+            next = cid>= lastid ? lastid : cid + 1;
+            ex_items_remove_class('focused zero');
+            ex_item_select_focus_zero(next);
         break;
 
 
@@ -190,24 +230,28 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
         // ---------------------------------------------------------------------- mouse
         case 'click':           // click
-            ex_items_remove_class('selected focused');
-            _self.addClass('selected focused');
+            ex_items_remove_class('selected focused zero');
+            _self.addClass('selected focused zero');
         break;
 
 
         case 'clickctrl':       // click + ctrl
-            ex_items_remove_class('focused');
-            _self.toggleClass('selected focused');
+            ex_items_remove_class('focused zero');
+            _self.toggleClass('selected focused zero');
         break;
 
 
         case 'clickshift':      // click + shift
-            console.log('click shift');
+            ex_items_remove_class('selected focused');
+            ex_items_select_until(cid);
+            ex_item_focus(cid);
         break;
 
 
         case 'clickctrlshift':  // click + ctrl + shift
-            console.log('click ctrl shift');
+            ex_items_remove_class('focused');
+            ex_items_select_until(cid);
+            ex_item_focus(cid);
         break;
 
 
