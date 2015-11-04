@@ -3,8 +3,9 @@ namespace database\archiver;
 class logs 
 {
 	public $id             = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'bigint@20'];
-	public $logitem_id     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'logitem'         ,'type'=>'smallint@5'                      ,'foreign'=>'logitems@id!id'];
+	public $logitem_id     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'logitem'         ,'type'=>'smallint@5'                      ,'foreign'=>'logitems@id!logitem_title'];
 	public $user_id        = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'user'            ,'type'=>'int@10'                          ,'foreign'=>'users@id!user_displayname'];
+	public $log_data       = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'data'            ,'type'=>'varchar@200'];
 	public $log_meta       = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'meta'            ,'type'=>'mediumtext@'];
 	public $log_status     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@enable,disable,expire,deliver'];
 	public $log_createdate = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'createdate'      ,'type'=>'datetime@'];
@@ -23,6 +24,11 @@ class logs
 	{
 		$this->form()->type('select')->name('user_');
 		$this->setChild();
+	}
+
+	public function log_data()
+	{
+		$this->form()->type('textarea')->name('data')->maxlength('200');
 	}
 
 	public function log_meta(){}

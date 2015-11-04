@@ -28,6 +28,7 @@ function transtext()
 	echo T_("trash");               // Enum trash
 	echo T_("deleted");             // Enum deleted
 	echo T_("inprogress");          // Enum inprogress
+	echo T_("unavailable");         // Enum unavailable
 	echo T_("file");                // file_id
 	echo T_("title");               // attachment_title
 	echo T_("desc");                // attachment_desc
@@ -65,7 +66,6 @@ function transtext()
 	echo T_("ready");               // Enum ready
 	echo T_("temp");                // Enum temp
 	echo T_("delete");              // Enum delete
-	echo T_("unavailable");         // Enum unavailable
 	echo T_("server");              // file_server
 	echo T_("folder");              // file_folder
 	echo T_("code");                // file_code
@@ -91,6 +91,7 @@ function transtext()
 	echo T_("log");                 // log
 	echo T_("deliver");             // Enum deliver
 	echo T_("logitem");             // logitem_id
+	echo T_("data");                // log_data
 	echo T_("meta");                // log_meta
 	echo T_("status");              // log_status
 	echo T_("createdate");          // log_createdate

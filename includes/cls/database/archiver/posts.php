@@ -42,7 +42,10 @@ class posts
 		$this->form()->type('textarea')->name('url')->maxlength('255')->required();
 	}
 
-	public function post_content(){}
+	public function post_content()
+	{
+		$this->form()->type('textarea')->name('content');
+	}
 
 	public function post_meta(){}
 

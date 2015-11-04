@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2015 at 05:32 PM
+-- Generation Time: Nov 04, 2015 at 01:45 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -52,11 +52,11 @@ CREATE TABLE IF NOT EXISTS `attachments` (
   `attachment_addr` varchar(1000) DEFAULT NULL,
   `attachment_name` varchar(100) DEFAULT NULL,
   `attachment_ext` varchar(255) DEFAULT NULL,
-  `attachment_size` float(12,0) DEFAULT NULL,
+  `attachment_size` float(12,0) unsigned DEFAULT NULL,
   `attachment_meta` mediumtext,
   `attachment_parent` bigint(20) unsigned DEFAULT NULL,
-  `attachment_order` smallint(5) DEFAULT NULL,
-  `attachment_status` enum('normal','trash','deleted','inprogress') NOT NULL DEFAULT 'normal',
+  `attachment_order` smallint(5) unsigned DEFAULT NULL,
+  `attachment_status` enum('normal','trash','deleted','inprogress','unavailable') NOT NULL DEFAULT 'normal',
   `attachment_date` datetime DEFAULT NULL,
   `user_id` int(10) unsigned NOT NULL,
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
@@ -114,19 +114,30 @@ CREATE TABLE IF NOT EXISTS `logitems` (
   `logitem_meta` mediumtext,
   `logitem_priority` enum('critical','high','medium','low') NOT NULL DEFAULT 'medium',
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `logitems`
 --
 
 INSERT INTO `logitems` (`id`, `logitem_title`, `logitem_desc`, `logitem_meta`, `logitem_priority`, `date_modified`) VALUES
-(1, 'account/login', NULL, NULL, 'medium', NULL),
-(2, 'account/signup', NULL, NULL, 'high', NULL),
-(3, 'account/recovery', NULL, NULL, 'medium', NULL),
-(4, 'account/change password', NULL, NULL, 'low', NULL),
-(5, 'db/error', NULL, NULL, 'medium', NULL),
-(6, 'php/error', NULL, NULL, 'high', NULL);
+(1, 'low priority', '', '', 'low', '0000-00-00 00:00:00'),
+(2, 'mediym priority', '', '', 'medium', '0000-00-00 00:00:00'),
+(3, 'high priority', '', '', 'high', '0000-00-00 00:00:00'),
+(4, 'critical priority', '', '', 'critical', '0000-00-00 00:00:00'),
+(5, 'php/error', '', '', 'critical', '0000-00-00 00:00:00'),
+(6, 'db/error', '', '', 'high', '0000-00-00 00:00:00'),
+(7, 'account/login', '', '', 'low', '0000-00-00 00:00:00'),
+(8, 'account/signup', '', '', 'medium', '0000-00-00 00:00:00'),
+(9, 'account/recovery', '', '', 'medium', '0000-00-00 00:00:00'),
+(10, 'account/change password', '', '', 'low', '0000-00-00 00:00:00'),
+(11, 'account/verification sms', '', '', 'low', '0000-00-00 00:00:00'),
+(12, 'account/verification email', '', '', 'medium', '0000-00-00 00:00:00'),
+(13, 'Page 400', '', '', 'low', '0000-00-00 00:00:00'),
+(14, 'Page 401 ', '', '', 'medium', '0000-00-00 00:00:00'),
+(15, 'Page 403', '', '', 'low', '0000-00-00 00:00:00'),
+(16, 'Page 404', '', '', 'low', '0000-00-00 00:00:00'),
+(17, 'Page 500', '', '', 'low', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -138,6 +149,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `id` bigint(20) unsigned NOT NULL,
   `logitem_id` smallint(5) unsigned NOT NULL,
   `user_id` int(10) unsigned DEFAULT NULL,
+  `log_data` varchar(200) DEFAULT NULL,
   `log_meta` mediumtext,
   `log_status` enum('enable','disable','expire','deliver') DEFAULT NULL,
   `log_createdate` datetime NOT NULL,
@@ -187,30 +199,9 @@ CREATE TABLE IF NOT EXISTS `options` (
 INSERT INTO `options` (`id`, `user_id`, `post_id`, `option_cat`, `option_key`, `option_value`, `option_meta`, `option_status`, `date_modified`) VALUES
 (1, NULL, NULL, 'global', 'email', 'info@saloos.ir', NULL, '', NULL),
 (2, NULL, NULL, 'global', 'auto_mail', 'no-reply@saloos.ir', NULL, '', NULL),
-(3, NULL, NULL, 'user_degree', 'under diploma', NULL, NULL, '', NULL),
-(4, NULL, NULL, 'user_degree', 'diploma', NULL, NULL, '', NULL),
-(5, NULL, NULL, 'user_degree', '2-year collage', NULL, NULL, '', NULL),
-(6, NULL, NULL, 'user_degree', 'bachelor', NULL, NULL, '', NULL),
-(7, NULL, NULL, 'user_degree', 'master', NULL, NULL, '', NULL),
-(8, NULL, NULL, 'user_degree', 'doctorate', NULL, NULL, '', NULL),
-(9, NULL, NULL, 'user_degree', 'religious', NULL, NULL, '', NULL),
-(10, NULL, NULL, 'user_activity', 'employee', NULL, NULL, '', NULL),
-(11, NULL, NULL, 'user_activity', 'housekeeper ', NULL, NULL, '', NULL),
-(12, NULL, NULL, 'user_activity', 'free lance', NULL, NULL, '', NULL),
-(13, NULL, NULL, 'user_activity', 'retired', NULL, NULL, '', NULL),
-(14, NULL, NULL, 'user_activity', 'student', NULL, NULL, '', NULL),
-(15, NULL, NULL, 'user_activity', 'unemployed', NULL, NULL, '', NULL),
-(16, NULL, NULL, 'user_activity', 'seminary student', NULL, NULL, '', NULL),
-(17, NULL, NULL, 'ships', 'post', NULL, NULL, '', NULL),
-(18, NULL, NULL, 'ships', 'tipax', NULL, NULL, '', NULL),
 (19, NULL, NULL, 'permission_id', '1', 'admin', NULL, '', NULL),
 (20, NULL, NULL, 'permission_id', '2', 'editor', NULL, '', NULL),
-(21, NULL, NULL, 'permission_id', '3', 'viewer', NULL, '', NULL),
-(30, NULL, NULL, 'twitter', 'status', 'enable', NULL, 'disable', NULL),
-(31, NULL, NULL, 'twitter', 'ConsumerKey', NULL, NULL, 'enable', NULL),
-(32, NULL, NULL, 'twitter', 'ConsumerSecret', NULL, NULL, 'enable', NULL),
-(33, NULL, NULL, 'twitter', 'AccessToken', NULL, NULL, 'enable', NULL),
-(34, NULL, NULL, 'twitter', 'AccessTokenSecret', NULL, NULL, 'enable', NULL);
+(21, NULL, NULL, 'permission_id', '3', 'viewer', NULL, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -468,7 +459,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `logitems`
 --
 ALTER TABLE `logitems`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `logs`
 --

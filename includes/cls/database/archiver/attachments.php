@@ -14,7 +14,7 @@ class attachments
 	public $attachment_meta   = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'meta'            ,'type'=>'mediumtext@'];
 	public $attachment_parent = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'parent'          ,'type'=>'bigint@20'                       ,'foreign'=>'attachments@id!attachment_title'];
 	public $attachment_order  = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'order'           ,'type'=>'smallint@5'];
-	public $attachment_status = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@normal,trash,deleted,inprogress!normal'];
+	public $attachment_status = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@normal,trash,deleted,inprogress,unavailable!normal'];
 	public $attachment_date   = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'date'            ,'type'=>'datetime@'];
 	public $user_id           = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'user'            ,'type'=>'int@10'                          ,'foreign'=>'users@id!user_displayname'];
 	public $date_modified     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'modified'        ,'type'=>'timestamp@'];
@@ -61,7 +61,7 @@ class attachments
 
 	public function attachment_size()
 	{
-		$this->form()->type('number')->name('size')->max('999999999999');
+		$this->form()->type('number')->name('size')->min()->max('999999999999');
 	}
 
 	public function attachment_meta(){}
@@ -74,7 +74,7 @@ class attachments
 
 	public function attachment_order()
 	{
-		$this->form()->type('number')->name('order')->max('99999');
+		$this->form()->type('number')->name('order')->min()->max('99999');
 	}
 
 	public function attachment_status()

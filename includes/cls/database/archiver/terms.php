@@ -42,7 +42,10 @@ class terms
 		$this->form()->type('textarea')->name('url')->maxlength('200')->required();
 	}
 
-	public function term_desc(){}
+	public function term_desc()
+	{
+		$this->form('#desc')->type('textarea')->name('desc');
+	}
 
 	public function term_meta(){}
 
