@@ -227,6 +227,7 @@
     <form method="post" id="form_uploader" action="$/upload" enctype="multipart/form-data" class="unselectable">
      <div id="drop">{%trans "Drag & Drop Files Here"%}<br />{%trans "or"%}<a>{%trans "Choose File"%}</a>
       <input type="file" name="upfile" multiple />
+      <input type="hidden" name="location" value="{{url.path}}" />
       <small>{%trans "Maximum size allowed"%} {{maxSize}}</small>
      </div>
 

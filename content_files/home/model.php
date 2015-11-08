@@ -4,238 +4,214 @@ use \lib\debug;
 use \lib\utility;
 class model extends \mvc\model
 {
-	public function tree()
+	public function post_upload()
 	{
-		$myid = $this->login('id');
-
-		// create query for get by folders name and ordered by depth
-		$qry   = $this->sql()->tableAttachments()->whereUser_id($myid)
-		->orderAttachment_depth('ASC')->orderAttachment_order('ASC')->select();
-
-		$mydatatable = array();
-		foreach ($qry->allassoc() as $row)
+		$FOLDER_SIZE = 1000;
+		$SERVER_SIZE = 1000000;		// 1 milion file can save in each server
+		$server_id   = 1;
+		// 1. check upload process and validate it
+		$invalid = utility\Upload::invalid('upfile', 100000000);
+		if($invalid)
 		{
-			$mydatatable[] = array(
-				'name'   => $row['attachment_title'],
-				'id'     => $row['id'],
-				'type'   => $row['attachment_type'],
-				'ext'    => $row['attachment_ext'],
-				'size'   => $row['attachment_size'],
-				'count'  => $row['attachment_count'],
-				'order'  => $row['attachment_order'],
-				'parent' => $row['attachment_parent'],
-				'status' => $row['attachment_status'],
-				);
-		}
-		return $mydatatable;
-	}
+			debug::property('status','fail');
+			debug::property('error', $invalid);
 
-	public function post_folder(){
-	}
-
-	/**
-	 * set tree in attachments table
-	 * @param [int] 			$parent_id parent id
-	 * @param [string] 			$name      tree name
-	 * @param [boolean or int] 	$isFile    if is file is int and if is folder is null
-	 */
-	private function set_tree($parent_id, $name, $isFile = null){
-		$uid = $this->login('id');
-		$sql = $this->sql("set_tree")->tableAttachments();
-		if($isFile !== null){
-			$sql->setAttachment_type('file');
-			$sql->setFile_id($isFile);
-		}else{
-			$sql->setAttachment_type('folder');
-		}
-		$sql = $sql->setAttachment_parent($parent_id)
-		->setAttachment_title($name)
-		->setUser_id($uid)->insert();
-		if($sql->LAST_INSERT_ID() !== false){
-			return true;
-		}else{
+			$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 			return false;
 		}
-	}
 
-	/**
-	 * get parent or folder id
-	 * @param  [string] $addr 	path directory
-	 * @param  [string] $name 	file or folder name
-	 * @param  [boolean] $isFile 	is file or folder
-	 * @return [int]       		parent_id
-	 */
-	private function getFolder_id($addr, $name, $isFile = null){
-		$uid = $this->login('id');
-		if($addr == "/") $parent_id = "#NULL";
-		else{
-			$sAddr = explode("/", $addr);
-			$pTitle = end($sAddr);
-			array_pop($sAddr);
-			$addr = join("/", $sAddr);
-			if($addr == "") $addr = "/";
-			$sql = $this->sql("getParent_id")->tableAttachments()
-			->fieldId()
-			->whereUser_id($uid)
-			->andAttachment_addr($addr)
-			->andAttachment_type("folder")
-			->andAttachment_title($pTitle)
-			->limit(1);
-			$parent_id = $sql->select()->assoc('id');
+
+		// 2. Generate file_id, folder_id and url
+		$qry_count     = $this->sql()->table('files')->select('id')->num();
+		$folder_prefix = "data/";
+		$folder_id     = ceil(($qry_count+1) / $FOLDER_SIZE);
+		$folder_name   = $folder_prefix . $folder_id;
+		$file_id       = $qry_count % $FOLDER_SIZE + 1;
+		$url_full      = "$folder_name/$file_id-" . utility\Upload::$fileFullName;
+
+
+
+		// 3. Check for record exist in db or not then if not exist transfer it to data folder
+		$qry_count2    = $this->sql()->table('files')->where('file_code', utility\Upload::$fileMd5)->select('id');
+		$file_exist    = false;
+		if($qry_count2->num())
+		{
+			$file_exist = true;
+			$new_file_id = $qry_count2->assoc('id');
+			// $id = $qry_count2->assoc('id');
+			// debug::property('status','ok');
+			// $link = '<a target="_blank" href=/attachments/edit='. $id. '>'. T_('Duplicate - File exist').'</a>';
+			// debug::property('error', $link);
+
+			// $this->_processor(['force_json'=>true, 'not_redirect'=>true]);
+			// return false;
 		}
-		if(is_numeric($parent_id) || $parent_id == "#NULL"){
-			$exists = $this->sql("checkexists")->tableAttachments()
-			->fieldId()
-			->whereUser_id($uid);
+		else
+		{
+			// 3.5. transfer file to project folder with new name
+			if(!utility\Upload::transfer($url_full, $folder_name))
+			{
+				debug::property('status', 'fail');
+				debug::property('error', T_('Fail on tranfering file'));
 
-			if($isFile){
-				$exists->andAttachment_type('file');
-			}else{
-				$exists->andAttachment_type('folder');
-			}
-
-			$exists = $exists->andAttachment_title($name)
-			->andAttachment_parent($parent_id)
-			->limit(1)->select()->num();
-			if($exists){
+				$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 				return false;
-			}else{
-				return $parent_id;
 			}
-		}else{
+			
+		}
+
+		// 4. transfer file to project folder with new name
+		$file_ext   = utility\Upload::$fileExt;
+		$url_thumb  = null;
+		$url_normal = null;
+
+		switch ($file_ext)
+		{
+			case 'jpg':
+			case 'jpeg':
+			case 'png':
+			case 'gif':
+			default:
+				$extlen     = strlen(utility\Upload::$fileExt);
+				$url_file   = substr($url_full, 0, -$extlen-1);
+				$url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
+				$url_normal = $url_file.'-normal.'.utility\Upload::$fileExt;
+				// var_dump($thumb_url);
+				// exit();
+				utility\Image::load($url_full);
+				// utility\Image::thumb(600, 400);
+				// utility\Image::save($url_normal);
+
+				utility\Image::thumb(150, 150);
+				utility\Image::save($url_thumb);
+				break;
+
+			default:
+				break;
+		}
+
+		// 5. get filemeta data
+		$file_meta = [
+						'mime'   => utility\Upload::$fileMime,
+						'type'   => utility\Upload::$fileType,
+						'ext'    => $file_ext,
+						'url'    => $url_full,
+						'thumb'  => $url_thumb,
+						'normal' => $url_normal,
+					 ];
+		$page_url  = $file_meta['type'].'/'.substr($url_full, strlen($folder_prefix));
+
+		if( strpos($file_meta['mime'], 'image') !== false)
+			list($file_meta['width'], $file_meta['height'])= getimagesize($url_full);
+		$file_meta = json_encode($file_meta);
+		// var_dump($file_meta);exit();
+
+		if(!$file_exist)
+		{
+			// 6. add uploaded file to files table in db
+			$qry = $this->sql();
+			$qry = $qry->table('files')
+						->set('id',               $qry_count+1)
+						->set('file_server',      $server_id)
+						->set('file_folder',      $folder_id)
+						->set('file_code',        utility\Upload::$fileMd5)
+						->set('file_size',        utility\Upload::$fileSize)
+						->set('file_meta',        $file_meta)
+						->set('file_status',      'ready')
+						->set('file_createdate',  date('Y-m-d H:i:s'));
+			$qry         = $qry->insert();
+			$new_file_id = $qry->LAST_INSERT_ID();
+		}
+
+
+		// 7. add uploaded file record attachment table in db
+		$current_url = $this->url('path');
+		$location    = '/'.utility::post('location');
+
+		if( strpos($_SERVER['HTTP_REFERER'], $location) === false ) 
+		{
+			debug::property('status', 'fail');
+			debug::property('error', T_('Fail on get current location'));
+
+			$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 			return false;
 		}
+
+
+		$qry = $this->sql();
+		$qry = $qry->table('attachments')
+					->set('file_id',           $new_file_id)
+					->set('attachment_type',   'file')
+					->set('attachment_addr',   $location)
+					->set('attachment_name',   utility\Upload::$fileName)
+					->set('attachment_ext',    $file_ext)
+					->set('attachment_size',   utility\Upload::$fileSize)
+					->set('attachment_meta',   $file_meta)
+					->set('attachment_status', 'normal')
+					->set('attachment_date',   date('Y-m-d H:i:s'))
+					->set('user_id',           $this->login('id'));
+		$qry           = $qry->insert();
+		$attachment_id = $qry->LAST_INSERT_ID();
+
+
+		// // 7. add uploaded file record to db
+		// $qry = $this->sql();
+		// $qry = $qry->table('posts')
+		// 			->set('post_title',       utility\Upload::$fileName)
+		// 			->set('post_slug',        utility\Upload::$fileMd5)
+		// 			->set('post_meta',        $file_meta)
+		// 			->set('post_type',        'attachment')
+		// 			->set('post_url',         $page_url)
+		// 			->set('user_id',          $this->login('id'))
+		// 			->set('post_status',      'draft')
+		// 			->set('post_publishdate', date('Y-m-d H:i:s'));
+
+		// $qry         = $qry->insert();
+		// $post_new_id = $qry->LAST_INSERT_ID();
+
+
+
+
+
+
+		// 8. commit all changes or rollback and remove file
+		// ======================================================
+		// you can manage next event with one of these variables,
+		// commit for successfull and rollback for failed
+		// if query run without error means commit
+		$this->commit(function($_id, $_url)
+		{
+			debug::property('status', 'ok');
+			// $link = '<a target="_blank" href=/attachments/edit='.$_id.'>'. T_('Edit').'</a>';
+			// debug::property('edit', $link);
+
+		}, $attachment_id, $page_url);
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::property('status', 'fail');
+			debug::property('error', T_('Error'));
+			// remove file if has problem
+		});
+
+		$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
+
+
+
+
+
+
+
+		// var_dump('upload');
+		// return false;
+		# code...
 	}
 
-	public function post_upload(){
-		$tmp = root.'../tmp-upd/';
-		$uid = $this->login('id');
-		$session = utility::post("session");
-		$file = $_FILES['file'];
-		if($session == '0'){
-
-			/**
-			 * files table
-			 */
-			$size = utility::post("size");
-			$open_file_row = $this->sql('upload')->tableFiles()
-			->setFile_size($size)
-			->setFile_status('inprogress')
-			->insert();
-			$file_id = $open_file_row->LAST_INSERT_ID();
-			if($file_id === false){
-				debug::error('file row error', 'open', 'file');
-				return;
-			}
-
-			/**
-			 * attachments table
-			 */
-			$parent = utility::post("parent");
-			if(!$parent){
-				$site = urldecode($_SERVER['HTTP_REFERER']);
-				preg_match("/^https?:\/\/[^\/]*(\/.*)$/", $site, $path);
-				$parent = $path[1];
-			}
-			$parent_id = $this->getFolder_id($parent, $file['name'], true);
-			if(!$parent_id){
-				debug::error('path directory error', 'path', 'file');
-				return;
-			}
-			$set = $this->set_tree($parent_id, $file['name'], $file_id);
-			if(!$set){
-				debug::error('attachment save error', 'attachments', 'file');
-				return;
-			}
-
-			/**
-			 * fileparts talbe
-			 */
-			$session = md5(time().rand(111111111, 999999999));
-			$open_file_parts = $this->sql('upload')->tableFileparts()
-			->setFile_id($file_id)
-			->setFilepart_part("#0")
-			->setFilepart_code($session)
-			->setFilepart_status('inprogress')
-			->insert()->LAST_INSERT_ID();
-			if(!is_dir($tmp)) mkdir($tmp);
-			mkdir($tmp.$file_id);
-			if(!debug::$status || !move_uploaded_file($_FILES['file']['tmp_name'], $tmp.$file_id.'/0')){
-				debug::error('upload file error', 'move', 'file');
-				return;
-			}
-			debug::property("session", $session);
-			debug::property("file", $file_id);
-		}else{
-			$file_id = $file['name'];
-			$file_parts_check = $this->sql('upload')->tableFileparts()
-			->whereFile_id($file_id)->limit(1)->select();
-			$file_parts = $file_parts_check->assoc();
-			if(!$file_parts['filepart_code'] == $session && $file_parts['filepart_code'] != ''){
-				debug::error('file in progress in another client', 'session', 'file');
-				return;
-			}elseif($file_parts['filepart_status'] == 'appended'){
-				debug::error('file in appending', 'appending', 'file');
-				return;
-			}
-			$this->sql('upload')->tableFileparts()
-			->setFilepart_part("#filepart_part+1")
-			->whereFile_id($file_id)
-			->update();
-			$new_part = $file_parts['filepart_part'] +1;
-			if(!debug::$status || !move_uploaded_file($_FILES['file']['tmp_name'], $tmp.$file_id.'/'.$new_part)){
-				debug::error('upload file error', 'move', 'file');
-				return;
-			}
-		}
-	}
-
-	public function get_killSession(){
-		$session = utility::get("session");
-		$finished = utility::get("finished");
-		$file_parts = $this->sql('upload')->tableFileparts()
-		->setFilepart_code($session);
-		if($finished === 'true'){
-			$file_parts->setFilepart_status('appended');
-		}
-		$file_parts = $file_parts->whereFilepart_code($session)->update();
-		if($finished === 'true' && debug::$status){
-			$parts_check = $this->sql('upload')->tableFileparts()
-			->whereFilepart_code($session)
-			->limit(1)
-			->select();
-			$this->appending($parts_check->assoc('file_id'));
-		}
-
-		$opt = (object) array('force_json' => true, 'force_stop' => true);
-		$this->_processor($opt);
-	}
-
-	private function appending($file_id){
-		$tmp = root.'../tmp-upd/'.$file_id.'/';
-		$part = 0;
-		while ($file = @file_get_contents($tmp.$part)) {
-			file_put_contents($tmp.'final', $file, FILE_APPEND);
-			$part++;
-		}
+	public function post_createfolder()
+	{
+		var_dump('upload');
+		# code...
 	}
 }
-/*
-Array
-(
-    [session] => 0
-)
-Array
-(
-    [file] => Array
-        (
-            [name] => friday.mp3
-            [type] => application/octet-stream
-            [tmp_name] => /tmp/phpl7IiQF
-            [error] => 0
-            [size] => 200000
-        )
-
-)
- */
 ?>

@@ -11,6 +11,49 @@ class controller extends \mvc\controller
 			$this->redirector(null, false)->set_domain($this->url('AccountService'))->set_url('login?cp=1')->redirect();
 			exit();
 		}
+		
+		$myurl   = $this->url('path',-1);
+
+
+		if(isset($myurl[0]) && $myurl[0] === '$')
+		{
+			if(count($myurl) === 2 && isset($myurl[1]))
+			{
+				// $tmp_url   = $this->url('path');
+				// var_dump($tmp_url);
+
+				switch ($myurl[1])
+				{
+					case 'upload':
+					case 'move':
+					case 'copy':
+					case 'paste':
+					case 'delete':
+					case 'createfolder':
+					case 'rename':
+						// var_dump($myurl[1]);
+						$this->post($myurl[1])->ALL();
+						// $this->get()->ALL();
+						break;
+
+					default:
+						\lib\error::bad();
+						break;
+				}
+			}
+			else
+			{
+				\lib\error::bad();
+			}
+		}
+		else
+		{
+			$this->get()->ALL();
+		}
+
+
+
+
 
 
 		// $mymodule = $this->module();
