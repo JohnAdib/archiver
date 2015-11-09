@@ -108,7 +108,7 @@ function ex_items_select_until(_id)
     }
 }
 
-function event_corridor(_ctrl, _shift, _self, _key)
+function event_corridor(e, _ctrl, _shift, _self, _key)
 {
     _self = $(_self);
     var cid    = parseInt(_self.attr('data-row'));
@@ -123,79 +123,103 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
     switch(mytxt)
     {
+        case '8':               // Back Space
+            console.log('BackSpace');
+            e.preventDefault();
+            break;
+
         case '32':              // space
         case '32shift':         // space + shift
             _self.addClass('selected');
-
-        break;
+            break;
 
         case '32ctrl':          // space + ctrl
         case '32ctrlshift':     // space + ctrl + shift
             _self.toggleClass('selected');
+            break;
 
-        break;
-        
+        case '33':              // PageUP
+            next = cid > 10 ? cid - 10 : 0;
+            ex_items_remove_class('selected focused zero');
+            ex_item_select_focus_zero(next);
+            break;
+
+        case '34':              // PageDown
+            next = cid + 10 >= lastid ? lastid : cid + 10;
+            ex_items_remove_class('selected focused zero');
+            ex_item_select_focus_zero(next);
+            break;
+
+        case '35':              // End
+            ex_items_remove_class('selected focused zero');
+            ex_item_select_focus_zero(lastid);
+            break;
+
+        case '36':              // Home
+            ex_items_remove_class('selected focused zero');
+            ex_item_select_focus_zero(0);
+            break;
 
         case '37':              // left
             console.log('left');
-        break;
+            break;
 
 
         case '38':              // up
             next = cid > 0 ? cid - 1 : 0;
             ex_items_remove_class('selected focused zero');
             ex_item_select_focus_zero(next);
-        break;
+            break;
 
-       case '38ctrl':           // up + ctrl
+        case '38ctrl':           // up + ctrl
             next = cid > 0 ? cid - 1 : 0;
             ex_items_remove_class('focused');
             ex_item_focus(next);
-        break;
+            break;
 
-       case '38shift':          // up + shift
+        case '38shift':          // up + shift
             next = cid > 0 ? cid - 1 : 0;
             ex_items_remove_class('focused selected');
             ex_items_select_until(next);
             ex_item_focus(next);
-        break;
+            break;
 
-       case '38ctrlshift':      // up + ctrl + shift
+        case '38ctrlshift':      // up + ctrl + shift
             next = cid > 0 ? cid - 1 : 0;
             ex_items_remove_class('focused zero');
             ex_item_select_focus_zero(next);
-        break;
+            break;
 
 
         case '39':              // right
             console.log('right');
-        break;
+            break;
 
 
         case '40':              // down
-            next = cid>= lastid ? lastid : cid + 1;
+            next = cid >= lastid ? lastid : cid + 1;
             ex_items_remove_class('selected focused zero');
             ex_item_select_focus_zero(next);
-        break;
+            break;
 
-       case '40ctrl':           // down + ctrl
-            next = cid>= lastid ? lastid : cid + 1;
+        case '40ctrl':           // down + ctrl
+            next = cid >= lastid ? lastid : cid + 1;
             ex_items_remove_class('focused');
             ex_item_focus(next);
-        break;
+            break;
 
-       case '40shift':          // down + shift
-            next = cid>= lastid ? lastid : cid + 1;
+        case '40shift':          // down + shift
+            next = cid >= lastid ? lastid : cid + 1;
             ex_items_remove_class('focused selected');
             ex_items_select_until(next);
             ex_item_focus(next);
-        break;
+            break;
 
-       case '40ctrlshift':     // down + shift
-            next = cid>= lastid ? lastid : cid + 1;
+        case '40ctrlshift':     // down + shift
+            next = cid >= lastid ? lastid : cid + 1;
             ex_items_remove_class('focused zero');
             ex_item_select_focus_zero(next);
-        break;
+            break;
 
 
 
@@ -203,28 +227,28 @@ function event_corridor(_ctrl, _shift, _self, _key)
         // ---------------------------------------------------------------------- shortcut
         case '65ctrl':          // a + ctrl
             ex_select_all();
-        break;
+            break;
 
         case '67ctrl':          // c + ctrl
             ex_copy();
-        break;
+            break;
 
         case '78ctrl':          // n + ctrl
             ex_new_folder();
-        break;
+            break;
 
         case '86ctrl':          // v + ctrl
             ex_paste();
-        break;
+            break;
 
         case '88ctrl':          // x + ctrl
             ex_cut();
-        break;
+            break;
 
 
         case '113':             // f2
             ex_rename();
-        break;
+            break;
 
 
 
@@ -232,32 +256,38 @@ function event_corridor(_ctrl, _shift, _self, _key)
         case 'click':           // click
             ex_items_remove_class('selected focused zero');
             _self.addClass('selected focused zero');
-        break;
+            break;
 
 
         case 'clickctrl':       // click + ctrl
             ex_items_remove_class('focused zero');
             _self.toggleClass('selected focused zero');
-        break;
+            break;
 
 
         case 'clickshift':      // click + shift
             ex_items_remove_class('selected focused');
             ex_items_select_until(cid);
             ex_item_focus(cid);
-        break;
+            break;
 
 
         case 'clickctrlshift':  // click + ctrl + shift
             ex_items_remove_class('focused');
             ex_items_select_until(cid);
             ex_item_focus(cid);
-        break;
+            break;
 
+
+        case 'dblclick':           // Double click
+            
+            // ex_items_remove_class('selected focused zero');
+            // _self.addClass('selected focused zero');
+            break;
 
 
         default:
-        return; // exit this handler for other keys
+            return; // exit this handler for other keys
     }
 
 
@@ -271,6 +301,7 @@ function event_corridor(_ctrl, _shift, _self, _key)
 
 $(document).ready(function()
 {
+    $('#explorer>ul li').first().addClass('zero focused');
     // call from menu
     $('#more-selectall').click(function() { ex_select_all(); });
     $('#newfolder').click(function() { ex_new_folder(); });
@@ -278,6 +309,7 @@ $(document).ready(function()
     $('#more-move').click(function() { ex_cut(); });
 
 
-    $('#explorer>ul li').click(function(e) { event_corridor(e.ctrlKey, e.shiftKey, e.currentTarget, 'click'); });
-    $(document).keydown(function(e) { event_corridor(e.ctrlKey, e.shiftKey, $('#explorer>ul li.focused')[0], e.which ); });
+    $('#explorer>ul li').click(function(e) { event_corridor(e, e.ctrlKey, e.shiftKey, e.currentTarget, 'click'); });
+    $('#explorer>ul li').dblclick(function(e) { event_corridor(e, e.ctrlKey, e.shiftKey, e.currentTarget, 'dblclick'); });
+    $(document).keydown(function(e) { event_corridor(e, e.ctrlKey, e.shiftKey, $('#explorer>ul li.focused')[0], e.which ); });
 });
