@@ -26,12 +26,23 @@ class model extends \mvc\model
 						 		)
 						->where('user_id', $uid)
 						->and('attachment_addr', $_location)
+						->order('#type', 'DESC')
 						->select('id')
 						->allassoc();
 
 		foreach ($datatable as $key =>$row)
 		{
 			$datatable[$key]['meta'] = json_decode($row['meta'], true);
+			if($row['type'] == 'folder')
+				$datatable[$key]['icon'] = 'folder';
+			elseif($row['type'] == 'file' && isset($datatable[$key]['meta']) && isset($datatable[$key]['meta']['type']))
+				$datatable[$key]['icon'] = 'file-'.$datatable[$key]['meta']['type'].'-o';
+			elseif($row['type'] == 'system')
+				$datatable[$key]['icon'] = 'hdd-o';
+			elseif($row['type'] == 'other')
+				$datatable[$key]['icon'] = 'file';
+			else
+				$datatable[$key]['icon'] = 'file-o';
 		}
 		// var_dump($datatable);
 		return $datatable;

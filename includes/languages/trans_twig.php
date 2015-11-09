@@ -26,17 +26,17 @@ function transtext()
 	echo T_("Frequently asked question");                                             // Line 108
 	echo T_("Analytics");                                                             // Line 109
 	echo T_("Options");                                                               // Line 110
-	echo T_("Properties");                                                            // Line 217
-	echo T_("Name");                                                                  // Line 219
-	echo T_("Size");                                                                  // Line 220
-	echo T_("Type");                                                                  // Line 221
-	echo T_("Date");                                                                  // Line 222
-	echo T_("Createdate");                                                            // Line 223
-	echo T_("Other");                                                                 // Line 224
-	echo T_("Drag & Drop Files Here");                                                // Line 239
-	echo T_("or");                                                                    // Line 239
-	echo T_("Choose File");                                                           // Line 239
-	echo T_("Maximum size allowed");                                                  // Line 242
+	echo T_("Properties");                                                            // Line 222
+	echo T_("Name");                                                                  // Line 224
+	echo T_("Size");                                                                  // Line 225
+	echo T_("Type");                                                                  // Line 226
+	echo T_("Date");                                                                  // Line 227
+	echo T_("Createdate");                                                            // Line 228
+	echo T_("Other");                                                                 // Line 229
+	echo T_("Drag & Drop Files Here");                                                // Line 244
+	echo T_("or");                                                                    // Line 244
+	echo T_("Choose File");                                                           // Line 244
+	echo T_("Maximum size allowed");                                                  // Line 247
 
 }
 ?>
