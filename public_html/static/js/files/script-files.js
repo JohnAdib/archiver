@@ -92,7 +92,7 @@ function ex_item_select_focus_zero(_id)
 }
 
 
-function ex_items_select_until(_id)
+function ex_items_select_focus_until(_id)
 {
     var zero = $('#explorer>ul li.zero').attr("data-row");
     console.log(zero);
@@ -106,20 +106,22 @@ function ex_items_select_until(_id)
         console.log(i);
         $('#explorer>ul li[data-row='+ i +']').addClass('selected');
     }
+    $('#explorer>ul li[data-row='+ _id +']').addClass('focused');
 }
 
-function event_corridor(e, _ctrl, _shift, _self, _key)
+function event_corridor(e, _self, _key)
 {
     _self = $(_self);
     var cid    = parseInt(_self.attr('data-row'));
     var lastid = parseInt($('#explorer>ul li:last').attr('data-row'));
 
-    var ctrl   = _ctrl  ? 'ctrl' : '';
-    var shift  = _shift ? 'shift' : '';
-    var mytxt  = String(_key) + ctrl + shift;
+    var ctrl   = e.ctrlKey  ? 'ctrl' : '';
+    var shift  = e.shiftKey ? 'shift' : '';
+    var alt    = e.altKey   ? 'alt' : '';
+    var mytxt  = String(_key) + ctrl + alt + shift;
 
     // console.log(_key);
-    // console.log(mytxt);
+    console.log(mytxt);
 
     switch(mytxt)
     {
@@ -128,6 +130,8 @@ function event_corridor(e, _ctrl, _shift, _self, _key)
             e.preventDefault();
             break;
 
+
+        // ---------------------------------------------------------- Space
         case '32':              // space
         case '32shift':         // space + shift
             _self.addClass('selected');
@@ -138,33 +142,113 @@ function event_corridor(e, _ctrl, _shift, _self, _key)
             _self.toggleClass('selected');
             break;
 
+
+        // ---------------------------------------------------------- Page Up
         case '33':              // PageUP
             next = cid > 10 ? cid - 10 : 0;
             ex_items_remove_class('selected focused zero');
             ex_item_select_focus_zero(next);
             break;
 
+        case '33ctrl':         // PageUP + ctrl
+            next = cid > 10 ? cid - 10 : 0;
+            ex_items_remove_class('focused');
+            ex_item_focus(next);
+            break;
+
+        case '33shift':        // PageUP + Shift
+            next = cid > 10 ? cid - 10 : 0;
+            ex_items_remove_class('selected focused');
+            ex_items_select_focus_until(next);
+            break;
+
+        case '33ctrlshift':    // PageUP + Ctrl + Shift
+            next = cid > 10 ? cid - 10 : 0;
+            ex_items_remove_class('focused');
+            ex_items_select_focus_until(next);
+            break;
+
+
+        // ---------------------------------------------------------- Page Down
         case '34':              // PageDown
             next = cid + 10 >= lastid ? lastid : cid + 10;
             ex_items_remove_class('selected focused zero');
             ex_item_select_focus_zero(next);
             break;
 
+        case '34ctrl':         // PageDown + Ctrl
+            next = cid + 10 >= lastid ? lastid : cid + 10;
+            ex_items_remove_class('focused');
+            ex_item_focus(next);
+            break;
+
+        case '34shift':         // PageDown + Shift
+            next = cid + 10 >= lastid ? lastid : cid + 10;
+            ex_items_remove_class('selected focused');
+            ex_items_select_focus_until(next);
+            break;
+
+        case '34ctrlshift':    // PageDown + Ctrl + Shift
+            next = cid + 10 >= lastid ? lastid : cid + 10;
+            ex_items_remove_class('focused');
+            ex_items_select_focus_until(next);
+            break;
+
+
+        // ---------------------------------------------------------- End
         case '35':              // End
             ex_items_remove_class('selected focused zero');
             ex_item_select_focus_zero(lastid);
             break;
 
-        case '36':              // Home
+        case '35ctrl':         // End + Ctrl
+            ex_items_remove_class('focused');
+            ex_item_focus(lastid);
+            break;
+
+        case '35shift':         // End + Shift
+            ex_items_remove_class('selected focused');
+            ex_items_select_focus_until(lastid);
+            break;
+
+        case '35ctrlshift':    // End + Ctrl + Shift
+            ex_items_remove_class('focused');
+            ex_items_select_focus_until(lastid);
+            break;
+
+        // ---------------------------------------------------------- Home
+        case '36':             // Home
             ex_items_remove_class('selected focused zero');
             ex_item_select_focus_zero(0);
             break;
 
-        case '37':              // left
-            console.log('left');
+        case '36ctrl':        // Home + Ctrl
+            ex_items_remove_class('focused');
+            ex_item_focus(0);
+            break;
+
+        case '36shift':      // Home + Ctrl
+            ex_items_remove_class('selected focused');
+            ex_items_select_focus_until(0);
+            break;
+
+        case '36ctrlshift':  // Home + Ctrl + Shift
+            ex_items_remove_class('focused');
+            ex_items_select_focus_until(0);
             break;
 
 
+        // ---------------------------------------------------------- Left
+        case '37':              // left
+            console.log('left');
+            break;
+        case '37alt':           // left + Alt
+            console.log('go to previous page');
+            e.preventDefault();
+            break;
+
+
+        // ---------------------------------------------------------- Up
         case '38':              // up
             next = cid > 0 ? cid - 1 : 0;
             ex_items_remove_class('selected focused zero');
@@ -180,8 +264,7 @@ function event_corridor(e, _ctrl, _shift, _self, _key)
         case '38shift':          // up + shift
             next = cid > 0 ? cid - 1 : 0;
             ex_items_remove_class('focused selected');
-            ex_items_select_until(next);
-            ex_item_focus(next);
+            ex_items_select_focus_until(next);
             break;
 
         case '38ctrlshift':      // up + ctrl + shift
@@ -191,11 +274,18 @@ function event_corridor(e, _ctrl, _shift, _self, _key)
             break;
 
 
+        // ---------------------------------------------------------- Right
         case '39':              // right
             console.log('right');
             break;
 
+        case '39alt':           // right + Alt
+            console.log('go to next page');
+            e.preventDefault();
+            break;
 
+
+        // ---------------------------------------------------------- Down
         case '40':              // down
             next = cid >= lastid ? lastid : cid + 1;
             ex_items_remove_class('selected focused zero');
@@ -211,8 +301,7 @@ function event_corridor(e, _ctrl, _shift, _self, _key)
         case '40shift':          // down + shift
             next = cid >= lastid ? lastid : cid + 1;
             ex_items_remove_class('focused selected');
-            ex_items_select_until(next);
-            ex_item_focus(next);
+            ex_items_select_focus_until(next);
             break;
 
         case '40ctrlshift':     // down + shift
@@ -241,6 +330,11 @@ function event_corridor(e, _ctrl, _shift, _self, _key)
             ex_paste();
             break;
 
+        case '84ctrl':          // w + ctrl     close current tab
+            console.log("you can't close this tab")
+            e.preventDefault();
+            break;
+
         case '88ctrl':          // x + ctrl
             ex_cut();
             break;
@@ -267,15 +361,13 @@ function event_corridor(e, _ctrl, _shift, _self, _key)
 
         case 'clickshift':      // click + shift
             ex_items_remove_class('selected focused');
-            ex_items_select_until(cid);
-            ex_item_focus(cid);
+            ex_items_select_focus_until(cid);
             break;
 
 
         case 'clickctrlshift':  // click + ctrl + shift
             ex_items_remove_class('focused');
-            ex_items_select_until(cid);
-            ex_item_focus(cid);
+            ex_items_select_focus_until(cid);
             break;
 
 
@@ -309,7 +401,7 @@ $(document).ready(function()
     $('#more-move').click(function() { ex_cut(); });
 
 
-    $('#explorer>ul li').click(function(e) { event_corridor(e, e.ctrlKey, e.shiftKey, e.currentTarget, 'click'); });
-    $('#explorer>ul li').dblclick(function(e) { event_corridor(e, e.ctrlKey, e.shiftKey, e.currentTarget, 'dblclick'); });
-    $(document).keydown(function(e) { event_corridor(e, e.ctrlKey, e.shiftKey, $('#explorer>ul li.focused')[0], e.which ); });
+    $('#explorer>ul li').click(function(e) { event_corridor(e, e.currentTarget, 'click'); });
+    $('#explorer>ul li').dblclick(function(e) { event_corridor(e, e.currentTarget, 'dblclick'); });
+    $(document).keydown(function(e) { event_corridor(e, $('#explorer>ul li.focused')[0], e.which ); });
 });

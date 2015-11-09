@@ -18,9 +18,9 @@
 
 
 {%block body%}
-  <header id="header">
+  <header id="header" role="header">
    <ul id="header-nav">
-    <li id="languages">
+    <li id="languages" itemscope>
      <i class="fa fa-language fa-2x"></i>
      <nav class="vertical-menu">
 {%for key, value in site.langlist%}{%if key == global.lang%}
@@ -114,94 +114,105 @@
  <div class="span8" id='explorer'>
   <ul>
 
+{%set plus = 0%}
+{%if url.path != ''%}
+    <li data-row="0" class="up">
+      <span class='type fa fa-level-up'></span>
+      <span class='name'>... </span>
+      <span class='size'></span>
+      <span class='date'></span>
+    </li>
+{%set plus = 1%}
+{%endif%}
+
 {%for key, row in datatable%}
-    <li data-row="{{key}}" class="{{row.type}}">
+    <li data-row="{{key+plus}}" class="{{row.type}}">
       <span class='type fa fa-{{row.icon}}'></span>
-      <span class='name'>{{row.name}} </span>
+      <span class='name'>{{row.name}}</span>
       <span class='size'>{{row.size | readableSize(row.type) }}</span>
       <span class='date hint--left' data-hint="{{row.date}}">{{row.date | sdate('day')}}</span>
     </li>
 {% endfor %}
 
 
-    <li data-row="{{datatable|length + 0}}" class="zero focused">
+    <li data-row="{{datatable|length + plus+ 0}}">
       <span class='type fa fa-folder'></span>
       <span class='name'>Folder1</span>
       <span class='size'>12 item</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 1}}">
+    <li data-row="{{datatable|length + plus+ 1}}">
       <span class='type fa fa-folder'></span>
       <span class='name'>Folder2</span>
       <span class='size'>12 item</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 2}}">
+    <li data-row="{{datatable|length + plus+ 2}}">
       <span class='type fa fa-folder'></span>
       <span class='name'>Folder3</span>
       <span class='size'>12 item</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 3}}">
+    <li data-row="{{datatable|length + plus+ 3}}">
       <span class='type fa fa-folder'></span>
       <span class='name'>Folder4</span>
       <span class='size'>12 item</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 4}}">
+    <li data-row="{{datatable|length + plus+ 4}}">
       <span class='type fa fa-file-archive-o'></span>
       <span class='name'>File1</span>
       <span class='size'>129 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 5}}">
+    <li data-row="{{datatable|length + plus+ 5}}">
       <span class='type fa fa-file-audio-o'></span>
       <span class='name'>File2</span>
       <span class='size'>120 MB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 6}}">
+    <li data-row="{{datatable|length + plus+ 6}}">
       <span class='type fa fa-file-image-o'></span>
       <span class='name'>File3</span>
       <span class='size'>141 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 7}}">
+    <li data-row="{{datatable|length + plus+ 7}}">
       <span class='type fa fa-file-video-o'></span>
       <span class='name'>File1</span>
       <span class='size'>12 MB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 8}}">
+    <li data-row="{{datatable|length + plus+ 8}}">
       <span class='type fa fa-file-pdf-o'></span>
       <span class='name'>File2</span>
       <span class='size'>160 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 9}}">
+    <li data-row="{{datatable|length + plus+ 9}}">
       <span class='type fa fa-file-word-o'></span>
       <span class='name'>File2</span>
       <span class='size'>160 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 10}}">
+    <li data-row="{{datatable|length + plus+ 10}}">
       <span class='type fa fa-file-excel-o'></span>
       <span class='name'>File2</span>
       <span class='size'>160 KB</span>
       <span class='date'>2015/6/13</span>
     </li>
 
-    <li data-row="{{datatable|length + 11}}">
+    <li data-row="{{datatable|length + plus+ 11}}">
       <span class='type fa fa-file-powerpoint-o'></span>
       <span class='name'>File2</span>
       <span class='size'>160 KB</span>
