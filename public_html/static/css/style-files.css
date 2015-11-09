@@ -78,7 +78,7 @@ body, html{height: 100%;}
 #explorer li{padding:0.5% 1%;overflow:hidden; border: 1px solid transparent}
 #explorer li:hover{background-color: #E5F3FF; border: 1px solid #E5F3FF;}
 #explorer li span{min-width: 40px;display: inline-block;}
-#explorer .type{font-size: 2em;}
+#explorer .type{font-size: 2em;vertical-align:middle;}
 #explorer .type.fa-folder{color: #ffe78f}
 #explorer .type.fa-file-image-o{color: #3786d1}
 #explorer .type.fa-file-archive-o{color: #B34E4D}

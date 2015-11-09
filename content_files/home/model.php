@@ -4,6 +4,38 @@ use \lib\debug;
 use \lib\utility;
 class model extends \mvc\model
 {
+	public function draw($_location = '')
+	{
+		$_location = '/' . $_location;
+		$uid       = $this->login('id');
+		$datatable = $this->sql()->table('attachments')
+						->field('id',
+						 		'file_id',
+						 		'#attachment_title as title',
+						 		'#attachment_desc as description',
+						 		'#attachment_type as type',
+						 		// '#attachment_addr as address',
+						 		'#attachment_name as name',
+						 		'#attachment_ext as ext',
+						 		'#attachment_size as size',
+						 		'#attachment_meta as meta',
+						 		'#attachment_parent as parent',
+						 		// '#attachment_order as order',
+						 		'#attachment_status as status',
+						 		'#attachment_date as date'
+						 		)
+						->where('user_id', $uid)
+						->and('attachment_addr', $_location)
+						->select('id')
+						->allassoc();
+
+		foreach ($datatable as $key =>$row)
+		{
+			$datatable[$key]['meta'] = json_decode($row['meta'], true);
+		}
+		// var_dump($datatable);
+		return $datatable;
+	}
 	public function post_upload()
 	{
 		$FOLDER_SIZE = 1000;
