@@ -47,6 +47,12 @@ class model extends \mvc\model
 		// var_dump($datatable);
 		return $datatable;
 	}
+
+
+	/**
+	 * doing upload process
+	 * @return [boolean] if status is false, return it
+	 */
 	public function post_upload()
 	{
 		$FOLDER_SIZE = 1000;
@@ -241,20 +247,112 @@ class model extends \mvc\model
 		$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 
 
-
-
-
-
-
 		// var_dump('upload');
 		// return false;
 		# code...
 	}
 
+	/**
+	 * create a new folder
+	 * @return [type] [description]
+	 */
 	public function post_createfolder()
 	{
-		var_dump('upload');
-		# code...
+		$location    = '/'.utility::post('location');
+		$name        = utility::post('name');
+
+		$qry = $this->sql();
+		$qry = $qry->table('attachments')
+					->set('attachment_type',   'folder')
+					->set('attachment_addr',   $location)
+					->set('attachment_name',   $name)
+					->set('attachment_size',   0)
+					->set('attachment_status', 'normal')
+					->set('attachment_date',   date('Y-m-d H:i:s'))
+					->set('user_id',           $this->login('id'));
+		$qry           = $qry->insert();
+		// $attachment_id = $qry->LAST_INSERT_ID();
+
+		// commit all changes or rollback and remove file
+		// ======================================================
+		// you can manage next event with one of these variables,
+		// commit for successfull and rollback for failed
+		// if query run without error means commit
+		$this->commit(function($_id, $_url)
+		{
+			debug::property('status', 'ok');
+		}, $attachment_id, $page_url);
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::property('status', 'fail');
+			debug::property('error', T_('Error'));
+			// remove file if has problem
+		});
 	}
+
+	/**
+	 * remove file and folders
+	 * @return [type] [description]
+	 */
+	public function post_remove()
+	{
+		var_dump("delete");
+		$location    = '/'.utility::post('location');
+		$name        = utility::post('name');
+
+		$qry = $this->sql();
+		$qry = $qry->table('attachments')
+					->set('attachment_type',   'folder')
+					->set('attachment_addr',   $location)
+					->set('attachment_name',   $name)
+					->set('attachment_size',   0)
+					->set('attachment_status', 'normal')
+					->set('attachment_date',   date('Y-m-d H:i:s'))
+					->set('user_id',           $this->login('id'));
+		$qry           = $qry->delete();
+		// $attachment_id = $qry->LAST_INSERT_ID();
+
+		// commit all changes or rollback and remove file
+		// ======================================================
+		// you can manage next event with one of these variables,
+		// commit for successfull and rollback for failed
+		// if query run without error means commit
+		$this->commit(function($_id, $_url)
+		{
+			debug::property('status', 'ok');
+		}, $attachment_id, $page_url);
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::property('status', 'fail');
+			debug::property('error', T_('Error'));
+			// remove file if has problem
+		});
+	}
+
+
+
+	/**
+	 * copy file and folders to new location
+	 * @return [type] [description]
+	 */
+	public function post_copy()
+	{
+
+	}
+
+
+	/**
+	 * cut file and folders to new location
+	 * @return [type] [description]
+	 */
+	public function post_cut()
+	{
+
+	}
+
 }
 ?>
