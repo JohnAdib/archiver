@@ -36,7 +36,11 @@ function ex_select_all()
 
 function ex_cut()
 {
-    $('#explorer>ul li.selected').addClass('cutted');
+    if ( $('#explorer>ul').find('li.selected').length != 0 ) {
+        // console.log('Do cut');
+        $('body').addClass('cut');
+        $('#explorer>ul li.selected').addClass('cutted');
+    }
 }
 
 function ex_copy()
@@ -95,7 +99,6 @@ function ex_item_select_focus_zero(_id)
 function ex_items_select_focus_until(_id)
 {
     var zero = $('#explorer>ul li.zero').attr("data-row");
-    console.log(zero);
     var start = zero < _id ? zero : _id; 
     start = parseInt(start);
     var end   = zero > _id ? zero : _id; 
@@ -103,7 +106,6 @@ function ex_items_select_focus_until(_id)
 
     for (var i = start; i <= end; i++)
     {
-        console.log(i);
         $('#explorer>ul li[data-row='+ i +']').addClass('selected');
     }
     $('#explorer>ul li[data-row='+ _id +']').addClass('focused');
@@ -120,14 +122,18 @@ function event_corridor(e, _self, _key)
     var alt    = e.altKey   ? 'alt' : '';
     var mytxt  = String(_key) + ctrl + alt + shift;
 
-    // console.log(_key);
-    console.log(mytxt);
-
     switch(mytxt)
     {
         case '8':               // Back Space
             console.log('BackSpace');
             e.preventDefault();
+            break;
+
+        case '27':              //Escape
+            if ($('body').hasClass('cut')) {
+                $('body').removeClass('cut');
+                $('#explorer>ul li.selected').removeClass('cutted');
+            }
             break;
 
 
