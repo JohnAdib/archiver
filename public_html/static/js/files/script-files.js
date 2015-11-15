@@ -10,13 +10,42 @@ $.ctrl = function(key, callback, args) {
 
 function ex_new_folder()
 {
-    var uf = '<li id="create-new-folder" class="selected"><span class="type fa fa-folder"></span> <span class="name"><input type="text" placeholder="Untitled Folder"> <button class="btn-fa-check"><i class="fa fa-check"></i></button><button class="btn-fa-times"><i class="fa fa-times"></i></button></span> <span class="size">-</span> <span class="date">-</span></li>';
-    if($('#explorer>ul li').is('#create-new-folder')) {
-        $('#create-new-folder').fadeTo(100, 0.1).fadeTo(200, 1.0);
+    ex_items_remove_class('selected focused zero');
+    var uf = '<li id="create-new-folder" class="selected focused zero"><span class="type fa fa-folder"></span> <span class="name"><input type="text" placeholder="Untitled Folder"> <button class="btn-fa-check"><i class="fa fa-check"></i></button><button class="btn-fa-times"><i class="fa fa-times"></i></button></span> <span class="size">-</span> <span class="date">-</span></li>';
+    if ( $('#explorer>ul li').is('#create-new-folder') ) {
+        $('#create-new-folder').stop().fadeTo(100, 0.1).fadeTo(200, 1.0);
     } else {
         $(uf).hide().prependTo('#explorer>ul').fadeIn(300);
+        $('body').addClass('new-folder');
     }
     $('#explorer>ul input').select();
+}
+
+function ex_new_folder_submit() {
+    var newfolder_name = $('#create-new-folder .name input').val();
+    
+    if ( newfolder_name == '' ) {
+        newfolder_name = 'Untitled Folder';
+    }
+
+    $('#create-new-folder .name').html(newfolder_name);
+
+    $('body').removeClass('new-folder');
+
+    $('#create-new-folder').removeClass('selected').removeAttr('id');
+}
+
+function ex_cancel_new_folder() {
+    $('#create-new-folder').hide(300).remove();
+}
+
+function ex_escape() {
+    if ( $('body').hasClass('cut') ) {
+        $('body').removeClass('cut');
+        $('#explorer>ul li.selected').removeClass('cutted');
+    } else if ( $('body').hasClass('new-folder') ) {
+        ex_cancel_new_folder();
+    }
 }
 
 function ex_select_all()
@@ -40,6 +69,15 @@ function ex_cut()
         // console.log('Do cut');
         $('body').addClass('cut');
         $('#explorer>ul li.selected').addClass('cutted');
+    }
+}
+
+function ex_remove(trash) {
+    if (trash) {
+        $('#explorer>ul li.selected').hide(300).remove();
+    } else {
+        $('#explorer>ul li.selected.trash').hide(300).remove();
+        $('#explorer>ul li.selected').addClass('trash');
     }
 }
 
@@ -121,6 +159,7 @@ function event_corridor(e, _self, _key)
     var shift  = e.shiftKey ? 'shift' : '';
     var alt    = e.altKey   ? 'alt' : '';
     var mytxt  = String(_key) + ctrl + alt + shift;
+    // console.log(mytxt);
 
     switch(mytxt)
     {
@@ -129,11 +168,14 @@ function event_corridor(e, _self, _key)
             e.preventDefault();
             break;
 
-        case '27':              //Escape
-            if ($('body').hasClass('cut')) {
-                $('body').removeClass('cut');
-                $('#explorer>ul li.selected').removeClass('cutted');
+        case '13':              // Enter
+            if ( $('#explorer>ul li').is('#create-new-folder') ) {
+                ex_new_folder_submit();
             }
+            break;
+
+        case '27':              //Escape
+            ex_escape();
             break;
 
 
@@ -317,6 +359,13 @@ function event_corridor(e, _self, _key)
             break;
 
 
+        case '46':              // delete
+            ex_remove();
+            break;
+
+        case '46shift':         // delete + shift
+            ex_remove(true);
+            break;
 
 
         // ---------------------------------------------------------------------- shortcut
@@ -405,6 +454,17 @@ $(document).ready(function()
     $('#newfolder').click(function() { ex_new_folder(); });
     $('#more-rename').click(function() { ex_rename(); });
     $('#more-move').click(function() { ex_cut(); });
+    $('#remove').click(function() { ex_remove(); });
+
+    $("#explorer").on("click", ".btn-fa-times", function() {
+        ex_cancel_new_folder();
+    });
+
+    $("#explorer").on("click", ".btn-fa-check", function() {
+        ex_new_folder_submit();
+    });
+
+
 
 
     $('#explorer>ul li').click(function(e) { event_corridor(e, e.currentTarget, 'click'); });

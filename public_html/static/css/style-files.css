@@ -394,3 +394,7 @@ input.upload {
 #upload_modal > .modal-dialog {
   background: transparent;
 }
+
+.trash {
+  opacity: 0.3;
+}
