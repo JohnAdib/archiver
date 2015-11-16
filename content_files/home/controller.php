@@ -33,7 +33,7 @@ class controller extends \mvc\controller
 					case 'rename':
 						// var_dump($myurl[1]);
 						$this->post($myurl[1])->ALL();
-						// $this->get()->ALL();
+						$this->get()->ALL();
 						break;
 
 					default:
