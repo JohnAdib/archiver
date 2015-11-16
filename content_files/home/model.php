@@ -33,6 +33,8 @@ class model extends \mvc\model
 		foreach ($datatable as $key =>$row)
 		{
 			$datatable[$key]['meta'] = json_decode($row['meta'], true);
+			$datatable[$key]['cid']  = utility\ShortURL::encode($row['id']);
+
 			if($row['type'] == 'folder')
 				$datatable[$key]['icon'] = 'folder';
 			elseif($row['type'] == 'file' && isset($datatable[$key]['meta']) && isset($datatable[$key]['meta']['type']))

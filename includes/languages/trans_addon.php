@@ -12,7 +12,7 @@ function transtext()
 	echo T_("Sign In");                                                               // Line 6
 
 	//---------------------------------addon\content_account\verification\display.html
-	echo T_("we send a verification code for you");                                   // Line 195 Seperate
+	echo T_("we send a verification code for you");                                   // Line 199 Seperate
 	echo T_("please check your mobile and enter the code");                           // Line 7
 	echo T_("don't receive message?");                                                // Line 8
 
@@ -39,7 +39,7 @@ function transtext()
 
 	//-------------------------------------------addon\content_cp\home\layout-xhr.html
 	echo T_("Add New Record");                                                        // Line 79 Seperate
-	echo T_("View your current location and navigate to parent of it");               // Line 67
+	echo T_("View your current location and navigate to parent of it");               // Line 68
 
 	//-----------------------------------------------addon\content_cp\home\layout.html
 	echo T_("Use this menu for navigating to all part of control panel");             // Line 8
@@ -58,13 +58,14 @@ function transtext()
 	echo T_("You can work with control panel in your language");                      // Line 42
 	echo T_("Go to your profile or logout from conrtol panel");                       // Line 54
 	echo T_("My Profile");                                                            // Line 92 Seperate
+	echo T_("Change Password");                                                       // Line 187 Seperate
 	echo T_("Lock Screen");                                                           // Line 94 Seperate
 	echo T_("Logout");                                                                // Line 95 Seperate
-	echo T_("We glad to working for you and hope you enjoy using our system");        // Line 83
-	echo T_("Powered by");                                                            // Line 84
-	echo T_("All right reserved");                                                    // Line 84
+	echo T_("We glad to working for you and hope you enjoy using our system");        // Line 84
+	echo T_("Powered by");                                                            // Line 85
+	echo T_("All right reserved");                                                    // Line 85
 	echo T_("Saloos");                                                                // Line 7 Seperate
-	echo T_("Last update on");                                                        // Line 85
+	echo T_("Last update on");                                                        // Line 86
 	echo T_("Version");                                                               // Line 98 Seperate
 
 	//-----------------------------------addon\content_cp\templates\child_display.html
@@ -303,12 +304,15 @@ function transtext()
 	echo T_("please Input your new password");                                        // Line 183 Seperate
 	echo T_("verify failed!");                                                        // Line 184 Seperate
 	echo T_("this data is incorrect");                                                // Line 185 Seperate
-	echo T_("change password successfully");                                          // Line 187 Seperate
-	echo T_("change password failed!");                                               // Line 188 Seperate
-	echo T_("we send a verification code to this number");                            // Line 196 Seperate
-	echo T_("you account is verified successfully");                                  // Line 197 Seperate
-	echo T_("your verification code is");                                             // Line 198 Seperate
-	echo T_(" ");                                                                     // Line 201 Seperate
+	echo T_("Current Password");                                                      // Line 188 Seperate
+	echo T_("New Password");                                                          // Line 189 Seperate
+	echo T_("Change it");                                                             // Line 190 Seperate
+	echo T_("change password successfully");                                          // Line 191 Seperate
+	echo T_("change password failed!");                                               // Line 192 Seperate
+	echo T_("we send a verification code to this number");                            // Line 200 Seperate
+	echo T_("you account is verified successfully");                                  // Line 201 Seperate
+	echo T_("your verification code is");                                             // Line 202 Seperate
+	echo T_(" ");                                                                     // Line 205 Seperate
 
 	//-------------------------------------------------addon\includes\macro\forms.html
 	echo T_("Select");                                                                // Line 57
