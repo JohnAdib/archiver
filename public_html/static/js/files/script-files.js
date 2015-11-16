@@ -11,7 +11,7 @@ $.ctrl = function(key, callback, args) {
 function ex_new_folder()
 {
     ex_items_remove_class('selected focused zero');
-    var uf = '<li id="create-new-folder" class="selected focused zero"><span class="type fa fa-folder"></span> <span class="name"><input type="text" placeholder="Untitled Folder"> <button class="btn-fa-check"><i class="fa fa-check"></i></button><button class="btn-fa-times"><i class="fa fa-times"></i></button></span> <span class="size">-</span> <span class="date">-</span></li>';
+    var uf = '<li id="create-new-folder" class="selected focused zero"><form method="post"><span class="type fa fa-folder"></span> <span class="name"><input type="text" name="folder" placeholder="Untitled Folder"> <button class="btn-fa-check"><i class="fa fa-check"></i></button><button class="btn-fa-times"><i class="fa fa-times"></i></button></span> <span class="size">-</span> <span class="date">-</span></form></li>';
     if ( $('#explorer>ul li').is('#create-new-folder') ) {
         $('#create-new-folder').stop().fadeTo(100, 0.1).fadeTo(200, 1.0);
     } else {
@@ -449,6 +449,14 @@ function event_corridor(e, _self, _key)
 $(document).ready(function()
 {
     $('#explorer>ul li').first().addClass('zero focused');
+    $('#explorer>ul').on('dblclick', "li", function(){
+        var execName = $('.name', this).text();
+        var ilocation = location.pathname;
+        ilocation = ilocation.replace(/^\/+/, '');
+        Navigate({
+            url: ilocation +"/"+ execName
+        });
+    });
     // call from menu
     $('#more-selectall').click(function() { ex_select_all(); });
     $('#newfolder').click(function() { ex_new_folder(); });
@@ -460,8 +468,20 @@ $(document).ready(function()
         ex_cancel_new_folder();
     });
 
-    $("#explorer").on("click", ".btn-fa-check", function() {
-        ex_new_folder_submit();
+    $("#explorer").on("click", ".btn-fa-check", function(e) {
+        //ex_new_folder_submit();
+
+        var listForm = $(this).parents('form');
+        // listForm.attr('method', 'post');
+        listForm.ajaxify({
+            ajax: {
+                data : {copyTo: 'folder2', items:'file1, folder3, files4'}
+            }
+        });
+        e.preventDefault();
+
+
+
     });
 
 
