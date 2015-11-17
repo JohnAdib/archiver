@@ -260,16 +260,19 @@ class model extends \mvc\model
 	 */
 	public function post_createfolder()
 	{
-		var_dump('create new folder');
-		return;
+		// var_dump('create new folder');
+		// return;
 		$location    = '/'.utility::post('location');
-		$name        = utility::post('name');
+		$fname        = utility::post('fname');
+		var_dump($location);
+		var_dump($fname);
+		exit();
 
 		$qry = $this->sql();
 		$qry = $qry->table('attachments')
 					->set('attachment_type',   'folder')
 					->set('attachment_addr',   $location)
-					->set('attachment_name',   $name)
+					->set('attachment_name',   $fname)
 					->set('attachment_size',   0)
 					->set('attachment_status', 'normal')
 					->set('attachment_date',   date('Y-m-d H:i:s'))
@@ -282,10 +285,10 @@ class model extends \mvc\model
 		// you can manage next event with one of these variables,
 		// commit for successfull and rollback for failed
 		// if query run without error means commit
-		$this->commit(function($_id, $_url)
+		$this->commit(function()
 		{
 			debug::property('status', 'ok');
-		}, $attachment_id, $page_url);
+		});
 
 		// if a query has error or any error occour in any part of codes, run roolback
 		$this->rollback(function()
@@ -295,6 +298,8 @@ class model extends \mvc\model
 			// remove file if has problem
 		});
 	}
+
+
 
 	/**
 	 * remove file and folders

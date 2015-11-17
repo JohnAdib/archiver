@@ -32,7 +32,7 @@ function ex_create_input(_type, _value)
   var myvalue = _value? 'value="'+_value+'"': '';
   var myel =
     '<form method="post" action="/$/'+ _type + '">'+
-      '<input type="text" name="folder" placeholder="Untitled Folder" '+myvalue+'>'+
+      '<input type="text" name="fname" placeholder="Untitled Folder" '+myvalue+'>'+
       '<button class="btn-fa-check"><i class="fa fa-check"></i></button>'+
       '<button class="btn-fa-times"><i class="fa fa-times"></i></button>'+
     '</form>';
@@ -184,11 +184,11 @@ function event_corridor(e, _self, _key)
   var cid    = parseInt(_self.attr('data-row'));
   var lastid = parseInt($('#explorer>ul li:last').attr('data-row'));
 
-  var ctrl   = e.ctrlKey  ? 'ctrl' : '';
+  var ctrl   = e.ctrlKey  ? 'ctrl'  : '';
   var shift  = e.shiftKey ? 'shift' : '';
-  var alt    = e.altKey   ? 'alt' : '';
+  var alt    = e.altKey   ? 'alt'   : '';
   var mytxt  = String(_key) + ctrl + alt + shift;
-  console.log(mytxt);
+  // console.log(mytxt);
 
   switch(mytxt)
   {
@@ -198,7 +198,7 @@ function event_corridor(e, _self, _key)
       break;
 
     case '13':              // Enter
-      if(_self.is('#create-new-folder'))
+      if($('#explorer>ul li').is('#create-new-folder'))
       {
         ex_new_folder_submit();
       }
@@ -499,23 +499,20 @@ function clickonitems(_self)
 
 route('*', function() 
 {
-  $('#explorer>ul li').first().addClass('zero focused');
-
+  var explorer = this instanceof Document ? $('#explorer') : $(this).parents('#explorer');
+  $('ul li', explorer).first().addClass('zero focused');
   // call from menu
-  $('#more-selectall').click(function()  { ex_select_all(); });
-  $('#newfolder')     .click(function()  { ex_new_folder(); });
-  $('#more-rename')   .click(function()  { ex_rename();     });
-  $('#more-move')     .click(function()  { ex_cut();        });
-  $('#remove')        .click(function()  { ex_remove();     });
+  
 
   // handle all click, dbl click and keydown of keyboard
-  $('#explorer>ul li').click(function(e)    { event_corridor(e, e.currentTarget,                'click');    });
-  $('#explorer>ul li').dblclick(function(e) { event_corridor(e, e.currentTarget,                'dblclick'); });
-  $(document).keydown(function(e)           { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
+  $('ul li', explorer).click(function(e)    { event_corridor(e, e.currentTarget,                'click');    });
+  $('ul li', explorer).dblclick(function(e) {
+   event_corridor(e, e.currentTarget,                'dblclick');
+ });
 
   // call on click menu items
-  $("#explorer").on("click", ".btn-fa-times", function(e) { e.preventDefault(); ex_cancel_new_folder(); });
-  $("#explorer").on("click", ".btn-fa-check", function(e) 
+  explorer.on("click", ".btn-fa-times", function(e) { e.preventDefault(); ex_cancel_new_folder(); });
+  explorer.on("click", ".btn-fa-check", function(e) 
   {
     e.preventDefault();
     ex_new_folder_submit();
@@ -528,8 +525,13 @@ route('*', function()
         data : {copyTo: 'folder2', items:'file1, folder3, files4'}
       }
     });
-
-
-
   });
 });
+$(document).ready(function(){
+  $('#newfolder')     .click(function()  { ex_new_folder(); });
+  $('#more-selectall').click(function()  { ex_select_all(); });
+  $('#more-rename')   .click(function()  { ex_rename();     });
+  $('#more-move')     .click(function()  { ex_cut();        });
+  $('#remove')        .click(function()  { ex_remove();     });
+  $(document).keydown(function(e)           { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
+})
