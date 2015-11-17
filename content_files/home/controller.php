@@ -30,6 +30,7 @@ class controller extends \mvc\controller
 					case 'paste':
 					case 'delete':
 					case 'createfolder':
+					case 'createfile':
 					case 'rename':
 						// var_dump($myurl[1]);
 						$this->post($myurl[1])->ALL();

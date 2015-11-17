@@ -1,0 +1,151 @@
+{%extends display.mvc%}
+
+
+{%block head_css%}
+ <link rel="stylesheet"       href="{{url.static}}css/style-files.css?v=1.0.5">
+{%endblock%}
+
+{%block js%}
+ <script src='{{url.static}}js/files/uploader.js'></script>
+ <script src='{{url.static}}js/files/script-files.js'></script>
+{%endblock%}
+
+
+{%block body%}
+  <header id="header" role="header">
+   <ul id="header-nav">
+    <li id="languages" itemscope>
+     <i class="fa fa-language fa-2x"></i>
+     <nav class="vertical-menu">
+{%for key, value in site.langlist%}{%if key == global.lang%}
+      <a href="{{url.base}}{{url.path}}?lang={{key}}" class="default not-active">{{value}}</a>
+{%else%}
+      <a href="{{url.base}}{{url.path}}?lang={{key}}">{{value}}</a>
+{%endif%}{% endfor %}
+     </nav>
+    </li>
+
+    <li>
+     <a class="labeled icon button" data-modal="upload_modal">
+      <i class="icon fa fa-cloud-upload"></i>{%trans "Upload"%}
+     </a>
+    </li>
+
+    <li>
+       <a class="labeled icon button" id="newfolder" data-action>
+        <i class="icon fa fa-folder"></i>{%trans "Create new folder"%}
+       </a>
+    </li>
+
+    <li>
+     <a class="labeled icon button">
+      <i class="icon fa fa-download"></i>{%trans "Download"%}
+     </a>
+    </li>
+
+    <li>
+     <a class="labeled icon button" id="remove">
+      <i class="icon fa fa-times"></i>{%trans "Delete"%}
+     </a>
+    </li>
+
+    <li id="more">
+      <a class="labeled icon button">
+       <i class="icon fa fa-bars"></i>{%trans "More ..."%}
+      </a>
+      <nav class="vertical-menu">
+       <a id="more-selectall" href="#"><i class="fa fa-check-square-o"></i> {%trans "Select All"%}</a>
+       <a id="more-copy" href="#"><i class="fa fa-files-o"></i> {%trans "Copy to"%}</a>
+       <a id="more-move" href="#"><i class="fa fa-scissors"></i> {%trans "Move to"%}</a>
+       <a id="more-rename" href="#"><i class="fa fa-pencil-square-o"></i> {%trans "Rename"%}</a>
+
+
+        <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1
+         <form action="http://www.google.com/search" data-action id="more-app1">
+          <input type="hidden" name="q" size="31" maxlength="255" value="Iran">
+          <input type="submit" value=''>
+         </form>
+        </a>
+
+        <a href="javascript:{}" onclick="document.getElementById('more-app2').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 2
+         <form action="http://www.google.com/search" data-action id="more-app2">
+          <input type="hidden" name="q" size="31" maxlength="255" value="Tehran">
+          <input type="submit" value=''>
+         </form>
+        </a>
+
+      </nav>
+    </li>
+
+
+   </ul>
+
+   <div id="profile" tabindex=1>
+    <span>{%set dname = login.displayname%}{%trans dname%}
+     <i class="fa fa-user"></i>
+     </span>
+
+    <nav class="vertical-menu">
+     <a id="profile-me" href="{{url.base}}profile"><i class="fa fa-user"></i> {%trans "My Profile"%}</a>
+     <a id="profile-changepass" href="{{url.protocol}}://account.{{url.raw}}/changepass?cp=1&from=cp" target="_blank"><i class="fa fa-exchange"></i> {%trans "Change Password"%}</a>
+     <a id="profile-logout" href="http://{{url.raw}}/logout"><i class="fa fa-sign-out"></i> {%trans "Logout"%}</a>
+    </nav>
+   </div>
+  </header>
+
+<div class="row body auto">
+ <aside class="span1 unselectable" id='page-sidebar'>
+  <nav class='sidebar-items'>
+  <a class='hint--right' data-hint='{%trans "Home"%}' href="#"><i class="fa fa-lg fa-home"></i></a>
+  <a class='hint--right' data-hint='{%trans "favorites"%}' href="#"><i class="fa fa-lg fa-star-o"></i></a>
+  <a class='hint--right' data-hint='{%trans "Tags"%}' href="#"><i class="fa fa-lg fa-tags"></i></a>
+  <a class='hint--right' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
+  <a class='hint--right' data-hint='{%trans "Frequently asked question"%}' href="#"><i class="fa fa-lg fa-question"></i></a>
+  <a class='hint--right' data-hint='{%trans "Analytics"%}' href="#"><i class="fa fa-lg fa-line-chart"></i></a>
+  <a class='hint--right' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>
+  </nav>
+ </aside>
+
+ <div class="span8" id='explorer'>
+  <ul data-xhr='explorer'>
+{%block explorer%}{%endblock%}
+  </ul>
+ </div>
+
+ <div class="span3 left-side" id='prop-box'>
+{%block properties%}{%endblock%}
+ </div>
+
+</div>
+
+
+
+
+
+
+
+ <div class='modal' data-modal data-cancel id="upload_modal">
+  <div class='modal-dialog'>
+   <div class='modal-body'>
+    <form method="post" id="form_uploader" action="$/upload" enctype="multipart/form-data" class="unselectable">
+     <div id="drop">{%trans "Drag & Drop Files Here"%}<br />{%trans "or"%}<a>{%trans "Choose File"%}</a>
+      <input type="file" name="upfile" multiple />
+      <input type="hidden" name="location" value="{{url.path}}" />
+      <small>{%trans "Maximum size allowed"%} {{maxSize}}</small>
+     </div>
+
+    <ul></ul>
+    </form>
+    <a class="button" data-cancel="">انصراف</a>
+   </div>
+   <div class='modal-footer buttons'>
+   </div>
+  </div>
+ </div>
+
+
+
+
+
+
+{%endblock%}
