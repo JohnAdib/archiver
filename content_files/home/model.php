@@ -343,25 +343,27 @@ class model extends \mvc\model
 	}
 
 
+	/**
+	 * paste file and folders to new location
+	 * @return [type] [description]
+	 */
+	public function post_paste()
+	{
+		// var_dump('paste');
+		// exit();
+	}
+
 
 	/**
 	 * copy file and folders to new location
 	 * @return [type] [description]
 	 */
-	public function post_copy()
+	public function post_rename()
 	{
-
+		// var_dump('rename');
+		// exit();
 	}
 
-
-	/**
-	 * cut file and folders to new location
-	 * @return [type] [description]
-	 */
-	public function post_cut()
-	{
-
-	}
 
 }
 ?>

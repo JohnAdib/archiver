@@ -25,8 +25,6 @@ class controller extends \mvc\controller
 				switch ($myurl[1])
 				{
 					case 'upload':
-					case 'move':
-					case 'copy':
 					case 'paste':
 					case 'delete':
 					case 'createfolder':
@@ -34,7 +32,7 @@ class controller extends \mvc\controller
 					case 'rename':
 						// var_dump($myurl[1]);
 						$this->post($myurl[1])->ALL();
-						$this->get()->ALL();
+						// $this->get()->ALL();
 						break;
 
 					default:

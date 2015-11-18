@@ -1,112 +1,203 @@
 // global variable definition
-var currentpath;
+var CURRENTPATH;
 
-function ex_new_folder()
+
+/**
+ * create new folder start
+ */
+function ex_newFolder()
 {
   ex_items_remove_class('selected focused zero');
-  var el_form_input = ex_create_input('createfolder', null);
+  var myElement = ex_inputCreate('createfolder', null);
 
-  if ( $('#explorer>ul li').is('#create-new-folder') )
+  if ( $('#explorer>ul li').is('#new-folder') )
   {
-    $('#create-new-folder').stop().fadeTo(100, 0.1).fadeTo(200, 1.0);
+    $('#explorer #new-folder').stop().fadeTo(100, 0.1).fadeTo(200, 1.0);
+    $('#explorer #new-folder').addClass('selected');
   }
   else
   {
-    $(el_form_input).hide().prependTo('#explorer>ul').fadeIn(300);
-    $('body').addClass('new-folder');
+    console.log(myElement);
+    $(myElement).hide().prependTo('#explorer>ul').fadeIn(300);
   }
 
-  $('#explorer>ul input').select();
+  $('#explorer #item-new-name').focus().select();
 }
 
+
+/**
+ * rename file or folder start
+ */
 function ex_rename()
 {
-  if ($('#explorer>ul li').hasClass('selected'))
+  // rename multiple file and folder
+  if($('#explorer .selected').length > 1)
   {
-    var name = $('#explorer>ul li.selected span.name').text();
-    var el_form_input = ex_create_input('rename', name);
+    console.log('We are not handle rename multiple item!');
+  }
+  // rename one file or folder
+  else
+  {
+    if ($('#explorer>ul li').hasClass('selected'))
+    {
+      $('#explorer>ul li.selected').addClass('item-rename');
+      var myName    = $('#explorer>ul li.selected span.name').text();
+      var myElement = ex_inputCreate('rename', myName);
 
-    $('#explorer>ul li.selected span.name').html(el_form_input).select();
+      $('#explorer>ul li.selected span.name').html(myElement).select();
+      $('#explorer #item-new-name').focus().select();
+    }
   }
 }
 
-function ex_create_input(_type, _value)
+
+/**
+ * create input for new folder or rename an item
+ * @param  {[type]} _type  type of creating
+ * @param  {[type]} _value default value if exist for rename
+ * @return {[type]}        created element
+ */
+function ex_inputCreate(_type, _value)
 {
-  var myvalue = _value? 'value="'+_value+'"': '';
-  var myel =
-    '<form method="post" action="/$/'+ _type + '">'+
-      '<input type="text" name="fname" placeholder="Untitled Folder" '+myvalue+'>'+
-      '<button class="btn-fa-check"><i class="fa fa-check"></i></button>'+
-      '<button class="btn-fa-times"><i class="fa fa-times"></i></button>'+
+  $('body').addClass('editing');
+
+  var myDefaultValue = _value? 'value="' + _value + '"'      : '';
+  var myOldValue     = _value? ' data-value="' + _value + '"': '';
+
+  var myElement =
+    '<form method="post" action="/$/' + _type + '" data-ajaxify>' +
+      '<input id="item-new-name" type="text" name="fname" placeholder="Untitled Folder" ' + myDefaultValue + myOldValue + ' />' +
+      '<button class="btn-fa-check"><i class="fa fa-check"></i></button>' +
+      '<button class="btn-fa-times"><i class="fa fa-times"></i></button>' +
     '</form>';
 
   if(_type == 'createfolder')
   {
-    myel =
-    '<li id="create-new-folder" class="selected focused zero">'+
-      '<span class="type fa fa-folder"></span> '+
-      '<span class="name">'+
-        myel+
-      '</span> '+
-      '<span class="size">-</span> '+
-      '<span class="date">-</span>'+
+    myElement =
+    '<li data-id="' + _type + '" id="new-folder" class="folder selected focused zero">' +
+      '<span class="type fa fa-folder"></span> ' +
+      '<span class="name">' +
+        myElement +
+      '</span> ' +
+      '<span class="size">-</span> ' +
+      '<span class="date">-</span>' +
     '</li>';
   }
-  return myel;
+  return myElement;
 }
 
-function ex_new_folder_submit()
+
+/**
+ * when user submit form with submit btn or cancel it
+ * @param  {[type]} _submit type of submit, for cancel need to pass false
+ * @return {[type]}         [description]
+ */
+function ex_inputSubmit(_submit)
 {
-  var newfolder_name = $('#create-new-folder .name input').val();
-  
-  if ( newfolder_name == '' ) {
-    newfolder_name = 'Untitled Folder';
+  // user press submit and want to proceed
+  if(typeof _submit === 'undefined' || _submit == true)
+  {
+    var myInputVal = $('#item-new-name').val();
+    if ( myInputVal == '' )
+    {
+      myInputVal = 'Untitled Folder';
+    }
+
+    $('#new-folder .name').html(myInputVal);
+    $('#new-folder').removeClass('selected').removeAttr('id');
+
+    // send item name as ajax, then redraw items
+
+  }
+  // user want to cancel form
+  else
+  {
+    // if user cancel creating new folder
+    if ( $('#explorer>ul li').is('#new-folder') )
+    {
+      $('#explorer #new-folder').hide(300).remove();
+    }
+    // else if canceling rename
+    else
+    {
+      var myOldVal = $('#explorer input').attr('value');
+      $('#explorer .item-rename .name').html(myOldVal);
+      ex_items_remove_class('item-rename');
+
+    }
   }
 
-  $('#create-new-folder .name').html(newfolder_name);
-
-  $('body').removeClass('new-folder');
-
-  $('#create-new-folder').removeClass('selected').removeAttr('id');
+  $('body').removeClass('editing');
 }
 
-function ex_cancel_new_folder() {
-  $('#create-new-folder').hide(300).remove();
+function ex_checkBody()
+{
+  if ( $('body').hasClass('cut') )
+  {
+
+  }
+  if ( $('body').hasClass('copy') )
+  {
+
+  }
+  if ( $('body').hasClass('editing') )
+  {
+    ex_inputSubmit(false);
+  }
+  if ( $('body').hasClass('selectall') )
+  {
+
+  }
 }
 
 function ex_escape()
 {
-  if ( $('body').hasClass('cut') ) {
+  if ( $('body').hasClass('cut') )
+  {
     $('body').removeClass('cut');
     $('#explorer>ul li.selected').removeClass('cutted');
-  } else if ( $('body').hasClass('new-folder') ) {
-    ex_cancel_new_folder();
+  }
+  else if($('body').hasClass('editing'))
+  {
+    ex_inputSubmit(false);
   }
 }
 
+
+/**
+ * select and deselect all items in explorer
+ */
 function ex_select_all()
 {
-  if ($('#explorer>ul').hasClass('select-all'))  {
+  ex_checkBody();
+  if ($('#explorer>ul').hasClass('select-all'))
+  {
     ex_items_remove_class('selected');
-  } else {
+  }
+  else
+  {
     $('#explorer>ul li').addClass('selected');
   }
 
-  if ($('#explorer>ul li').is('#create-new-folder')) {
-    $('#create-new-folder').fadeOut().remove();
+  if ($('#explorer>ul li').is('#new-folder'))
+  {
+    $('#new-folder').fadeOut().remove();
   }
 
   $('#explorer>ul').toggleClass('select-all');
 }
 
+
 function ex_cut()
 {
-  if ( $('#explorer>ul').find('li.selected').length != 0 ) {
+  if ( $('#explorer>ul').find('li.selected').length != 0 )
+  {
     // console.log('Do cut');
     $('body').addClass('cut');
     $('#explorer>ul li.selected').addClass('cutted');
   }
 }
+
 
 function ex_delete(trash)
 {
@@ -121,10 +212,12 @@ function ex_delete(trash)
   }
 }
 
+
 function ex_copy()
 {
   
 }
+
 
 function ex_paste()
 {
@@ -145,20 +238,24 @@ function ex_item_select(_id)
   $('#explorer>ul li[data-row='+ _id +']').addClass('selected');
 }
 
+
 function ex_item_focus(_id)
 {
   $('#explorer>ul li[data-row='+ _id +']').addClass('focused');
 }
+
 
 function ex_item_zero(_id)
 {
   $('#explorer>ul li[data-row='+ _id +']').addClass('zero');
 }
 
+
 function ex_item_select_focus(_id)
 {
   $('#explorer>ul li[data-row='+ _id +']').addClass('selected focused');
 }
+
 
 function ex_item_select_focus_zero(_id)
 {
@@ -181,6 +278,7 @@ function ex_items_select_focus_until(_id)
   $('#explorer>ul li[data-row='+ _id +']').addClass('focused');
 }
 
+
 function event_corridor(e, _self, _key)
 {
   _self = $(_self);
@@ -201,9 +299,9 @@ function event_corridor(e, _self, _key)
       break;
 
     case '13':              // Enter
-      if($('#explorer>ul li').is('#create-new-folder'))
+      if($('#explorer>ul li').is('#new-folder'))
       {
-        ex_new_folder_submit();
+        ex_inputSubmit();
       }
       else
       {
@@ -212,6 +310,7 @@ function event_corridor(e, _self, _key)
       break;
 
     case '27':              //Escape
+      ex_checkBody();
       ex_escape();
       break;
 
@@ -415,7 +514,7 @@ function event_corridor(e, _self, _key)
       break;
 
     case '78ctrl':          // n + ctrl
-      ex_new_folder();
+      ex_newFolder();
       break;
 
     case '86ctrl':          // v + ctrl
@@ -442,29 +541,34 @@ function event_corridor(e, _self, _key)
     case 'click':           // click
       ex_items_remove_class('selected focused zero');
       _self.addClass('selected focused zero');
+      ex_checkBody();
       break;
 
 
     case 'clickctrl':       // click + ctrl
       ex_items_remove_class('focused zero');
       _self.toggleClass('selected focused zero');
+      ex_checkBody();
       break;
 
 
     case 'clickshift':      // click + shift
       ex_items_remove_class('selected focused');
       ex_items_select_focus_until(cid);
+      ex_checkBody();
       break;
 
 
     case 'clickctrlshift':  // click + ctrl + shift
       ex_items_remove_class('focused');
       ex_items_select_focus_until(cid);
+      ex_checkBody();
       break;
 
 
     case 'dblclick':           // Double click
       clickonitems(_self);
+      ex_checkBody();
       // ex_items_remove_class('selected focused zero');
       // _self.addClass('selected focused zero');
       break;
@@ -487,7 +591,7 @@ function clickonitems(_self)
   if($(_self).hasClass('folder') || $(_self).hasClass('up'))
   {
     var execName = $('.name', _self).text();
-    newlocation  = currentpath + "/"+ execName;
+    newlocation  = CURRENTPATH + "/"+ execName;
     Navigate({
       url: newlocation
     });
@@ -502,22 +606,22 @@ function clickonitems(_self)
 
 route('*', function() 
 {
-  currentpath = (location.pathname).replace(/^\/+/, '');
+  CURRENTPATH = (location.pathname).replace(/^\/+/, '');
 
   var explorer = this instanceof Document ? $('#explorer') : $(this).parents('#explorer');
   $('ul li', explorer).first().addClass('zero focused');
   
 
-  // handle all click, dbl click and keydown of keyboard
+  // handle all click, dbl click
   $('ul li', explorer).click(function(e)    { event_corridor(e, e.currentTarget, 'click');    });
   $('ul li', explorer).dblclick(function(e) {event_corridor(e, e.currentTarget,  'dblclick'); });
 
   // call on click menu items
-  explorer.on("click", ".btn-fa-times", function(e) { e.preventDefault(); ex_cancel_new_folder(); });
+  explorer.on("click", ".btn-fa-times", function(e) { e.preventDefault(); ex_inputSubmit(false); });
   explorer.on("click", ".btn-fa-check", function(e) 
   {
     e.preventDefault();
-    ex_new_folder_submit();
+    ex_inputSubmit();
 
     var listForm = $(this).parents('form');
     // listForm.attr('method', 'post');
@@ -528,17 +632,21 @@ route('*', function()
       }
     });
   });
+
 });
+
 
 
 $(document).ready(function()
 {
   // call from menu or static menu
-  $('#newfolder')     .click(function()  { ex_new_folder(); });
+  $('#newfolder')     .click(function()  { ex_newFolder(); });
   $('#more-selectall').click(function()  { ex_select_all(); });
   $('#more-rename')   .click(function()  { ex_rename();     });
   $('#more-move')     .click(function()  { ex_cut();        });
   $('#remove')        .click(function()  { ex_delete();     });
 
+  // handle all keydown on keyboard
   $(document).keydown(function(e)        { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
-})
+
+});
