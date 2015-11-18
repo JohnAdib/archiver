@@ -120,7 +120,7 @@
 
 
 
- <div class='modal' data-modal data-cancel id="upload_modal">
+ <div class='modal' id="upload_modal">
   <div class='modal-dialog'>
    <div class='modal-body'>
     <form method="post" id="form_uploader" action="$/upload" enctype="multipart/form-data" class="unselectable">
@@ -129,10 +129,8 @@
       <input type="hidden" name="location" value="{{url.path}}" />
       <small>{%trans "Maximum size allowed"%} {{maxSize}}</small>
      </div>
-
-    <ul></ul>
+     <a class="button" data-cancel="">انصراف</a>
     </form>
-    <a class="button" data-cancel="">انصراف</a>
    </div>
    <div class='modal-footer buttons'>
    </div>

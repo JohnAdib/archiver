@@ -219,7 +219,7 @@ input.upload {
 
 #form_uploader #drop{
     background-color: #2E3134;
-    padding: 5px 10px;
+    padding: 30px 20px;
     margin-bottom: 30px;
     border: 3px dashed  #43494C;
     border-radius: 3px;
@@ -398,6 +398,9 @@ input.upload {
 
 #upload_modal > .modal-dialog {
   background: transparent;
+  max-width: 90%;
+  width: 70%;
+
 }
 
 .trash {

@@ -20,6 +20,9 @@ class view extends \mvc\view
 		$this->data->site['slogan'] = T_("Ermile is our company");
 		
 		$this->data->page['desc']   = T_("Archiver is another archive system!");
+
+		$this->data->maxSize = \lib\utility\Upload::max_file_upload_in_bytes();
+
 	}
 }
 ?>
