@@ -15,8 +15,9 @@ body, html{height: 100%;}
 #header .vertical-menu #profile-lock:hover i{color:#f0ad4e;}
 #header .vertical-menu #profile-logout:hover i{color:#F0433D;}
  
-#header #profile:hover .vertical-menu, #header #profile:active .vertical-menu{display:block;}
-#header #more:hover .vertical-menu, #header #more:active .vertical-menu{display:block;}
+#header #profile:hover .vertical-menu, #header #profile:focus .vertical-menu, #header #profile:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
+#header #more:hover .vertical-menu, #header #more:focus .vertical-menu, #header #more:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
+#header #languages:hover .vertical-menu, #header #languages:focus .vertical-menu, #header #languages:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 
 #header .button{background-color:#3F5162}
 #header .button:hover{color: #fff;}
@@ -25,13 +26,17 @@ body, html{height: 100%;}
 #header #upload:hover i{color:#5FC5DA;}
 #header #remove:hover i{color:#F55030;}
 
-#languages .vertical-menu{margin-left:-15px;}
-.rtl #languages .vertical-menu{margin-right:-15px;}
-#languages:hover .vertical-menu{display:block;}
+#header #languages .vertical-menu{margin-left:-15px;}
+#header #languages{text-align:center;width:6.382978vw;}
+#header #languages i{vertical-align:middle;cursor:pointer;}
+#header #languages:hover {background: #3d4e5d;color: #fff;}
+#header #languages:hover .vertical-menu{display:block;}
+.rtl #header #languages .vertical-menu{margin-right:-15px;}
 
 
 .vertical-menu {background:#3d4e5d;line-height:20px;font-size:1em;}
-#header .vertical-menu {position:absolute;top:45px;background:#3d4e5d;z-index:100;line-height:20px;font-size:1em;display:none;}
+#header .vertical-menu {position:absolute;top:45px;background:#3d4e5d;z-index:100;line-height:20px;font-size:1em;visibility:hidden;opacity:0;transition:visibility 0s linear 0.1s,opacity 0.1s linear;}
+
 /*.vertical-menu .default{background-color: #33414e}*/
 .vertical-menu >.default:after{content:"\f00c";display:inline-block;color:#5cb85c;font: normal normal normal 14px/1 FontAwesome;float:right;}
 .rtl .vertical-menu >.default:after{float: left;}
