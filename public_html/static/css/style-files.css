@@ -264,13 +264,18 @@ input.upload {
     position: fixed;
     bottom: 0;
     width: 23.404251999999996%;
-    left: 0;
+    right: 0;
     z-index: 1001;
+}
+.rtl #upload-notify{
+    left: 0;
+    right: inherit;
 }
 
 #upload-notify li{
     opacity: 0.9;
     background-color: #33414e;
+    display:block;
 
     /*background-color:#333639;
 

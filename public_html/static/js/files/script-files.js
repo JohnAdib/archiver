@@ -1,3 +1,6 @@
+// global variable definition
+var currentpath;
+
 function ex_new_folder()
 {
   ex_items_remove_class('selected focused zero');
@@ -105,7 +108,7 @@ function ex_cut()
   }
 }
 
-function ex_remove(trash)
+function ex_delete(trash)
 {
   if (trash)
   {
@@ -394,11 +397,11 @@ function event_corridor(e, _self, _key)
 
 
     case '46':              // delete
-      ex_remove();
+      ex_delete();
       break;
 
     case '46shift':         // delete + shift
-      ex_remove(true);
+      ex_delete(true);
       break;
 
 
@@ -483,9 +486,8 @@ function clickonitems(_self)
 {
   if($(_self).hasClass('folder') || $(_self).hasClass('up'))
   {
-    var execName    = $('.name', _self).text();
-    var newlocation = location.pathname;
-    newlocation     = newlocation.replace(/^\/+/, '') + "/"+ execName;
+    var execName = $('.name', _self).text();
+    newlocation  = currentpath + "/"+ execName;
     Navigate({
       url: newlocation
     });
@@ -497,18 +499,18 @@ function clickonitems(_self)
 }
 
 
+
 route('*', function() 
 {
+  currentpath = (location.pathname).replace(/^\/+/, '');
+
   var explorer = this instanceof Document ? $('#explorer') : $(this).parents('#explorer');
   $('ul li', explorer).first().addClass('zero focused');
-  // call from menu
   
 
   // handle all click, dbl click and keydown of keyboard
-  $('ul li', explorer).click(function(e)    { event_corridor(e, e.currentTarget,                'click');    });
-  $('ul li', explorer).dblclick(function(e) {
-   event_corridor(e, e.currentTarget,                'dblclick');
- });
+  $('ul li', explorer).click(function(e)    { event_corridor(e, e.currentTarget, 'click');    });
+  $('ul li', explorer).dblclick(function(e) {event_corridor(e, e.currentTarget,  'dblclick'); });
 
   // call on click menu items
   explorer.on("click", ".btn-fa-times", function(e) { e.preventDefault(); ex_cancel_new_folder(); });
@@ -527,11 +529,16 @@ route('*', function()
     });
   });
 });
-$(document).ready(function(){
+
+
+$(document).ready(function()
+{
+  // call from menu or static menu
   $('#newfolder')     .click(function()  { ex_new_folder(); });
   $('#more-selectall').click(function()  { ex_select_all(); });
   $('#more-rename')   .click(function()  { ex_rename();     });
   $('#more-move')     .click(function()  { ex_cut();        });
-  $('#remove')        .click(function()  { ex_remove();     });
-  $(document).keydown(function(e)           { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
+  $('#remove')        .click(function()  { ex_delete();     });
+
+  $(document).keydown(function(e)        { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
 })

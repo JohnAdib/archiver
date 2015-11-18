@@ -65,13 +65,15 @@ route('*', function()
       jqXHR.then(function()
       {
         var response = JSON.parse(jqXHR.responseText);
-        console.log(response);
+        // console.log(response);
         if(response.status == 'fail')
         {
           data.context.addClass('error');
+          hintClass = response.class? response.class: 'hint--warning';
 
           // Append error
-          tpl.find('span').append(response.error);
+          $(tpl).addClass('hint--left '+ hintClass).attr('data-hint', response.error);
+
           // Add the HTML to the UL element
           data.context = tpl.appendTo(ul);
 
@@ -79,7 +81,10 @@ route('*', function()
         else if(response.status == 'ok')
         {
           // Append edit url
-          tpl.find('span').append(response.edit);
+          // tpl.find('span').append(response.edit);
+          $(tpl).addClass('hint--left hint--success').attr('data-hint', response.title);
+
+
           // Add the HTML to the UL element
           data.context = tpl.appendTo(ul);          
         }
