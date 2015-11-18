@@ -21,7 +21,9 @@ body, html{height: 100%;}
 #header .button{background-color:#3F5162}
 #header .button:hover{color: #fff;}
 #header .button:hover .icon {color: #ffffff; opacity: 1;}
-
+#header #newfolder:hover i{color:#ffe78f;}
+#header #upload:hover i{color:#5FC5DA;}
+#header #remove:hover i{color:#F55030;}
 
 #languages .vertical-menu{margin-left:-15px;}
 .rtl #languages .vertical-menu{margin-right:-15px;}
@@ -52,6 +54,10 @@ body, html{height: 100%;}
 #page-sidebar .sidebar-items a:hover{border-color:#fff;}
 .ltr #page-sidebar .sidebar-items a{border-left-style: solid;}
 .rtl #page-sidebar .sidebar-items a{border-right-style: solid;}
+#page-sidebar #ifavorites:hover i{color:#FDCC37;}
+#page-sidebar #ifaq:hover i{color:#18B5DE;}
+
+
 #page-sidespace{width:15%;float:left;min-height:100%;}
 .rtl #page-sidespace{float:right;}
 
@@ -406,3 +412,4 @@ input.upload {
 .trash {
   opacity: 0.3;
 }
+

@@ -26,7 +26,7 @@
     </li>
 
     <li>
-     <a class="labeled icon button" data-modal="upload_modal">
+     <a class="labeled icon button" id="upload" data-modal="upload_modal">
       <i class="icon fa fa-cloud-upload"></i>{%trans "Upload"%}
      </a>
     </li>
@@ -38,7 +38,7 @@
     </li>
 
     <li>
-     <a class="labeled icon button">
+     <a class="labeled icon button" id="download">
       <i class="icon fa fa-download"></i>{%trans "Download"%}
      </a>
     </li>
@@ -96,13 +96,13 @@
 <div class="row body auto">
  <aside class="span1 unselectable" id='page-sidebar'>
   <nav class='sidebar-items'>
-  <a class='hint--right' data-hint='{%trans "Home"%}' href="#"><i class="fa fa-lg fa-home"></i></a>
-  <a class='hint--right' data-hint='{%trans "favorites"%}' href="#"><i class="fa fa-lg fa-star-o"></i></a>
-  <a class='hint--right' data-hint='{%trans "Tags"%}' href="#"><i class="fa fa-lg fa-tags"></i></a>
-  <a class='hint--right' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
-  <a class='hint--right' data-hint='{%trans "Frequently asked question"%}' href="#"><i class="fa fa-lg fa-question"></i></a>
-  <a class='hint--right' data-hint='{%trans "Analytics"%}' href="#"><i class="fa fa-lg fa-line-chart"></i></a>
-  <a class='hint--right' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>
+  <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="#"><i class="fa fa-lg fa-home"></i></a>
+  <a class='hint--right' id='ifavorites' data-hint='{%trans "favorites"%}' href="#"><i class="fa fa-lg fa-star-o"></i></a>
+  <a class='hint--right' id='itags' data-hint='{%trans "Tags"%}' href="#"><i class="fa fa-lg fa-tags"></i></a>
+  <a class='hint--right' id='icategories' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
+  <a class='hint--right' id='ifaq' data-hint='{%trans "Frequently asked question"%}' href="#"><i class="fa fa-lg fa-question"></i></a>
+  <a class='hint--right' id='ianalytics' data-hint='{%trans "Analytics"%}' href="#"><i class="fa fa-lg fa-line-chart"></i></a>
+  <a class='hint--right' id='ioptions' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>
   </nav>
  </aside>
 
