@@ -26,7 +26,7 @@ class controller extends \mvc\controller
 				{
 					case 'upload':
 					case 'paste':
-					case 'delete':
+					case 'remove':
 					case 'createfolder':
 					case 'createfile':
 					case 'rename':

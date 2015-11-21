@@ -26,14 +26,16 @@ class model extends \mvc\model
 						 		)
 						->where('user_id', $uid)
 						->and('attachment_addr', $_location)
+						->and('attachment_status', 'IN', '("normal", "trash")')
 						->order('#type', 'DESC')
 						->select('id')
 						->allassoc();
 
 		foreach ($datatable as $key =>$row)
 		{
-			$datatable[$key]['meta'] = json_decode($row['meta'], true);
-			$datatable[$key]['cid']  = utility\ShortURL::encode($row['id']);
+			$datatable[$key]['meta']   = json_decode($row['meta'], true);
+			$datatable[$key]['cid']    = utility\ShortURL::encode($row['id']);
+			$datatable[$key]['status'] = $datatable[$key]['status'] == 'normal'? '': $datatable[$key]['status'];
 
 			if($row['type'] == 'folder')
 				$datatable[$key]['icon'] = 'folder';
@@ -288,11 +290,13 @@ class model extends \mvc\model
 		$this->commit(function()
 		{
 			debug::property('status', 'ok');
+			debug::true(T_("New folder created Successfully"));
 		});
 
 		// if a query has error or any error occour in any part of codes, run roolback
 		$this->rollback(function()
 		{
+			debug::true(T_("Error on createding new folder!"));
 			debug::property('status', 'fail');
 			debug::property('error', T_('Error'));
 			// remove file if has problem
@@ -307,20 +311,38 @@ class model extends \mvc\model
 	 */
 	public function post_remove()
 	{
-		var_dump("delete");
-		$location    = '/'.utility::post('location');
-		$name        = utility::post('name');
+
+		$location = '/'.utility::post('location');
+		$shift    = utility::post('shift');
+		$items    = utility::post('items');
+		$items    = explode(',', $items);
+		$myIDs    = [];
+
+		foreach ($items as $value)
+		{
+			$myIDs[] = utility\ShortURL::decode($value);
+		}
 
 		$qry = $this->sql();
 		$qry = $qry->table('attachments')
-					->set('attachment_type',   'folder')
-					->set('attachment_addr',   $location)
-					->set('attachment_name',   $name)
-					->set('attachment_size',   0)
-					->set('attachment_status', 'normal')
-					->set('attachment_date',   date('Y-m-d H:i:s'))
-					->set('user_id',           $this->login('id'));
-		$qry           = $qry->delete();
+					->where('id', 'IN' ,"(".implode(", ", $myIDs).")")
+					->and('attachment_addr', $location)
+					->and('user_id', $this->login('id'));
+
+		if($shift)
+		{
+			$qry = $qry->set('attachment_status', '#CASE
+				WHEN attachment_status = "normal" THEN "trash"
+				WHEN attachment_status = "trash" THEN "deleted"
+				END', 'aaa');
+		}
+		else
+		{
+			$qry = $qry->set('attachment_status', 'deleted');
+		}
+
+		// var_dump($qry->updateString()); exit();
+		$qry           = $qry->update();
 		// $attachment_id = $qry->LAST_INSERT_ID();
 
 		// commit all changes or rollback and remove file
@@ -328,14 +350,16 @@ class model extends \mvc\model
 		// you can manage next event with one of these variables,
 		// commit for successfull and rollback for failed
 		// if query run without error means commit
-		$this->commit(function($_id, $_url)
+		$this->commit(function()
 		{
+			debug::true(T_("Delete Successfully"));
 			debug::property('status', 'ok');
-		}, $attachment_id, $page_url);
+		});
 
 		// if a query has error or any error occour in any part of codes, run roolback
 		$this->rollback(function()
 		{
+			debug::title(T_("Error: "));
 			debug::property('status', 'fail');
 			debug::property('error', T_('Error'));
 			// remove file if has problem
@@ -360,6 +384,8 @@ class model extends \mvc\model
 	 */
 	public function post_rename()
 	{
+			debug::true(T_("Rename"));
+
 		// var_dump('rename');
 		// exit();
 	}
