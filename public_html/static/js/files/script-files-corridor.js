@@ -232,7 +232,7 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------- Delete
     case '46':              // delete
-      ex_delete();
+      ex_delete(false);
       break;
 
     case '46shift':         // delete + shift

@@ -9,7 +9,7 @@ $(document).ready(function()
   $('#more-selectall').click(function()  { ex_selectAll(); });
   $('#more-rename')   .click(function()  { ex_rename();     });
   $('#more-move')     .click(function()  { ex_cut();        });
-  $('#remove')        .click(function()  { ex_delete();     });
+  $('#remove')        .click(function()  { ex_delete(false);     });
 
   // handle all keydown on keyboard
   $(document).keydown(function(e)        { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
@@ -103,17 +103,33 @@ function ex_inputSubmit(_submit)
  * @param  {[type]} trash [description]
  * @return {[type]}       [description]
  */
-function ex_delete(trash)
+function ex_delete(_trash)
 {
-  if (trash)
+  var myDelete = [];
+  
+  if (_trash)
   {
-    $('#explorer>ul li.selected').hide(300).remove();
+    $('#explorer>ul li.selected').hide(300);
   }
   else
   {
-    $('#explorer>ul li.selected.trash').hide(300).remove();
+    $('#explorer>ul li.selected.trash').hide(300);
     $('#explorer>ul li.selected').addClass('trash');
   }
+
+  $('#explorer>ul li.selected').each(function() {
+    myDelete.push($(this).data('id'));
+  });
+
+  $('#remove').ajaxify({
+    ajax: {
+      data: {
+        location: CURRENTPATH,
+        trash: _trash,
+        data: myDelete
+      }
+    }
+  });
 }
 
 
