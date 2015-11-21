@@ -14,6 +14,22 @@ $(document).ready(function()
   // handle all keydown on keyboard
   $(document).keydown(function(e)        { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
 
+  $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false); });
+  $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault(); console.log(123); });
+  $('#explorer').on("click", ".btn-fa-check",  function(e) 
+  {
+    e.preventDefault();
+    ex_inputSubmit();
+
+    var listForm = $(this).parents('form');
+    // listForm.attr('method', 'post');
+    listForm.ajaxify({
+      ajax:
+      {
+        data : {location: CURRENTPATH}
+      }
+    });
+  });
 });
 
 
@@ -33,23 +49,6 @@ route('*', function()
   $('ul li', explorer).dblclick(function(e) {event_corridor(e, e.currentTarget,  'dblclick'); });
 
   // call on click menu items
-  explorer.on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false); });
-  explorer.on("click", "#item-new-name", function(e) { e.preventDefault(); console.log(123); });
-  explorer.on("click", ".btn-fa-check",  function(e) 
-  {
-    console.log('check');
-    e.preventDefault();
-    ex_inputSubmit();
-
-    var listForm = $(this).parents('form');
-    // listForm.attr('method', 'post');
-    listForm.ajaxify({
-      ajax:
-      {
-        data : {copyTo: 'folder2', items:'file1, folder3, files4'}
-      }
-    });
-  });
 
 });
 

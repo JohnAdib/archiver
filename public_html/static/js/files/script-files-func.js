@@ -60,7 +60,7 @@ function ex_inputCreate(_type, _value)
   var myOldValue     = _value? ' data-value="' + _value + '"': '';
 
   var myElement =
-    '<form method="post" action="/$/' + _type + '" data-ajaxify>' +
+    '<form method="post" action="/$/' + _type + '">' +
       '<input id="item-new-name" type="text" name="fname" placeholder="Untitled Folder" ' + myDefaultValue + myOldValue + ' />' +
       '<button class="btn-fa-check"><i class="fa fa-check"></i></button>' +
       '<button class="btn-fa-times"><i class="fa fa-times"></i></button>' +

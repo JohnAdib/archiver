@@ -264,9 +264,9 @@ class model extends \mvc\model
 		// return;
 		$location    = '/'.utility::post('location');
 		$fname        = utility::post('fname');
-		var_dump($location);
-		var_dump($fname);
-		exit();
+		// var_dump($location);
+		// var_dump($fname);
+		// exit();
 
 		$qry = $this->sql();
 		$qry = $qry->table('attachments')
