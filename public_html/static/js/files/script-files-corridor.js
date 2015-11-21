@@ -247,7 +247,7 @@ function event_corridor(e, _self, _key)
       break;
 
     case '67ctrl':          // c + ctrl
-      ex_copy();
+      ex_clipboard('copy');
       break;
 
     case '78ctrl':          // n + ctrl
@@ -264,7 +264,7 @@ function event_corridor(e, _self, _key)
       break;
 
     case '88ctrl':          // x + ctrl
-      ex_cut();
+      ex_clipboard('cut');
       break;
 
 

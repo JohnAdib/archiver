@@ -1,15 +1,18 @@
 // global variable definition
 var CURRENTPATH;
+var CLIPBOARD;
 
 
 $(document).ready(function()
 {
   // call from menu or static menu
-  $('#newfolder')     .click(function()  { ex_newFolder(); });
-  $('#more-selectall').click(function()  { ex_selectAll(); });
-  $('#more-rename')   .click(function()  { ex_rename();     });
-  $('#more-move')     .click(function()  { ex_cut();        });
-  $('#remove')        .click(function()  { ex_delete(false);     });
+  $('#newfolder')     .click(function() { ex_newFolder();       });
+  $('#more-selectall').click(function() { ex_selectAll();       });
+  $('#more-rename')   .click(function() { ex_rename();          });
+  $('#more-move')     .click(function() { ex_clipboard('cut');  });
+  $('#more-copy')     .click(function() { ex_clipboard('copy'); });
+  $('#paste')         .click(function() { ex_paste();           });
+  $('#remove')        .click(function() { ex_delete(false);     });
 
   // handle all keydown on keyboard
   $(document).keydown(function(e)        { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
@@ -125,8 +128,8 @@ function ex_delete(_trash)
     ajax: {
       data: {
         location: CURRENTPATH,
-        trash: _trash,
-        data: myDelete
+        items: myDelete,
+        shift: _trash
       }
     }
   });
@@ -136,23 +139,28 @@ function ex_delete(_trash)
 /**
  * copy some item
  */
-function ex_copy()
+function ex_clipboard(_action)
 {
+  CLIPBOARD = [];
   
-}
-
-
-/**
- * cut some item
- */
-function ex_cut()
-{
-  if ( $('#explorer>ul').find('li.selected').length != 0 )
+  if ( $('#explorer>ul li.selected').length != 0 )
   {
-    // console.log('Do cut');
-    $('body').addClass('cut');
-    $('#explorer>ul li.selected').addClass('cutted');
+    if ( _action == 'copy' )
+    {
+      $('body').addClass('copy');
+    }
+    else if ( _action == 'cut' )
+    {
+      $('body').addClass('cut'); 
+      $('#explorer>ul li.selected').addClass('cutted');
+    }
+
+    $('#explorer>ul li.selected').each(function() {
+      CLIPBOARD.push( $(this).data('id') );
+    });
   }
+
+  $('#paste').parents('li').removeClass('hide');
 }
 
 
@@ -161,7 +169,33 @@ function ex_cut()
  */
 function ex_paste()
 {
+  var myType;
   
+  if ( $('body').hasClass('cut') )
+  {
+    myType = 'cut';
+    $('body').removeClass('cut');
+  }
+  else if ( $('body').hasClass('copy') )
+  {
+    myType = 'copy';
+    $('body').removeClass('copy');
+  }
+
+  if ( myType != 'undefined' )
+  {
+    $('#paste').ajaxify({
+      ajax: {
+        data: {
+          location: CURRENTPATH,
+          items: CLIPBOARD,
+          type: myType
+        }
+      }
+    });
+  }
+
+  $('#paste').parents('li').addClass('hide');
 }
 
 
