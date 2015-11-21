@@ -19,19 +19,7 @@ $(document).ready(function()
 
   $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false); });
   $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault(); console.log(123); });
-  $('#explorer').on("click", ".btn-fa-check",  function(e) 
-  {
-    e.preventDefault();
-    ex_inputSubmit();
-
-    var listForm = $(this).parents('form');
-    listForm.ajaxify({
-      ajax:
-      {
-        data : {location: CURRENTPATH}
-      }
-    });
-  });
+  $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit(); });
 });
 
 
@@ -76,7 +64,13 @@ function ex_inputSubmit(_submit)
     $('#new-folder').removeClass('selected').removeAttr('id');
 
     // send item name as ajax, then redraw items
-
+    var listForm = $(this).parents('form');
+    listForm.ajaxify({
+      ajax:
+      {
+        data : {location: CURRENTPATH}
+      }
+    });
   }
   // user want to cancel form
   else
