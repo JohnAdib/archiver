@@ -21,8 +21,10 @@ function event_corridor(e, _self, _key)
   {
     // ---------------------------------------------------------- BackSpace
     case '8':               // Back Space
-      console.log('BackSpace');
-      e.preventDefault();
+      if ( !$('body').hasClass('editing') )
+      {
+        e.preventDefault();
+      }
       break;
 
 
@@ -63,53 +65,77 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------- Page Up
     case '33':              // PageUP
-      next = cid > 10 ? cid - 10 : 0;
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid > 10 ? cid - 10 : 0;
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(next);
+      }
       break;
 
     case '33ctrl':         // PageUP + ctrl
-      next = cid > 10 ? cid - 10 : 0;
-      ex_removeClass('focused');
-      ex_itemFocus(next);
+      if ( !$('body').hasClass('editing') )
+      {  
+        next = cid > 10 ? cid - 10 : 0;
+        ex_removeClass('focused');
+        ex_itemFocus(next);
+      }
       break;
 
     case '33shift':        // PageUP + Shift
-      next = cid > 10 ? cid - 10 : 0;
-      ex_removeClass('selected focused');
-      ex_items_select_focus_until(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid > 10 ? cid - 10 : 0;
+        ex_removeClass('selected focused');
+        ex_items_select_focus_until(next);
+      }
       break;
 
     case '33ctrlshift':    // PageUP + Ctrl + Shift
-      next = cid > 10 ? cid - 10 : 0;
-      ex_removeClass('focused');
-      ex_items_select_focus_until(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid > 10 ? cid - 10 : 0;
+        ex_removeClass('focused');
+        ex_items_select_focus_until(next);
+      }
       break;
 
 
     // ---------------------------------------------------------- Page Down
     case '34':              // PageDown
-      next = cid + 10 >= lastid ? lastid : cid + 10;
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid + 10 >= lastid ? lastid : cid + 10;
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(next);
+      }
       break;
 
     case '34ctrl':         // PageDown + Ctrl
-      next = cid + 10 >= lastid ? lastid : cid + 10;
-      ex_removeClass('focused');
-      ex_itemFocus(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid + 10 >= lastid ? lastid : cid + 10;
+        ex_removeClass('focused');
+        ex_itemFocus(next);
+      }
       break;
 
     case '34shift':         // PageDown + Shift
-      next = cid + 10 >= lastid ? lastid : cid + 10;
-      ex_removeClass('selected focused');
-      ex_items_select_focus_until(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid + 10 >= lastid ? lastid : cid + 10;
+        ex_removeClass('selected focused');
+        ex_items_select_focus_until(next);
+      }
       break;
 
     case '34ctrlshift':    // PageDown + Ctrl + Shift
-      next = cid + 10 >= lastid ? lastid : cid + 10;
-      ex_removeClass('focused');
-      ex_items_select_focus_until(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid + 10 >= lastid ? lastid : cid + 10;
+        ex_removeClass('focused');
+        ex_items_select_focus_until(next);
+      }
       break;
 
 
@@ -169,27 +195,39 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------- Up
     case '38':              // up
-      next = cid > 0 ? cid - 1 : 0;
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid > 0 ? cid - 1 : 0;
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(next);
+      }
       break;
 
     case '38ctrl':           // up + ctrl
-      next = cid > 0 ? cid - 1 : 0;
-      ex_removeClass('focused');
-      ex_itemFocus(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid > 0 ? cid - 1 : 0;
+        ex_removeClass('focused');
+        ex_itemFocus(next);
+      }
       break;
 
     case '38shift':          // up + shift
-      next = cid > 0 ? cid - 1 : 0;
-      ex_removeClass('focused selected');
-      ex_items_select_focus_until(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid > 0 ? cid - 1 : 0;
+        ex_removeClass('focused selected');
+        ex_items_select_focus_until(next);
+      }
       break;
 
     case '38ctrlshift':      // up + ctrl + shift
-      next = cid > 0 ? cid - 1 : 0;
-      ex_removeClass('focused zero');
-      ex_itemSelectedFocusedZero(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid > 0 ? cid - 1 : 0;
+        ex_removeClass('focused zero');
+        ex_itemSelectedFocusedZero(next);
+      }
       break;
 
 
@@ -206,37 +244,55 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------- Down
     case '40':              // down
-      next = cid >= lastid ? lastid : cid + 1;
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid >= lastid ? lastid : cid + 1;
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(next);
+      }
       break;
 
     case '40ctrl':           // down + ctrl
-      next = cid >= lastid ? lastid : cid + 1;
-      ex_removeClass('focused');
-      ex_itemFocus(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid >= lastid ? lastid : cid + 1;
+        ex_removeClass('focused');
+        ex_itemFocus(next);
+      }
       break;
 
     case '40shift':          // down + shift
-      next = cid >= lastid ? lastid : cid + 1;
-      ex_removeClass('focused selected');
-      ex_items_select_focus_until(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid >= lastid ? lastid : cid + 1;
+        ex_removeClass('focused selected');
+        ex_items_select_focus_until(next);
+      }
       break;
 
     case '40ctrlshift':     // down + shift
-      next = cid >= lastid ? lastid : cid + 1;
-      ex_removeClass('focused zero');
-      ex_itemSelectedFocusedZero(next);
+      if ( !$('body').hasClass('editing') )
+      {
+        next = cid >= lastid ? lastid : cid + 1;
+        ex_removeClass('focused zero');
+        ex_itemSelectedFocusedZero(next);
+      }
       break;
 
 
     // ---------------------------------------------------------- Delete
     case '46':              // delete
-      ex_delete(false);
+      if ( !$('body').hasClass('editing') )
+      {
+        ex_delete(false);
+      }
       break;
 
     case '46shift':         // delete + shift
-      ex_delete(true);
+      if ( !$('body').hasClass('editing') )
+      {
+        ex_delete(true);
+      }
       break;
 
 
