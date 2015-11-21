@@ -43,6 +43,13 @@ route('*', function()
 });
 
 
+function reDraw()
+{
+  Navigate({
+    url: CURRENTPATH
+  });  
+}
+
 
 /**
  * when user submit form with submit btn or cancel it
@@ -71,6 +78,7 @@ function ex_inputSubmit(_submit)
         data : {location: CURRENTPATH}
       }
     });
+    reDraw();
   }
   // user want to cancel form
   else
@@ -127,6 +135,8 @@ function ex_delete(_trash)
       }
     }
   });
+
+  reDraw();
 }
 
 
@@ -190,6 +200,7 @@ function ex_paste()
   }
 
   $('#paste').parents('li').addClass('hide');
+  reDraw();
 }
 
 
