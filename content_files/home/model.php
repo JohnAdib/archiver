@@ -53,6 +53,49 @@ class model extends \mvc\model
 	}
 
 
+	public function getprop($_location = '', $_id = 'b')
+	{
+		$_location = '/' . $_location;
+		$_id       = utility\ShortURL::decode($_id);
+		$uid       = $this->login('id');
+
+		$myprop = $this->sql()->table('attachments')
+						->field('id',
+						 		'file_id',
+						 		'#attachment_title as title',
+						 		'#attachment_desc as description',
+						 		'#attachment_type as type',
+						 		// '#attachment_addr as address',
+						 		'#attachment_name as name',
+						 		'#attachment_ext as ext',
+						 		'#attachment_size as size',
+						 		'#attachment_meta as meta',
+						 		'#attachment_parent as parent',
+						 		// '#attachment_order as order',
+						 		'#attachment_status as status',
+						 		'#attachment_date as date'
+						 		)
+						->where('user_id', $uid)
+						->and('id', $_id)
+						->and('attachment_addr', $_location)
+						->and('attachment_status', 'IN', '("normal", "trash")')
+						->order('#type', 'DESC')
+						->select('id');
+		if($myprop->num() == 1)
+		{
+			$myprop = $myprop->assoc();
+			$myprop['meta'] = json_decode($myprop['meta'], true);
+		}
+		else
+		{
+			$myprop = null;
+		}
+
+		// var_dump($datatable);
+		return $myprop;
+	}
+
+
 	/**
 	 * doing upload process
 	 * @return [boolean] if status is false, return it

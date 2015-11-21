@@ -17,6 +17,11 @@
       <span class='name'>{{row.name}}</span>
       <span class='size'>{{row.size | readableSize(row.type) }}</span>
       <span class='date hint--bottom' data-hint="{{row.date}}">{{row.date | sdate('day')}}</span>
+      <span class='meta hide'>
+{%for pName, pValue in row.meta%}
+       <div>{{pName}}<span>{{pValue}}</span></div>
+{% endfor %}
+      </span>
     </li>
 {% endfor %}
   </ul>
