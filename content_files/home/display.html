@@ -2,19 +2,17 @@
 
 
 {%block explorer%}
-{%set plus = 0%}
 {%if url.path != ''%}
-    <li data-row="0" class="up">
+    <li class="up">
       <span class='type fa fa-level-up'></span>
       <span class='name'>..</span>
       <span class='size'></span>
       <span class='date'></span>
     </li>
-{%set plus = 1%}
 {%endif%}
 
 {%for key, row in datatable%}
-    <li data-row="{{key+plus}}" data-id="{{row.cid}}" class="{{row.type}}">
+    <li data-id="{{row.cid}}" class="{{row.type}}">
       <span class='type fa fa-{{row.icon}}'></span>
       <span class='name'>{{row.name}}</span>
       <span class='size'>{{row.size | readableSize(row.type) }}</span>

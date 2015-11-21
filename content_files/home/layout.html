@@ -8,6 +8,8 @@
 {%block js%}
  <script src='{{url.static}}js/files/uploader.js'></script>
  <script src='{{url.static}}js/files/script-files.js'></script>
+ <script src='{{url.static}}js/files/script-files-func.js'></script>
+ <script src='{{url.static}}js/files/script-files-corridor.js'></script>
 {%endblock%}
 
 
@@ -80,7 +82,7 @@
 
    </ul>
 
-   <div id="profile" tabindex=1>
+   <div id="profile">
     <span>{%set dname = login.displayname%}{%trans dname%}
      <i class="fa fa-user"></i>
      </span>
@@ -96,7 +98,7 @@
 <div class="row body auto">
  <aside class="span1 unselectable" id='page-sidebar'>
   <nav class='sidebar-items'>
-  <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="#"><i class="fa fa-lg fa-home"></i></a>
+  <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="/"><i class="fa fa-lg fa-home"></i></a>
   <a class='hint--right' id='ifavorites' data-hint='{%trans "favorites"%}' href="#"><i class="fa fa-lg fa-star-o"></i></a>
   <a class='hint--right' id='itags' data-hint='{%trans "Tags"%}' href="#"><i class="fa fa-lg fa-tags"></i></a>
   <a class='hint--right' id='icategories' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
