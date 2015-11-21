@@ -22,7 +22,6 @@ $(document).ready(function()
     ex_inputSubmit();
 
     var listForm = $(this).parents('form');
-    // listForm.attr('method', 'post');
     listForm.ajaxify({
       ajax:
       {
