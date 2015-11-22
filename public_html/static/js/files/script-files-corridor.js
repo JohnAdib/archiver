@@ -39,7 +39,7 @@ function event_corridor(e, _self, _key)
       else
       {
         console.log('enter');
-        clickonitems(_self);
+        ex_dblClickItems(_self);
       }
       break;
 
@@ -200,6 +200,7 @@ function event_corridor(e, _self, _key)
         next = cid > 0 ? cid - 1 : 0;
         ex_removeClass('selected focused zero');
         ex_itemSelectedFocusedZero(next);
+        ex_showProp();
       }
       break;
 
@@ -249,6 +250,7 @@ function event_corridor(e, _self, _key)
         next = cid >= lastid ? lastid : cid + 1;
         ex_removeClass('selected focused zero');
         ex_itemSelectedFocusedZero(next);
+        ex_showProp();
       }
       break;
 
@@ -335,6 +337,7 @@ function event_corridor(e, _self, _key)
       ex_removeClass('selected focused zero');
       _self.addClass('selected focused zero');
       ex_checkBody();
+      ex_showProp();
       break;
 
 
@@ -360,7 +363,7 @@ function event_corridor(e, _self, _key)
 
 
     case 'dblclick':           // Double click
-      clickonitems(_self);
+      ex_dblClickItems(_self);
       ex_checkBody();
       // ex_removeClass('selected focused zero');
       // _self.addClass('selected focused zero');

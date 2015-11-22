@@ -17,11 +17,6 @@
       <span class='name'>{{row.name}}</span>
       <span class='size'>{{row.size | readableSize(row.type) }}</span>
       <span class='date hint--bottom' data-hint="{{row.date}}">{{row.date | sdate('day')}}</span>
-      <i class='meta hide'>
-{%for pName, pValue in row.meta%}
-       <li>{{pName}}<span>{{pValue}}</span></li>
-{% endfor %}
-      </i>
     </li>
 {% endfor %}
   </ul>
@@ -38,7 +33,7 @@
   </h3>
 
   
-  <ul id="prop-box-ul">
+  <ul id="prop-box-ul" data-action="$/prop" data-method="post">
     <li>{%trans "Name"%}<span>test</span></li>
     <li>{%trans "Size"%}<span>123kb</span></li>
     <li>{%trans "Type"%}<span>image</span></li>

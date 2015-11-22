@@ -31,6 +31,7 @@ class controller extends \mvc\controller
 					case 'createfolder':
 					case 'createfile':
 					case 'rename':
+					case 'prop':
 						// var_dump($myurl[1]);
 						$this->post($myurl[1])->ALL();
 						// $this->get()->ALL();

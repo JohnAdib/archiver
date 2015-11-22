@@ -209,7 +209,7 @@ function ex_paste()
 /**
  * click on some item in explorer
  */
-function clickonitems(_self)
+function ex_dblClickItems(_self)
 {
   if($(_self).hasClass('folder') || $(_self).hasClass('up'))
   {
@@ -222,6 +222,50 @@ function clickonitems(_self)
   else
   {
     console.log('click on file!');
+  }
+}
+
+
+function ex_showProp()
+{
+  if($('#explorer>ul>li.selected').length>1)
+  {
+    console.log('more');
+  }
+  else
+  {
+    var myItem = $('#explorer>ul>li.selected').data('id');
+
+  //   $('#prop-box-ul').ajaxify({
+  //     ajax: {
+  //       data: {
+  //         location: CURRENTPATH,
+  //         items: myItem
+  //       }
+  //     }
+  //   });
+
+  // $('#prop-box-ul').on('ajaxify:success', function(e, data) {
+  //   console.log(data.datatable);
+  // });
+
+
+$.ajax({
+  url: "/$/prop",
+  data: {
+    location: CURRENTPATH,
+    items: myItem
+  }
+}).done(function(a, b, c, d, e) {
+  console.log(a);
+  console.log(b);
+  console.log(c);
+  console.log(d);
+  console.log(e);
+});
+
+
+
   }
 }
 
