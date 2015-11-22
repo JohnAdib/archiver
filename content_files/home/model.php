@@ -463,6 +463,12 @@ class model extends \mvc\model
 		// var_dump($datatable);
 
 		$datatable['meta']   = json_decode($datatable['meta'], true);
+
+		$datatable['width']  = $datatable['meta']['width'];
+		$datatable['height'] = $datatable['meta']['height'];
+		$datatable['size']   = \lib\utility\Upload::readableSize($datatable['size']);
+
+
 		$datatable['id']     = utility\ShortURL::encode($datatable['id']);
 		$datatable['status'] = $datatable['status'] == 'normal'? '': $datatable['status'];
 
@@ -477,30 +483,28 @@ class model extends \mvc\model
 		else
 			$datatable['icon'] = 'file-o';
 
+		unset($datatable['type']);
+		unset($datatable['status']);
+		unset($datatable['meta']);
+
+		// \lib\utility\Upload::readableSize()
+
 		foreach ($datatable as $key => $value)
 		{
-			if($value == null || empty($value))
+			if( ($value == null || empty($value) ) && $key !== 'size')
 			{
+				// var_dump($key);
 				unset($datatable[$key]);
 			}
+
+			$datatable[T_($key)] = $value;
+			unset($datatable[$key]);
 		}
-		unset($datatable[$key]);
 
-
-
-		// $datatable = $datatable[0];
 		// var_dump($datatable);
-		// exit();
-		// return $datatable;
-
-			debug::property('status', 'ok');
-			debug::true(T_("Prop"));
-			// debug::data(T_("data"));
-			debug::property('datatable', $datatable);
 
 
+		debug::property('datatable', $datatable);
 	}
-
-
 }
 ?>
