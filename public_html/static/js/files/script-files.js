@@ -21,6 +21,7 @@ $(document).ready(function()
   $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false);           });
   $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault(); console.log(123);                });
   $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
+  
 });
 
 
@@ -31,6 +32,7 @@ route('*', function()
 {
   CURRENTPATH = (location.pathname).replace(/^\/+/, '');
 
+  // $(".light-gallery", this).lightGallery();
   var explorer = this instanceof Document ? $('#explorer') : $(this).parents('#explorer');
   $('ul li', explorer).first().addClass('zero focused');
   
@@ -251,7 +253,9 @@ function ex_showProp()
           {
             if (key == 'thumb')
             {
-              var element = '<li><img src="' + myData[key] + '" /></li>';
+              var element = '<li ><a class="light-gallery" onclick="lightGallery()" data-iframe="true" data-src="' + myData[key] + '"><img src="' + myData[key] + '" /></a></li>';
+     // <span data-iframe="true" data-src="{{url.root}}{{datarow.post_url}}?preview=yes">{{url.root}}{{datarow.post_url}}</span>
+
               elements += element;
             }
             else if (key != 'id')
