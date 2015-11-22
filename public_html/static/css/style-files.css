@@ -86,9 +86,9 @@ body, html{height: 100%;}
 }
 
 #explorer>ul{margin: 2% 0;}
-#explorer li{padding:0.5% 1%; border: 1px solid transparent;}
-#explorer li:hover{background-color: #E5F3FF; border: 1px solid #E5F3FF;}
-#explorer li span{min-width: 40px;display: inline-block;}
+#explorer>ul>li{padding:0.5% 1%; border: 1px solid transparent;}
+#explorer>ul>li:hover{background-color: #E5F3FF; border: 1px solid #E5F3FF;}
+#explorer>ul>li>span{min-width: 40px;display: inline-block;}
 #explorer .type{font-size: 2em;vertical-align:middle;}
 #explorer .type.fa-folder{color: #ffe78f}
 #explorer .type.fa-file-image-o{color: #3786d1}
@@ -418,3 +418,6 @@ input.upload {
   opacity: 0.3;
 }
 
+#add-prop {
+  color: #21b384;
+}

@@ -163,6 +163,7 @@ function ex_removeClass(_className)
 function ex_addClass(_className, _id)
 {
   $('#explorer>ul li:eq('+ _id +')').addClass(_className);
+  $('#prop-box-ul').html($('#explorer>ul>li.focused .meta').html());
 }
 
 

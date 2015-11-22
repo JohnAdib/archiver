@@ -144,7 +144,7 @@
       <input type="hidden" name="location" value="{{url.path}}" />
       <small>{%trans "Maximum size allowed"%} {{maxSize}}</small>
      </div>
-     <a class="button" data-cancel="">انصراف</a>
+     <a class="button" data-cancel>انصراف</a>
     </form>
    </div>
    <div class='modal-footer buttons'>
@@ -154,6 +154,20 @@
 
 
 
+<div class='modal' id="prop_modal">
+  <div class='modal-dialog'>
+   <div class='modal-body'>
+    <form method="post" id="form_prop" action="$/prop" class="unselectable form">
+      <input type="text">
+      <input type="text">
+      <button class='button'>{% trans"submit" %}</button>
+      <a class="button" data-cancel>{% trans"Cancel" %}</a>
+    </form>
+   </div>
+   <div class='modal-footer buttons'>
+   </div>
+  </div>
+ </div>
 
 
 

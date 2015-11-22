@@ -15,7 +15,7 @@ $(document).ready(function()
   $('#remove')        .click(function() { ex_delete(false);     });
 
   // handle all keydown on keyboard
-  $(document).keydown(function(e)        { event_corridor(e, $('#explorer>ul li.focused')[0], e.which );  });
+  $(document).keydown(function(e) { event_corridor(e, $('#explorer>ul li.focused')[0], e.which ); });
 
   $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false); });
   $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault(); console.log(123); });
