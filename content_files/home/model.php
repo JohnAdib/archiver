@@ -181,9 +181,6 @@ class model extends \mvc\model
 				utility\Image::thumb(150, 150);
 				utility\Image::save($url_thumb);
 				break;
-
-			default:
-				break;
 		}
 
 		// 5. get filemeta data
