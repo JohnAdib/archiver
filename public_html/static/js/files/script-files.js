@@ -235,37 +235,45 @@ function ex_showProp()
   else
   {
     var myItem = $('#explorer>ul>li.selected').data('id');
+    
+    $('#prop-box-ul').ajaxify({
+      ajax: {
+        data: {
+          location: CURRENTPATH,
+          items: myItem
+        },
+        success: function(e, data, x) {
+          var myData = x.responseJSON.datatable;
+          var myMeta = x.responseJSON.datatable.meta;
+          var elements = '';
+          var metaElements = '';
+          for (var key in myData)
+          {
+            if (myData[key] != '' && key != 'meta')
+            {
+              var element = '<li>' + key + '<span>' + myData[key] + '</span></li>';
+              elements += element;
+            }
+            else if (key == 'meta')
+            {
+              for (var metaKey in myMeta)
+              {
+                if (myMeta[metaKey] != '')
+                {
+                  var element = '<li>' + metaKey + '<span>' + myMeta[metaKey] + '</span></li>';
+                  metaElements += element;
+                }
+              }
+            }
+          }
+          elements += metaElements;
+          console.log(elements);
+        }
+      }
+    });
 
-  //   $('#prop-box-ul').ajaxify({
-  //     ajax: {
-  //       data: {
-  //         location: CURRENTPATH,
-  //         items: myItem
-  //       }
-  //     }
-  //   });
-
-  // $('#prop-box-ul').on('ajaxify:success', function(e, data) {
-  //   console.log(data.datatable);
-  // });
-
-
-$.ajax({
-  url: "/$/prop",
-  data: {
-    location: CURRENTPATH,
-    items: myItem
-  }
-}).done(function(a, b, c, d, e) {
-  console.log(a);
-  console.log(b);
-  console.log(c);
-  console.log(d);
-  console.log(e);
-});
-
-
-
+    // $('#prop-box-ul').on('ajaxify:success', function(e, data) {
+    //   console.log(data);
+    // });
   }
 }
-
