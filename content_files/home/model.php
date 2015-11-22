@@ -497,8 +497,12 @@ class model extends \mvc\model
 				unset($datatable[$key]);
 			}
 
-			$datatable[T_($key)] = $value;
-			unset($datatable[$key]);
+			// dont translate id
+			if($key !='id')
+			{
+				$datatable[T_($key)] = $value;
+				unset($datatable[$key]);
+			}
 		}
 
 		// var_dump($datatable);
