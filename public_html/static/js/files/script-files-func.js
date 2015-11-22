@@ -101,7 +101,7 @@ function ex_checkBody()
   }
   if ( $('body').hasClass('editing') )
   {
-    ex_inputSubmit(false);
+    // ex_inputSubmit(false);
   }
   if ( $('body').hasClass('selectall') )
   {

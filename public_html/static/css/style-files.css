@@ -414,6 +414,9 @@ input.upload {
 
 }
 
+.modal form{width:500px;}
+.modal form .buttons {margin-top: 20px}
+
 .trash {
   opacity: 0.3;
 }

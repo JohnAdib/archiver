@@ -17,9 +17,9 @@ $(document).ready(function()
   // handle all keydown on keyboard
   $(document).keydown(function(e) { event_corridor(e, $('#explorer>ul li.focused')[0], e.which ); });
 
-  $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false); });
-  $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault(); console.log(123); });
-  $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit(); });
+  $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false);           });
+  $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault(); console.log(123);                });
+  $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
 });
 
 
@@ -78,11 +78,13 @@ function ex_inputSubmit(_submit)
         data : {location: CURRENTPATH}
       }
     });
-    reDraw();
+    // reDraw();
   }
   // user want to cancel form
   else
   {
+    console.log(10);
+    return;
     // if user cancel creating new folder
     if ( $('#explorer>ul li').is('#new-folder') )
     {
