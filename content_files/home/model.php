@@ -464,8 +464,8 @@ class model extends \mvc\model
 
 		$datatable['meta']   = json_decode($datatable['meta'], true);
 
-		$datatable['width']  = $datatable['meta']['width'];
-		$datatable['height'] = $datatable['meta']['height'];
+		$datatable['width']  = isset($datatable['meta']['width'])? $datatable['meta']['width']: null;
+		$datatable['height'] = isset($datatable['meta']['height'])? $datatable['meta']['height']: null;
 		$datatable['size']   = \lib\utility\Upload::readableSize($datatable['size']);
 
 
