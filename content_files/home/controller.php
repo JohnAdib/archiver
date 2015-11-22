@@ -35,6 +35,11 @@ class controller extends \mvc\controller
 						// $this->get()->ALL();
 						break;
 
+					case 'result':
+						$this->get()->ALL();
+						$this->post()->ALL();
+						break;
+
 					default:
 						\lib\error::bad();
 						break;

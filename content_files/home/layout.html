@@ -63,18 +63,26 @@
 
 
         <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1
-         <form action="http://www.google.com/search" data-action id="more-app1">
-          <input type="hidden" name="q" size="31" maxlength="255" value="Iran">
+         <form action="{{url.static}}page/app1.php" data-action id="more-app1">
+          <input type="hidden" name="data" value="Address of file1 - to app1">
           <input type="submit" value=''>
          </form>
         </a>
 
         <a href="javascript:{}" onclick="document.getElementById('more-app2').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 2
-         <form action="http://www.google.com/search" data-action id="more-app2">
-          <input type="hidden" name="q" size="31" maxlength="255" value="Tehran">
+         <form action="{{url.static}}page/app2.php" data-action id="more-app2">
+          <input type="hidden" name="data" value="Address of file 2 - to app2">
           <input type="submit" value=''>
          </form>
         </a>
+
+        <a href="javascript:{}" onclick="document.getElementById('more-app3').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} Google
+         <form action="http://www.google.com/search" data-action id="more-app3">
+          <input type="hidden" name="q" size="31" maxlength="255" value="Iran">
+          <input type="submit" value=''>
+         </form>
+        </a>
+
 
       </nav>
     </li>
