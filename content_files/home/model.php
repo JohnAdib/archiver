@@ -439,7 +439,6 @@ class model extends \mvc\model
 		$uid       = $this->login('id');
 		$datatable = $this->sql()->table('attachments')
 						->field('id',
-						 		'file_id',
 						 		'#attachment_title as title',
 						 		'#attachment_desc as description',
 						 		'#attachment_type as type',
@@ -447,11 +446,11 @@ class model extends \mvc\model
 						 		'#attachment_name as name',
 						 		'#attachment_ext as ext',
 						 		'#attachment_size as size',
-						 		'#attachment_meta as meta',
 						 		'#attachment_parent as parent',
 						 		// '#attachment_order as order',
 						 		'#attachment_status as status',
-						 		'#attachment_date as date'
+						 		'#attachment_date as date',
+						 		'#attachment_meta as meta'
 						 		)
 						->where('user_id', $uid)
 						->and('attachment_addr', $location)
@@ -459,28 +458,39 @@ class model extends \mvc\model
 						->and('attachment_status', 'IN', '("normal", "trash")')
 						->order('#type', 'DESC')
 						->select('id')
-						->allassoc();
+						->assoc();
 
-
-		foreach ($datatable as $key =>$row)
-		{
-			$datatable[$key]['meta']   = json_decode($row['meta'], true);
-			$datatable[$key]['cid']    = utility\ShortURL::encode($row['id']);
-			$datatable[$key]['status'] = $datatable[$key]['status'] == 'normal'? '': $datatable[$key]['status'];
-
-			if($row['type'] == 'folder')
-				$datatable[$key]['icon'] = 'folder';
-			elseif($row['type'] == 'file' && isset($datatable[$key]['meta']) && isset($datatable[$key]['meta']['type']))
-				$datatable[$key]['icon'] = 'file-'.$datatable[$key]['meta']['type'].'-o';
-			elseif($row['type'] == 'system')
-				$datatable[$key]['icon'] = 'hdd-o';
-			elseif($row['type'] == 'other')
-				$datatable[$key]['icon'] = 'file';
-			else
-				$datatable[$key]['icon'] = 'file-o';
-		}
-		$datatable = $datatable[0];
 		// var_dump($datatable);
+
+		$datatable['meta']   = json_decode($datatable['meta'], true);
+		$datatable['id']     = utility\ShortURL::encode($datatable['id']);
+		$datatable['status'] = $datatable['status'] == 'normal'? '': $datatable['status'];
+
+		if($datatable['type'] == 'folder')
+			$datatable['icon'] = 'folder';
+		elseif($datatable['type'] == 'file' && isset($datatable['meta']) && isset($datatable['meta']['type']))
+			$datatable['icon'] = 'file-'.$datatable['meta']['type'].'-o';
+		elseif($datatable['type'] == 'system')
+			$datatable['icon'] = 'hdd-o';
+		elseif($datatable['type'] == 'other')
+			$datatable['icon'] = 'file';
+		else
+			$datatable['icon'] = 'file-o';
+
+		foreach ($datatable as $key => $value)
+		{
+			if($value == null || empty($value))
+			{
+				unset($datatable[$key]);
+			}
+		}
+		unset($datatable[$key]);
+
+
+
+		// $datatable = $datatable[0];
+		// var_dump($datatable);
+		// exit();
 		// return $datatable;
 
 			debug::property('status', 'ok');
