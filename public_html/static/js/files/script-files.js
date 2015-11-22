@@ -269,7 +269,7 @@ function ex_addProp()
     ajax: {
       data: {
         location: CURRENTPATH,
-        items: $('#form_prop').serialize();
+        items: $('#form_prop').serialize()
       }
     }
   });      
