@@ -266,14 +266,11 @@ function ex_showProp()
               }
             }
           }
-          elements += metaElements;
-          console.log(elements);
+          // elements += metaElements;
+          // console.log(elements);
+          $('#prop-box-ul').html(elements + metaElements);
         }
       }
     });
-
-    // $('#prop-box-ul').on('ajaxify:success', function(e, data) {
-    //   console.log(data);
-    // });
   }
 }
