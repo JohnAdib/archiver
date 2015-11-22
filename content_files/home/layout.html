@@ -134,11 +134,10 @@
 </div>
 
 
-
  <div class='modal' id="upload_modal">
   <div class='modal-dialog'>
    <div class='modal-body'>
-    <form method="post" id="form_uploader" action="$/upload" enctype="multipart/form-data" class="unselectable">
+    <form method="post" id="form_uploader" action="/$/upload" enctype="multipart/form-data" class="unselectable">
      <div id="drop">{%trans "Drag & Drop Files Here"%}<br />{%trans "or"%}<a>{%trans "Choose File"%}</a>
       <input type="file" name="upfile" multiple />
       <input type="hidden" name="location" value="{{url.path}}" />
@@ -153,30 +152,26 @@
  </div>
 
 
-
 <div class='modal' id="prop_modal">
   <div class='modal-dialog'>
    <div class='modal-header'>
    {%trans "Add new"%} {%trans "Property"%}
    </div>
    <div class='modal-body'>
-    <form method="post" id="form_prop" action="$/prop" class="unselectable form">
-      <input type="text">
-      <input type="text">
+    <form method="post" id="form_prop" action="/$/prop" class="unselectable form">
+      <input type="text" name="prop_name">
+      <input type="text" name="prop_value">
 
       <div class="buttons">
         <a class="button negative" data-cancel>{% trans"Cancel" %}</a>
         <div class="or"></div>
-        <button class='button positive'>{% trans"submit" %}</button>
+        <button class='button positive' id="prop-submit">{% trans"submit" %}</button>
       </div>
-
     </form>
    </div>
    <div class='modal-footer'>
    </div>
   </div>
  </div>
-
-
 
 {%endblock%}

@@ -13,6 +13,7 @@ $(document).ready(function()
   $('#more-copy')     .click(function() { ex_clipboard('copy'); });
   $('#paste')         .click(function() { ex_paste();           });
   $('#remove')        .click(function() { ex_delete(false);     });
+  $('#prop-submit')   .click(function() { ex_addProp();         });
 
   // handle all keydown on keyboard
   $(document).keydown(function(e) { event_corridor(e, $('#explorer>ul li.focused')[0], e.which ); });
@@ -228,7 +229,7 @@ function ex_dblClickItems(_self)
 
 function ex_showProp()
 {
-  if($('#explorer>ul>li.selected').length>1)
+  if ( $('#explorer>ul>li.selected').length > 1 )
   {
     console.log('more');
   }
@@ -244,33 +245,32 @@ function ex_showProp()
         },
         success: function(e, data, x) {
           var myData = x.responseJSON.datatable;
-          var myMeta = x.responseJSON.datatable.meta;
           var elements = '';
-          var metaElements = '';
+          
           for (var key in myData)
           {
-            if (myData[key] != '' && key != 'meta')
+            if (key != 'id')
             {
               var element = '<li>' + key + '<span>' + myData[key] + '</span></li>';
               elements += element;
             }
-            else if (key == 'meta')
-            {
-              for (var metaKey in myMeta)
-              {
-                if (myMeta[metaKey] != '')
-                {
-                  var element = '<li>' + metaKey + '<span>' + myMeta[metaKey] + '</span></li>';
-                  metaElements += element;
-                }
-              }
-            }
           }
-          // elements += metaElements;
-          // console.log(elements);
-          $('#prop-box-ul').html(elements + metaElements);
+          
+          $('#prop-box-ul').html(elements);
         }
       }
     });
   }
+}
+
+function ex_addProp()
+{
+  $('#form_prop').ajaxify({
+    ajax: {
+      data: {
+        location: CURRENTPATH,
+        items: $('#form_prop').serialize();
+      }
+    }
+  });      
 }
