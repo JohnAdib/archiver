@@ -19,6 +19,7 @@ class controller extends \mvc\controller
 		{
 			if(count($myurl) === 2 && isset($myurl[1]))
 			{
+				$this->route_check_true = true;
 				// $tmp_url   = $this->url('path');
 				// var_dump($tmp_url);
 

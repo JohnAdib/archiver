@@ -37,7 +37,8 @@ function ex_rename()
     {
       $('#explorer>ul li.selected').addClass('item-rename');
       var myName    = $('#explorer>ul li.selected span.name').text();
-      var myElement = ex_inputCreate('rename', myName);
+      var myItem    = $('#explorer>ul li.selected').data('id');
+      var myElement = ex_inputCreate('rename', myName, myItem);
 
       $('#explorer>ul li.selected span.name').html(myElement).select();
       $('#explorer #item-new-name').focus().select();
@@ -52,16 +53,19 @@ function ex_rename()
  * @param  {[type]} _value default value if exist for rename
  * @return {[type]}        created element
  */
-function ex_inputCreate(_type, _value)
+function ex_inputCreate(_type, _value, _item)
 {
   $('body').addClass('editing');
 
   var myDefaultValue = _value? 'value="' + _value + '"'      : '';
   var myOldValue     = _value? ' data-value="' + _value + '"': '';
+  var myItem         = _type == 'rename'? '<input type="hidden" name="items" value ="' + _item + '" />': '';
+
 
   var myElement =
     '<form method="post" action="/$/' + _type + '">' +
-      '<input id="item-new-name" type="text" name="fname" placeholder="Untitled Folder" ' + myDefaultValue + myOldValue + ' />' +
+      '<input id="item-new-name" type="text" name="fname" placeholder="Untitled Folder" ' + myDefaultValue + myOldValue + ' autocomplete="off" />' +
+      myItem +
       '<button class="btn-fa-check"><i class="fa fa-check"></i></button>' +
       '<button class="btn-fa-times"><i class="fa fa-times"></i></button>' +
     '</form>';
