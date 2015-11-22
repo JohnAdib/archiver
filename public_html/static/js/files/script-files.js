@@ -246,10 +246,15 @@ function ex_showProp()
         success: function(e, data, x) {
           var myData = x.responseJSON.datatable;
           var elements = '';
-          
+          // console.log(myData);
           for (var key in myData)
           {
-            if (key != 'id')
+            if (key == 'thumb')
+            {
+              var element = '<li><img src="' + myData[key] + '" /></li>';
+              elements += element;
+            }
+            else if (key != 'id')
             {
               var element = '<li>' + key + '<span>' + myData[key] + '</span></li>';
               elements += element;

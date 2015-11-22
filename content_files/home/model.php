@@ -167,7 +167,6 @@ class model extends \mvc\model
 			case 'jpeg':
 			case 'png':
 			case 'gif':
-			default:
 				$extlen     = strlen(utility\Upload::$fileExt);
 				$url_file   = substr($url_full, 0, -$extlen-1);
 				$url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
@@ -181,6 +180,10 @@ class model extends \mvc\model
 				utility\Image::thumb(150, 150);
 				utility\Image::save($url_thumb);
 				break;
+
+			default:
+				break;
+
 		}
 
 		// 5. get filemeta data
@@ -466,6 +469,8 @@ class model extends \mvc\model
 
 		$datatable['width']  = isset($datatable['meta']['width'])? $datatable['meta']['width']: null;
 		$datatable['height'] = isset($datatable['meta']['height'])? $datatable['meta']['height']: null;
+		$datatable['thumb']  = isset($datatable['meta']['thumb'])? $datatable['meta']['thumb']: null;
+
 		$datatable['size']   = \lib\utility\Upload::readableSize($datatable['size']);
 
 
@@ -485,7 +490,9 @@ class model extends \mvc\model
 
 		unset($datatable['type']);
 		unset($datatable['status']);
+		unset($datatable['parent']);
 		unset($datatable['meta']);
+		unset($datatable['icon']);
 
 		// \lib\utility\Upload::readableSize()
 
@@ -498,7 +505,7 @@ class model extends \mvc\model
 			}
 
 			// dont translate id
-			if($key !='id')
+			if($key !='id' && $key!="icon" && $key!="thumb")
 			{
 				$datatable[T_($key)] = $value;
 				unset($datatable[$key]);
