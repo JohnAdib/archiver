@@ -82,7 +82,7 @@ function ex_inputSubmit(_submit)
         data : {location: CURRENTPATH}
       }
     });
-    // reDraw();
+    reDraw();
   }
   // user want to cancel form
   else
@@ -249,14 +249,25 @@ function ex_showProp()
         success: function(e, data, x) {
           var myData = x.responseJSON.datatable;
           var elements = '';
-          // console.log(myData);
+          console.log(myData);
+
+          if(myData['audio'] != undefined)
+          {
+            elements = '<audio controls><source src="' + myData['audio'] + '" type="' + myData['audio-type'] + '"></audio>';
+          }
+          else if(myData['video'] != undefined)
+          {
+            elements = '<video controls><source src="' + myData['video'] + '" type="' + myData['video-type'] + '"></video>';
+          }
+          console.log(myData['video']);
+
+
+
           for (var key in myData)
           {
             if (key == 'thumb')
             {
               var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
-     // <span data-iframe="true" data-src="{{url.root}}{{datarow.post_url}}?preview=yes">{{url.root}}{{datarow.post_url}}</span>
-
               elements += element;
             }
             else if (key != 'id')

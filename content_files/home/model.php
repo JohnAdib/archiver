@@ -161,22 +161,18 @@ class model extends \mvc\model
 		$url_thumb  = null;
 		$url_file = null;
 
+		$extlen     = strlen(utility\Upload::$fileExt);
+		$url_file   = substr($url_full, 0, -$extlen-1);
+		$url_file = $url_file.'.'.utility\Upload::$fileExt;
+
 		switch ($file_ext)
 		{
 			case 'jpg':
 			case 'jpeg':
 			case 'png':
 			case 'gif':
-				$extlen     = strlen(utility\Upload::$fileExt);
-				$url_file   = substr($url_full, 0, -$extlen-1);
 				$url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
-				$url_file = $url_file.'.'.utility\Upload::$fileExt;
-				// var_dump($thumb_url);
-				// exit();
 				utility\Image::load($url_full);
-				// utility\Image::thumb(600, 400);
-				// utility\Image::save($url_file);
-
 				utility\Image::thumb(200, 200);
 				utility\Image::save($url_thumb);
 				break;
@@ -471,22 +467,52 @@ class model extends \mvc\model
 		$datatable['height'] = isset($datatable['meta']['height'])? $datatable['meta']['height']: null;
 		$datatable['thumb']  = isset($datatable['meta']['thumb'])? $datatable['meta']['thumb']: null;
 
-		$datatable['size']   = \lib\utility\Upload::readableSize($datatable['size']);
+		$datatable['size']   = \lib\utility\Upload::readableSize($datatable['size'], $datatable['type']);
 
 
 		$datatable['id']     = utility\ShortURL::encode($datatable['id']);
 		$datatable['status'] = $datatable['status'] == 'normal'? '': $datatable['status'];
 
 		if($datatable['type'] == 'folder')
+		{
 			$datatable['icon'] = 'folder';
+			unset($datatable['ext']);
+		}
 		elseif($datatable['type'] == 'file' && isset($datatable['meta']) && isset($datatable['meta']['type']))
+		{
 			$datatable['icon'] = 'file-'.$datatable['meta']['type'].'-o';
+		}
 		elseif($datatable['type'] == 'system')
+		{
 			$datatable['icon'] = 'hdd-o';
+		}
 		elseif($datatable['type'] == 'other')
+		{
 			$datatable['icon'] = 'file';
+		}
 		else
 			$datatable['icon'] = 'file-o';
+
+		switch ($datatable['meta']['mime'])
+		{
+			case 'audio/ogg':
+			case 'audio/mpeg':
+			case 'audio/wav':
+				$datatable['audio']      = $datatable['meta']['file'];
+				$datatable['audio-type'] = $datatable['meta']['mime'];
+				break;
+
+			case 'video/mp4':
+			case 'video/webm':
+			case 'video/ogg':
+				$datatable['video']      = $datatable['meta']['file'];
+				$datatable['video-type'] = $datatable['meta']['mime'];
+				break;
+
+			default:
+				break;
+		}
+				// $datatable['video']      = $datatable['meta']['mime'];
 
 		unset($datatable['type']);
 		unset($datatable['status']);
@@ -505,7 +531,7 @@ class model extends \mvc\model
 			}
 
 			// dont translate id
-			if($key !='id' && $key!="icon" && $key!="thumb")
+			if($key !='id' && $key!="icon" && $key!="thumb" && $key!="filetype" && $key!="audio" && $key!="audio-type" && $key!="video" && $key!="video-type")
 			{
 				$datatable[T_($key)] = $value;
 				unset($datatable[$key]);
