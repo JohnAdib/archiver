@@ -270,7 +270,7 @@ function ex_showProp()
               var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
               elements += element;
             }
-            else if (key != 'id')
+            else if (key != 'id' && key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type')
             {
               var element = '<li class="row auto"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
               elements += element;
