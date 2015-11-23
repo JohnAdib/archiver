@@ -260,7 +260,7 @@ function ex_showProp()
             }
             else if (key != 'id')
             {
-              var element = '<li>' + key + '<span>' + myData[key] + '</span></li>';
+              var element = '<li class="row auto"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
               elements += element;
             }
           }
