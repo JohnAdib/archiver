@@ -445,4 +445,14 @@ input.upload {
   text-align: left;
 }
 
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .span1 {
+    display: none;
+  }
+}
 
+@media only screen and (max-width: 480px) {
+  .span1 {
+    display: none;
+  }
+}
