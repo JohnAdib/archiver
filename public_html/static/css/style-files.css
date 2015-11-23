@@ -84,7 +84,7 @@ body, html{height: 100%;}
 #prop-box-ul li:hover {
   background-color:#ddd
 }
-#prop-box-ul li div, #prop-box-ul li img{display: block; margin:0 auto;}
+#prop-box-ul li div, #prop-box-ul li img {display: block; margin:0 auto;}
 
 #explorer>ul{margin: 2% 0;}
 #explorer>ul>li{padding:0.5% 1%; border: 1px solid transparent;}
@@ -415,7 +415,7 @@ input.upload {
 
 }
 
-.modal form{width:500px;}
+.modal form {width:500px;}
 .modal form .buttons {margin-top: 20px}
 
 .trash {
@@ -424,4 +424,8 @@ input.upload {
 
 #add-prop {
   color: #21b384;
+}
+
+#prop-box .img-container:hover {
+  background: #eee;
 }
