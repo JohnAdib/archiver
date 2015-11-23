@@ -20,7 +20,7 @@ $(document).ready(function()
   $(document).keydown(function(e) { event_corridor(e, $('#explorer>ul li.focused')[0], e.which ); });
 
   $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false);           });
-  $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault(); console.log(123);                });
+  $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault();                                  });
   $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
   
 });
@@ -65,6 +65,8 @@ function ex_inputSubmit(_submit)
   // user press submit and want to proceed
   if(typeof _submit === 'undefined' || _submit == true)
   {
+    // console.log('submit');
+    // return;
     var myInputVal = $('#item-new-name').val();
     if ( myInputVal == '' )
     {
@@ -87,8 +89,8 @@ function ex_inputSubmit(_submit)
   // user want to cancel form
   else
   {
-    console.log(10);
-    return;
+    // console.log('cancel');
+    // return;
     // if user cancel creating new folder
     if ( $('#explorer>ul li').is('#new-folder') )
     {
@@ -238,6 +240,10 @@ function ex_showProp()
   }
   else
   {
+    if($('body').hasClass('editing'))
+    {
+      return;
+    }
     var myItem = $('#explorer>ul>li.selected').data('id');
     
     $('#prop-box-ul').ajaxify({
@@ -249,7 +255,7 @@ function ex_showProp()
         success: function(e, data, x) {
           var myData = x.responseJSON.datatable;
           var elements = '';
-          console.log(myData);
+          // console.log(myData);
 
           if(myData['audio'] != undefined)
           {
@@ -259,7 +265,6 @@ function ex_showProp()
           {
             elements = '<video controls><source src="' + myData['video'] + '" type="' + myData['video-type'] + '"></video>';
           }
-          console.log(myData['video']);
 
 
 
