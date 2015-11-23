@@ -253,7 +253,7 @@ function ex_showProp()
           {
             if (key == 'thumb')
             {
-              var element = '<li class="img-container"><a class="light-gallery" onclick="lightGallery()" data-iframe="true" data-src="' + myData[key] + '"><img src="' + myData[key] + '" /></a></li>';
+              var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
      // <span data-iframe="true" data-src="{{url.root}}{{datarow.post_url}}?preview=yes">{{url.root}}{{datarow.post_url}}</span>
 
               elements += element;

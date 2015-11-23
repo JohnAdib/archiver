@@ -159,7 +159,7 @@ class model extends \mvc\model
 		// 4. transfer file to project folder with new name
 		$file_ext   = utility\Upload::$fileExt;
 		$url_thumb  = null;
-		$url_normal = null;
+		$url_file = null;
 
 		switch ($file_ext)
 		{
@@ -170,14 +170,14 @@ class model extends \mvc\model
 				$extlen     = strlen(utility\Upload::$fileExt);
 				$url_file   = substr($url_full, 0, -$extlen-1);
 				$url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
-				$url_normal = $url_file.'-normal.'.utility\Upload::$fileExt;
+				$url_file = $url_file.'.'.utility\Upload::$fileExt;
 				// var_dump($thumb_url);
 				// exit();
 				utility\Image::load($url_full);
 				// utility\Image::thumb(600, 400);
-				// utility\Image::save($url_normal);
+				// utility\Image::save($url_file);
 
-				utility\Image::thumb(150, 150);
+				utility\Image::thumb(200, 200);
 				utility\Image::save($url_thumb);
 				break;
 
@@ -193,7 +193,7 @@ class model extends \mvc\model
 						'ext'    => $file_ext,
 						'url'    => $url_full,
 						'thumb'  => $url_thumb,
-						'normal' => $url_normal,
+						'file'   => $url_file,
 					 ];
 		$page_url  = $file_meta['type'].'/'.substr($url_full, strlen($folder_prefix));
 
