@@ -418,7 +418,12 @@ input.upload {
 .modal form {width:500px;}
 .modal form .buttons {margin-top: 20px}
 
+.show-trash .trash {
+  display: block;
+}
+
 .trash {
+  display: none;
   opacity: 0.3;
 }
 
@@ -437,3 +442,5 @@ input.upload {
 #prop-box-ul li.row span.span8 {
   text-align: left;
 }
+
+

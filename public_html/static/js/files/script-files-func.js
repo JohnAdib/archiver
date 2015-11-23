@@ -195,3 +195,7 @@ function ex_items_select_focus_until(_id)
   $('#explorer>ul li:eq('+ _id +')').addClass('focused');
 }
 
+function ex_showTrash()
+{
+  $('body').toggleClass('show-trash');
+}

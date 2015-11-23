@@ -11,6 +11,7 @@ $(document).ready(function()
   $('#more-rename')   .click(function() { ex_rename();          });
   $('#more-move')     .click(function() { ex_clipboard('cut');  });
   $('#more-copy')     .click(function() { ex_clipboard('copy'); });
+  $('#more-show')     .click(function() { ex_showTrash();       });
   $('#paste')         .click(function() { ex_paste();           });
   $('#remove')        .click(function() { ex_delete(false);     });
   $('#prop-submit')   .click(function() { ex_addProp();         });
