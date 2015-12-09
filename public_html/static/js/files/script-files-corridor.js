@@ -33,8 +33,9 @@ function event_corridor(e, _self, _key)
       if($('#explorer>ul li').is('#new-folder'))
       {
         // item-new-name
-        console.log('new folder');
-        ex_inputSubmit();
+        // ex_inputSubmit();
+        // console.log($('button.btn-fa-check').parent().html());
+        ex_inputSubmit.call($('button.btn-fa-check').parent()[0].innerHTML(), true);
       }
       else
       {

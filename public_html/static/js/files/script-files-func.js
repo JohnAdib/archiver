@@ -132,7 +132,9 @@ function ex_escape()
  */
 function ex_selectAll()
 {
-  ex_checkBody();
+  if($('body').hasClass('editing'))
+    return;
+  
   if ($('#explorer>ul').hasClass('select-all'))
   {
     ex_removeClass('selected');

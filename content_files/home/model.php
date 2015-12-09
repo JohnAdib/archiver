@@ -423,7 +423,7 @@ class model extends \mvc\model
 	 */
 	public function post_rename()
 	{
-			debug::true(T_("Rename"));
+		debug::true(T_("Rename"));
 
 		// var_dump('rename');
 		// exit();

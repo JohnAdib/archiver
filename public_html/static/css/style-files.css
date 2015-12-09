@@ -86,7 +86,7 @@ body, html{height: 100%;}
 }
 #prop-box-ul li div, #prop-box-ul li img {display: block; margin:0 auto;}
 #prop-box-ul video, #prop-box-ul audio{max-width:100%;width:98%;margin:5px auto 0;display:block}
-
+.text-danger {color: #d9534f;}
 
 #explorer>ul{margin: 2% 0;}
 #explorer>ul>li{padding:0.5% 1%; border: 1px solid transparent;}

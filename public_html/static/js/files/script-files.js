@@ -17,7 +17,7 @@ $(document).ready(function()
   $('#prop-submit')   .click(function() { ex_addProp();         });
 
   // handle all keydown on keyboard
-  $(document).keydown(function(e) { event_corridor(e, $('#explorer>ul li.focused')[0], e.which ); });
+  $(document).keydown(function(e) { event_corridor.call(this, e, $('#explorer>ul li.focused')[0], e.which ); });
 
   $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false);           });
   $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault();                                  });
@@ -77,7 +77,9 @@ function ex_inputSubmit(_submit)
     $('#new-folder').removeClass('selected').removeAttr('id');
 
     // send item name as ajax, then redraw items
+    console.log(this);
     var listForm = $(this).parents('form');
+    console.log(listForm);
     listForm.ajaxify({
       ajax:
       {
@@ -272,8 +274,17 @@ function ex_showProp()
           {
             if (key == 'thumb')
             {
-              var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
-              elements += element;
+              if(ImageExist(myData[key]))
+              {
+                var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
+              }
+              else
+              {
+                myData[key] = 'static/images/error.png';
+                var element = '<li class="img-container"><span class="fa-stack fa-lg fa-3x"><i class="fa fa-picture-o fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></li>';
+                var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
+              }
+                elements    += element;
             }
             else if (key != 'id' && key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type')
             {
@@ -289,6 +300,13 @@ function ex_showProp()
   }
 }
 
+function ImageExist(_url) 
+{
+   var img = new Image();
+   img.src = _url;
+   return img.height != 0;
+}
+
 function ex_addProp()
 {
   $('#form_prop').ajaxify({
@@ -298,5 +316,5 @@ function ex_addProp()
         items: $('#form_prop').serialize()
       }
     }
-  });      
+  });
 }

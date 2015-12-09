@@ -1,3 +1,4 @@
 *.DS_Store
+Thumbs.db
 /public_html/files
 /public_html/data
