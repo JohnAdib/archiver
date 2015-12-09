@@ -477,6 +477,6 @@ input.upload {
   display: inline-block;
 }
 
-#explorer > ul > li.selected .fa-star-o, #explorer > ul > li.selected .fa-star {
+#explorer > ul > li.focused .fa-star-o, #explorer > ul > li.focused .fa-star {
   display: inline-block;
 }

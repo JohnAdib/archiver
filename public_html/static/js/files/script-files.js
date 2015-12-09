@@ -229,8 +229,12 @@ function ex_dblClickItems(_self)
 {
   if($(_self).hasClass('folder') || $(_self).hasClass('up'))
   {
-    var execName = $('.name', _self).text();
-    newlocation  = CURRENTPATH + "/"+ execName;
+    var execName = $('.name', _self).text();    // name of the double clicked folder
+    if (/^(\$)(.*)/g.test(CURRENTPATH))
+    {
+      execName += '/..';
+    }
+    newlocation  = CURRENTPATH + "/" + execName; // new location
     Navigate({
       url: newlocation
     });
