@@ -258,6 +258,12 @@ function ex_showProp()
     {
       return;
     }
+
+    if ($('#explorer>ul>li.selected').hasClass('up'))
+    {
+      return;
+    }
+
     var myItem = $('#explorer>ul>li.selected').data('id');
 
     $('#prop-box-ul').ajaxify({
