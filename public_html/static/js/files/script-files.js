@@ -77,9 +77,7 @@ function ex_inputSubmit(_submit)
     $('#new-folder').removeClass('selected').removeAttr('id');
 
     // send item name as ajax, then redraw items
-    console.log(this);
     var listForm = $(this).parents('form');
-    console.log(listForm);
     listForm.ajaxify({
       ajax:
       {
