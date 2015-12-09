@@ -4,9 +4,68 @@ use \lib\debug;
 use \lib\utility;
 class model extends \mvc\model
 {
-	public function draw($_location = '')
+	/**
+	 * get the location of file and check it with referer then
+	 * if correct pass the complete location contain uid
+	 * @return [type] [description]
+	 */
+	private function getLocation($_location = false)
 	{
-		$_location = '/' . $_location;
+		// var_dump($_location);
+		if($_location === false)
+		{
+			$_location = utility::post('location');
+			if(!empty($_location) && strpos($_SERVER['HTTP_REFERER'], $_location) === false) 
+			{
+				debug::property('status', 'fail');
+				debug::property('error', T_('Fail on get current location'));
+
+				$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
+				return false;
+			}
+		}
+
+		$uid = $this->login('id');
+		// var_dump('/'. $uid.'/'.$_location);
+		return '/'. $uid.'/'. $_location;
+	}
+
+
+	/**
+	 * get items send via js then decode and return it
+	 * @return [type] [description]
+	 */
+	private function getItems($_raw = false)
+	{
+		$items = utility::post('items');
+
+		$items = explode(',', $items);
+		if(count($items) < 1)
+		{
+			return false;
+		}
+
+		$myIDs = array();
+		foreach($items as $item)
+		{
+			$myIDs[] = utility\ShortURL::decode($item);
+		}
+
+		if($_raw)
+		{
+			return implode($myIDs, ', ');
+		}
+
+		return $myIDs;
+	}
+
+
+	public function draw($_location)
+	{
+		$_location = $this->getLocation($_location);
+		if(!$_location)
+			return false;
+
 		$uid       = $this->login('id');
 		$datatable = $this->sql()->table('attachments')
 						->field('id',
@@ -53,55 +112,16 @@ class model extends \mvc\model
 	}
 
 
-	public function getprop($_location = '', $_id = 'b')
-	{
-		$_location = '/' . $_location;
-		$_id       = utility\ShortURL::decode($_id);
-		$uid       = $this->login('id');
-
-		$myprop = $this->sql()->table('attachments')
-						->field('id',
-						 		'file_id',
-						 		'#attachment_title as title',
-						 		'#attachment_desc as description',
-						 		'#attachment_type as type',
-						 		// '#attachment_addr as address',
-						 		'#attachment_name as name',
-						 		'#attachment_ext as ext',
-						 		'#attachment_size as size',
-						 		'#attachment_meta as meta',
-						 		'#attachment_parent as parent',
-						 		// '#attachment_order as order',
-						 		'#attachment_status as status',
-						 		'#attachment_date as date'
-						 		)
-						->where('user_id', $uid)
-						->and('id', $_id)
-						->and('attachment_addr', $_location)
-						->and('attachment_status', 'IN', '("normal", "trash")')
-						->order('#type', 'DESC')
-						->select('id');
-		if($myprop->num() == 1)
-		{
-			$myprop = $myprop->assoc();
-			$myprop['meta'] = json_decode($myprop['meta'], true);
-		}
-		else
-		{
-			$myprop = null;
-		}
-
-		// var_dump($datatable);
-		return $myprop;
-	}
-
-
 	/**
 	 * doing upload process
 	 * @return [boolean] if status is false, return it
 	 */
 	public function post_upload()
 	{
+		$_location = $this->getLocation();
+		if(!$_location)
+			return false;
+
 		$FOLDER_SIZE = 1000;
 		$SERVER_SIZE = 1000000;		// 1 milion file can save in each server
 		$server_id   = 1;
@@ -218,23 +238,12 @@ class model extends \mvc\model
 
 		// 7. add uploaded file record attachment table in db
 		$current_url = $this->url('path');
-		$location    = '/'.utility::post('location');
-
-		if( strpos($_SERVER['HTTP_REFERER'], $location) === false ) 
-		{
-			debug::property('status', 'fail');
-			debug::property('error', T_('Fail on get current location'));
-
-			$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
-			return false;
-		}
-
 
 		$qry = $this->sql();
 		$qry = $qry->table('attachments')
 					->set('file_id',           $new_file_id)
 					->set('attachment_type',   'file')
-					->set('attachment_addr',   $location)
+					->set('attachment_addr',   $_location)
 					->set('attachment_name',   utility\Upload::$fileName)
 					->set('attachment_ext',    $file_ext)
 					->set('attachment_size',   utility\Upload::$fileSize)
@@ -301,18 +310,20 @@ class model extends \mvc\model
 	 */
 	public function post_createfolder()
 	{
+		$_location = $this->getLocation();
+		if(!$_location)
+			return false;
+
 		// var_dump('create new folder');
 		// return;
-		$location    = '/'.utility::post('location');
 		$fname        = utility::post('fname');
-		// var_dump($location);
 		// var_dump($fname);
 		// exit();
 
 		$qry = $this->sql();
 		$qry = $qry->table('attachments')
 					->set('attachment_type',   'folder')
-					->set('attachment_addr',   $location)
+					->set('attachment_addr',   $_location)
 					->set('attachment_name',   $fname)
 					->set('attachment_size',   0)
 					->set('attachment_status', 'normal')
@@ -350,22 +361,17 @@ class model extends \mvc\model
 	 */
 	public function post_remove()
 	{
+		$_location = $this->getLocation();
+		if(!$_location)
+			return false;
 
-		$location = '/'.utility::post('location');
-		$shift    = utility::post('shift');
-		$items    = utility::post('items');
-		$items    = explode(',', $items);
-		$myIDs    = [];
-
-		foreach ($items as $value)
-		{
-			$myIDs[] = utility\ShortURL::decode($value);
-		}
+		$items     = $this->getItems(true);
+		$shift     = utility::post('shift');
 
 		$qry = $this->sql();
 		$qry = $qry->table('attachments')
-					->where('id', 'IN' ,"(".implode(", ", $myIDs).")")
-					->and('attachment_addr', $location)
+					->where('id', 'IN' ,"(".$items.")")
+					->and('attachment_addr', $_location)
 					->and('user_id', $this->login('id'));
 
 		if($shift)
@@ -412,6 +418,64 @@ class model extends \mvc\model
 	 */
 	public function post_paste()
 	{
+		$_location = $this->getLocation();
+		if(!$_location)
+			return false;
+
+		$items = $this->getItems(true);
+		$uid   = $this->login('id');
+		$type  = utility::post('type');
+
+		$qry   = $this->sql();
+		$qry   = $qry->table('attachments')
+						->where('user_id', $uid)
+						// ->and('attachment_addr', $_location)
+						->and('id', 'IN' ,"(".$items.")")
+						->and('attachment_status', 'IN', '("normal", "trash")');
+
+		if($type !== 'cut' && $type !== 'copy' )
+			return false;
+
+		if($type === 'cut')
+		{
+			$qry = $qry->set('attachment_addr', $_location);
+		}
+		elseif($type === 'copy')
+		{
+			return;
+			// INSERT INTO `TABLENAME` (`field2`, `field3`,… ) SELECT `field2`, `field3`,… FROM TABLENAME
+			// 
+			// query();
+			// 
+			// $qry = $qry->set('attachment_name', $fname);
+		}
+
+
+		// var_dump($qry->updateString()); exit();
+		$qry           = $qry->update();
+		// $attachment_id = $qry->LAST_INSERT_ID();
+
+		// commit all changes or rollback and remove file
+		// ======================================================
+		// you can manage next event with one of these variables,
+		// commit for successfull and rollback for failed
+		// if query run without error means commit
+		$this->commit(function($_type)
+		{
+			debug::true(T_($_type). T_("Successfully"));
+			debug::property('status', 'ok');
+		}, $type);
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::title(T_("Error: "));
+			debug::property('status', 'fail');
+			debug::property('error', T_('Error'));
+			// remove file if has problem
+		});
+
+
 		// var_dump('paste');
 		// exit();
 	}
@@ -423,8 +487,49 @@ class model extends \mvc\model
 	 */
 	public function post_rename()
 	{
-		debug::true(T_("Rename"));
+		$_location = $this->getLocation();
+		if(!$_location)
+			return false;
 
+		$items = $this->getItems(true);
+		$uid   = $this->login('id');
+		$fname = utility::post('fname');
+		
+		$qry   = $this->sql();
+		$qry   = $qry->table('attachments')
+						->where('user_id', $uid)
+						->and('attachment_addr', $_location)
+						->and('id', 'IN' ,"(".$items.")")
+						->and('attachment_status', 'IN', '("normal", "trash")');
+
+		$qry   = $qry->set('attachment_name', $fname);
+
+
+		// var_dump($qry->updateString()); exit();
+		$qry           = $qry->update();
+		// $attachment_id = $qry->LAST_INSERT_ID();
+
+		// commit all changes or rollback and remove file
+		// ======================================================
+		// you can manage next event with one of these variables,
+		// commit for successfull and rollback for failed
+		// if query run without error means commit
+		$this->commit(function()
+		{
+			debug::true(T_("Rename Successfully"));
+			debug::property('status', 'ok');
+		});
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::title(T_("Error: "));
+			debug::property('status', 'fail');
+			debug::property('error', T_('Error'));
+			// remove file if has problem
+		});
+
+		// debug::true(T_("Rename"));
 		// var_dump('rename');
 		// exit();
 	}
@@ -432,9 +537,11 @@ class model extends \mvc\model
 
 	public function post_prop()
 	{
-		$location  = '/'.utility::post('location');
-		$items     = utility::post('items');
-		$items     = utility\ShortURL::decode($items);
+		$_location = $this->getLocation();
+		if(!$_location)
+			return false;
+		
+		$items     = $this->getItems(true);
 		$uid       = $this->login('id');
 		$datatable = $this->sql()->table('attachments')
 						->field('id',
@@ -452,12 +559,15 @@ class model extends \mvc\model
 						 		'#attachment_meta as meta'
 						 		)
 						->where('user_id', $uid)
-						->and('attachment_addr', $location)
+						->and('attachment_addr', $_location)
 						->and('id', $items)
 						->and('attachment_status', 'IN', '("normal", "trash")')
 						->order('#type', 'DESC')
-						->select('id')
-						->assoc();
+						->select('id');
+		if($datatable->num()<1)
+			return false;
+
+		$datatable = $datatable->assoc();
 
 		// var_dump($datatable);
 

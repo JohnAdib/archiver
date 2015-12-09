@@ -33,11 +33,18 @@ class controller extends \mvc\controller
 					case 'rename':
 					case 'prop':
 						// var_dump($myurl[1]);
-						$this->post($myurl[1])->ALL();
 						// $this->get()->ALL();
+						$this->post($myurl[1])->ALL();
+						break;
+					case 'favorites':
+					case 'tags':
+						$this->route_check_true = true;
+						$this->get()->ALL();
+						$this->post($myurl[1])->ALL();
 						break;
 
 					case 'result':
+						$this->route_check_true = true;
 						$this->get()->ALL();
 						$this->post()->ALL();
 						break;
