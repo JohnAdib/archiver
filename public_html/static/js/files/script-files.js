@@ -23,6 +23,7 @@ $(document).ready(function()
   $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault();                                  });
   $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
   $('#explorer > ul > li .fa-star-o, #explorer > ul > li .fa-star').click(function() {
+    $(this).hasClass('fa-star-o') ? $(this).removeClass('fa-star-o').addClass('fa-star') : $(this).removeClass('fa-star').addClass('fa-star-o');
     $(this).ajaxify({
       ajax: {
         data: {
@@ -31,7 +32,6 @@ $(document).ready(function()
         }
       }
     });
-    $(this).hasClass('fa-star-o') ? $(this).removeClass('fa-star-o').addClass('fa-star') : $(this).removeClass('fa-star').addClass('fa-star-o');
   });
 });
 

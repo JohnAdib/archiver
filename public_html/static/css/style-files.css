@@ -461,7 +461,8 @@ input.upload {
 
 #explorer .fa-star-o, #explorer .fa-star {
   font-size: 1.5em;
-  color: #FDCC37;
+  color: #FCA375;
+  cursor: pointer;
 }
 
 #explorer .fa-star-o {
