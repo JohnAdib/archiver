@@ -22,21 +22,31 @@ $(document).ready(function()
   $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false);           });
   $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault();                                  });
   $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
-  
+  $('#explorer > ul > li .fa-star-o, #explorer > ul > li .fa-star').click(function() {
+    $(this).ajaxify({
+      ajax: {
+        data: {
+          location: CURRENTPATH,
+          items: $(this).parents('li').data('id')
+        }
+      }
+    });
+    $(this).hasClass('fa-star-o') ? $(this).removeClass('fa-star-o').addClass('fa-star') : $(this).removeClass('fa-star').addClass('fa-star-o');
+  });
 });
 
 
 /**
  * this function running after each pushstate and navigate in pages
  */
-route('*', function() 
+route('*', function()
 {
   CURRENTPATH = (location.pathname).replace(/^\/+/, '');
 
   // $(".light-gallery", this).lightGallery();
   var explorer = this instanceof Document ? $('#explorer') : $(this).parents('#explorer');
   $('ul li', explorer).first().addClass('zero focused');
-  
+
 
   // handle all click, dbl click
   $('ul li', explorer).click(function(e)    { event_corridor(e, e.currentTarget, 'click');    });
@@ -51,7 +61,7 @@ function reDraw()
 {
   Navigate({
     url: CURRENTPATH
-  });  
+  });
 }
 
 
@@ -119,7 +129,7 @@ function ex_inputSubmit(_submit)
 function ex_delete(_trash)
 {
   var myDelete = [];
-  
+
   if (_trash)
   {
     $('#explorer>ul li.selected').hide(300);
@@ -154,7 +164,7 @@ function ex_delete(_trash)
 function ex_clipboard(_action)
 {
   CLIPBOARD = [];
-  
+
   if ( $('#explorer>ul li.selected').length != 0 )
   {
     if ( _action == 'copy' )
@@ -163,7 +173,7 @@ function ex_clipboard(_action)
     }
     else if ( _action == 'cut' )
     {
-      $('body').addClass('cut'); 
+      $('body').addClass('cut');
       $('#explorer>ul li.selected').addClass('cutted');
     }
 
@@ -182,7 +192,7 @@ function ex_clipboard(_action)
 function ex_paste()
 {
   var myType;
-  
+
   if ( $('body').hasClass('cut') )
   {
     myType = 'cut';
@@ -245,7 +255,7 @@ function ex_showProp()
       return;
     }
     var myItem = $('#explorer>ul>li.selected').data('id');
-    
+
     $('#prop-box-ul').ajaxify({
       ajax: {
         data: {
@@ -290,7 +300,7 @@ function ex_showProp()
               elements += element;
             }
           }
-          
+
           $('#prop-box-ul').html(elements);
         }
       }
@@ -298,7 +308,7 @@ function ex_showProp()
   }
 }
 
-function ImageExist(_url) 
+function ImageExist(_url)
 {
    var img = new Image();
    img.src = _url;

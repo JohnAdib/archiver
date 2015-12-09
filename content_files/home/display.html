@@ -17,6 +17,9 @@
       <span class='name'>{{row.name}}</span>
       <span class='size'>{{row.size | readableSize(row.type) }}</span>
       <span class='date hint--bottom' data-hint="{{row.date}}">{{row.date | sdate('day')}}</span>
+      <span class="star">
+        <i class="fa fa-star-o" data-action="/$/favorite" data-method="post"></i>
+      </span>
     </li>
 {% endfor %}
   </ul>
@@ -32,6 +35,6 @@
     </span>
   </h3>
 
-  
+
   <ul id="prop-box-ul" data-action="$/prop" data-method="post"></ul>
 {%endblock%}
