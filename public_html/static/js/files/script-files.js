@@ -22,6 +22,7 @@ $(document).ready(function()
   $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false);           });
   $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault();                                  });
   $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
+
   $('#explorer > ul > li .fa-star-o, #explorer > ul > li .fa-star').click(function() {
     $(this).hasClass('fa-star-o') ? $(this).removeClass('fa-star-o').addClass('fa-star') : $(this).removeClass('fa-star').addClass('fa-star-o');
     $(this).ajaxify({
@@ -32,6 +33,12 @@ $(document).ready(function()
         }
       }
     });
+  });
+
+  $('#prop-box-ul').on("click", "#addTag", function(e) {
+    $('#tagInput').slideToggle(300);
+    $(this).toggleClass('fa-plus fa-times');
+    // $(this).parents('li.row.auto').children('span.span8').append('<input type="text">')
   });
 });
 
@@ -53,7 +60,6 @@ route('*', function()
   $('ul li', explorer).dblclick(function(e) {event_corridor(e, e.currentTarget,  'dblclick'); });
 
   // call on click menu items
-
 });
 
 
@@ -311,6 +317,7 @@ function ex_showProp()
             }
           }
 
+          elements += '<li class="row auto" id="tagInput"><span class="span12 form"><input></span></li><li class="row auto"><span class="span4">' + 'tag <i class="fa fa-plus" id="addTag"></i>' + '</span><span class="span8">' + '...' + '</span></li>';
           $('#prop-box-ul').html(elements);
         }
       }

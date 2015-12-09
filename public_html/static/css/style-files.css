@@ -480,3 +480,7 @@ input.upload {
 #explorer > ul > li.focused .fa-star-o, #explorer > ul > li.focused .fa-star {
   display: inline-block;
 }
+
+#tagInput {
+  display: none;
+}

@@ -3,6 +3,7 @@
  */
 function ex_newFolder()
 {
+  ex_checkBody();
   ex_removeClass('selected focused zero');
   var myElement = ex_inputCreate('createfolder', null);
 
@@ -25,6 +26,7 @@ function ex_newFolder()
  */
 function ex_rename()
 {
+  ex_checkBody();
   // rename multiple file and folder
   if($('#explorer .selected').length > 1)
   {
@@ -101,7 +103,7 @@ function ex_checkBody()
   }
   if ( $('body').hasClass('editing') )
   {
-    // ex_inputSubmit(false);
+    ex_inputSubmit(false);
   }
   if ( $('body').hasClass('selectall') )
   {
@@ -134,7 +136,7 @@ function ex_selectAll()
 {
   if($('body').hasClass('editing'))
     return;
-  
+
   if ($('#explorer>ul').hasClass('select-all'))
   {
     ex_removeClass('selected');
@@ -185,9 +187,9 @@ function ex_items_select_focus_until(_id)
 {
   var zero = $('#explorer>ul li.zero').index();
 
-  var start = zero < _id ? zero : _id; 
+  var start = zero < _id ? zero : _id;
   start = parseInt(start);
-  var end   = zero > _id ? zero : _id; 
+  var end   = zero > _id ? zero : _id;
   end = parseInt(end);
 
   for (var i = start; i <= end; i++)
