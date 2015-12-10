@@ -19,27 +19,24 @@ $(document).ready(function()
   // handle all keydown on keyboard
   $(document).keydown(function(e) { event_corridor.call(this, e, $('#explorer>ul li.focused')[0], e.which ); });
 
-  $('#explorer').on("click", ".btn-fa-times",  function(e) { e.preventDefault(); ex_inputSubmit(false);           });
-  $('#explorer').on("click", "#item-new-name", function(e) { e.preventDefault();                                  });
-  $('#explorer').on("click", ".btn-fa-check",  function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
+  $('#explorer').on("click", ".btn-fa-times",    function(e) { e.preventDefault(); ex_inputSubmit(false); });
+  $('#explorer').on("click", ".btn-fa-check",    function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
+  $('#explorer').on("click", "#item-new-name",   function(e) { e.preventDefault(); });
+  $('#explorer').on("click", ".fav i",           function(e) { ex_favorites(this); });
+  $('#prop-box').on("click", "#addTag",          function(e) { ex_addTag(this) });
 
-  $('#explorer > ul > li .fa-star-o, #explorer > ul > li .fa-star').click(function() {
-    $(this).hasClass('fa-star-o') ? $(this).removeClass('fa-star-o').addClass('fa-star') : $(this).removeClass('fa-star').addClass('fa-star-o');
-    $(this).ajaxify({
-      ajax: {
-        data: {
-          location: CURRENTPATH,
-          items: $(this).parents('li').data('id')
-        }
-      }
-    });
+  $('#prop-box').on('click', '#tag-add-btn',     function( ) { addTag(); });
+  // remove item on click times icon
+  $('#prop-box').on('click', '#tag-list span i', function( ) {
+    var span = $(this).parent();
+    $('#sp-tags').val($('#sp-tags').val().replace(span.text()+', ', ''));
+    span.remove();
   });
 
-  $('#prop-box-ul').on("click", "#addTag", function(e) {
-    $('#tagInput').slideToggle(300);
-    $(this).toggleClass('fa-plus fa-times');
-    // $(this).parents('li.row.auto').children('span.span8').append('<input type="text">')
-  });
+  ex_tagInit();
+
+
+
 });
 
 
@@ -54,7 +51,6 @@ route('*', function()
   var explorer = this instanceof Document ? $('#explorer') : $(this).parents('#explorer');
   $('ul li', explorer).first().addClass('zero focused');
 
-
   // handle all click, dbl click
   $('ul li', explorer).click(function(e)    { event_corridor(e, e.currentTarget, 'click');    });
   $('ul li', explorer).dblclick(function(e) {event_corridor(e, e.currentTarget,  'dblclick'); });
@@ -63,11 +59,95 @@ route('*', function()
 });
 
 
+/**
+ * init tag and fill taglist
+ * @return {[type]} [description]
+ */
+function ex_tagInit()
+{
+  var tagDefault = $('#sp-tags').val();
+  $('#tag-list').text('');
+  if(tagDefault)
+  {
+    $.each(tagDefault.split(', '),function(t, item)
+    {
+      if(item.trim())
+        $('#tag-list').append( "<span><i class='fa fa-times'></i>"+item+"</span>" );   
+    });
+  }
+}
+
+function addTag()
+{
+  var tag = $('#tag-add');
+  var newTag = tag.val().trim();
+  if(newTag && newTag.length>0)
+  {
+    var exist = false;
+    $.each($('#sp-tags').val().split(', '),function(t, item)
+    {
+      if(item == newTag) {exist = t+1;}
+    });
+
+    if(exist)
+    {
+      existEl = $("#tag-list span:nth-child("+exist+")" );
+      bg = existEl.css('background-color');
+      existEl.css('background-color', '#ddd');
+      setTimeout(function () { existEl.css("background-color",bg) }, 500);
+    }
+    else
+    {
+      $('#tag-list').append( "<span><i class='fa fa-times'></i>"+newTag+"</span>" );
+      $('#sp-tags').val( $('#sp-tags').val() + newTag+', ' );
+    }
+  }
+  tag.val('');  
+}
+
+
+
+
+
+
+
+/**
+ * redraw explorer items
+ * @return {[type]} [description]
+ */
 function reDraw()
 {
   Navigate({
     url: CURRENTPATH
   });
+}
+
+/**
+ * set or unset favorites for items
+ * @return {[type]} [description]
+ */
+function ex_favorites(_self)
+{
+  $(_self).hasClass('fa-star-o') ? $(_self).removeClass('fa-star-o').addClass('fa-star') : $(_self).removeClass('fa-star').addClass('fa-star-o');
+  $(_self).ajaxify({
+    ajax: {
+      data: {
+        location: CURRENTPATH,
+        items: $(_self).parents('li').data('id')
+      }
+    }
+  });
+}
+
+/**
+ * click on add tag
+ * @return {[type]} [description]
+ */
+function ex_addTag(_self)
+{
+  $('#tagInput').slideToggle(300);
+  $(_self).toggleClass('fa-plus fa-times');
+  // $(this).parents('li.row.auto').children('span.span8').append('<input type="text">')
 }
 
 
@@ -124,7 +204,6 @@ function ex_inputSubmit(_submit)
 
   $('body').removeClass('editing');
 }
-
 
 
 /**
@@ -317,8 +396,8 @@ function ex_showProp()
             }
           }
 
-          elements += '<li class="row auto" id="tagInput"><span class="span12 form"><input></span></li><li class="row auto"><span class="span4">' + 'tag <i class="fa fa-plus" id="addTag"></i>' + '</span><span class="span8">' + '...' + '</span></li>';
           $('#prop-box-ul').html(elements);
+          el = '<li class="row auto" id="tagInput"><span class="span12 form"><input></span></li><li class="row auto"><span class="span4">' + 'tag <i class="fa fa-plus" id="addTag"></i>' + '</span><span class="span8">' + '...' + '</span></li>';
         }
       }
     });

@@ -21,10 +21,17 @@ function event_corridor(e, _self, _key)
   {
     // ---------------------------------------------------------- BackSpace
     case '8':               // Back Space
-      if ( !$('body').hasClass('editing') )
-      {
+      console.log( $(document.activeElement));
+
+      if ( $('body').hasClass('editing') )
+        return;
+
+      else if($(document.activeElement).is('#tag-add'))
+        return;
+
+      else
         e.preventDefault();
-      }
+
       break;
 
 
@@ -36,6 +43,12 @@ function event_corridor(e, _self, _key)
         // ex_inputSubmit();
         // console.log($('button.btn-fa-check').parent().html());
         ex_inputSubmit.call($('button.btn-fa-check').parent()[0].innerHTML(), true);
+      }
+      else if($(document.activeElement).is('#tag-add'))
+      {
+        addTag();
+        e.preventDefault();
+        return;
       }
       else
       {

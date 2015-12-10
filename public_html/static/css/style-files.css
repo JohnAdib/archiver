@@ -1,7 +1,7 @@
 @import url("lightGallery.css");
 
 
-body, html{height: 100%;}
+body{height: 100%;overflow:hidden;}
 #header{width: 100%;z-index: 2;height:45px;line-height:45px;background-color: #33414e;color:#fff;}
 #header-nav{float:left;}
 .rtl #header-nav{float:right;}
@@ -78,14 +78,13 @@ body, html{height: 100%;}
 
 
 #footer{max-height: 50px}
-#prop-box{height: 100%; background-color: #eee;font-size:1.2em}
+#prop-box{height: 100%; background-color: #eee;font-size:1.2em;overflow-y:auto }
 #prop-box h3{padding:2% 5%;border-bottom: 1px solid #ccc}
 #prop-box li {padding:2% 5%;}
-#prop-box-ul li:hover {
-  background-color:#ddd
-}
-#prop-box-ul li div, #prop-box-ul li img {display: block; margin:0 auto;}
+#prop-box li:hover {background-color:#ddd}
+#prop-box li div, #prop-box-ul li img {display: block; margin:0 auto;}
 #prop-box-ul video, #prop-box-ul audio{max-width:100%;width:98%;margin:5px auto 0;display:block}
+#prop-box i{vertical-align:middle;}
 .text-danger {color: #d9534f;}
 
 #explorer{height:100%;overflow-y:auto;}
@@ -447,6 +446,56 @@ input.upload {
   text-align: left;
 }
 
+
+#explorer .fav i {
+  font-size: 1.5em;
+  color: #FCA375;
+  cursor: pointer;
+}
+
+#explorer .fa-star-o {
+  display: none;
+}
+
+#explorer .fav {
+  text-align: center;
+}
+
+#explorer > ul > li:hover .fav i {
+  display: inline-block;
+}
+
+#explorer > ul > li.focused .fav i {
+  display: inline-block;s
+}
+
+#tagInput {
+  display: none;
+}
+#prop-box li#tagInput:hover{background-color:initial;}
+
+
+.sp-tags{width:100%;border:1px solid #ddd;max-width:100%;max-height:200px;display:none}
+#tag-add{border:1px solid #ddd;padding:0 8px;height: 30px}
+#tag-add-btn{font-size:1em;padding: 5px 0;margin: 0;height:30px;}
+.rtl #tag-add-btn{padding: 9px 0;}
+#tag-list{font-size:1em;}
+#tag-list span{display: inline-block;max-width: 100%;overflow: hidden;background: #F3F3F3;color: #999;padding: 0 5px;border-radius: 3px;border: 1px solid #DDD;margin:0 5px 0 0;cursor:default;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
+#rtl #tag-list span{float: right;}
+#tag-list span:hover{color: #666;}
+#tag-list span i{color:#bbb;margin-right:5px;cursor:pointer;vertical-align: middle;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
+.rtl #tag-list span i{margin-left:5px;}
+#tag-list span i:hover{color:#DF2D2D;}
+
+#prop-box-tags .span4 >i{padding: 0 10px;}
+#prop-box-tags .span4 i.fa-times{color: #B34E4D}
+
+
+
+
+
+
+
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .span1 {
     display: none;
@@ -457,30 +506,4 @@ input.upload {
   .span1 {
     display: none;
   }
-}
-
-#explorer .fa-star-o, #explorer .fa-star {
-  font-size: 1.5em;
-  color: #FCA375;
-  cursor: pointer;
-}
-
-#explorer .fa-star-o {
-  display: none;
-}
-
-#explorer .star {
-  text-align: center;
-}
-
-#explorer > ul > li:hover .fa-star-o, #explorer > ul > li:hover .fa-star {
-  display: inline-block;
-}
-
-#explorer > ul > li.focused .fa-star-o, #explorer > ul > li.focused .fa-star {
-  display: inline-block;
-}
-
-#tagInput {
-  display: none;
 }
