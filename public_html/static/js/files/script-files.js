@@ -35,7 +35,10 @@ $(document).ready(function()
 
   ex_tagInit();
 
-
+  $('#add-prop').click(function(event) {
+    $(this).children('.fa').toggleClass('fa-plus fa-times');
+    $('#prop-box-new').slideToggle(300);
+  });
 
 });
 

@@ -30,7 +30,7 @@
 {%block properties%}
   <ul id='upload-notify'></ul>
   <h3>{%trans "Properties"%}
-    <span id="add-prop" data-modal="prop_modal">
+    <span id="add-prop">
       <i class="fa fa-plus"></i>
     </span>
   </h3>
@@ -45,12 +45,20 @@
         <textarea name="tags" id="sp-tags" class="sp-tags input" placeholder='{%trans "Enter Tags here"%}'>salam, khobi, tag, list {{tagList}}</textarea>
     </li>
     <li class="row auto">
-      <span class="span4">{%trans "Tags"%}<i class="fa fa-plus" id="addTag"></i></span> 
+      <span class="span4">{%trans "Tags"%}<i class="fa fa-plus" id="addTag"></i></span>
       <span class="span8" id="tag-list">123 </span>
     </li>
   </ul>
 
   <ul id="prop-box-new" data-action="$/prop-new" data-method="post">
-
+    <input type="text" name="prop_name">
+    <br />
+    <input type="text" name="prop_value">
+    <br />
+    <div class="buttons">
+      <a class="button negative" data-cancel>{% trans"Cancel" %}</a>
+      <div class="or"></div>
+      <button class='button positive' id="prop-submit">{% trans"submit" %}</button>
+    </div>
   </ul>
 {%endblock%}

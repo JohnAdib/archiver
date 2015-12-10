@@ -431,8 +431,12 @@ input.upload {
   opacity: 0.3;
 }
 
-#add-prop {
+#add-prop .fa-plus {
   color: #21b384;
+}
+
+#add-prop .fa-times {
+  color: red;
 }
 
 #prop-box .img-container:hover {
@@ -491,7 +495,13 @@ input.upload {
 #prop-box-tags .span4 >i{padding: 0 10px;}
 #prop-box-tags .span4 i.fa-times{color: #B34E4D}
 
-
+#prop-box-new { text-align: center; display: none; background: #ddd; padding: 5px; }
+#prop-box-new input {
+  border: 1px solid #ddd;
+  padding: 0 8px;
+  height: 30px;
+  margin-bottom: 3px;
+}
 
 
 
