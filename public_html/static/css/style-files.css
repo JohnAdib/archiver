@@ -20,6 +20,7 @@ body{height: 100%;overflow:hidden;}
 
 #header #profile:hover .vertical-menu, #header #profile:focus .vertical-menu, #header #profile:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 #header #more:hover .vertical-menu, #header #more:focus .vertical-menu, #header #more:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
+#header #send-to-app:hover .vertical-menu, #header #send-to-app:focus .vertical-menu, #header #send-to-app:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 #header #languages:hover .vertical-menu, #header #languages:focus .vertical-menu, #header #languages:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 
 #header .button{background-color:#3F5162}
@@ -421,12 +422,12 @@ input.upload {
 .modal form {width:500px;}
 .modal form .buttons {margin-top: 20px}
 
-.show-trash .trash {
-  display: block;
+.hide-trash .trash {
+  display: none;
 }
 
 .trash {
-  display: none;
+  display: block;
   opacity: 0.3;
 }
 
@@ -480,11 +481,11 @@ input.upload {
 #tag-add-btn{font-size:1em;padding: 5px 0;margin: 0;height:30px;}
 .rtl #tag-add-btn{padding: 9px 0;}
 #tag-list{font-size:1em;}
-#tag-list span{display: inline-block;max-width: 100%;overflow: hidden;background: #F3F3F3;color: #999;padding: 0 5px;border-radius: 3px;border: 1px solid #DDD;margin:0 5px 0 0;cursor:default;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
-#rtl #tag-list span{float: right;}
+#tag-list span{display: inline-block;max-width: 100%;overflow: hidden;background: #F3F3F3;color: #999;padding: 0 5px;border-radius: 3px;border: 1px solid #DDD;float: left;margin:0 5px 3px 0;cursor:default;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
+.rtl #tag-list span{float: right;}
+.ltr #tag-list span{line-height: 150%;}
 #tag-list span:hover{color: #666;}
-#tag-list span i{color:#bbb;margin-right:5px;cursor:pointer;vertical-align: middle;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
-.rtl #tag-list span i{margin-left:5px;}
+#tag-list span i{color:#bbb;padding: 0 5px;cursor:pointer;vertical-align: middle;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
 #tag-list span i:hover{color:#DF2D2D;}
 
 #prop-box-tags .span4 >i{padding: 0 10px;}

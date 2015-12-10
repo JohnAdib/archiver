@@ -60,9 +60,15 @@
        <a id="more-copy" href="#" class="hide"><i class="fa fa-files-o"></i> {%trans "Copy to"%}</a>
        <a id="more-move" href="#"><i class="fa fa-scissors"></i> {%trans "Move to"%}</a>
        <a id="more-rename" href="#"><i class="fa fa-pencil-square-o"></i> {%trans "Rename"%}</a>
-       <a id="more-show" href="#"><i class="fa fa-eye"></i>نمایش حذف شده ها</a>
+       <a id="more-show" href="#"><i class="fa fa-eye"></i>{%trans "Don't show deleted items"%}</a>
+      </nav>
+    </li>
 
-
+    <li id="send-to-app">
+      <a class="labeled icon button">
+       <i class="icon fa fa-paper-plane-o"></i>{%trans "Send to app"%}
+      </a>
+      <nav class="vertical-menu">
         <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1
          <form action="{{url.static}}page/app1.php" data-action id="more-app1">
           <input type="hidden" name="data" value="Address of file1 - to app1">
@@ -115,7 +121,7 @@
   <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="/"><i class="fa fa-lg fa-home"></i></a>
   <a class='hint--right' id='ifavorites' data-hint='{%trans "favorites"%}' href="/$/favorites"><i class="fa fa-lg fa-star-o"></i></a>
   <a class='hint--right' id='itags' data-hint='{%trans "Tags"%}' href="/$/tags"><i class="fa fa-lg fa-tags"></i></a>
-  <a class='hint--right' id='icategories' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
+  <a class='hint--right hide' id='icategories' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
   <a class='hint--right' id='ifaq' data-hint='{%trans "Frequently asked question"%}' href="#"><i class="fa fa-lg fa-question"></i></a>
   <a class='hint--right' id='ianalytics' data-hint='{%trans "Analytics"%}' href="#"><i class="fa fa-lg fa-line-chart"></i></a>
   <a class='hint--right' id='ioptions' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>

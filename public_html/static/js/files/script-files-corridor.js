@@ -30,7 +30,10 @@ function event_corridor(e, _self, _key)
         return;
 
       else
+      {
+        ex_navigate(_self);
         e.preventDefault();
+      }
 
       break;
 
@@ -89,7 +92,7 @@ function event_corridor(e, _self, _key)
 
     case '33ctrl':         // PageUP + ctrl
       if ( !$('body').hasClass('editing') )
-      {  
+      {
         next = cid > 10 ? cid - 10 : 0;
         ex_removeClass('focused');
         ex_itemFocus(next);
@@ -202,7 +205,7 @@ function event_corridor(e, _self, _key)
       console.log('left');
       break;
     case '37alt':           // left + Alt
-      console.log('go to previous page');
+      history.back();
       e.preventDefault();
       break;
 
@@ -216,6 +219,10 @@ function event_corridor(e, _self, _key)
         ex_itemSelectedFocusedZero(next);
         ex_showProp();
       }
+      break;
+
+    case '38alt':
+      ex_navigate(_self);
       break;
 
     case '38ctrl':           // up + ctrl
@@ -252,7 +259,7 @@ function event_corridor(e, _self, _key)
       break;
 
     case '39alt':           // right + Alt
-      console.log('go to next page');
+      history.forward();
       e.preventDefault();
       break;
 
@@ -377,8 +384,12 @@ function event_corridor(e, _self, _key)
 
 
     case 'dblclick':           // Double click
-      ex_dblClickItems(_self);
-      ex_checkBody();
+      if ($(e.toElement).parent().hasClass('fav')) {
+        console.log('fav');
+      } else {
+        ex_dblClickItems(_self);
+        ex_checkBody();
+      }
       // ex_removeClass('selected focused zero');
       // _self.addClass('selected focused zero');
       break;

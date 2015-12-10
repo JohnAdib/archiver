@@ -143,7 +143,7 @@ function ex_selectAll()
   }
   else
   {
-    $('#explorer>ul li').addClass('selected');
+    $('#explorer>ul li').not('.up').addClass('selected');
   }
 
   if ($('#explorer>ul li').is('#new-folder'))
@@ -201,5 +201,5 @@ function ex_items_select_focus_until(_id)
 
 function ex_showTrash()
 {
-  $('body').toggleClass('show-trash');
+  $('body').toggleClass('hide-trash');
 }

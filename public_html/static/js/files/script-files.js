@@ -53,7 +53,7 @@ route('*', function()
 
   // handle all click, dbl click
   $('ul li', explorer).click(function(e)    { event_corridor(e, e.currentTarget, 'click');    });
-  $('ul li', explorer).dblclick(function(e) {event_corridor(e, e.currentTarget,  'dblclick'); });
+  $('ul li', explorer).dblclick(function(e) { event_corridor(e, e.currentTarget,  'dblclick'); });
 
   // call on click menu items
 });
@@ -72,7 +72,7 @@ function ex_tagInit()
     $.each(tagDefault.split(', '),function(t, item)
     {
       if(item.trim())
-        $('#tag-list').append( "<span><i class='fa fa-times'></i>"+item+"</span>" );   
+        $('#tag-list').append( "<span><i class='fa fa-times'></i>"+item+"</span>" );
     });
   }
 }
@@ -102,7 +102,7 @@ function addTag()
       $('#sp-tags').val( $('#sp-tags').val() + newTag+', ' );
     }
   }
-  tag.val('');  
+  tag.val('');
 }
 
 
@@ -314,20 +314,25 @@ function ex_dblClickItems(_self)
 {
   if($(_self).hasClass('folder') || $(_self).hasClass('up'))
   {
-    var execName = $('.name', _self).text();    // name of the double clicked folder
-    if (/^(\$)(.*)/g.test(CURRENTPATH))
-    {
-      execName += '/..';
-    }
-    newlocation  = CURRENTPATH + "/" + execName; // new location
-    Navigate({
-      url: newlocation
-    });
+    ex_navigate(_self);
   }
   else
   {
     console.log('click on file!');
   }
+}
+
+function ex_navigate(_self)
+{
+  var execName = $('.name', _self).text();    // name of the double clicked folder
+  if (/^(\$)(.*)/g.test(CURRENTPATH))
+  {
+    execName += '/..';
+  }
+  newlocation  = CURRENTPATH + "/" + execName; // new location
+  Navigate({
+    url: newlocation
+  });
 }
 
 
@@ -406,9 +411,10 @@ function ex_showProp()
 
 function ImageExist(_url)
 {
-   var img = new Image();
-   img.src = _url;
-   return img.height != 0;
+  return true;
+  var img = new Image();
+  img.src = _url;
+  return img.height != 0;
 }
 
 function ex_addProp()
