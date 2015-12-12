@@ -430,6 +430,14 @@ input.upload {
   display: block;
   opacity: 0.3;
 }
+.trash .type:after{
+    content: "\f00d";
+    position: absolute;
+    top:-0.4em;
+    right:-0.4em;
+    font-size: 0.5em;
+    color:#F93C01;
+}
 
 #add-prop .fa-plus {
   color: #21b384;
@@ -454,14 +462,19 @@ input.upload {
 
 #explorer .fav i {
   font-size: 1.5em;
-  color: #FCA375;
   cursor: pointer;
 }
 
 #explorer .fa-star-o {
+  color: #FCA375;
+  color: #FDCC37;
   display: none;
 }
 
+#explorer .fa-star {
+  color: #FDCC37;
+  text-shadow: 0 0 1px #000;
+}
 #explorer .fav {
   text-align: center;
 }

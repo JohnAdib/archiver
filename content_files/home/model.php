@@ -125,6 +125,8 @@ class model extends \mvc\model
 		$FOLDER_SIZE = 1000;
 		$SERVER_SIZE = 1000000;		// 1 milion file can save in each server
 		$server_id   = 1;
+		utility\Upload::$extentions = 'all';
+
 		// 1. check upload process and validate it
 		$invalid = utility\Upload::invalid('upfile', 100000000);
 		if($invalid)
@@ -462,7 +464,7 @@ class model extends \mvc\model
 		// if query run without error means commit
 		$this->commit(function($_type)
 		{
-			debug::true(T_($_type). T_("Successfully"));
+			debug::true(T_($_type). ' '. T_("Successfully"));
 			debug::property('status', 'ok');
 		}, $type);
 
@@ -649,6 +651,40 @@ class model extends \mvc\model
 		}
 
 		// var_dump($datatable);
+
+		debug::property('datatable', $datatable);
+		return;
+
+
+
+		// get tag for this item
+		$datatable = $this->sql()->table('attachments')
+						->field('id',
+						 		'#attachment_title as title',
+						 		'#attachment_desc as description',
+						 		'#attachment_type as type',
+						 		// '#attachment_addr as address',
+						 		'#attachment_name as name',
+						 		'#attachment_ext as ext',
+						 		'#attachment_size as size',
+						 		'#attachment_parent as parent',
+						 		// '#attachment_order as order',
+						 		'#attachment_status as status',
+						 		'#attachment_date as date',
+						 		'#attachment_meta as meta'
+						 		)
+						->where('user_id', $uid)
+						->and('attachment_addr', $_location)
+						->and('id', $items)
+						->and('attachment_status', 'IN', '("normal", "trash")')
+						->order('#type', 'DESC')
+						->select('id');
+		if($datatable->num()<1)
+			return false;
+
+		$datatable = $datatable->assoc();
+
+
 
 
 		debug::property('datatable', $datatable);
