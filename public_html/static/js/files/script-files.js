@@ -120,6 +120,7 @@ function addTag()
  */
 function reDraw()
 {
+  return;
   Navigate({
     url: CURRENTPATH
   });

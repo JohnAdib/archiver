@@ -536,6 +536,13 @@ class model extends \mvc\model
 		// exit();
 	}
 
+	public function post_favorites()
+	{
+		// debug::true(T_("Set as favorites Successfully"));
+		debug::property('status', 'ok');
+		return true;
+	}
+
 
 	public function post_prop()
 	{
