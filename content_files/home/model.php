@@ -27,12 +27,13 @@ class model extends \mvc\model
 			{
 				$_location = $this->url('path');
 			}
-			elseif(empty($_location))
-				return false;
 		}
 
 		$uid = $this->login('id');
-		return '/'. $uid.'/'. $_location;
+		$_location = '/'. $uid.'/'. $_location;
+		// var_dump(htmlspecialchars($_location));
+
+		return $_location;
 	}
 
 
@@ -83,7 +84,6 @@ class model extends \mvc\model
 		$uid       = $this->login('id');
 		if(!$uid)
 			return false;
-
 		// get location
 		$myLocation = $this->getLocation();
 		if(!$myLocation)
@@ -593,12 +593,8 @@ class model extends \mvc\model
 
 	public function post_prop()
 	{
-		
-		$_location = $this->getLocation();
-		if(!$_location)
-			return false;
-		
 		$qry   = $this->qryCreator(['id', 'location', 'status', 'order']);
+
 		$qry   = $qry->field('id',
 							'#attachment_title as title',
 							'#attachment_desc as description',
