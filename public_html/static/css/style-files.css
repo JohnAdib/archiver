@@ -104,7 +104,7 @@ body{height: 100%;overflow:hidden;}
 #explorer .type.fa-file-pdf-o{color: #bb0706}
 #explorer .type.fa-file-video-o{color: #262626}
 #explorer .type.fa-file-audio-o{color: #5f30c4}
-#explorer .name{width: 60%;min-width:100px}
+#explorer .name { width: 60%;min-width:100px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
 #explorer .size{width: 15%;min-width:40px}
 #explorer .date{width: 10%;min-width:50px}
 #explorer .tools{width: 5%;min-width:10px;max-width:20px;}
@@ -325,7 +325,7 @@ input.upload {
     font-weight: bold;
     position: absolute;
     top: 10px;
-    left: 100px;
+    left: 70px;
     width: 50%;
     text-overflow: ellipsis;
 }
@@ -460,6 +460,9 @@ input.upload {
 
 #prop-box-ul li.row span.span8 {
   text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 

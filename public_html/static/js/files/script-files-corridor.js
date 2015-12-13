@@ -366,6 +366,7 @@ function event_corridor(e, _self, _key)
       ex_removeClass('focused zero');
       _self.toggleClass('selected focused zero');
       ex_checkBody();
+      ex_showProp();
       break;
 
 

@@ -58,6 +58,9 @@ route('*', function()
   $('ul li', explorer).dblclick(function(e) { event_corridor(e, e.currentTarget,  'dblclick'); });
 
   // call on click menu items
+
+  // Update hidden input value in upload modal to CURRENTPATH
+  $('#form_uploader input[name="location"]').val(CURRENTPATH);
 });
 
 
@@ -95,7 +98,7 @@ function addTag()
     {
       existEl = $("#tag-list span:nth-child("+exist+")" );
       bg = existEl.css('background-color');
-      existEl.css('background-color', '#ddd');
+      existEl.css('background-color', '#B34E4D');
       setTimeout(function () { existEl.css("background-color",bg) }, 500);
     }
     else
@@ -107,7 +110,7 @@ function addTag()
         ajax: {
           data: {
             tags:  newTag,
-            items: $('#itemID').data('id')
+            items: $('#prop-box').attr('data-id')
           }
         }
       });
@@ -366,7 +369,13 @@ function ex_showProp()
 {
   if ( $('#explorer>ul>li.selected').length > 1 )
   {
-    console.log('more');
+    // console.log(123);
+    var items = [];
+    $('#explorer>ul>li.selected').each(function() {
+      items.push($(this).data('id'))
+    });
+    console.log(items.toString());
+    $('#prop-box').attr('data-id', items.toString());
   }
   else
   {
@@ -431,8 +440,7 @@ function ex_showProp()
 
             else if (key == 'id')
             {
-              var element = '<li class="row auto hide" id="itemID" data-id="' + myData[key] + '"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
-              elements += element;
+              $('#prop-box').attr('data-id', myData[key]);
             }
 
             else if (key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type' && key != 'tags')
