@@ -597,7 +597,7 @@ class model extends \mvc\model
 		foreach ($myTags as $key => $value)
 		{
 			$value = trim($value," ");
-			$value = trim($value,"&apos;");
+			$value = trim($value,"'");
 
 			if($value)
 				$myTags[$key] = $value;
