@@ -28,9 +28,7 @@ $(document).ready(function()
   $('#prop-box').on('click', '#tag-add-btn',     function( ) { addTag(); });
   // remove item on click times icon
   $('#prop-box').on('click', '#tag-list span i', function( ) {
-    var span = $(this).parent();
-    $('#sp-tags').val($('#sp-tags').val().replace(span.text()+', ', ''));
-    span.remove();
+    ex_tagRemove($(this));
   });
 
   ex_tagInit();
@@ -41,6 +39,7 @@ $(document).ready(function()
   });
 
 });
+
 
 
 /**
@@ -103,13 +102,12 @@ function addTag()
     {
       $('#tag-list').append( "<span><i class='fa fa-times'></i>"+newTag+"</span>" );
       $('#sp-tags').val( $('#sp-tags').val() + newTag+', ' );
-      console.log();
-      // ***
+
       $('#tagInput').ajaxify({
         ajax: {
           data: {
             tags:  newTag,
-            items: $('#tagInput').parents('#prop-box').children('#prop-box-ul').children('#itemID').data('id')
+            items: $('#itemID').data('id')
           }
         }
       });
@@ -118,7 +116,20 @@ function addTag()
   tag.val('');
 }
 
-
+function ex_tagRemove(_self)
+{
+  var span = _self.parent();
+  $('#sp-tags').val($('#sp-tags').val().replace(span.text()+', ', ''));
+  $('#tag-list').ajaxify({
+    ajax: {
+      data: {
+        tags: span.text(),
+        items: $('#itemID').data('id')
+      }
+    }
+  });
+  span.remove();
+}
 
 
 
