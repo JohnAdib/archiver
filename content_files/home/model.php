@@ -588,7 +588,7 @@ class model extends \mvc\model
 	public function post_favorites()
 	{
 		$qry         = $this->qryCreator(['id', 'location', 'status']);
-		$myFavStatus = utility::post('status');
+		$myFavStatus = '#'.utility::post('status');
 		
 		$qry         = $qry->set('attachment_fav', $myFavStatus);
 		$qry         = $qry->update();

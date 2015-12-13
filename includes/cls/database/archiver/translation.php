@@ -29,6 +29,7 @@ function transtext()
 	echo T_("deleted");             // Enum deleted
 	echo T_("inprogress");          // Enum inprogress
 	echo T_("unavailable");         // Enum unavailable
+	echo T_("hidden");              // Enum hidden
 	echo T_("file");                // file_id
 	echo T_("title");               // attachment_title
 	echo T_("desc");                // attachment_desc
@@ -41,6 +42,7 @@ function transtext()
 	echo T_("parent");              // attachment_parent
 	echo T_("order");               // attachment_order
 	echo T_("status");              // attachment_status
+	echo T_("fav");                 // attachment_fav
 	echo T_("date");                // attachment_date
 	echo T_("user");                // user_id
 
