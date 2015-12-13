@@ -119,11 +119,12 @@ function addTag()
  * redraw explorer items
  * @return {[type]} [description]
  */
-function reDraw()
+function reDraw(_path)
 {
-  Navigate({
-    url: CURRENTPATH
-  });
+  if (_path == undefined) {
+    _path = CURRENTPATH;
+  }
+  setTimeout(function() { Navigate({ url: _path }) }, 300);
 }
 
 /**
@@ -332,9 +333,7 @@ function ex_navigate(_self)
     execName += '/..';
   }
   newlocation  = CURRENTPATH + "/" + execName; // new location
-  Navigate({
-    url: newlocation
-  });
+  reDraw(newlocation);
 }
 
 
@@ -368,7 +367,9 @@ function ex_showProp()
           var myData = x.responseJSON.datatable;
           var elements = '';
           // console.log(myData);
-
+          if(myData == undefined || myData == '') {
+            return;
+          }
           if(myData['audio'] != undefined)
           {
             elements = '<audio controls><source src="' + myData['audio'] + '" type="' + myData['audio-type'] + '"></audio>';
