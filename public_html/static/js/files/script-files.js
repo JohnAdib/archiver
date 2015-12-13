@@ -147,6 +147,8 @@ function reDraw(_path)
   } else {
     Navigate({ url: _path });
   }
+  console.log(1);
+  $('#prop-box-ul').empty();
 }
 
 /**
@@ -374,10 +376,13 @@ function ex_showProp()
 
     if ($('#explorer>ul>li.selected').hasClass('up'))
     {
+      $('#prop-box-ul').empty();
       return;
     }
 
     var myItem = $('#explorer>ul>li.selected').data('id');
+
+    $('#prop-box-ul').empty();
 
     $('#prop-box-ul').ajaxify({
       ajax: {
@@ -401,13 +406,11 @@ function ex_showProp()
             elements = '<video controls><source src="' + myData['video'] + '" type="' + myData['video-type'] + '"></video>';
           }
 
-
-
           for (var key in myData)
           {
             if (key == 'thumb')
             {
-              if(ImageExist(myData[key]))
+              if ( ImageExist(myData[key]) )
               {
                 var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
               }
@@ -417,22 +420,29 @@ function ex_showProp()
                 var element = '<li class="img-container"><span class="fa-stack fa-lg fa-3x"><i class="fa fa-picture-o fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></li>';
                 var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
               }
-                elements    += element;
+              elements += element;
             }
-            if (key == 'id')
+
+            else if (key == 'id')
             {
               var element = '<li class="row auto hide" id="itemID" data-id="' + myData[key] + '"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
               elements += element;
             }
-            else if (key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type')
+
+            else if (key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type' && key != 'tags')
             {
               var element = '<li class="row auto"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
               elements += element;
             }
+
+            else if (key = 'tags')
+            {
+              $('#sp-tags').val( myData['tags'] );
+              ex_tagInit();
+            }
           }
 
           $('#prop-box-ul').html(elements);
-          el = '<li class="row auto" id="tagInput"><span class="span12 form"><input></span></li><li class="row auto"><span class="span4">' + 'tag <i class="fa fa-plus" id="addTag"></i>' + '</span><span class="span8">' + '...' + '</span></li>';
         }
       }
     });

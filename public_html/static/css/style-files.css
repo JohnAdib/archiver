@@ -441,6 +441,7 @@ input.upload {
 
 #add-prop .fa-plus {
   color: #21b384;
+  cursor: pointer;
 }
 
 #add-prop .fa-times {
@@ -505,7 +506,7 @@ input.upload {
 #tag-list span i{color:#bbb;padding: 0 5px;cursor:pointer;vertical-align: middle;transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;}
 #tag-list span i:hover{color:#DF2D2D;}
 
-#prop-box-tags .span4 >i{padding: 0 10px;}
+#prop-box-tags .span4 >i { padding: 0 5px; cursor: pointer; display: inline;}
 #prop-box-tags .span4 i.fa-times{color: #B34E4D}
 
 #prop-box-new { text-align: center; display: none; background: #ddd; padding: 5px; }
@@ -521,10 +522,6 @@ input.upload {
   height: 30px;
   line-height: 30px;
 }
-
-
-
-
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .span1 {
