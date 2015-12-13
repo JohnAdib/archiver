@@ -23,10 +23,15 @@ class model extends \mvc\model
 				$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 				return false;
 			}
+			elseif($_location === null)
+			{
+				$_location = $this->url('path');
+			}
+			elseif(empty($_location))
+				return false;
 		}
 
 		$uid = $this->login('id');
-		// var_dump('/'. $uid.'/'.$_location);
 		return '/'. $uid.'/'. $_location;
 	}
 
@@ -123,9 +128,9 @@ class model extends \mvc\model
 		{
 			$myId = $this->getItems(true);
 			// if only has one id
-			if(is_int($myId))
+			if(is_numeric($myId))
 			{
-				$myQry = $myQry->and('id', $items);
+				$myQry = $myQry->and('id', $myId);
 			}
 			// if contain more than one id
 			elseif($myId)
@@ -157,7 +162,7 @@ class model extends \mvc\model
 	}
 
 
-	public function draw($_location)
+	public function draw()
 	{
 		$qry = $this->qryCreator(['location', 'status', 'order']);
 
@@ -179,15 +184,6 @@ class model extends \mvc\model
 		$qry = $qry->select('id');
 
 		$datatable = $qry->allassoc();
-
-
-		// $datatable = $this->sql()->table('attachments')
-		// 				->where('user_id', $uid)
-		// 				->and('attachment_addr', $_location)
-		// 				->and('attachment_status', 'IN', '("normal", "trash")')
-		// 				->order('#type', 'DESC')
-		// 				->select('id')
-		// 				->allassoc();
 
 		foreach ($datatable as $key =>$row)
 		{
@@ -512,7 +508,7 @@ class model extends \mvc\model
 	public function post_paste()
 	{
 		// if type is invalid, return false
-		$qry = $this->qryCreator(['id', 'location', 'status']);
+		$qry = $this->qryCreator(['id', 'status']);
 		$type  = utility::post('type');
 
 		if($type === 'cut')
@@ -539,7 +535,7 @@ class model extends \mvc\model
 		// if query run without error means commit
 		$this->commit(function($_type)
 		{
-			debug::true(T_($_type). ' '. T_("Successfully"));
+			debug::true(T_(ucfirst($_type)). ' '. T_("Successfully"));
 			debug::property('status', 'ok');
 		}, $type);
 
@@ -549,6 +545,7 @@ class model extends \mvc\model
 			debug::title(T_("Error: "));
 			debug::property('status', 'fail');
 			debug::property('error', T_('Error'));
+			debug::fail(T_('Move Unsuccessful!'));
 		});
 	}
 

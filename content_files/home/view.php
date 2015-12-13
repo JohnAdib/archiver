@@ -15,7 +15,8 @@ class view extends \mvc\view
 		$this->data->location       = $this->url('path', -1);
 		
 		// $this->global->tree      = json_encode($this->model()->tree());
-		$this->data->datatable      = $this->model()->draw($this->url->path);
+		// $this->data->datatable      = $this->model()->draw($this->url->path);
+		$this->data->datatable      = $this->model()->draw();
 		
 		$this->data->site['title']  = T_("Archiver");
 		$this->data->site['desc']   = T_("Archiver is new");
