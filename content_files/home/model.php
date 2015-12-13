@@ -178,6 +178,7 @@ class model extends \mvc\model
 							'#attachment_meta as meta',
 							'#attachment_parent as parent',
 							// '#attachment_order as order',
+							'#attachment_fav as fav',
 							'#attachment_status as status',
 							'#attachment_date as date'
 						);
@@ -189,6 +190,7 @@ class model extends \mvc\model
 		{
 			$datatable[$key]['meta']   = json_decode($row['meta'], true);
 			$datatable[$key]['cid']    = utility\ShortURL::encode($row['id']);
+			$datatable[$key]['fav']    = $datatable[$key]['fav']? 'fa-star': 'fa-star-o';
 			$datatable[$key]['status'] = $datatable[$key]['status'] == 'normal'? '': $datatable[$key]['status'];
 
 			if($row['type'] == 'folder')
@@ -585,8 +587,32 @@ class model extends \mvc\model
 
 	public function post_favorites()
 	{
-		// debug::true(T_("Set as favorites Successfully"));
-		debug::property('status', 'ok');
+		$qry         = $this->qryCreator(['id', 'location', 'status']);
+		$myFavStatus = utility::post('status');
+		
+		$qry         = $qry->set('attachment_fav', $myFavStatus);
+		$qry         = $qry->update();
+
+		// commit all changes or rollback and remove file
+		// ======================================================
+		// you can manage next event with one of these variables,
+		// commit for successfull and rollback for failed
+		// if query run without error means commit
+		$this->commit(function()
+		{
+			debug::true(T_("Set Favorites Successfully"));
+			debug::property('status', 'ok');
+		});
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::title(T_("Error: "));
+			debug::property('status', 'fail');
+			debug::property('error', T_('Error'));
+			// remove file if has problem
+		});
+
 		return true;
 	}
 

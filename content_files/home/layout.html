@@ -145,8 +145,16 @@
       </button>
     </li>
   </ul>
+
+  <ul id='upload-notify'></ul>
+  
+  <h3 class="hide">{%trans "Properties"%}
+    <span id="add-prop">
+      <i class="fa fa-plus"></i>
+    </span>
+  </h3>
 {%block properties%}{%endblock%}
-  <ul id="prop-box-tags">
+  <ul id="prop-box-tags" class="hide">
     <li class="row auto" id="tagInput" data-action="$/tagadd" data-method="post">
         <input type="text" id="tag-add" class='span8' autocomplete="off" placeholder='{%trans "Enter Tags"%}'/>
         <input type="button" id="tag-add-btn" class='span4 button' value={%trans "Add"%} tabindex="-1" />
