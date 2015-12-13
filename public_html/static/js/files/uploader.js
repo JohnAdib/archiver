@@ -87,7 +87,7 @@ route('*', function()
 
           // Add the HTML to the UL element
           data.context = tpl.appendTo(ul);
-    	reDraw();
+          reDraw();
 
         }
 

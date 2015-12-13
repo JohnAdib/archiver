@@ -40,6 +40,7 @@ $(document).ready(function()
     $('#prop-box-new').slideToggle(300);
   });
 
+  console.log($('input[name="location"]').val());
 });
 
 
@@ -120,7 +121,6 @@ function addTag()
  */
 function reDraw()
 {
-  return;
   Navigate({
     url: CURRENTPATH
   });
@@ -132,8 +132,8 @@ function reDraw()
  */
 function ex_favorites(_self)
 {
-  $(_self).hasClass('fa-star-o') ? $(_self).removeClass('fa-star-o').addClass('fa-star') : $(_self).removeClass('fa-star').addClass('fa-star-o');
-  $(_self).ajaxify({
+  $(_self).toggleClass('fa-star-o fa-star');
+  var ajx = $(_self).ajaxify({
     ajax: {
       data: {
         location: CURRENTPATH,
@@ -242,8 +242,6 @@ function ex_delete(_trash)
       }
     }
   });
-
-  reDraw();
 }
 
 
