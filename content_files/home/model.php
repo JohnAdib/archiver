@@ -18,7 +18,7 @@ class model extends \mvc\model
 			if(!empty($_location) && strpos($_SERVER['HTTP_REFERER'], $_location) === false) 
 			{
 				debug::property('status', 'fail');
-				debug::property('error', T_('Fail on get current location'));
+				debug::property('error', T_('Fail on get current location'). $_location);
 
 				$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 				return false;
@@ -55,40 +55,139 @@ class model extends \mvc\model
 		{
 			return implode($myIDs, ', ');
 		}
+		// if contain one element pass it in string
+		elseif(is_array($_raw) && count($_raw) == 1  &&  isset($myIDs[0]))
+		{
+			return $myIDs[0];
+		}
 
 		return $myIDs;
 	}
 
 
-	public function draw($_location)
+	/**
+	 * create a start of query for current item to use in another functions
+	 * @param  [type]  $_need   pass your need in array and we process it
+	 * @param  boolean $_order  pass the field and type of order
+	 * @param  boolean $_status pass status that want it 
+	 * @return [type]           return the sql object for nex step
+	 */
+	private function qryCreator($_need, $_order = false, $_status = false)
 	{
-		$_location = $this->getLocation($_location);
-		if(!$_location)
+		// add current user to query string
+		$uid       = $this->login('id');
+		if(!$uid)
 			return false;
 
-		$uid       = $this->login('id');
-		$datatable = $this->sql()->table('attachments')
-						->field('id',
-						 		'file_id',
-						 		'#attachment_title as title',
-						 		'#attachment_desc as description',
-						 		'#attachment_type as type',
-						 		// '#attachment_addr as address',
-						 		'#attachment_name as name',
-						 		'#attachment_ext as ext',
-						 		'#attachment_size as size',
-						 		'#attachment_meta as meta',
-						 		'#attachment_parent as parent',
-						 		// '#attachment_order as order',
-						 		'#attachment_status as status',
-						 		'#attachment_date as date'
-						 		)
-						->where('user_id', $uid)
-						->and('attachment_addr', $_location)
-						->and('attachment_status', 'IN', '("normal", "trash")')
-						->order('#type', 'DESC')
-						->select('id')
-						->allassoc();
+		// get location
+		$myLocation = $this->getLocation();
+		if(!$myLocation)
+			return false;
+
+		
+
+		// --------------------------------------------------------- user_id
+		$myQry = $this->sql()
+						->table('attachments')
+						->where('user_id', $uid);
+
+		// --------------------------------------------------------- attachment_addr
+		// add location to query string
+		if(in_array('location', $_need))
+		{
+			$myQry = $myQry->and('attachment_addr', $myLocation);
+		}
+
+
+		// --------------------------------------------------------- attachment_status
+		// add status to query string
+		if(in_array('status', $_need))
+		{
+			if(is_array($_status))
+			{
+				$_status = implode($_status, ',');
+				$myQry = $myQry->and('attachment_status', 'IN', '('& $_status & ')');
+			}
+			else
+			{
+				$myQry = $myQry->and('attachment_status', 'IN', '("normal", "trash")');
+			}
+		}
+
+
+
+		// --------------------------------------------------------- id
+		// select with best selector for id
+		// different for array and strings
+		if(in_array('id', $_need))
+		{
+			$myId = $this->getItems(true);
+			// if only has one id
+			if(is_int($myId))
+			{
+				$myQry = $myQry->and('id', $items);
+			}
+			// if contain more than one id
+			elseif($myId)
+			{
+				$myQry = $myQry->and('id', 'IN' ,"(".$myId.")");
+			}
+			// the id is not correct
+			else
+				return false;
+		}
+
+
+
+		// --------------------------------------------------------- order by type
+		// add order to query string if user needif
+		if(in_array('order', $_need))
+		{
+			if(is_array($_order))
+			{
+				$myQry = $myQry->order('#'. key($_order[0]), $_order[0]);
+			}
+			else
+			{
+				$myQry = $myQry->order('#type', 'DESC');
+			}
+		}
+
+		return $myQry;
+	}
+
+
+	public function draw($_location)
+	{
+		$qry = $this->qryCreator(['location', 'status', 'order']);
+
+		$qry = $qry->field( 'id',
+							'file_id',
+							'#attachment_title as title',
+							'#attachment_desc as description',
+							'#attachment_type as type',
+							// '#attachment_addr as address',
+							'#attachment_name as name',
+							'#attachment_ext as ext',
+							'#attachment_size as size',
+							'#attachment_meta as meta',
+							'#attachment_parent as parent',
+							// '#attachment_order as order',
+							'#attachment_status as status',
+							'#attachment_date as date'
+						);
+		$qry = $qry->select('id');
+
+		$datatable = $qry->allassoc();
+
+
+		// $datatable = $this->sql()->table('attachments')
+		// 				->where('user_id', $uid)
+		// 				->and('attachment_addr', $_location)
+		// 				->and('attachment_status', 'IN', '("normal", "trash")')
+		// 				->order('#type', 'DESC')
+		// 				->select('id')
+		// 				->allassoc();
 
 		foreach ($datatable as $key =>$row)
 		{
@@ -98,8 +197,11 @@ class model extends \mvc\model
 
 			if($row['type'] == 'folder')
 				$datatable[$key]['icon'] = 'folder';
-			elseif($row['type'] == 'file' && isset($datatable[$key]['meta']) && isset($datatable[$key]['meta']['type']))
-				$datatable[$key]['icon'] = 'file-'.$datatable[$key]['meta']['type'].'-o';
+			elseif($row['type'] == 'file' && isset($datatable[$key]['meta']))
+				if(isset($datatable[$key]['meta']['type']) && $datatable[$key]['meta']['type']!=='file')
+					$datatable[$key]['icon'] = 'file-'.$datatable[$key]['meta']['type'].'-o';
+				else
+					$datatable[$key]['icon'] = 'file-o';
 			elseif($row['type'] == 'system')
 				$datatable[$key]['icon'] = 'hdd-o';
 			elseif($row['type'] == 'other')
@@ -363,18 +465,7 @@ class model extends \mvc\model
 	 */
 	public function post_remove()
 	{
-		$_location = $this->getLocation();
-		if(!$_location)
-			return false;
-
-		$items     = $this->getItems(true);
-		$shift     = utility::post('shift');
-
-		$qry = $this->sql();
-		$qry = $qry->table('attachments')
-					->where('id', 'IN' ,"(".$items.")")
-					->and('attachment_addr', $_location)
-					->and('user_id', $this->login('id'));
+		$qry = $this->qryCreator(['id', 'location']);
 
 		if($shift)
 		{
@@ -420,42 +511,26 @@ class model extends \mvc\model
 	 */
 	public function post_paste()
 	{
-		$_location = $this->getLocation();
-		if(!$_location)
-			return false;
-
-		$items = $this->getItems(true);
-		$uid   = $this->login('id');
+		// if type is invalid, return false
+		$qry = $this->qryCreator(['id', 'location', 'status']);
 		$type  = utility::post('type');
-
-		$qry   = $this->sql();
-		$qry   = $qry->table('attachments')
-						->where('user_id', $uid)
-						// ->and('attachment_addr', $_location)
-						->and('id', 'IN' ,"(".$items.")")
-						->and('attachment_status', 'IN', '("normal", "trash")');
-
-		if($type !== 'cut' && $type !== 'copy' )
-			return false;
 
 		if($type === 'cut')
 		{
+			$_location = $this->getLocation();
+			if(!$_location)
+				return false;
 			$qry = $qry->set('attachment_addr', $_location);
 		}
 		elseif($type === 'copy')
 		{
 			return;
 			// INSERT INTO `TABLENAME` (`field2`, `field3`,… ) SELECT `field2`, `field3`,… FROM TABLENAME
-			// 
-			// query();
-			// 
-			// $qry = $qry->set('attachment_name', $fname);
 		}
+		else
+			return;
 
-
-		// var_dump($qry->updateString()); exit();
-		$qry           = $qry->update();
-		// $attachment_id = $qry->LAST_INSERT_ID();
+		$qry = $qry->update();
 
 		// commit all changes or rollback and remove file
 		// ======================================================
@@ -474,12 +549,7 @@ class model extends \mvc\model
 			debug::title(T_("Error: "));
 			debug::property('status', 'fail');
 			debug::property('error', T_('Error'));
-			// remove file if has problem
 		});
-
-
-		// var_dump('paste');
-		// exit();
 	}
 
 
@@ -489,27 +559,11 @@ class model extends \mvc\model
 	 */
 	public function post_rename()
 	{
-		$_location = $this->getLocation();
-		if(!$_location)
-			return false;
+		$qry   = $this->qryCreator(['id', 'location', 'status']);
 
-		$items = $this->getItems(true);
-		$uid   = $this->login('id');
 		$fname = utility::post('fname');
-		
-		$qry   = $this->sql();
-		$qry   = $qry->table('attachments')
-						->where('user_id', $uid)
-						->and('attachment_addr', $_location)
-						->and('id', 'IN' ,"(".$items.")")
-						->and('attachment_status', 'IN', '("normal", "trash")');
-
 		$qry   = $qry->set('attachment_name', $fname);
-
-
-		// var_dump($qry->updateString()); exit();
-		$qry           = $qry->update();
-		// $attachment_id = $qry->LAST_INSERT_ID();
+		$qry   = $qry->update();
 
 		// commit all changes or rollback and remove file
 		// ======================================================
@@ -530,10 +584,6 @@ class model extends \mvc\model
 			debug::property('error', T_('Error'));
 			// remove file if has problem
 		});
-
-		// debug::true(T_("Rename"));
-		// var_dump('rename');
-		// exit();
 	}
 
 	public function post_favorites()
@@ -546,33 +596,28 @@ class model extends \mvc\model
 
 	public function post_prop()
 	{
+		
 		$_location = $this->getLocation();
 		if(!$_location)
 			return false;
 		
-		$items     = $this->getItems(true);
-		$uid       = $this->login('id');
-		$datatable = $this->sql()->table('attachments')
-						->field('id',
-						 		'#attachment_title as title',
-						 		'#attachment_desc as description',
-						 		'#attachment_type as type',
-						 		// '#attachment_addr as address',
-						 		'#attachment_name as name',
-						 		'#attachment_ext as ext',
-						 		'#attachment_size as size',
-						 		'#attachment_parent as parent',
-						 		// '#attachment_order as order',
-						 		'#attachment_status as status',
-						 		'#attachment_date as date',
-						 		'#attachment_meta as meta'
-						 		)
-						->where('user_id', $uid)
-						->and('attachment_addr', $_location)
-						->and('id', $items)
-						->and('attachment_status', 'IN', '("normal", "trash")')
-						->order('#type', 'DESC')
-						->select('id');
+		$qry   = $this->qryCreator(['id', 'location', 'status', 'order']);
+		$qry   = $qry->field('id',
+							'#attachment_title as title',
+							'#attachment_desc as description',
+							'#attachment_type as type',
+							// '#attachment_addr as address',
+							'#attachment_name as name',
+							'#attachment_ext as ext',
+							'#attachment_size as size',
+							'#attachment_parent as parent',
+							// '#attachment_order as order',
+							'#attachment_status as status',
+							'#attachment_date as date',
+							'#attachment_meta as meta'
+						);
+		$datatable = $qry->select('id');
+		
 		if($datatable->num()<1)
 			return false;
 
