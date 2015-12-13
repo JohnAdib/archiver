@@ -32,9 +32,9 @@ class controller extends \mvc\controller
 					case 'createfile':
 					case 'rename':
 					case 'prop':
-					case 'tag-add':
-					case 'tag-remove':
-					case 'prop-new':
+					case 'tagadd':
+					case 'tagremove':
+					case 'propnew':
 						// var_dump($myurl[1]);
 						// $this->get()->ALL();
 						$this->post($myurl[1])->ALL();

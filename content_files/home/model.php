@@ -590,6 +590,109 @@ class model extends \mvc\model
 		return true;
 	}
 
+	public function post_tagadd()
+	{
+		$myTags  = utility::post('tags');
+		$myTags  = explode(',', $myTags);
+		foreach ($myTags as $key => $value)
+		{
+			$value = trim($value," ");
+			$value = trim($value,"&apos;");
+
+			if($value)
+				$myTags[$key] = $value;
+			else
+				unset($myTags[$key]);
+		}
+
+		$tags_id = array();
+		if(count($myTags)>0)
+		{
+			$qry_tag = $this->sql()->table('terms');
+			// add each tag to sql syntax
+			foreach ($myTags as $value)
+			{
+				if($value)
+				{
+					$qry_tag = $qry_tag
+						->set('term_type',  'tag')
+						->set('term_title',  $value)
+						->set('term_slug',   $value)
+						->set('term_url',    $value);
+				}
+			}
+			// var_dump($qry_tag->insertString('IGNORE'));exit();
+			$qry_tag->insert('IGNORE');
+
+
+			// get the list of tags id
+			$tags_id = $this->cp_tag_id($myTags, false);
+		}
+
+		// ---------------------------------------------- set termusage table
+		// if terms exist go to foreach
+		if(isset($tags_id) && is_array($tags_id) && count($tags_id)>0)
+		{
+			$myId = $this->getItems(true);
+			if(!is_numeric($myId))
+				return false;
+		// var_dump($myId);
+
+			$qry_tagusages = $this->sql()->table('termusages');
+			foreach ($tags_id as $value)
+				$qry_tagusages = $qry_tagusages
+					->set('term_id',           $value)
+					->set('termusage_id',      $myId)
+					->set('termusage_foreign', 'attachments');
+			// var_dump($qry_tagusages->insertString());exit();
+			$qry_tagusages->insert('IGNORE');
+		}
+
+
+		$this->commit(function()
+		{
+			debug::true(T_("Insert Successfully"));
+		});
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::title(T_("Transaction error").': ');
+		} );
+		return true;
+	}
+
+
+	public function post_tagremove()
+	{
+		$myId = $this->getItems(true);
+		if(!is_numeric($myId))
+			return false;
+
+		$qry_term_del = $this->sql()->table('termusages')
+			->where('termusage_id', $myId )
+			->and('termusage_foreign', 'attachments');
+
+		$myTags  = utility::post('tags');
+		$myTags  = $this->cp_tag_id($myTags);
+
+		if(count(explode(',', $myTags)) === 1)
+			$qry_term_del = $qry_term_del->and('term_id', '=', $myTags)->delete();
+		else
+			$qry_term_del = $qry_term_del->and('term_id', 'in', "(". $myTags .")" )->delete();
+
+		$this->commit(function()
+		{
+			debug::true(T_("Delete Successfully"));
+		});
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::title(T_("Transaction error").': ');
+		} );
+		return true;
+	}
 
 	public function post_prop()
 	{
@@ -698,41 +801,86 @@ class model extends \mvc\model
 		// var_dump($datatable);
 
 		debug::property('datatable', $datatable);
-		return;
+		// return;
 
 
+		// add tags to properties
+		$myId = $this->getItems(true);
+		// if(!is_numeric($myId))
+			// return false;
+	
+		$qry = $this->sql()->table('terms')
+			->where('term_type', 'tag')
+			->field('term_title');
 
-		// get tag for this item
-		$datatable = $this->sql()->table('attachments')
-						->field('id',
-						 		'#attachment_title as title',
-						 		'#attachment_desc as description',
-						 		'#attachment_type as type',
-						 		// '#attachment_addr as address',
-						 		'#attachment_name as name',
-						 		'#attachment_ext as ext',
-						 		'#attachment_size as size',
-						 		'#attachment_parent as parent',
-						 		// '#attachment_order as order',
-						 		'#attachment_status as status',
-						 		'#attachment_date as date',
-						 		'#attachment_meta as meta'
-						 		)
-						->where('user_id', $uid)
-						->and('attachment_addr', $_location)
-						->and('id', $items)
-						->and('attachment_status', 'IN', '("normal", "trash")')
-						->order('#type', 'DESC')
-						->select('id');
-		if($datatable->num()<1)
-			return false;
-
-		$datatable = $datatable->assoc();
+		$qry->joinTermusages()->on('term_id', '#terms.id')
+			->and('termusage_foreign', '#"attachments"')
+			->and('termusage_id', $myId);
 
 
+		$qry = $qry->select()->allassoc('term_title');
+		$qry = $qry? implode($qry, ', ').', ' : null;
 
+		$datatable['tags'] = $qry;
 
 		debug::property('datatable', $datatable);
 	}
+
+	// ----------------------------------------------------------------------- Other Useful Queries
+
+	/**
+	 * send list of tag title and get list of it's id
+	 * @param  [type]  $_list   list received by func
+	 * @param  boolean $_string type of output
+	 * @return [type]           send depending on type of output
+	 */
+	function cp_tag_id($_list, $_string = true )
+	{
+		// get the list of tags
+		$qry_tags  = $this->sql()->table('terms')->where('term_type', 'tag');
+		// $_list     = array_filter($_list);
+
+		if(is_array($_list))
+		{
+			if(count($_list) === 1)
+			{
+				// use =
+				$qry_tags = $qry_tags->and('term_title', '=', "'".array_pop($_list)."'");
+			}
+			else
+			{
+				// use IN
+				$_list = implode("','", $_list);
+				$_list = "'" . $_list."'";
+
+				$qry_tags = $qry_tags->and('term_title', 'IN', "(". $_list . ")");
+			}
+		}
+		else
+		{
+			$qry_tags = $qry_tags->and('term_title', '=', "'".$_list."'");
+		}
+
+		// set field name and assoc all rows
+		// var_dump($qry_tags->field('id')->selectString());
+		// var_dump($qry_tags->select()->num());
+		// var_dump($qry_tags);
+		$qry_tags = $qry_tags->field('id')->select()->allassoc('id');
+
+		if($qry_tags)
+		{
+			if($_string)
+			{
+				if(count($qry_tags) === 1 && isset($qry_tags[0]))
+					return $qry_tags[0];
+				else
+					return implode(",", $qry_tags);
+			}
+
+			return $qry_tags;
+		}
+		return null;
+	}
+
 }
 ?>

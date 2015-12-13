@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ermile\n"
-"POT-Creation-Date: 2015-12-12 12:35+0330\n"
-"PO-Revision-Date: 2015-12-12 12:36+0330\n"
+"POT-Creation-Date: 2015-12-13 19:01+0330\n"
+"PO-Revision-Date: 2015-12-13 19:02+0330\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -25,64 +25,80 @@ msgstr "شما ابتدا باید وارد سیستم شوید!"
 msgid "Fail on get current location"
 msgstr "خطا در دستیابی به آدرس فعلی"
 
-#: ../../../.././content_files/home/model.php:171
+#: ../../../.././content_files/home/model.php:271
 #: ../../../.././includes/languages/trans_addon.php:290
 msgid "Fail on tranfering file"
 msgstr "خطا در انتقال فایل"
 
-#: ../../../.././content_files/home/model.php:295
-#: ../../../.././content_files/home/model.php:351
-#: ../../../.././content_files/home/model.php:409
-#: ../../../.././content_files/home/model.php:474
-#: ../../../.././content_files/home/model.php:528
+#: ../../../.././content_files/home/model.php:395
+#: ../../../.././content_files/home/model.php:451
+#: ../../../.././content_files/home/model.php:498
+#: ../../../.././content_files/home/model.php:547
+#: ../../../.././content_files/home/model.php:581
 #: ../../../.././includes/languages/trans_addon.php:291
 msgid "Error"
 msgstr "خطا"
 
-#: ../../../.././content_files/home/model.php:343
+#: ../../../.././content_files/home/model.php:443
 msgid "New folder created Successfully"
 msgstr "پوشه جدید با موفقیت ساخته شد"
 
-#: ../../../.././content_files/home/model.php:349
+#: ../../../.././content_files/home/model.php:449
 msgid "Error on createding new folder!"
 msgstr "خطا در ساخت پوشه جدید!"
 
-#: ../../../.././content_files/home/model.php:400
+#: ../../../.././content_files/home/model.php:489
+#: ../../../.././content_files/home/model.php:686
 #: ../../../.././includes/languages/trans_addon.php:190
 msgid "Delete Successfully"
 msgstr "حذف با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:407
-#: ../../../.././content_files/home/model.php:472
-#: ../../../.././content_files/home/model.php:526
+#: ../../../.././content_files/home/model.php:496
+#: ../../../.././content_files/home/model.php:545
+#: ../../../.././content_files/home/model.php:579
 msgid "Error: "
 msgstr "خطا: "
 
-#: ../../../.././content_files/home/model.php:465
+#: ../../../.././content_files/home/model.php:538
 #: ../../../.././includes/languages/trans_addon.php:243
 msgid "Successfully"
 msgstr "با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:519
+#: ../../../.././content_files/home/model.php:548
+msgid "Move Unsuccessful!"
+msgstr "انتقال ناموفق بود!"
+
+#: ../../../.././content_files/home/model.php:572
 msgid "Rename Successfully"
 msgstr "تغییرنام با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/view.php:20
+#: ../../../.././content_files/home/model.php:654
+#: ../../../.././includes/languages/trans_addon.php:186
+msgid "Insert Successfully"
+msgstr "افزودن با موفقیت انجام شد"
+
+#: ../../../.././content_files/home/model.php:660
+#: ../../../.././content_files/home/model.php:692
+#: ../../../.././includes/languages/trans_addon.php:192
+msgid "Transaction error"
+msgstr "خطای در تراکنش"
+
+#: ../../../.././content_files/home/view.php:21
 #: ../../../.././includes/mvc/view.php:10
 msgid "Archiver"
 msgstr "سامانه آرشیو"
 
-#: ../../../.././content_files/home/view.php:21
+#: ../../../.././content_files/home/view.php:22
 #: ../../../.././includes/mvc/view.php:11
 msgid "Archiver is new"
 msgstr "سامانه آرشیو جدید است"
 
-#: ../../../.././content_files/home/view.php:22
+#: ../../../.././content_files/home/view.php:23
 #: ../../../.././includes/mvc/view.php:12
 msgid "Ermile is our company"
 msgstr "ارمایل نام شرکت ماست"
 
-#: ../../../.././content_files/home/view.php:24
+#: ../../../.././content_files/home/view.php:25
 #: ../../../.././includes/mvc/view.php:15
 msgid "Archiver is another archive system!"
 msgstr "سامانه آرشیو یک سرویس آرشیو دیگر است!"
@@ -735,7 +751,7 @@ msgstr "خانه"
 
 #: ../../../.././includes/languages/static_translation.php:41
 #: ../../../.././includes/languages/trans_addon.php:231
-#: ../../../.././includes/languages/trans_twig.php:32
+#: ../../../.././includes/languages/trans_twig.php:35
 msgid "Home"
 msgstr "صفحه نخست"
 
@@ -760,7 +776,7 @@ msgstr "خطا در فیلد"
 
 #: ../../../.././includes/languages/static_translation.php:47
 #: ../../../.././includes/languages/trans_addon.php:51
-#: ../../../.././includes/languages/trans_twig.php:37
+#: ../../../.././includes/languages/trans_twig.php:40
 msgid "Options"
 msgstr "تنظیمات"
 
@@ -796,13 +812,13 @@ msgstr "انصراف"
 
 #: ../../../.././includes/languages/static_translation.php:56
 #: ../../../.././includes/languages/trans_addon.php:135
-#: ../../../.././includes/languages/trans_twig.php:39
+#: ../../../.././includes/languages/trans_twig.php:42
 msgid "or"
 msgstr "یا"
 
 #: ../../../.././includes/languages/static_translation.php:57
 #: ../../../.././includes/languages/trans_addon.php:136
-#: ../../../.././includes/languages/trans_twig.php:20
+#: ../../../.././includes/languages/trans_twig.php:23
 msgid "Delete"
 msgstr "حذف"
 
@@ -843,7 +859,7 @@ msgstr "کاربران"
 
 #: ../../../.././includes/languages/static_translation.php:69
 #: ../../../.././includes/languages/trans_addon.php:60
-#: ../../../.././includes/languages/trans_twig.php:29
+#: ../../../.././includes/languages/trans_twig.php:32
 msgid "My Profile"
 msgstr "پروفایل من"
 
@@ -854,7 +870,7 @@ msgstr "قفل کردن"
 
 #: ../../../.././includes/languages/static_translation.php:71
 #: ../../../.././includes/languages/trans_addon.php:63
-#: ../../../.././includes/languages/trans_twig.php:31
+#: ../../../.././includes/languages/trans_twig.php:34
 msgid "Logout"
 msgstr "خروج از سیستم"
 
@@ -944,7 +960,7 @@ msgid "Tags"
 msgstr "کلیدواژه‌ها"
 
 #: ../../../.././includes/languages/trans_addon.php:33
-#: ../../../.././includes/languages/trans_twig.php:34
+#: ../../../.././includes/languages/trans_twig.php:37
 msgid "Categories"
 msgstr "دسته‌بندی‌ها"
 
@@ -1017,7 +1033,7 @@ msgid "Go to your profile or logout from conrtol panel"
 msgstr "از این قسمت به پروفایل خود رفته و یا از کنترل پنل خروج امن داشته باشید"
 
 #: ../../../.././includes/languages/trans_addon.php:61
-#: ../../../.././includes/languages/trans_twig.php:30
+#: ../../../.././includes/languages/trans_twig.php:33
 msgid "Change Password"
 msgstr "تغییر گذرواژه"
 
@@ -1356,17 +1372,17 @@ msgid "Preview"
 msgstr "پیش نمایش"
 
 #: ../../../.././includes/languages/trans_addon.php:162
-#: ../../../.././includes/languages/trans_twig.php:38
+#: ../../../.././includes/languages/trans_twig.php:41
 msgid "Drag & Drop Files Here"
 msgstr "فایل را کشیده و در اینجا رها کنید"
 
 #: ../../../.././includes/languages/trans_addon.php:163
-#: ../../../.././includes/languages/trans_twig.php:40
+#: ../../../.././includes/languages/trans_twig.php:43
 msgid "Choose File"
 msgstr "انتخاب فایل"
 
 #: ../../../.././includes/languages/trans_addon.php:164
-#: ../../../.././includes/languages/trans_twig.php:41
+#: ../../../.././includes/languages/trans_twig.php:44
 msgid "Maximum size allowed"
 msgstr "حداکثر سایز مجاز"
 
@@ -1419,10 +1435,6 @@ msgstr "احمد کریمی"
 msgid "Reza Mohiti"
 msgstr "رضا محیطی"
 
-#: ../../../.././includes/languages/trans_addon.php:186
-msgid "Insert Successfully"
-msgstr "افزودن با موفقیت انجام شد"
-
 #: ../../../.././includes/languages/trans_addon.php:187
 msgid "Insert Failed!"
 msgstr "افزودن ناموفق بود!"
@@ -1438,10 +1450,6 @@ msgstr "بروزرسانی ناموفق بود!"
 #: ../../../.././includes/languages/trans_addon.php:191
 msgid "Delete Failed!"
 msgstr "حذف ناموفق بود!"
-
-#: ../../../.././includes/languages/trans_addon.php:192
-msgid "Transaction error"
-msgstr "خطای در تراکنش"
 
 #: ../../../.././includes/languages/trans_addon.php:193
 msgid "year"
@@ -1541,12 +1549,12 @@ msgid "Fantastic"
 msgstr "خارق العاده"
 
 #: ../../../.././includes/languages/trans_addon.php:241
-#: ../../../.././includes/languages/trans_twig.php:23
+#: ../../../.././includes/languages/trans_twig.php:26
 msgid "Copy"
 msgstr "کپی"
 
 #: ../../../.././includes/languages/trans_addon.php:242
-#: ../../../.././includes/languages/trans_twig.php:24
+#: ../../../.././includes/languages/trans_twig.php:27
 msgid "Cut"
 msgstr "انتقال"
 
@@ -1844,51 +1852,63 @@ msgstr "انتخاب"
 msgid "Properties"
 msgstr "خصیصه‌ها"
 
+#: ../../../.././includes/languages/trans_twig.php:15
+msgid "Name"
+msgstr "نام"
+
+#: ../../../.././includes/languages/trans_twig.php:16
+msgid "Value"
+msgstr "مقدار"
+
 #: ../../../.././includes/languages/trans_twig.php:17
+msgid "Add it"
+msgstr "افزودن"
+
+#: ../../../.././includes/languages/trans_twig.php:20
 msgid "Upload"
 msgstr "بارگذاری"
 
-#: ../../../.././includes/languages/trans_twig.php:18
+#: ../../../.././includes/languages/trans_twig.php:21
 msgid "Create new folder"
 msgstr "ساخت پوشه جدید"
 
-#: ../../../.././includes/languages/trans_twig.php:19
+#: ../../../.././includes/languages/trans_twig.php:22
 msgid "Download"
 msgstr "دانلود"
 
-#: ../../../.././includes/languages/trans_twig.php:21
+#: ../../../.././includes/languages/trans_twig.php:24
 msgid "More ..."
 msgstr "بیشتر..."
 
-#: ../../../.././includes/languages/trans_twig.php:22
+#: ../../../.././includes/languages/trans_twig.php:25
 msgid "Select All"
 msgstr "انتخاب همه"
 
-#: ../../../.././includes/languages/trans_twig.php:25
+#: ../../../.././includes/languages/trans_twig.php:28
 msgid "Rename"
 msgstr "تغییر نام"
 
-#: ../../../.././includes/languages/trans_twig.php:26
+#: ../../../.././includes/languages/trans_twig.php:29
 msgid "Don't show deleted items"
 msgstr "عدم نمایش پاک‌شده‌ها"
 
-#: ../../../.././includes/languages/trans_twig.php:27
+#: ../../../.././includes/languages/trans_twig.php:30
 msgid "Send to app"
 msgstr "ارسال به برنامه"
 
-#: ../../../.././includes/languages/trans_twig.php:28
+#: ../../../.././includes/languages/trans_twig.php:31
 msgid "Paste"
 msgstr "چسباندن"
 
-#: ../../../.././includes/languages/trans_twig.php:33
+#: ../../../.././includes/languages/trans_twig.php:36
 msgid "favorites"
 msgstr "علاقمندی ها"
 
-#: ../../../.././includes/languages/trans_twig.php:35
+#: ../../../.././includes/languages/trans_twig.php:38
 msgid "Frequently asked question"
 msgstr "سوالات پرتکرار"
 
-#: ../../../.././includes/languages/trans_twig.php:36
+#: ../../../.././includes/languages/trans_twig.php:39
 msgid "Analytics"
 msgstr "آمار"
 
@@ -1903,9 +1923,6 @@ msgstr "آمار"
 
 #~ msgid "Move to"
 #~ msgstr "انتقال به"
-
-#~ msgid "Name"
-#~ msgstr "نام"
 
 #~ msgid "Size"
 #~ msgstr "اندازه"

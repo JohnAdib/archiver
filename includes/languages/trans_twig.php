@@ -12,6 +12,9 @@ function transtext()
 	echo T_("Add");                                                                   // Line 44
 	echo T_("Enter Tags here");                                                       // Line 45
 	echo T_("Tags");                                                                  // Line 123
+	echo T_("Name");                                                                  // Line 55
+	echo T_("Value");                                                                 // Line 56
+	echo T_("Add it");                                                                // Line 58
 
 	//--------------------------------------------------content_files\home\layout.html
 	echo T_("Upload");                                                                // Line 32
