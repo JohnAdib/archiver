@@ -162,7 +162,8 @@ function ex_favorites(_self)
     ajax: {
       data: {
         location: CURRENTPATH,
-        items: $(_self).parents('li').data('id')
+        items: $(_self).parents('li').data('id'),
+        status: $(_self).hasClass('fa-star-o') ? status = 0 : status = 1
       }
     }
   });
@@ -376,13 +377,18 @@ function ex_showProp()
 
     if ($('#explorer>ul>li.selected').hasClass('up'))
     {
+      $('#prop-box > h3').addClass('hide');
       $('#prop-box-ul').empty();
+      $('#prop-box-tags').addClass('hide');
       return;
     }
 
     var myItem = $('#explorer>ul>li.selected').data('id');
 
+    $('#prop-box > h3').removeClass('hide');
+    // $('#prop-box').hide(300);
     $('#prop-box-ul').empty();
+
 
     $('#prop-box-ul').ajaxify({
       ajax: {
@@ -441,8 +447,9 @@ function ex_showProp()
               ex_tagInit();
             }
           }
-
+          $('#prop-box-tags').removeClass('hide');
           $('#prop-box-ul').html(elements);
+          // $('#prop-box').show('fast');
         }
       }
     });

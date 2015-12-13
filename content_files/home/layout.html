@@ -135,7 +135,28 @@
  </div>
 
  <div class="span3 left-side" id='prop-box'>
+  <ul id="prop-box-new" data-action="$/prop-new" data-method="post">
+    <li class="row auto">
+      <input type="text" id="prop_add_name" name="prop_name" class='span5' autocomplete="off" placeholder='{%trans "Name"%}'/>
+      <input type="text" id="prop_add_value" name="prop_value" class='span6' autocomplete="off" placeholder='{%trans "Value"%}'/>
+
+      <button class='button positive span1' id="prop-submit" title='{%trans "Add it"%}'>
+        <i class="fa fa-plus"></i>
+      </button>
+    </li>
+  </ul>
 {%block properties%}{%endblock%}
+  <ul id="prop-box-tags">
+    <li class="row auto" id="tagInput" data-action="$/tagadd" data-method="post">
+        <input type="text" id="tag-add" class='span8' autocomplete="off" placeholder='{%trans "Enter Tags"%}'/>
+        <input type="button" id="tag-add-btn" class='span4 button' value={%trans "Add"%} tabindex="-1" />
+        <textarea name="tags" id="sp-tags" class="sp-tags input" placeholder='{%trans "Enter Tags here"%}'>{{tagList}}</textarea>
+    </li>
+    <li class="row auto">
+      <span class="span4">{%trans "Tags"%}<i class="fa fa-plus" id="addTag"></i></span>
+      <span class="span8" id="tag-list" data-action="$/tagremove" data-method="post">123 </span>
+    </li>
+  </ul>
  </div>
 
 </div>
