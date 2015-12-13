@@ -509,11 +509,17 @@ input.upload {
 #prop-box-tags .span4 i.fa-times{color: #B34E4D}
 
 #prop-box-new { text-align: center; display: none; background: #ddd; padding: 5px; }
+
 #prop-box-new input {
   border: 1px solid #ddd;
-  padding: 0 8px;
+  padding: 0 5px;
   height: 30px;
-  margin-bottom: 3px;
+}
+
+#prop-box-new #prop-submit {
+  padding: 0;
+  height: 30px;
+  line-height: 30px;
 }
 
 
