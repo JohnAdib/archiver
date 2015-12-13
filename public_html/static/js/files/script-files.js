@@ -40,7 +40,6 @@ $(document).ready(function()
     $('#prop-box-new').slideToggle(300);
   });
 
-  console.log($('input[name="location"]').val());
 });
 
 
@@ -104,6 +103,16 @@ function addTag()
     {
       $('#tag-list').append( "<span><i class='fa fa-times'></i>"+newTag+"</span>" );
       $('#sp-tags').val( $('#sp-tags').val() + newTag+', ' );
+      console.log();
+      // ***
+      $('#tagInput').ajaxify({
+        ajax: {
+          data: {
+            tags:  newTag,
+            items: $('#tagInput').parents('#prop-box').children('#prop-box-ul').children('#itemID').data('id')
+          }
+        }
+      });
     }
   }
   tag.val('');
@@ -123,8 +132,10 @@ function reDraw(_path)
 {
   if (_path == undefined) {
     _path = CURRENTPATH;
+    setTimeout(function() { Navigate({ url: _path }) }, 300);
+  } else {
+    Navigate({ url: _path });
   }
-  setTimeout(function() { Navigate({ url: _path }) }, 300);
 }
 
 /**
@@ -397,7 +408,12 @@ function ex_showProp()
               }
                 elements    += element;
             }
-            else if (key != 'id' && key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type')
+            if (key == 'id')
+            {
+              var element = '<li class="row auto hide" id="itemID" data-id="' + myData[key] + '"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
+              elements += element;
+            }
+            else if (key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type')
             {
               var element = '<li class="row auto"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
               elements += element;
