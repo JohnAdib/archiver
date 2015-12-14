@@ -56,16 +56,16 @@ function transtext()
 	echo T_("Done");                                                                  // Line 38
 	echo T_("Help");                                                                  // Line 40
 	echo T_("You can work with control panel in your language");                      // Line 42
-	echo T_("Go to your profile or logout from conrtol panel");                       // Line 54
+	echo T_("Go to your profile, change password or logout from conrtol panel");      // Line 54
 	echo T_("My Profile");                                                            // Line 92 Seperate
 	echo T_("Change Password");                                                       // Line 198 Seperate
 	echo T_("Lock Screen");                                                           // Line 94 Seperate
 	echo T_("Logout");                                                                // Line 95 Seperate
 	echo T_("We glad to working for you and hope you enjoy using our system");        // Line 84
-	echo T_("Powered by");                                                            // Line 85
-	echo T_("All right reserved");                                                    // Line 85
+	echo T_("Some right reserved");                                                   // Line 86
+	echo T_("Powered by");                                                            // Line 86
 	echo T_("Saloos");                                                                // Line 7 Seperate
-	echo T_("Last update on");                                                        // Line 86
+	echo T_("Last update on");                                                        // Line 88
 	echo T_("Version");                                                               // Line 98 Seperate
 
 	//-----------------------------------addon\content_cp\templates\child_display.html

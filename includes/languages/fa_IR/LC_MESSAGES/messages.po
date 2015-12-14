@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ermile\n"
-"POT-Creation-Date: 2015-12-13 19:01+0330\n"
-"PO-Revision-Date: 2015-12-13 19:02+0330\n"
+"POT-Creation-Date: 2015-12-14 13:08+0330\n"
+"PO-Revision-Date: 2015-12-14 13:27+0330\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -25,80 +25,86 @@ msgstr "شما ابتدا باید وارد سیستم شوید!"
 msgid "Fail on get current location"
 msgstr "خطا در دستیابی به آدرس فعلی"
 
-#: ../../../.././content_files/home/model.php:271
+#: ../../../.././content_files/home/model.php:273
 #: ../../../.././includes/languages/trans_addon.php:290
 msgid "Fail on tranfering file"
 msgstr "خطا در انتقال فایل"
 
-#: ../../../.././content_files/home/model.php:395
-#: ../../../.././content_files/home/model.php:451
-#: ../../../.././content_files/home/model.php:498
-#: ../../../.././content_files/home/model.php:547
-#: ../../../.././content_files/home/model.php:581
+#: ../../../.././content_files/home/model.php:397
+#: ../../../.././content_files/home/model.php:453
+#: ../../../.././content_files/home/model.php:500
+#: ../../../.././content_files/home/model.php:549
+#: ../../../.././content_files/home/model.php:583
+#: ../../../.././content_files/home/model.php:612
 #: ../../../.././includes/languages/trans_addon.php:291
 msgid "Error"
 msgstr "خطا"
 
-#: ../../../.././content_files/home/model.php:443
+#: ../../../.././content_files/home/model.php:445
 msgid "New folder created Successfully"
 msgstr "پوشه جدید با موفقیت ساخته شد"
 
-#: ../../../.././content_files/home/model.php:449
+#: ../../../.././content_files/home/model.php:451
 msgid "Error on createding new folder!"
 msgstr "خطا در ساخت پوشه جدید!"
 
-#: ../../../.././content_files/home/model.php:489
-#: ../../../.././content_files/home/model.php:686
+#: ../../../.././content_files/home/model.php:491
+#: ../../../.././content_files/home/model.php:712
 #: ../../../.././includes/languages/trans_addon.php:190
 msgid "Delete Successfully"
 msgstr "حذف با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:496
-#: ../../../.././content_files/home/model.php:545
-#: ../../../.././content_files/home/model.php:579
+#: ../../../.././content_files/home/model.php:498
+#: ../../../.././content_files/home/model.php:547
+#: ../../../.././content_files/home/model.php:581
+#: ../../../.././content_files/home/model.php:610
 msgid "Error: "
 msgstr "خطا: "
 
-#: ../../../.././content_files/home/model.php:538
+#: ../../../.././content_files/home/model.php:540
 #: ../../../.././includes/languages/trans_addon.php:243
 msgid "Successfully"
 msgstr "با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:548
+#: ../../../.././content_files/home/model.php:550
 msgid "Move Unsuccessful!"
 msgstr "انتقال ناموفق بود!"
 
-#: ../../../.././content_files/home/model.php:572
+#: ../../../.././content_files/home/model.php:574
 msgid "Rename Successfully"
 msgstr "تغییرنام با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:654
+#: ../../../.././content_files/home/model.php:603
+msgid "Set Favorites Successfully"
+msgstr "تغییر وضعیت علاقمندی با موفقیت انجام شد"
+
+#: ../../../.././content_files/home/model.php:680
 #: ../../../.././includes/languages/trans_addon.php:186
 msgid "Insert Successfully"
 msgstr "افزودن با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:660
-#: ../../../.././content_files/home/model.php:692
+#: ../../../.././content_files/home/model.php:686
+#: ../../../.././content_files/home/model.php:718
 #: ../../../.././includes/languages/trans_addon.php:192
 msgid "Transaction error"
 msgstr "خطای در تراکنش"
 
-#: ../../../.././content_files/home/view.php:21
+#: ../../../.././content_files/home/view.php:25
 #: ../../../.././includes/mvc/view.php:10
 msgid "Archiver"
 msgstr "سامانه آرشیو"
 
-#: ../../../.././content_files/home/view.php:22
+#: ../../../.././content_files/home/view.php:26
 #: ../../../.././includes/mvc/view.php:11
 msgid "Archiver is new"
 msgstr "سامانه آرشیو جدید است"
 
-#: ../../../.././content_files/home/view.php:23
+#: ../../../.././content_files/home/view.php:27
 #: ../../../.././includes/mvc/view.php:12
 msgid "Ermile is our company"
 msgstr "ارمایل نام شرکت ماست"
 
-#: ../../../.././content_files/home/view.php:25
+#: ../../../.././content_files/home/view.php:31
 #: ../../../.././includes/mvc/view.php:15
 msgid "Archiver is another archive system!"
 msgstr "سامانه آرشیو یک سرویس آرشیو دیگر است!"
@@ -134,43 +140,43 @@ msgid "attachment"
 msgstr "ضمیمه"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:13
-#: ../../../.././includes/cls/database/archiver/translation.php:114
+#: ../../../.././includes/cls/database/archiver/translation.php:116
 msgid "cat"
 msgstr "دسته"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:14
-#: ../../../.././includes/cls/database/archiver/translation.php:115
+#: ../../../.././includes/cls/database/archiver/translation.php:117
 msgid "key"
 msgstr "کلید"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:15
-#: ../../../.././includes/cls/database/archiver/translation.php:40
-#: ../../../.././includes/cls/database/archiver/translation.php:58
-#: ../../../.././includes/cls/database/archiver/translation.php:73
-#: ../../../.././includes/cls/database/archiver/translation.php:86
-#: ../../../.././includes/cls/database/archiver/translation.php:95
-#: ../../../.././includes/cls/database/archiver/translation.php:107
-#: ../../../.././includes/cls/database/archiver/translation.php:117
-#: ../../../.././includes/cls/database/archiver/translation.php:133
-#: ../../../.././includes/cls/database/archiver/translation.php:151
-#: ../../../.././includes/cls/database/archiver/translation.php:179
+#: ../../../.././includes/cls/database/archiver/translation.php:41
+#: ../../../.././includes/cls/database/archiver/translation.php:60
+#: ../../../.././includes/cls/database/archiver/translation.php:75
+#: ../../../.././includes/cls/database/archiver/translation.php:88
+#: ../../../.././includes/cls/database/archiver/translation.php:97
+#: ../../../.././includes/cls/database/archiver/translation.php:109
+#: ../../../.././includes/cls/database/archiver/translation.php:119
+#: ../../../.././includes/cls/database/archiver/translation.php:135
+#: ../../../.././includes/cls/database/archiver/translation.php:153
+#: ../../../.././includes/cls/database/archiver/translation.php:181
 msgid "meta"
 msgstr "متا"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:16
-#: ../../../.././includes/cls/database/archiver/translation.php:116
+#: ../../../.././includes/cls/database/archiver/translation.php:118
 msgid "value"
 msgstr "مقدار"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:17
-#: ../../../.././includes/cls/database/archiver/translation.php:43
-#: ../../../.././includes/cls/database/archiver/translation.php:59
-#: ../../../.././includes/cls/database/archiver/translation.php:74
-#: ../../../.././includes/cls/database/archiver/translation.php:96
-#: ../../../.././includes/cls/database/archiver/translation.php:109
-#: ../../../.././includes/cls/database/archiver/translation.php:118
-#: ../../../.././includes/cls/database/archiver/translation.php:138
-#: ../../../.././includes/cls/database/archiver/translation.php:180
+#: ../../../.././includes/cls/database/archiver/translation.php:44
+#: ../../../.././includes/cls/database/archiver/translation.php:61
+#: ../../../.././includes/cls/database/archiver/translation.php:76
+#: ../../../.././includes/cls/database/archiver/translation.php:98
+#: ../../../.././includes/cls/database/archiver/translation.php:111
+#: ../../../.././includes/cls/database/archiver/translation.php:120
+#: ../../../.././includes/cls/database/archiver/translation.php:140
+#: ../../../.././includes/cls/database/archiver/translation.php:182
 msgid "status"
 msgstr "وضعیت"
 
@@ -179,7 +185,7 @@ msgid "modified"
 msgstr "آخرین زمان ویرایش"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:21
-#: ../../../.././includes/cls/database/archiver/translation.php:159
+#: ../../../.././includes/cls/database/archiver/translation.php:161
 msgid "attachments"
 msgstr "ضمیمه‌ها"
 
@@ -192,13 +198,13 @@ msgid "other"
 msgstr "سایر"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:25
-#: ../../../.././includes/cls/database/archiver/translation.php:32
-#: ../../../.././includes/cls/database/archiver/translation.php:65
+#: ../../../.././includes/cls/database/archiver/translation.php:33
+#: ../../../.././includes/cls/database/archiver/translation.php:67
 msgid "file"
 msgstr "فایل"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:26
-#: ../../../.././includes/cls/database/archiver/translation.php:70
+#: ../../../.././includes/cls/database/archiver/translation.php:72
 msgid "folder"
 msgstr "پوشه"
 
@@ -222,362 +228,370 @@ msgstr "در حال انجام"
 msgid "unavailable"
 msgstr "ناموجود"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:33
-#: ../../../.././includes/cls/database/archiver/translation.php:84
-#: ../../../.././includes/cls/database/archiver/translation.php:105
-#: ../../../.././includes/cls/database/archiver/translation.php:129
-#: ../../../.././includes/cls/database/archiver/translation.php:147
+#: ../../../.././includes/cls/database/archiver/translation.php:32
+msgid "hidden"
+msgstr "مخفی"
+
+#: ../../../.././includes/cls/database/archiver/translation.php:34
+#: ../../../.././includes/cls/database/archiver/translation.php:86
+#: ../../../.././includes/cls/database/archiver/translation.php:107
+#: ../../../.././includes/cls/database/archiver/translation.php:131
+#: ../../../.././includes/cls/database/archiver/translation.php:149
 msgid "title"
 msgstr "عنوان"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:34
-#: ../../../.././includes/cls/database/archiver/translation.php:85
-#: ../../../.././includes/cls/database/archiver/translation.php:150
+#: ../../../.././includes/cls/database/archiver/translation.php:35
+#: ../../../.././includes/cls/database/archiver/translation.php:87
+#: ../../../.././includes/cls/database/archiver/translation.php:152
 msgid "desc"
 msgstr "توضیح"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:35
-#: ../../../.././includes/cls/database/archiver/translation.php:134
-#: ../../../.././includes/cls/database/archiver/translation.php:146
+#: ../../../.././includes/cls/database/archiver/translation.php:36
+#: ../../../.././includes/cls/database/archiver/translation.php:136
+#: ../../../.././includes/cls/database/archiver/translation.php:148
 msgid "type"
 msgstr "نوع"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:36
+#: ../../../.././includes/cls/database/archiver/translation.php:37
 msgid "addr"
 msgstr "آدرس"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:37
+#: ../../../.././includes/cls/database/archiver/translation.php:38
 msgid "name"
 msgstr "نام"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:38
+#: ../../../.././includes/cls/database/archiver/translation.php:39
 msgid "ext"
 msgstr "پسوند"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:39
-#: ../../../.././includes/cls/database/archiver/translation.php:72
+#: ../../../.././includes/cls/database/archiver/translation.php:40
+#: ../../../.././includes/cls/database/archiver/translation.php:74
 msgid "size"
 msgstr "سایز"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:41
-#: ../../../.././includes/cls/database/archiver/translation.php:60
-#: ../../../.././includes/cls/database/archiver/translation.php:139
-#: ../../../.././includes/cls/database/archiver/translation.php:152
+#: ../../../.././includes/cls/database/archiver/translation.php:42
+#: ../../../.././includes/cls/database/archiver/translation.php:62
+#: ../../../.././includes/cls/database/archiver/translation.php:141
+#: ../../../.././includes/cls/database/archiver/translation.php:154
 msgid "parent"
 msgstr "والد"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:42
-#: ../../../.././includes/cls/database/archiver/translation.php:137
-#: ../../../.././includes/cls/database/archiver/translation.php:165
+#: ../../../.././includes/cls/database/archiver/translation.php:43
+#: ../../../.././includes/cls/database/archiver/translation.php:139
+#: ../../../.././includes/cls/database/archiver/translation.php:167
 msgid "order"
 msgstr "ترتیب"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:44
+#: ../../../.././includes/cls/database/archiver/translation.php:45
+msgid "fav"
+msgstr "علاقمندی"
+
+#: ../../../.././includes/cls/database/archiver/translation.php:46
 msgid "date"
 msgstr "تاریخ"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:45
-#: ../../../.././includes/cls/database/archiver/translation.php:169
+#: ../../../.././includes/cls/database/archiver/translation.php:47
+#: ../../../.././includes/cls/database/archiver/translation.php:171
 msgid "user"
 msgstr "کاربر"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:48
-#: ../../../.././includes/cls/database/archiver/translation.php:161
+#: ../../../.././includes/cls/database/archiver/translation.php:50
+#: ../../../.././includes/cls/database/archiver/translation.php:163
 msgid "comments"
 msgstr "دیدگاه ها"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:49
-#: ../../../.././includes/cls/database/archiver/translation.php:135
+#: ../../../.././includes/cls/database/archiver/translation.php:51
+#: ../../../.././includes/cls/database/archiver/translation.php:137
 msgid "comment"
 msgstr "دیدگاه"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:50
+#: ../../../.././includes/cls/database/archiver/translation.php:52
 msgid "approved"
 msgstr "تایید شده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:51
+#: ../../../.././includes/cls/database/archiver/translation.php:53
 msgid "unapproved"
 msgstr "تایید نشده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:52
+#: ../../../.././includes/cls/database/archiver/translation.php:54
 msgid "spam"
 msgstr "هرزنامه"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:53
-#: ../../../.././includes/cls/database/archiver/translation.php:122
+#: ../../../.././includes/cls/database/archiver/translation.php:55
+#: ../../../.././includes/cls/database/archiver/translation.php:124
 #: ../../../.././includes/languages/trans_addon.php:255
 msgid "post"
 msgstr "نوشته"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:54
+#: ../../../.././includes/cls/database/archiver/translation.php:56
 msgid "author"
 msgstr "کاربر"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:55
-#: ../../../.././includes/cls/database/archiver/translation.php:176
+#: ../../../.././includes/cls/database/archiver/translation.php:57
+#: ../../../.././includes/cls/database/archiver/translation.php:178
 msgid "email"
 msgstr "رایانامه"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:56
-#: ../../../.././includes/cls/database/archiver/translation.php:108
-#: ../../../.././includes/cls/database/archiver/translation.php:131
-#: ../../../.././includes/cls/database/archiver/translation.php:149
-#: ../../../.././includes/cls/database/archiver/translation.php:190
+#: ../../../.././includes/cls/database/archiver/translation.php:58
+#: ../../../.././includes/cls/database/archiver/translation.php:110
+#: ../../../.././includes/cls/database/archiver/translation.php:133
+#: ../../../.././includes/cls/database/archiver/translation.php:151
+#: ../../../.././includes/cls/database/archiver/translation.php:192
 msgid "url"
 msgstr "نشانی اینترنتی"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:57
-#: ../../../.././includes/cls/database/archiver/translation.php:106
-#: ../../../.././includes/cls/database/archiver/translation.php:132
+#: ../../../.././includes/cls/database/archiver/translation.php:59
+#: ../../../.././includes/cls/database/archiver/translation.php:108
+#: ../../../.././includes/cls/database/archiver/translation.php:134
 msgid "content"
 msgstr "محتوا"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:61
-#: ../../../.././includes/cls/database/archiver/translation.php:186
+#: ../../../.././includes/cls/database/archiver/translation.php:63
+#: ../../../.././includes/cls/database/archiver/translation.php:188
 msgid "visitor"
 msgstr "بازدیدکننده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:64
-#: ../../../.././includes/cls/database/archiver/translation.php:160
+#: ../../../.././includes/cls/database/archiver/translation.php:66
+#: ../../../.././includes/cls/database/archiver/translation.php:162
 msgid "files"
 msgstr "فایل‌ها"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:66
+#: ../../../.././includes/cls/database/archiver/translation.php:68
 msgid "ready"
 msgstr "آماده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:67
+#: ../../../.././includes/cls/database/archiver/translation.php:69
 msgid "temp"
 msgstr "موقتی"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:68
+#: ../../../.././includes/cls/database/archiver/translation.php:70
 msgid "delete"
 msgstr "حذف"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:69
+#: ../../../.././includes/cls/database/archiver/translation.php:71
 msgid "server"
 msgstr "سرور"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:71
+#: ../../../.././includes/cls/database/archiver/translation.php:73
 msgid "code"
 msgstr "کد"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:75
-#: ../../../.././includes/cls/database/archiver/translation.php:97
-#: ../../../.././includes/cls/database/archiver/translation.php:182
-#: ../../../.././includes/cls/database/archiver/translation.php:194
+#: ../../../.././includes/cls/database/archiver/translation.php:77
+#: ../../../.././includes/cls/database/archiver/translation.php:99
+#: ../../../.././includes/cls/database/archiver/translation.php:184
+#: ../../../.././includes/cls/database/archiver/translation.php:196
 msgid "createdate"
 msgstr "تاریخ ایجاد"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:78
+#: ../../../.././includes/cls/database/archiver/translation.php:80
 msgid "logitems"
 msgstr "مواردلاگ‌ها"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:79
-#: ../../../.././includes/cls/database/archiver/translation.php:93
+#: ../../../.././includes/cls/database/archiver/translation.php:81
+#: ../../../.././includes/cls/database/archiver/translation.php:95
 msgid "logitem"
 msgstr "موارد لاگ"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:80
+#: ../../../.././includes/cls/database/archiver/translation.php:82
 msgid "critical"
 msgstr "بحرانی"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:81
+#: ../../../.././includes/cls/database/archiver/translation.php:83
 msgid "high"
 msgstr "بالا"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:82
+#: ../../../.././includes/cls/database/archiver/translation.php:84
 msgid "medium"
 msgstr "متوسط"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:83
+#: ../../../.././includes/cls/database/archiver/translation.php:85
 msgid "low"
 msgstr "کم"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:87
+#: ../../../.././includes/cls/database/archiver/translation.php:89
 msgid "priority"
 msgstr "اولویت"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:90
+#: ../../../.././includes/cls/database/archiver/translation.php:92
 msgid "logs"
 msgstr "لاگ‌ها"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:91
+#: ../../../.././includes/cls/database/archiver/translation.php:93
 msgid "log"
 msgstr "لاگ"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:92
+#: ../../../.././includes/cls/database/archiver/translation.php:94
 msgid "deliver"
 msgstr "تحویل‌داده‌شده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:94
+#: ../../../.././includes/cls/database/archiver/translation.php:96
 msgid "data"
 msgstr "داده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:100
+#: ../../../.././includes/cls/database/archiver/translation.php:102
 msgid "notifications"
 msgstr "آگاه سازی ها"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:101
+#: ../../../.././includes/cls/database/archiver/translation.php:103
 msgid "notification"
 msgstr "آگاه سازی"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:102
+#: ../../../.././includes/cls/database/archiver/translation.php:104
 msgid "read"
 msgstr "خوانده شده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:103
+#: ../../../.././includes/cls/database/archiver/translation.php:105
 msgid "unread"
 msgstr "خوانده نشده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:104
+#: ../../../.././includes/cls/database/archiver/translation.php:106
 msgid "user sender"
 msgstr "کاربر فرستنده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:112
+#: ../../../.././includes/cls/database/archiver/translation.php:114
 msgid "options"
 msgstr "تنظیمات"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:113
+#: ../../../.././includes/cls/database/archiver/translation.php:115
 #: ../../../.././includes/languages/trans_addon.php:263
 msgid "option"
 msgstr "تنظیمات"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:121
-#: ../../../.././includes/cls/database/archiver/translation.php:157
+#: ../../../.././includes/cls/database/archiver/translation.php:123
+#: ../../../.././includes/cls/database/archiver/translation.php:159
 msgid "posts"
 msgstr "نوشته‌ها"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:123
+#: ../../../.././includes/cls/database/archiver/translation.php:125
 msgid "open"
 msgstr "باز"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:124
+#: ../../../.././includes/cls/database/archiver/translation.php:126
 msgid "closed"
 msgstr "بسته"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:125
+#: ../../../.././includes/cls/database/archiver/translation.php:127
 msgid "publish"
 msgstr "زمان انتشار"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:126
+#: ../../../.././includes/cls/database/archiver/translation.php:128
 msgid "draft"
 msgstr "پیش نویس"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:127
+#: ../../../.././includes/cls/database/archiver/translation.php:129
 msgid "schedule"
 msgstr "زمان بندی شده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:128
-#: ../../../.././includes/cls/database/archiver/translation.php:145
+#: ../../../.././includes/cls/database/archiver/translation.php:130
+#: ../../../.././includes/cls/database/archiver/translation.php:147
 msgid "language"
 msgstr "زبان"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:130
-#: ../../../.././includes/cls/database/archiver/translation.php:148
+#: ../../../.././includes/cls/database/archiver/translation.php:132
+#: ../../../.././includes/cls/database/archiver/translation.php:150
 msgid "slug"
 msgstr "نامک"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:136
+#: ../../../.././includes/cls/database/archiver/translation.php:138
 msgid "count"
 msgstr "تعداد"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:140
+#: ../../../.././includes/cls/database/archiver/translation.php:142
 msgid "publishdate"
 msgstr "زمان انتشار"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:143
+#: ../../../.././includes/cls/database/archiver/translation.php:145
 msgid "terms"
 msgstr "عبارت ها"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:144
-#: ../../../.././includes/cls/database/archiver/translation.php:162
+#: ../../../.././includes/cls/database/archiver/translation.php:146
+#: ../../../.././includes/cls/database/archiver/translation.php:164
 msgid "term"
 msgstr "عبارت"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:155
+#: ../../../.././includes/cls/database/archiver/translation.php:157
 msgid "termusages"
 msgstr "موارد استفاده عبارت"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:156
-#: ../../../.././includes/cls/database/archiver/translation.php:163
+#: ../../../.././includes/cls/database/archiver/translation.php:158
+#: ../../../.././includes/cls/database/archiver/translation.php:165
 msgid "termusage"
 msgstr "محل استفاده عبارت"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:158
+#: ../../../.././includes/cls/database/archiver/translation.php:160
 msgid "products"
 msgstr "کالاها"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:164
+#: ../../../.././includes/cls/database/archiver/translation.php:166
 msgid "foreign"
 msgstr "کلیدخارجی"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:168
+#: ../../../.././includes/cls/database/archiver/translation.php:170
 msgid "users"
 msgstr "کاربران"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:170
+#: ../../../.././includes/cls/database/archiver/translation.php:172
 msgid "active"
 msgstr "فعال"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:171
+#: ../../../.././includes/cls/database/archiver/translation.php:173
 msgid "awaiting"
 msgstr "در حال انتظار"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:172
+#: ../../../.././includes/cls/database/archiver/translation.php:174
 msgid "deactive"
 msgstr "غیرفعال"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:173
+#: ../../../.././includes/cls/database/archiver/translation.php:175
 msgid "removed"
 msgstr "حذف شده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:174
+#: ../../../.././includes/cls/database/archiver/translation.php:176
 msgid "filter"
 msgstr "فیلتر"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:175
+#: ../../../.././includes/cls/database/archiver/translation.php:177
 msgid "mobile"
 msgstr "موبایل"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:177
+#: ../../../.././includes/cls/database/archiver/translation.php:179
 msgid "pass"
 msgstr "کلمه عبور"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:178
+#: ../../../.././includes/cls/database/archiver/translation.php:180
 msgid "displayname"
 msgstr "نام برای نمایش عمومی"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:181
+#: ../../../.././includes/cls/database/archiver/translation.php:183
 msgid "permission"
 msgstr "سطح دسترسی"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:185
+#: ../../../.././includes/cls/database/archiver/translation.php:187
 #: ../../../.././includes/languages/trans_addon.php:153
 msgid "visitors"
 msgstr "بازدیدکنندگان"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:187
+#: ../../../.././includes/cls/database/archiver/translation.php:189
 msgid "yes"
 msgstr "بله"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:188
+#: ../../../.././includes/cls/database/archiver/translation.php:190
 msgid "no"
 msgstr "خیر"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:189
+#: ../../../.././includes/cls/database/archiver/translation.php:191
 msgid "ip"
 msgstr "آی پی"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:191
+#: ../../../.././includes/cls/database/archiver/translation.php:193
 msgid "agent"
 msgstr "عامل"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:192
+#: ../../../.././includes/cls/database/archiver/translation.php:194
 msgid "referer"
 msgstr "ارجاع دهنده"
 
-#: ../../../.././includes/cls/database/archiver/translation.php:193
+#: ../../../.././includes/cls/database/archiver/translation.php:195
 msgid "robot"
 msgstr "ربات"
 
@@ -776,7 +790,7 @@ msgstr "خطا در فیلد"
 
 #: ../../../.././includes/languages/static_translation.php:47
 #: ../../../.././includes/languages/trans_addon.php:51
-#: ../../../.././includes/languages/trans_twig.php:40
+#: ../../../.././includes/languages/trans_twig.php:49
 msgid "Options"
 msgstr "تنظیمات"
 
@@ -812,13 +826,13 @@ msgstr "انصراف"
 
 #: ../../../.././includes/languages/static_translation.php:56
 #: ../../../.././includes/languages/trans_addon.php:135
-#: ../../../.././includes/languages/trans_twig.php:42
+#: ../../../.././includes/languages/trans_twig.php:68
 msgid "or"
 msgstr "یا"
 
 #: ../../../.././includes/languages/static_translation.php:57
 #: ../../../.././includes/languages/trans_addon.php:136
-#: ../../../.././includes/languages/trans_twig.php:23
+#: ../../../.././includes/languages/trans_twig.php:19
 msgid "Delete"
 msgstr "حذف"
 
@@ -859,7 +873,7 @@ msgstr "کاربران"
 
 #: ../../../.././includes/languages/static_translation.php:69
 #: ../../../.././includes/languages/trans_addon.php:60
-#: ../../../.././includes/languages/trans_twig.php:32
+#: ../../../.././includes/languages/trans_twig.php:31
 msgid "My Profile"
 msgstr "پروفایل من"
 
@@ -870,7 +884,7 @@ msgstr "قفل کردن"
 
 #: ../../../.././includes/languages/static_translation.php:71
 #: ../../../.././includes/languages/trans_addon.php:63
-#: ../../../.././includes/languages/trans_twig.php:34
+#: ../../../.././includes/languages/trans_twig.php:33
 msgid "Logout"
 msgstr "خروج از سیستم"
 
@@ -955,12 +969,12 @@ msgid "No. of"
 msgstr "تعداد"
 
 #: ../../../.././includes/languages/trans_addon.php:32
-#: ../../../.././includes/languages/trans_twig.php:14
+#: ../../../.././includes/languages/trans_twig.php:39
 msgid "Tags"
 msgstr "کلیدواژه‌ها"
 
 #: ../../../.././includes/languages/trans_addon.php:33
-#: ../../../.././includes/languages/trans_twig.php:37
+#: ../../../.././includes/languages/trans_twig.php:41
 msgid "Categories"
 msgstr "دسته‌بندی‌ها"
 
@@ -1005,18 +1019,22 @@ msgid "Utilities"
 msgstr "ابزارها"
 
 #: ../../../.././includes/languages/trans_addon.php:53
+#: ../../../.././includes/languages/trans_twig.php:42
 msgid "Next →"
 msgstr "→ بعدی"
 
 #: ../../../.././includes/languages/trans_addon.php:54
+#: ../../../.././includes/languages/trans_twig.php:43
 msgid "← Back"
 msgstr "قبلی ←"
 
 #: ../../../.././includes/languages/trans_addon.php:55
+#: ../../../.././includes/languages/trans_twig.php:44
 msgid "Skip"
 msgstr "خروج"
 
 #: ../../../.././includes/languages/trans_addon.php:56
+#: ../../../.././includes/languages/trans_twig.php:45
 msgid "Done"
 msgstr "اتمام"
 
@@ -1029,11 +1047,11 @@ msgid "You can work with control panel in your language"
 msgstr "شما می‌توانید کنترل پنل را با زبان خود تجربه کنید"
 
 #: ../../../.././includes/languages/trans_addon.php:59
-msgid "Go to your profile or logout from conrtol panel"
+msgid "Go to your profile, change password or logout from conrtol panel"
 msgstr "از این قسمت به پروفایل خود رفته و یا از کنترل پنل خروج امن داشته باشید"
 
 #: ../../../.././includes/languages/trans_addon.php:61
-#: ../../../.././includes/languages/trans_twig.php:33
+#: ../../../.././includes/languages/trans_twig.php:32
 msgid "Change Password"
 msgstr "تغییر گذرواژه"
 
@@ -1043,12 +1061,12 @@ msgstr ""
 "ما از کار برای شما خوشحال بوده و امیدواریم شما نیز از سیستم ما لذت ببرید"
 
 #: ../../../.././includes/languages/trans_addon.php:65
-msgid "Powered by"
-msgstr "قدرت گرفته از"
+msgid "Some right reserved"
+msgstr "برخی از حقوق محفوظ است!"
 
 #: ../../../.././includes/languages/trans_addon.php:66
-msgid "All right reserved"
-msgstr "تمام حقوق محفوظ است"
+msgid "Powered by"
+msgstr "قدرت گرفته از"
 
 #: ../../../.././includes/languages/trans_addon.php:68
 msgid "Last update on"
@@ -1100,17 +1118,17 @@ msgstr ""
 "کلیدواژه‌ی مورد نظر خود را نوشته و با فشردن انتر آن را به مطلب اضافه کنید"
 
 #: ../../../.././includes/languages/trans_addon.php:85
-#: ../../../.././includes/languages/trans_twig.php:13
+#: ../../../.././includes/languages/trans_twig.php:66
 msgid "Enter Tags here"
 msgstr "تگ ها را اینجا وارد کنید"
 
 #: ../../../.././includes/languages/trans_addon.php:86
-#: ../../../.././includes/languages/trans_twig.php:11
+#: ../../../.././includes/languages/trans_twig.php:64
 msgid "Enter Tags"
 msgstr "تگ را وارد کنید"
 
 #: ../../../.././includes/languages/trans_addon.php:87
-#: ../../../.././includes/languages/trans_twig.php:12
+#: ../../../.././includes/languages/trans_twig.php:65
 msgid "Add"
 msgstr "افزودن"
 
@@ -1372,17 +1390,17 @@ msgid "Preview"
 msgstr "پیش نمایش"
 
 #: ../../../.././includes/languages/trans_addon.php:162
-#: ../../../.././includes/languages/trans_twig.php:41
+#: ../../../.././includes/languages/trans_twig.php:67
 msgid "Drag & Drop Files Here"
 msgstr "فایل را کشیده و در اینجا رها کنید"
 
 #: ../../../.././includes/languages/trans_addon.php:163
-#: ../../../.././includes/languages/trans_twig.php:43
+#: ../../../.././includes/languages/trans_twig.php:69
 msgid "Choose File"
 msgstr "انتخاب فایل"
 
 #: ../../../.././includes/languages/trans_addon.php:164
-#: ../../../.././includes/languages/trans_twig.php:44
+#: ../../../.././includes/languages/trans_twig.php:70
 msgid "Maximum size allowed"
 msgstr "حداکثر سایز مجاز"
 
@@ -1549,12 +1567,12 @@ msgid "Fantastic"
 msgstr "خارق العاده"
 
 #: ../../../.././includes/languages/trans_addon.php:241
-#: ../../../.././includes/languages/trans_twig.php:26
+#: ../../../.././includes/languages/trans_twig.php:23
 msgid "Copy"
 msgstr "کپی"
 
 #: ../../../.././includes/languages/trans_addon.php:242
-#: ../../../.././includes/languages/trans_twig.php:27
+#: ../../../.././includes/languages/trans_twig.php:24
 msgid "Cut"
 msgstr "انتقال"
 
@@ -1849,68 +1867,192 @@ msgid "Select"
 msgstr "انتخاب"
 
 #: ../../../.././includes/languages/trans_twig.php:10
-msgid "Properties"
-msgstr "خصیصه‌ها"
+msgid "You should work in your language"
+msgstr "شما می‌توانید به زبان خودتان از سیستم استفاده کنید"
 
-#: ../../../.././includes/languages/trans_twig.php:15
-msgid "Name"
-msgstr "نام"
+#: ../../../.././includes/languages/trans_twig.php:11
+msgid ""
+"Press this key and upload your file or drop your file in browser and we "
+"detect it"
+msgstr ""
 
-#: ../../../.././includes/languages/trans_twig.php:16
-msgid "Value"
-msgstr "مقدار"
-
-#: ../../../.././includes/languages/trans_twig.php:17
-msgid "Add it"
-msgstr "افزودن"
-
-#: ../../../.././includes/languages/trans_twig.php:20
+#: ../../../.././includes/languages/trans_twig.php:12
 msgid "Upload"
 msgstr "بارگذاری"
 
-#: ../../../.././includes/languages/trans_twig.php:21
+#: ../../../.././includes/languages/trans_twig.php:13
+msgid "Creating a new folder and organize your files"
+msgstr "پوشه جدید بسازید و فایل‌های خود را سازماندهی کنید"
+
+#: ../../../.././includes/languages/trans_twig.php:14
 msgid "Create new folder"
 msgstr "ساخت پوشه جدید"
 
-#: ../../../.././includes/languages/trans_twig.php:22
+#: ../../../.././includes/languages/trans_twig.php:15
+msgid "Download a file"
+msgstr "دانلود فایل"
+
+#: ../../../.././includes/languages/trans_twig.php:16
 msgid "Download"
 msgstr "دانلود"
 
-#: ../../../.././includes/languages/trans_twig.php:24
+#: ../../../.././includes/languages/trans_twig.php:17
+msgid ""
+"Remove an items, first we put file in trash and if you want to remove it "
+"again, we delete it"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:18
+msgid ""
+"for delete items directly, you can hold shift and then press this key or DEL "
+"in your keyboard"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:20
+msgid "More funtions like Select all, Cut, Rename and ... is exist in this menu"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:21
 msgid "More ..."
 msgstr "بیشتر..."
 
-#: ../../../.././includes/languages/trans_twig.php:25
+#: ../../../.././includes/languages/trans_twig.php:22
 msgid "Select All"
 msgstr "انتخاب همه"
 
-#: ../../../.././includes/languages/trans_twig.php:28
+#: ../../../.././includes/languages/trans_twig.php:25
 msgid "Rename"
 msgstr "تغییر نام"
 
-#: ../../../.././includes/languages/trans_twig.php:29
+#: ../../../.././includes/languages/trans_twig.php:26
 msgid "Don't show deleted items"
 msgstr "عدم نمایش پاک‌شده‌ها"
 
-#: ../../../.././includes/languages/trans_twig.php:30
+#: ../../../.././includes/languages/trans_twig.php:27
+msgid ""
+"If you have a permission, you can send your files to an app and after "
+"process, if you want we can save result in file metadata"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:28
 msgid "Send to app"
 msgstr "ارسال به برنامه"
 
-#: ../../../.././includes/languages/trans_twig.php:31
+#: ../../../.././includes/languages/trans_twig.php:29
 msgid "Paste"
 msgstr "چسباندن"
 
+#: ../../../.././includes/languages/trans_twig.php:30
+msgid "Go to your profile, change password or logout from system"
+msgstr ""
+"‫از این قسمت به پروفایل خود رفته، کلمه عبور خود را تغییر داده و یا خروج امن از "
+"سیستم داشته باشید"
+
+#: ../../../.././includes/languages/trans_twig.php:34
+msgid "Use this menu for navigating to some part of system"
+msgstr ""
+
 #: ../../../.././includes/languages/trans_twig.php:36
+msgid "Navigate to home directory of your account"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:37
 msgid "favorites"
 msgstr "علاقمندی ها"
 
 #: ../../../.././includes/languages/trans_twig.php:38
-msgid "Frequently asked question"
-msgstr "سوالات پرتکرار"
+msgid "Show your favorites item"
+msgstr "نمایش آیتم‌های موردعلاقه شما"
 
-#: ../../../.././includes/languages/trans_twig.php:39
+#: ../../../.././includes/languages/trans_twig.php:40
+msgid "Show your tags"
+msgstr "نمایش کلیدواژه‌های شما"
+
+#: ../../../.././includes/languages/trans_twig.php:46
+msgid "Present system and all part of it to you"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:47
 msgid "Analytics"
 msgstr "آمار"
+
+#: ../../../.././includes/languages/trans_twig.php:48
+msgid "Show your account analytics"
+msgstr "نمایش آمار اکانت شما"
+
+#: ../../../.././includes/languages/trans_twig.php:50
+msgid "your items like folder and files is show in this place"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:51
+msgid ""
+"You can navigate between items with keyboard Up, Down, PageUp, PageDown, Home "
+"and End key."
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:52
+msgid ""
+"Also you can use Shift, Ctrl and Alt and we try to give you all functions "
+"that you need"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:53
+msgid "After selecting item we show you properties of this item in sidebar"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:54
+msgid "On double click you entering to folders"
+msgstr "با دبل کلیک کردن شما وارد پوشه انتخابی خواهید شد"
+
+#: ../../../.././includes/languages/trans_twig.php:55
+msgid ""
+"Finally you can use all keyboard shortcut for example Ctrl+X and Ctrl+V for "
+"copy and paste item to new location"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:56
+msgid "The properties of selected item appear in this place"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:57
+msgid "You can add a new metadata or property to selected items"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:58
+msgid "Also you can remove your properties"
+msgstr "هم‌چنین شما توانایی حذف خصیصه‌ها را خواهید داشت"
+
+#: ../../../.././includes/languages/trans_twig.php:59
+msgid ""
+"You allow to add tag to items manually and we collect tags and show you in "
+"tags page"
+msgstr ""
+
+#: ../../../.././includes/languages/trans_twig.php:60
+msgid "Name"
+msgstr "نام"
+
+#: ../../../.././includes/languages/trans_twig.php:61
+msgid "Value"
+msgstr "مقدار"
+
+#: ../../../.././includes/languages/trans_twig.php:62
+msgid "Add it"
+msgstr "افزودن"
+
+#: ../../../.././includes/languages/trans_twig.php:63
+msgid "Properties"
+msgstr "خصیصه‌ها"
+
+#~ msgid "Go to your profile or logout from conrtol panel"
+#~ msgstr ""
+#~ "از این قسمت به پروفایل خود رفته و یا از کنترل پنل خروج امن داشته باشید"
+
+#~ msgid "Frequently asked question"
+#~ msgstr "سوالات پرتکرار"
+
+#~ msgid "All right reserved"
+#~ msgstr "تمام حقوق محفوظ است"
 
 #~ msgid "Right Now"
 #~ msgstr "همین الان"

@@ -16,7 +16,7 @@
 {%block body%}
   <header id="header" role="header">
    <ul id="header-nav">
-    <li id="languages" itemscope>
+    <li id="languages" itemscope data-step='1' data-intro='{%trans "You should work in your language"%}!'>
      <i class="fa fa-language fa-2x"></i>
      <nav class="vertical-menu">
 {%for key, value in site.langlist%}{%if key == global.lang%}
@@ -28,31 +28,31 @@
     </li>
 
     <li>
-     <a class="labeled icon button" id="upload" data-modal="upload_modal">
+     <a class="labeled icon button" id="upload" data-modal="upload_modal" data-step='31' data-intro='{%trans "Press this key and upload your file or drop your file in browser and we detect it"%}!'>
       <i class="icon fa fa-cloud-upload"></i>{%trans "Upload"%}
      </a>
     </li>
 
     <li>
-       <a class="labeled icon button" id="newfolder" data-action>
+       <a class="labeled icon button" id="newfolder" data-action data-step='32' data-intro='{%trans "Creating a new folder and organize your files"%}'>
         <i class="icon fa fa-folder"></i>{%trans "Create new folder"%}
        </a>
     </li>
 
     <li>
-     <a class="labeled icon button" id="download">
+     <a class="labeled icon button" id="download" data-step='33' data-intro='{%trans "Download a file"%}'>
       <i class="icon fa fa-download"></i>{%trans "Download"%}
      </a>
     </li>
 
     <li>
-     <a class="labeled icon button" id="remove" data-action="/$/remove" data-method="post">
+     <a class="labeled icon button" id="remove" data-action="/$/remove" data-method="post" data-step='34' data-intro='{%trans "Remove an items, first we put file in trash and if you want to remove it again, we delete it"%}! {%trans "for delete items directly, you can hold shift and then press this key or DEL in your keyboard"%}.'>
       <i class="icon fa fa-times"></i>{%trans "Delete"%}
      </a>
     </li>
 
     <li id="more">
-      <a class="labeled icon button">
+      <a class="labeled icon button" data-step='35' data-intro='{%trans "More funtions like Select all, Cut, Rename and ... is exist in this menu"%}'>
        <i class="icon fa fa-bars"></i>{%trans "More ..."%}
       </a>
       <nav class="vertical-menu">
@@ -65,7 +65,7 @@
     </li>
 
     <li id="send-to-app">
-      <a class="labeled icon button">
+      <a class="labeled icon button" data-step='36' data-intro='{%trans "If you have a permission, you can send your files to an app and after process, if you want we can save result in file metadata"%}'>
        <i class="icon fa fa-paper-plane-o"></i>{%trans "Send to app"%}
       </a>
       <nav class="vertical-menu">
@@ -102,7 +102,7 @@
 
    </ul>
 
-   <div id="profile">
+   <div id="profile" data-step='37' data-intro='{%trans "Go to your profile, change password or logout from system"%}' data-position="{{dir.left}}">
     <span>{%set dname = login.displayname%}{%trans dname%}
      <i class="fa fa-user"></i>
      </span>
@@ -117,24 +117,34 @@
 
 <div class="row body auto">
  <aside class="span1 unselectable" id='page-sidebar'>
-  <nav class='sidebar-items'>
-  <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="/"><i class="fa fa-lg fa-home"></i></a>
-  <a class='hint--right' id='ifavorites' data-hint='{%trans "favorites"%}' href="/$/favorites"><i class="fa fa-lg fa-star-o"></i></a>
-  <a class='hint--right' id='itags' data-hint='{%trans "Tags"%}' href="/$/tags"><i class="fa fa-lg fa-tags"></i></a>
+  
+  <nav class='sidebar-items' data-step='12' data-intro='{%trans "Use this menu for navigating to some part of system"%}' data-position="{{dir.right}}">
+
+  <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="/" data-step='13' data-intro='{%trans "Navigate to home directory of your account"%}' data-position="{{dir.right}}"><i class="fa fa-lg fa-home"></i></a>
+
+  <a class='hint--right' id='ifavorites' data-hint='{%trans "favorites"%}' href="/$/favorites" data-step='14' data-intro='{%trans "Show your favorites item"%}' data-position="{{dir.right}}"><i class="fa fa-lg fa-star-o"></i></a>
+
+  <a class='hint--right' id='itags' data-hint='{%trans "Tags"%}' href="/$/tags" data-step='15' data-intro='{%trans "Show your tags"%}' data-position="{{dir.right}}"><i class="fa fa-lg fa-tags"></i></a>
+
   <a class='hint--right hide' id='icategories' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
-  <a class='hint--right' id='ifaq' data-hint='{%trans "Frequently asked question"%}' href="#"><i class="fa fa-lg fa-question"></i></a>
-  <a class='hint--right' id='ianalytics' data-hint='{%trans "Analytics"%}' href="#"><i class="fa fa-lg fa-line-chart"></i></a>
-  <a class='hint--right' id='ioptions' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>
+{%set introOption%}
+.setOptions({ 'nextLabel': '{%trans "Next →"%}', 'prevLabel': '{%trans "← Back"%}', 'skipLabel': '{%trans "Skip"%}', 'doneLabel': '{%trans "Done"%}', 'showStepNumbers': 'false', 'showProgress': 'true' })
+{%endset%}
+  <a class='hint--right' id='ifaq' data-hint='{%trans "Present system and all part of it to you"%}.' href="javascript:void(0);" onclick="javascript:introJs(){{introOption}}.start();"><i class="fa fa-lg fa-question"></i></a>
+
+  <a class='hint--right' id='ianalytics' data-hint='{%trans "Analytics"%}' href="#" data-step='16' data-intro='{%trans "Show your account analytics"%}' data-position="{{dir.right}}"><i class="fa fa-lg fa-line-chart"></i></a>
+
+  <a class='hint--right hide' id='ioptions' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>
   </nav>
  </aside>
 
- <div class="span8" id='explorer'>
+ <div class="span8" id='explorer' data-step='2' data-intro='{%trans "your items like folder and files is show in this place"%}. {%trans "You can navigate between items with keyboard Up, Down, PageUp, PageDown, Home and End key."%}. {%trans "Also you can use Shift, Ctrl and Alt and we try to give you all functions that you need"%}. {%trans "After selecting item we show you properties of this item in sidebar"%}. {%trans "On double click you entering to folders"%}. {%trans "Finally you can use all keyboard shortcut for example Ctrl+X and Ctrl+V for copy and paste item to new location"%}' data-position='{{dir.right}}'>
   <ul data-xhr='explorer'>
 {%block explorer%}{%endblock%}
   </ul>
  </div>
 
- <div class="span3 left-side" id='prop-box' data-id="">
+ <div class="span3 left-side" id='prop-box' data-id="" data-step='3' data-intro='{%trans "The properties of selected item appear in this place"%}. {%trans "You can add a new metadata or property to selected items"%}. {%trans "Also you can remove your properties"%}. {%trans "You allow to add tag to items manually and we collect tags and show you in tags page"%}.' data-position="{{dir.left}}">
   <ul id="prop-box-new" data-action="$/prop-new" data-method="post">
     <li class="row auto">
       <input type="text" id="prop_add_name" name="prop_name" class='span5' autocomplete="off" placeholder='{%trans "Name"%}'/>
