@@ -12,7 +12,7 @@
 {%endif%}
 
 {%for key, row in datatable%}
-    <li data-id="{{row.cid}}" class="{{row.type}} {{row.status}}">
+    <li data-id="{{row.cid}}" class="{{row.type}} {{row.status}}" data-addr='{{row.meta.file}}'>
       <span class='type fa fa-{{row.icon}}'></span>
       <span class='name'>{{row.name}}</span>
       <span class='size'>{{row.size | readableSize(row.type) }}</span>

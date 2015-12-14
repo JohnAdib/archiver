@@ -749,9 +749,14 @@ class model extends \mvc\model
 
 		$datatable['meta']   = json_decode($datatable['meta'], true);
 
-		$datatable['width']  = isset($datatable['meta']['width'])? $datatable['meta']['width']: null;
-		$datatable['height'] = isset($datatable['meta']['height'])? $datatable['meta']['height']: null;
-		$datatable['thumb']  = isset($datatable['meta']['thumb'])? $datatable['meta']['thumb']: null;
+		if(isset($datatable['meta']['width']))
+			$datatable['width'] = $datatable['meta']['width'];
+
+		if(isset($datatable['meta']['height']))
+			$datatable['height'] = $datatable['meta']['height'];
+
+		if(isset($datatable['meta']['thumb']))
+			$datatable['thumb'] = $datatable['meta']['thumb'];
 
 		$datatable['size']   = \lib\utility\Upload::readableSize($datatable['size'], $datatable['type']);
 
@@ -807,26 +812,39 @@ class model extends \mvc\model
 		unset($datatable['icon']);
 
 		// \lib\utility\Upload::readableSize()
-
 		foreach ($datatable as $key => $value)
 		{
-			if( ($value == null || empty($value) ) && $key !== 'size')
-			{
-				// var_dump($key);
+			if($value === null)
 				unset($datatable[$key]);
-			}
 
 			// dont translate id
-			if($key !='id' && $key!="icon" && $key!="thumb" && $key!="filetype" && $key!="audio" && $key!="audio-type" && $key!="video" && $key!="video-type")
+			switch ($key)
 			{
-				$datatable[T_($key)] = $value;
-				unset($datatable[$key]);
+
+				case 'id':
+				case 'icon':
+				case 'thumb':
+				case 'filetype':
+				case 'audio':
+				case 'audio-type':
+				case 'video-type':
+				case 'video-type':
+					break;
+				
+				case 'size':
+				case 'title':
+				case 'description':
+				case 'name':
+				case 'ext':
+				case 'date':
+				default:
+					unset($datatable[$key]);
+					$datatable[T_(ucfirst($key))] = $value;
+					break;
 			}
 		}
 
-		// var_dump($datatable);
-
-		debug::property('datatable', $datatable);
+		// debug::property('datatable', $datatable);
 		// return;
 
 

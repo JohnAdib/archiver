@@ -27,6 +27,12 @@
      </nav>
     </li>
 
+    <li id="search">
+     <a class="labeled icon button" data-step='30' data-intro='{%trans "Search in your files, folders, properties and tags"%}'>
+      <i class="icon fa fa-search"></i>{%trans "Search"%}
+     </a>
+    </li>
+
     <li>
      <a class="labeled icon button" id="upload" data-modal="upload_modal" data-step='31' data-intro='{%trans "Press this key and upload your file or drop your file in browser and we detect it"%}!'>
       <i class="icon fa fa-cloud-upload"></i>{%trans "Upload"%}
@@ -37,12 +43,6 @@
        <a class="labeled icon button" id="newfolder" data-action data-step='32' data-intro='{%trans "Creating a new folder and organize your files"%}'>
         <i class="icon fa fa-folder"></i>{%trans "Create new folder"%}
        </a>
-    </li>
-
-    <li>
-     <a class="labeled icon button" id="download" data-step='33' data-intro='{%trans "Download a file"%}'>
-      <i class="icon fa fa-download"></i>{%trans "Download"%}
-     </a>
     </li>
 
     <li>
@@ -64,21 +64,33 @@
       </nav>
     </li>
 
-    <li id="send-to-app">
+    <li id="download" class="hide">
+     <a class="labeled icon button" data-step='33' data-intro='{%trans "Download a file"%}'>
+      <i class="icon fa fa-download"></i>{%trans "Download"%}
+     </a>
+    </li>
+
+    <li id="send-to-app" class="hide">
       <a class="labeled icon button" data-step='36' data-intro='{%trans "If you have a permission, you can send your files to an app and after process, if you want we can save result in file metadata"%}'>
        <i class="icon fa fa-paper-plane-o"></i>{%trans "Send to app"%}
       </a>
       <nav class="vertical-menu">
-        <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1
-         <form action="{{url.static}}page/app1.php" data-action id="more-app1">
+        <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1 - {%trans "Image Processing"%}
+         <form action="{{url.static}}page/app.php" data-action id="more-app1">
           <input type="hidden" name="data" value="Address of file1 - to app1">
+          <input type="hidden" name="app" value='{%trans "Image Processing"%}'>
+          <input type="hidden" name="fileid" id="sent-id" value="">
+          <input type="hidden" name="addr" id="sent-addr" value="">
           <input type="submit" value=''>
          </form>
         </a>
 
-        <a href="javascript:{}" onclick="document.getElementById('more-app2').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 2
-         <form action="{{url.static}}page/app2.php" data-action id="more-app2">
+        <a href="javascript:{}" onclick="document.getElementById('more-app2').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 2 - {%trans "Text Mining"%}
+         <form action="{{url.static}}page/app.php" data-action id="more-app2">
           <input type="hidden" name="data" value="Address of file 2 - to app2">
+          <input type="hidden" name="app" value='{%trans "Text Mining"%}'>
+          <input type="hidden" name="fileid" id="sent-id" value="">
+          <input type="hidden" name="addr" id="sent-addr" value="">
           <input type="submit" value=''>
          </form>
         </a>
@@ -86,6 +98,8 @@
         <a href="javascript:{}" onclick="document.getElementById('more-app3').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} Google
          <form action="http://www.google.com/search" data-action id="more-app3">
           <input type="hidden" name="q" size="31" maxlength="255" value="Iran">
+          <input type="hidden" name="fileid" id="sent-id" value="">
+          <input type="hidden" name="addr" id="sent-addr" value="">
           <input type="submit" value=''>
          </form>
         </a>
@@ -94,8 +108,8 @@
       </nav>
     </li>
 
-    <li class="hide">
-     <a class="labeled icon button" id="paste" data-action="/$/paste" data-method="post">
+    <li id="paste" class="hide" data-action="/$/paste" data-method="post">
+     <a class="labeled icon button">
       <i class="icon fa fa-clipboard"></i>{%trans "Paste"%}
      </a>
     </li>
@@ -138,7 +152,7 @@
   </nav>
  </aside>
 
- <div class="span8" id='explorer' data-step='2' data-intro='{%trans "your items like folder and files is show in this place"%}. {%trans "You can navigate between items with keyboard Up, Down, PageUp, PageDown, Home and End key."%}. {%trans "Also you can use Shift, Ctrl and Alt and we try to give you all functions that you need"%}. {%trans "After selecting item we show you properties of this item in sidebar"%}. {%trans "On double click you entering to folders"%}. {%trans "Finally you can use all keyboard shortcut for example Ctrl+X and Ctrl+V for copy and paste item to new location"%}' data-position='{{dir.right}}'>
+ <div class="span8" id='explorer' data-step='2' data-intro='{%trans "your items like folder and files is show in this place"%}.{%trans "You can navigate between items with keyboard Up, Down, PageUp, PageDown, Home and End key."%}. {%trans "Also you can use Shift, Ctrl and Alt and we try to give you all functions that you need"%}. {%trans "After selecting item we show you properties of this item in sidebar"%}. {%trans "On double click you entering to folders"%}. {%trans "Finally you can use all keyboard shortcut for example Ctrl+X and Ctrl+V for copy and paste item to new location"%}' data-position='{{dir.right}}'>
   <ul data-xhr='explorer'>
 {%block explorer%}{%endblock%}
   </ul>

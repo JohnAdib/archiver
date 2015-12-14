@@ -150,7 +150,6 @@ function reDraw(_path)
   } else {
     Navigate({ url: _path });
   }
-  console.log(1);
   $('#prop-box-ul').empty();
 }
 
@@ -275,7 +274,7 @@ function ex_delete(_trash)
 
 
 /**
- * copy some item
+ * move some item
  */
 function ex_clipboard(_action)
 {
@@ -298,7 +297,7 @@ function ex_clipboard(_action)
     });
   }
 
-  $('#paste').parents('li').removeClass('hide');
+  $('#paste').fadeIn(300).removeClass('hide').css('display', 'inline-block');
 }
 
 
@@ -319,7 +318,8 @@ function ex_paste()
     myType = 'copy';
     $('body').removeClass('copy');
   }
-
+  console.log(CLIPBOARD);
+  console.log(myType);
   if ( myType != 'undefined' )
   {
     $('#paste').ajaxify({
@@ -333,7 +333,8 @@ function ex_paste()
     });
   }
 
-  $('#paste').parents('li').addClass('hide');
+  // $('#paste').parents('li').addClass('hide');
+  $('#paste').fadeOut(100, function() { $(this).addClass('hide') });
   reDraw();
 }
 

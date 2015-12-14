@@ -356,7 +356,7 @@ function event_corridor(e, _self, _key)
     // ---------------------------------------------------------------------- mouse
     case 'click':           // click
       ex_removeClass('selected focused zero');
-      _self.addClass('selected focused zero');
+      ex_itemSelectedFocusedZero(cid);
       ex_checkBody();
       ex_showProp();
       break;

@@ -12,7 +12,7 @@ function transtext()
 	echo T_("Sign In");                                                               // Line 6
 
 	//---------------------------------addon\content_account\verification\display.html
-	echo T_("we send a verification code for you");                                   // Line 208 Seperate
+	echo T_("we send a verification code for you");                                   // Line 212 Seperate
 	echo T_("please check your mobile and enter the code");                           // Line 7
 	echo T_("don't receive message?");                                                // Line 8
 
@@ -58,7 +58,7 @@ function transtext()
 	echo T_("You can work with control panel in your language");                      // Line 42
 	echo T_("Go to your profile, change password or logout from conrtol panel");      // Line 54
 	echo T_("My Profile");                                                            // Line 92 Seperate
-	echo T_("Change Password");                                                       // Line 198 Seperate
+	echo T_("Change Password");                                                       // Line 202 Seperate
 	echo T_("Lock Screen");                                                           // Line 94 Seperate
 	echo T_("Logout");                                                                // Line 95 Seperate
 	echo T_("We glad to working for you and hope you enjoy using our system");        // Line 84
@@ -297,31 +297,35 @@ function transtext()
 	echo T_("Publish new post in social networks");                                   // Line 170 Seperate
 	echo T_("Socialnetwork");                                                         // Line 171 Seperate
 	echo T_("socialnetwork");                                                         // Line 172 Seperate
-	echo T_("Enter your registered mobile");                                          // Line 179 Seperate
-	echo T_("Enter your password");                                                   // Line 180 Seperate
-	echo T_("Recovery");                                                              // Line 183 Seperate
-	echo T_("your recovery code is");                                                 // Line 184 Seperate
-	echo T_("recovery failed!");                                                      // Line 185 Seperate
-	echo T_("Mobile number is incorrect");                                            // Line 186 Seperate
-	echo T_("Verificate");                                                            // Line 189 Seperate
-	echo T_("Verification");                                                          // Line 190 Seperate
-	echo T_("verify successfully.");                                                  // Line 191 Seperate
-	echo T_("please Input your new password");                                        // Line 192 Seperate
-	echo T_("verify failed!");                                                        // Line 193 Seperate
-	echo T_("this data is incorrect");                                                // Line 194 Seperate
-	echo T_("Check your mobile and enter the code");                                  // Line 195 Seperate
-	echo T_("Current Password");                                                      // Line 199 Seperate
-	echo T_("New Password");                                                          // Line 200 Seperate
-	echo T_("Change it");                                                             // Line 201 Seperate
-	echo T_("change password successfully");                                          // Line 202 Seperate
-	echo T_("change password failed!");                                               // Line 203 Seperate
-	echo T_("we send a verification code to this number");                            // Line 209 Seperate
-	echo T_("you account is verified successfully");                                  // Line 210 Seperate
-	echo T_("your verification code is");                                             // Line 211 Seperate
-	echo T_("your password is changed successfully");                                 // Line 212 Seperate
-	echo T_("now we only support Iran!");                                             // Line 213 Seperate
-	echo T_("thanks for using our service");                                          // Line 214 Seperate
-	echo T_(" ");                                                                     // Line 216 Seperate
+	echo T_("Description");                                                           // Line 174 Seperate
+	echo T_("Title");                                                                 // Line 175 Seperate
+	echo T_("Date");                                                                  // Line 176 Seperate
+	echo T_("Size");                                                                  // Line 177 Seperate
+	echo T_("Enter your registered mobile");                                          // Line 183 Seperate
+	echo T_("Enter your password");                                                   // Line 184 Seperate
+	echo T_("Recovery");                                                              // Line 187 Seperate
+	echo T_("your recovery code is");                                                 // Line 188 Seperate
+	echo T_("recovery failed!");                                                      // Line 189 Seperate
+	echo T_("Mobile number is incorrect");                                            // Line 190 Seperate
+	echo T_("Verificate");                                                            // Line 193 Seperate
+	echo T_("Verification");                                                          // Line 194 Seperate
+	echo T_("verify successfully.");                                                  // Line 195 Seperate
+	echo T_("please Input your new password");                                        // Line 196 Seperate
+	echo T_("verify failed!");                                                        // Line 197 Seperate
+	echo T_("this data is incorrect");                                                // Line 198 Seperate
+	echo T_("Check your mobile and enter the code");                                  // Line 199 Seperate
+	echo T_("Current Password");                                                      // Line 203 Seperate
+	echo T_("New Password");                                                          // Line 204 Seperate
+	echo T_("Change it");                                                             // Line 205 Seperate
+	echo T_("change password successfully");                                          // Line 206 Seperate
+	echo T_("change password failed!");                                               // Line 207 Seperate
+	echo T_("we send a verification code to this number");                            // Line 213 Seperate
+	echo T_("you account is verified successfully");                                  // Line 214 Seperate
+	echo T_("your verification code is");                                             // Line 215 Seperate
+	echo T_("your password is changed successfully");                                 // Line 216 Seperate
+	echo T_("now we only support Iran!");                                             // Line 217 Seperate
+	echo T_("thanks for using our service");                                          // Line 218 Seperate
+	echo T_(" ");                                                                     // Line 220 Seperate
 
 	//-------------------------------------------------addon\includes\macro\forms.html
 	echo T_("Select");                                                                // Line 57
