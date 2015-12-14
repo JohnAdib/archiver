@@ -190,6 +190,7 @@ function ex_itemSelectedFocusedZero(_id)
     $('#send-to-app').fadeIn(300).removeClass('hide').css('display', 'inline-block');
     $('#download').fadeIn(300).removeClass('hide').css('display', 'inline-block');
 
+    $('#download a').attr('href', myAddr);
     $('#send-to-app #sent-addr').attr('value', myAddr);
     $('#send-to-app #sent-id')  .attr('value', _id);
   }
@@ -197,7 +198,7 @@ function ex_itemSelectedFocusedZero(_id)
   {
     $('#send-to-app').fadeOut(300, function() { $(this).addClass('hide') });
     $('#download').fadeOut(300, function() { $(this).addClass('hide') });
-
+    $('#download a').attr('href', null);
   }
 }
 
