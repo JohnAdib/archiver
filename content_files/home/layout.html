@@ -131,7 +131,7 @@
 
 <div class="row body auto">
  <aside class="span1 unselectable" id='page-sidebar'>
-  
+
   <nav class='sidebar-items' data-step='12' data-intro='{%trans "Use this menu for navigating to some part of system"%}'>
 
   <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="/" data-step='13' data-intro='{%trans "Navigate to home directory of your account"%}'><i class="fa fa-lg fa-home"></i></a>
@@ -144,7 +144,7 @@
 {%set introOption%}
 .setOptions({ 'nextLabel': '{%trans "Next →"%}', 'prevLabel': '{%trans "← Back"%}', 'skipLabel': '{%trans "Skip"%}', 'doneLabel': '{%trans "Done"%}', 'showStepNumbers': 'false', 'showProgress': 'true', 'tooltipPosition': '{{dir.right}}' })
 {%endset%}
-  <a class='hint--right' id='ifaq' data-hint='{%trans "Present system and all part of it to you"%}.' href="javascript:void(0);" onclick="javascript:introJs(){{introOption}}.start();"><i class="fa fa-lg fa-question"></i></a>
+  <a class='hint--right' id='ifaq' data-hint='{%trans "Present system and all part of it to you"%}.' data-options="{{introOption}}" href="#"><i class="fa fa-lg fa-question"></i></a>
 
   <a class='hint--right' id='ianalytics' data-hint='{%trans "Analytics"%}' href="#" data-step='16' data-intro='{%trans "Show your account analytics"%}'><i class="fa fa-lg fa-line-chart"></i></a>
 
@@ -166,7 +166,7 @@
  </div>
 
  <div class="span3 left-side" id='prop-box' data-id="" data-step='3' data-intro='{%trans "The properties of selected item appear in this place"%}. {%trans "You can add a new metadata or property to selected items"%}. {%trans "Also you can remove your properties"%}. {%trans "You allow to add tag to items manually and we collect tags and show you in tags page"%}.' data-position="{{dir.left}}">
- 
+
 
   <div>
    <ul id="prop-box-new" data-action="$/prop-new" data-method="post">

@@ -5,10 +5,9 @@ var CLIPBOARD;
 
 $(document).ready(function()
 {
-  if ($('body').hasClass('first-time'))
-  {
-    introJs().start();
-  }
+  // Run intro.js for first time login
+  if ($('body').hasClass('first-time')) { ex_intro(); }
+
   // call from menu or static menu
   $('#newfolder')     .click(function() { ex_newFolder();       });
   $('#more-selectall').click(function() { ex_selectAll();       });
@@ -19,6 +18,7 @@ $(document).ready(function()
   $('#paste')         .click(function() { ex_paste();           });
   $('#remove')        .click(function() { ex_delete(false);     });
   $('#prop-submit')   .click(function() { ex_addProp();         });
+  $('#ifaq')          .click(function() { ex_intro();           });
 
   // handle all keydown on keyboard
   $(document).keydown(function(e) { event_corridor.call(this, e, $('#explorer>ul li.focused')[0], e.which ); });
@@ -67,6 +67,15 @@ route('*', function()
   $('#form_uploader input[name="location"]').val(CURRENTPATH);
 });
 
+/**
+ * Run intro.js
+ */
+function ex_intro()
+{
+  var str = 'introJs()' + $('#ifaq').data('options').toString() + '.start()';
+  var fn = new Function(str);
+  fn();
+}
 
 /**
  * init tag and fill taglist
