@@ -14,13 +14,32 @@ class view extends \mvc\view
 
 		$this->data->location       = $this->url('path', -1);
 
-		// $this->global->tree      = json_encode($this->model()->tree());
-		// $this->data->datatable      = $this->model()->draw($this->url->path);
-		$this->data->datatable      = $this->model()->draw();
-		// var_dump(count($this->data->datatable) );
+		if(count($this->data->location)>1 && $this->data->location[0] == '$')
+		{
+			switch ($this->data->location[1])
+			{
+				case 'favorites':
+					$this->data->datatable = $this->model()->draw_favorites();
+					// var_dump($this->data->datatable);
+					break;
+
+				case 'tags':
+					$this->data->datatable = $this->model()->draw_tags();
+					break;
+
+				default:
+					$this->data->datatable = array();
+					break;
+			}
+			
+		}
+		else
+		{
+			$this->data->datatable = $this->model()->draw();
+		}
+
 		if(count($this->data->location) == 0 && count($this->data->datatable) == 0)
 		{
-			// var_dump(12333);
 			$this->data->bodyclass = $this->data->bodyclass. ' first-time';
 		}
 

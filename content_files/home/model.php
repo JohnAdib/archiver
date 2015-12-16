@@ -103,6 +103,12 @@ class model extends \mvc\model
 			$myQry = $myQry->and('attachment_addr', $myLocation);
 		}
 
+		// --------------------------------------------------------- attachment_fav
+		// add favorites to query string
+		if(in_array('fav', $_need))
+		{
+			$myQry = $myQry->and('attachment_fav', 1);
+		}
 
 		// --------------------------------------------------------- attachment_status
 		// add status to query string
@@ -158,57 +164,105 @@ class model extends \mvc\model
 			}
 		}
 
+		if(in_array('field', $_need))
+		{
+			$myQry = $myQry->field(
+						'id',
+						'file_id',
+						'#attachment_title as title',
+						'#attachment_desc as description',
+						'#attachment_type as type',
+						// '#attachment_addr as address',
+						'#attachment_name as name',
+						'#attachment_ext as ext',
+						'#attachment_size as size',
+						'#attachment_meta as meta',
+						'#attachment_parent as parent',
+						// '#attachment_order as order',
+						'#attachment_fav as fav',
+						'#attachment_status as status',
+						'#attachment_date as date'
+					);
+		}
+
 		return $myQry;
 	}
 
 
+	/**
+	 * fetch list of items from database and retun it
+	 * @return [array] datatable contain list of items
+	 */
 	public function draw()
 	{
-		$qry = $this->qryCreator(['location', 'status', 'order']);
-
-		$qry = $qry->field( 'id',
-							'file_id',
-							'#attachment_title as title',
-							'#attachment_desc as description',
-							'#attachment_type as type',
-							// '#attachment_addr as address',
-							'#attachment_name as name',
-							'#attachment_ext as ext',
-							'#attachment_size as size',
-							'#attachment_meta as meta',
-							'#attachment_parent as parent',
-							// '#attachment_order as order',
-							'#attachment_fav as fav',
-							'#attachment_status as status',
-							'#attachment_date as date'
-						);
-		$qry = $qry->select('id');
-
+		$qry       = $this->qryCreator(['location', 'status', 'order', 'field']);
+		$qry       = $qry->select('id');
 		$datatable = $qry->allassoc();
 
-		foreach ($datatable as $key =>$row)
-		{
-			$datatable[$key]['meta']   = json_decode($row['meta'], true);
-			$datatable[$key]['cid']    = utility\ShortURL::encode($row['id']);
-			$datatable[$key]['fav']    = $datatable[$key]['fav']? 'fa-star': 'fa-star-o';
-			$datatable[$key]['status'] = $datatable[$key]['status'] == 'normal'? '': $datatable[$key]['status'];
+		return $this->draw_fix($datatable);
+	}
 
-			if($row['type'] == 'folder')
-				$datatable[$key]['icon'] = 'folder';
-			elseif($row['type'] == 'file' && isset($datatable[$key]['meta']))
-				if(isset($datatable[$key]['meta']['type']) && $datatable[$key]['meta']['type']!=='file')
-					$datatable[$key]['icon'] = 'file-'.$datatable[$key]['meta']['type'].'-o';
-				else
-					$datatable[$key]['icon'] = 'file-o';
-			elseif($row['type'] == 'system')
-				$datatable[$key]['icon'] = 'hdd-o';
-			elseif($row['type'] == 'other')
-				$datatable[$key]['icon'] = 'file';
-			else
-				$datatable[$key]['icon'] = 'file-o';
+	/**
+	 * fetch list of favorite items from database and retun it
+	 * @return [array] datatable contain list of items
+	 */
+	public function draw_favorites()
+	{
+		$qry  = $this->qryCreator(['status', 'fav', 'field']);
+		$qry = $qry->select()->allassoc();
+
+		return $this->draw_fix($qry);
+	}
+
+	/**
+	 * fix datatable for showing it
+	 * @param  [type] $_dbtable [give datatable]
+	 * @return [type]           [return fixed datatable]
+	 */
+	public function draw_fix($_dbtable)
+	{
+		foreach ($_dbtable as $key =>$row)
+		{
+			if(isset($row['meta']) && $row['meta'])
+			{
+				$_dbtable[$key]['meta']   = json_decode($row['meta'], true);
+			}
+
+			$_dbtable[$key]['cid']    = utility\ShortURL::encode($row['id']);
+			$_dbtable[$key]['fav']    = $_dbtable[$key]['fav']? 'fa-star': 'fa-star-o';
+			$_dbtable[$key]['status'] = $_dbtable[$key]['status'] == 'normal'? '': $_dbtable[$key]['status'];
+
+			// set icon for items
+			switch ($row['type'])
+			{
+				case 'folder':
+					$_dbtable[$key]['icon'] = 'folder';
+					break;
+
+				case 'file':
+					$_dbtable[$key]['icon'] = 'file-o';				
+					
+					if(isset($_dbtable[$key]['meta']) && 
+						isset($_dbtable[$key]['meta']['type']) &&
+						$_dbtable[$key]['meta']['type'] !== 'file'
+					)
+						$_dbtable[$key]['icon'] = 'file-'.$_dbtable[$key]['meta']['type'].'-o';
+					break;
+
+				case 'system':
+					$_dbtable[$key]['icon'] = 'hdd-o';
+					break;
+
+				case 'other':
+					$_dbtable[$key]['icon'] = 'file';
+					break;
+
+				default:
+					$_dbtable[$key]['icon'] = 'file-o';					
+					break;
+			}
 		}
-		// var_dump($datatable);
-		return $datatable;
+		return $_dbtable;
 	}
 
 
@@ -245,7 +299,9 @@ class model extends \mvc\model
 		$folder_id     = ceil(($qry_count+1) / $FOLDER_SIZE);
 		$folder_name   = $folder_prefix . $folder_id;
 		$file_id       = $qry_count % $FOLDER_SIZE + 1;
+		$file_ext      = utility\Upload::$fileExt;
 		$url_full      = "$folder_name/$file_id-" . utility\Upload::$fileFullName;
+		$url_full      = "$folder_name/$file_id." . $file_ext;
 
 
 
@@ -279,13 +335,11 @@ class model extends \mvc\model
 		}
 
 		// 4. transfer file to project folder with new name
-		$file_ext   = utility\Upload::$fileExt;
-		$url_thumb  = null;
-		$url_file = null;
+		$url_thumb = null;
+		$url_file  = null;
 
-		$extlen     = strlen(utility\Upload::$fileExt);
-		$url_file   = substr($url_full, 0, -$extlen-1);
-		$url_file = $url_file.'.'.utility\Upload::$fileExt;
+		$extlen    = strlen(utility\Upload::$fileExt)+1;
+		$url_file  = substr($url_full, 0, -$extlen);
 
 		switch ($file_ext)
 		{
@@ -303,15 +357,16 @@ class model extends \mvc\model
 				break;
 
 		}
+		$url_file  = $url_file.'.'.utility\Upload::$fileExt;
 
 		// 5. get filemeta data
 		$file_meta = [
 						'mime'   => utility\Upload::$fileMime,
 						'type'   => utility\Upload::$fileType,
+						'file'   => $url_file,
 						'ext'    => $file_ext,
 						'url'    => $url_full,
 						'thumb'  => $url_thumb,
-						'file'   => $url_file,
 					 ];
 		$page_url  = $file_meta['type'].'/'.substr($url_full, strlen($folder_prefix));
 
