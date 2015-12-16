@@ -144,14 +144,47 @@ function ex_tagRemove(_self)
  */
 function reDraw(_path)
 {
-  if (_path == undefined) {
+  if (_path == undefined)
+  {
     _path = CURRENTPATH;
     setTimeout(function() { Navigate({ url: _path }) }, 300);
-  } else {
+  }
+  else
+  {
     Navigate({ url: _path });
   }
-  $('#prop-box-ul').empty();
+  ex_propHide();
 }
+
+/**
+ * Empty prop box with effect
+ */
+function ex_propHide()
+{
+  $('#prop-box').children().each( function() {
+      // $(this).fadeOut(100, function() { $(this).addClass('hide') });
+      $(this).fadeOut(100);
+    });
+}
+
+/**
+ * Empty prop box with effect
+ */
+function ex_propShow()
+{
+  $('#prop-box').children().each( function() {
+      // $(this).fadeIn(100, function() { $(this).addClass('hide') });
+      $(this).fadeIn(100);
+      $(this).removeClass('hide');
+    });
+  
+  // $('#prop-box > h3').removeClass('hide');
+  // $('#prop-box-tags').removeClass('hide');
+  // $('#prop-box-ul').fadeIn(300, function() { $(this).removeClass('hide') });
+  // $('#prop-box-ul').hide().fadeIn(100);
+  // $('#prop-box-ul').empty();
+}
+
 
 /**
  * set or unset favorites for items
@@ -387,18 +420,16 @@ function ex_showProp()
 
     if ($('#explorer>ul>li.selected').hasClass('up'))
     {
-      $('#prop-box > h3').addClass('hide');
-      $('#prop-box-ul').empty();
-      $('#prop-box-tags').addClass('hide');
+      ex_propHide();
       return;
     }
 
-    var myItem = $('#explorer>ul>li.selected').data('id');
-
-    $('#prop-box > h3').removeClass('hide');
+    // $('#prop-box > h3').removeClass('hide');
     // $('#prop-box').hide(300);
-    $('#prop-box-ul').empty();
+    // ex_propHide();
+    ex_propShow();
 
+    var myItem = $('#explorer>ul>li.selected').data('id');
 
     $('#prop-box-ul').ajaxify({
       ajax: {
@@ -456,8 +487,9 @@ function ex_showProp()
               ex_tagInit();
             }
           }
-          $('#prop-box-tags').removeClass('hide');
           $('#prop-box-ul').html(elements);
+          ex_propShow();
+          // $('#prop-box-tags').removeClass('hide');
           // $('#prop-box').show('fast');
         }
       }

@@ -16,8 +16,8 @@
 {%block body%}
   <header id="header" role="header">
    <ul id="header-nav">
-    <li id="languages" itemscope data-step='1' data-intro='{%trans "You should work in your language"%}!'>
-     <i class="fa fa-language fa-2x"></i>
+    <li id="languages" itemscope>
+     <i class="fa fa-language fa-2x" data-step='1' data-intro='{%trans "You should work in your language"%}!'></i>
      <nav class="vertical-menu">
 {%for key, value in site.langlist%}{%if key == global.lang%}
       <a href="{{url.base}}{{url.path}}?lang={{key}}" class="default not-active">{{value}}</a>
@@ -34,7 +34,7 @@
     </li>
 
     <li>
-     <a class="labeled icon button" id="upload" data-modal="upload_modal" data-step='31' data-intro='{%trans "Press this key and upload your file or drop your file in browser and we detect it"%}!'>
+     <a class="labeled icon button" id="upload" data-modal="modal_upload" data-step='31' data-intro='{%trans "Press this key and upload your file or drop your file in browser and we detect it"%}!'>
       <i class="icon fa fa-cloud-upload"></i>{%trans "Upload"%}
      </a>
     </li>
@@ -52,7 +52,7 @@
     </li>
 
     <li id="more">
-      <a class="labeled icon button" data-step='35' data-intro='{%trans "More funtions like Select all, Cut, Rename and ... is exist in this menu"%}'>
+      <a class="labeled icon button" data-step='35' data-intro='{%trans "More funtions like Select all, Cut, Rename and ... is exist in this menu"%}' data-position="bottom">
        <i class="icon fa fa-bars"></i>{%trans "More ..."%}
       </a>
       <nav class="vertical-menu">
@@ -65,13 +65,13 @@
     </li>
 
     <li id="download" class="hide">
-     <a class="labeled icon button" data-step='33' data-intro='{%trans "Download a file"%}' target="_blank">
+     <a class="labeled icon button" target="_blank">
       <i class="icon fa fa-download"></i>{%trans "Download"%}
      </a>
     </li>
 
     <li id="send-to-app" class="hide">
-      <a class="labeled icon button" data-step='36' data-intro='{%trans "If you have a permission, you can send your files to an app and after process, if you want we can save result in file metadata"%}'>
+      <a class="labeled icon button" data-step='36' data-intro='{%trans "If you have a permission, you can send your files to an app and after process, if you want we can save result in file metadata"%}' data-position="bottom">
        <i class="icon fa fa-paper-plane-o"></i>{%trans "Send to app"%}
       </a>
       <nav class="vertical-menu">
@@ -132,21 +132,21 @@
 <div class="row body auto">
  <aside class="span1 unselectable" id='page-sidebar'>
   
-  <nav class='sidebar-items' data-step='12' data-intro='{%trans "Use this menu for navigating to some part of system"%}' data-position="{{dir.right}}">
+  <nav class='sidebar-items' data-step='12' data-intro='{%trans "Use this menu for navigating to some part of system"%}'>
 
-  <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="/" data-step='13' data-intro='{%trans "Navigate to home directory of your account"%}' data-position="{{dir.right}}"><i class="fa fa-lg fa-home"></i></a>
+  <a class='hint--right' id='ihome' data-hint='{%trans "Home"%}' href="/" data-step='13' data-intro='{%trans "Navigate to home directory of your account"%}'><i class="fa fa-lg fa-home"></i></a>
 
-  <a class='hint--right' id='ifavorites' data-hint='{%trans "favorites"%}' href="/$/favorites" data-step='14' data-intro='{%trans "Show your favorites item"%}' data-position="{{dir.right}}"><i class="fa fa-lg fa-star-o"></i></a>
+  <a class='hint--right' id='ifavorites' data-hint='{%trans "favorites"%}' href="/$/favorites" data-step='14' data-intro='{%trans "Show your favorites item"%}'><i class="fa fa-lg fa-star-o"></i></a>
 
-  <a class='hint--right' id='itags' data-hint='{%trans "Tags"%}' href="/$/tags" data-step='15' data-intro='{%trans "Show your tags"%}' data-position="{{dir.right}}"><i class="fa fa-lg fa-tags"></i></a>
+  <a class='hint--right' id='itags' data-hint='{%trans "Tags"%}' href="/$/tags" data-step='15' data-intro='{%trans "Show your tags"%}'><i class="fa fa-lg fa-tags"></i></a>
 
   <a class='hint--right hide' id='icategories' data-hint='{%trans "Categories"%}' href="#"><i class="fa fa-lg fa-sitemap"></i></a>
 {%set introOption%}
-.setOptions({ 'nextLabel': '{%trans "Next →"%}', 'prevLabel': '{%trans "← Back"%}', 'skipLabel': '{%trans "Skip"%}', 'doneLabel': '{%trans "Done"%}', 'showStepNumbers': 'false', 'showProgress': 'true' })
+.setOptions({ 'nextLabel': '{%trans "Next →"%}', 'prevLabel': '{%trans "← Back"%}', 'skipLabel': '{%trans "Skip"%}', 'doneLabel': '{%trans "Done"%}', 'showStepNumbers': 'false', 'showProgress': 'true', 'tooltipPosition': '{{dir.right}}' })
 {%endset%}
   <a class='hint--right' id='ifaq' data-hint='{%trans "Present system and all part of it to you"%}.' href="javascript:void(0);" onclick="javascript:introJs(){{introOption}}.start();"><i class="fa fa-lg fa-question"></i></a>
 
-  <a class='hint--right' id='ianalytics' data-hint='{%trans "Analytics"%}' href="#" data-step='16' data-intro='{%trans "Show your account analytics"%}' data-position="{{dir.right}}"><i class="fa fa-lg fa-line-chart"></i></a>
+  <a class='hint--right' id='ianalytics' data-hint='{%trans "Analytics"%}' href="#" data-step='16' data-intro='{%trans "Show your account analytics"%}'><i class="fa fa-lg fa-line-chart"></i></a>
 
   <a class='hint--right hide' id='ioptions' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>
   </nav>
@@ -159,26 +159,30 @@
  </div>
 
  <div class="span3 left-side" id='prop-box' data-id="" data-step='3' data-intro='{%trans "The properties of selected item appear in this place"%}. {%trans "You can add a new metadata or property to selected items"%}. {%trans "Also you can remove your properties"%}. {%trans "You allow to add tag to items manually and we collect tags and show you in tags page"%}.' data-position="{{dir.left}}">
-  <ul id="prop-box-new" data-action="$/prop-new" data-method="post">
+ 
+
+  <div>
+   <ul id="prop-box-new" data-action="$/prop-new" data-method="post">
     <li class="row auto">
-      <input type="text" id="prop_add_name" name="prop_name" class='span5' autocomplete="off" placeholder='{%trans "Name"%}'/>
-      <input type="text" id="prop_add_value" name="prop_value" class='span6' autocomplete="off" placeholder='{%trans "Value"%}'/>
+     <input type="text" id="prop_add_name" name="prop_name" class='span5' autocomplete="off" placeholder='{%trans "Name"%}'/>
+     <input type="text" id="prop_add_value" name="prop_value" class='span6' autocomplete="off" placeholder='{%trans "Value"%}'/>
 
-      <button class='button positive span1' id="prop-submit" title='{%trans "Add it"%}'>
-        <i class="fa fa-plus"></i>
-      </button>
+     <button class='button positive span1' id="prop-submit" title='{%trans "Add it"%}'>
+       <i class="fa fa-plus"></i>
+     </button>
     </li>
-  </ul>
+   </ul>
 
-  <ul id='upload-notify'></ul>
-
-  <h3 class="hide">{%trans "Properties"%}
+   <h3>
+    <span>{%trans "Properties"%}<span>
     <span id="add-prop">
-      <i class="fa fa-plus"></i>
+     <i class="fa fa-plus"></i>
     </span>
-  </h3>
+   </h3>
+  </div>
+
 {%block properties%}{%endblock%}
-  <ul id="prop-box-tags" class="hide">
+  <ul id="prop-box-tags">
     <li class="row auto" id="tagInput" data-action="$/tagadd" data-method="post">
         <input type="text" id="tag-add" class='span8' autocomplete="off" placeholder='{%trans "Enter Tags"%}'/>
         <input type="button" id="tag-add-btn" class='span4 button' value={%trans "Add"%} tabindex="-1" />
@@ -189,12 +193,14 @@
       <span class="span8" id="tag-list" data-action="$/tagremove" data-method="post">123 </span>
     </li>
   </ul>
+  <ul id='upload-notify'></ul>
+
  </div>
 
 </div>
 
 
- <div class='modal' id="upload_modal">
+ <div class='modal' id="modal_upload">
   <div class='modal-dialog'>
    <div class='modal-body'>
     <form method="post" id="form_uploader" action="/$/upload" enctype="multipart/form-data" class="unselectable">
@@ -207,6 +213,16 @@
     </form>
    </div>
    <div class='modal-footer buttons'>
+   </div>
+  </div>
+ </div>
+
+ <div class='modal' id="modal_result">
+  <div class='modal-dialog'>
+   <div class='modal-body'>
+   </div>
+   <div class='modal-footer buttons'>
+     <a class="button negative" data-cancel>{% trans"Cancel" %}</a>
    </div>
   </div>
  </div>
