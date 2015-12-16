@@ -176,7 +176,10 @@ function ex_propHide()
 {
   $('#prop-box').children().each( function() {
       // $(this).fadeOut(100, function() { $(this).addClass('hide') });
-      $(this).fadeOut(100);
+      if(! $(this).is('#upload-notify'))
+      {
+        $(this).fadeOut(100);
+      }
     });
 }
 
