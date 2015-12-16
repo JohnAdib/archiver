@@ -7,7 +7,7 @@ function transtext()
 	echo T_("Powered by Saloos");                                                     // Line 11
 
 	//--------------------------------------------------content_files\home\layout.html
-	echo T_("You should work in your language");                                      // Line 20
+	echo T_("You can use in your own language");                                      // Line 20
 	echo T_("Search in your files, folders, properties and tags");                    // Line 31
 	echo T_("Search");                                                                // Line 32
 	echo T_("Press this key and upload your file or drop your file in browser and we detect it");// Line 37
@@ -39,7 +39,7 @@ function transtext()
 	echo T_("Navigate to home directory of your account");                            // Line 137
 	echo T_("favorites");                                                             // Line 139
 	echo T_("Show your favorites item");                                              // Line 139
-	echo T_("Tags");                                                                  // Line 190
+	echo T_("Tags");                                                                  // Line 192
 	echo T_("Show your tags");                                                        // Line 141
 	echo T_("Categories");                                                            // Line 143
 	echo T_("Next →");                                                              // Line 145
@@ -63,14 +63,14 @@ function transtext()
 	echo T_("Name");                                                                  // Line 167
 	echo T_("Value");                                                                 // Line 168
 	echo T_("Add it");                                                                // Line 170
-	echo T_("Properties");                                                            // Line 176
-	echo T_("Enter Tags");                                                            // Line 185
-	echo T_("Add");                                                                   // Line 186
-	echo T_("Enter Tags here");                                                       // Line 187
-	echo T_("Drag & Drop Files Here");                                                // Line 205
-	echo T_("or");                                                                    // Line 205
-	echo T_("Choose File");                                                           // Line 205
-	echo T_("Maximum size allowed");                                                  // Line 208
+	echo T_("Properties");                                                            // Line 177
+	echo T_("Enter Tags");                                                            // Line 187
+	echo T_("Add");                                                                   // Line 188
+	echo T_("Enter Tags here");                                                       // Line 189
+	echo T_("Drag & Drop Files Here");                                                // Line 207
+	echo T_("or");                                                                    // Line 207
+	echo T_("Choose File");                                                           // Line 207
+	echo T_("Maximum size allowed");                                                  // Line 210
 
 }
 ?>
