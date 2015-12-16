@@ -5,6 +5,10 @@ var CLIPBOARD;
 
 $(document).ready(function()
 {
+  if ($('body').hasClass('first-time'))
+  {
+    introJs().start();
+  }
   // call from menu or static menu
   $('#newfolder')     .click(function() { ex_newFolder();       });
   $('#more-selectall').click(function() { ex_selectAll();       });
@@ -177,7 +181,7 @@ function ex_propShow()
       $(this).fadeIn(100);
       $(this).removeClass('hide');
     });
-  
+
   // $('#prop-box > h3').removeClass('hide');
   // $('#prop-box-tags').removeClass('hide');
   // $('#prop-box-ul').fadeIn(300, function() { $(this).removeClass('hide') });
