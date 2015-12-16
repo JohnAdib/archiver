@@ -465,6 +465,14 @@ input.upload {
 /* intro js rtl style*/
 .rtl .introjs-tooltipbuttons{text-align:left}.rtl .introjs-skipbutton{margin-left:5px;float:right;}.rtl .introjs-tooltip{direction:rtl}.rtl .introjs-prevbutton{float:left;}.rtl .introjs-nextbutton{float:left;}.rtl .introjs-tooltiptext{line-height: 1.9em;}.rtl .introjs-arrow.top{left:20%;}
 
+.breadcrumb {width: 100%;padding: 6px 15px;display:inline-block;}
+.breadcrumb a{font-size: 1em;line-height:12px;color: #99a0aa;float:left;}
+.rtl .breadcrumb a{float:right;}
+.breadcrumb a:hover {color: #656d78;}
+.breadcrumb a:last-child {color: #656d78;}
+.breadcrumb > a + a:before {font-family: "FontAwesome";content: "\f105";color: #99a0aa;padding: 0px 8px;float:left;}
+.rtl .breadcrumb > a + a:before {content: "\f104";float:right;}
+
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .span1 {
     display: none;
