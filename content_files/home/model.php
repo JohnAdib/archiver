@@ -324,7 +324,7 @@ class model extends \mvc\model
 		$folder_name   = $folder_prefix . $folder_id;
 		$file_id       = $qry_count % $FOLDER_SIZE + 1;
 		$file_ext      = utility\Upload::$fileExt;
-		$url_full      = "$folder_name/$file_id-" . utility\Upload::$fileFullName;
+		// $url_full      = "$folder_name/$file_id-" . utility\Upload::$fileFullName;
 		$url_full      = "$folder_name/$file_id." . $file_ext;
 
 
@@ -404,7 +404,7 @@ class model extends \mvc\model
 			// 6. add uploaded file to files table in db
 			$qry = $this->sql();
 			$qry = $qry->table('files')
-						->set('id',               $qry_count+1)
+						->set('id',               $qry_count + 1)
 						->set('file_server',      $server_id)
 						->set('file_folder',      $folder_id)
 						->set('file_code',        utility\Upload::$fileMd5)

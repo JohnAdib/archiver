@@ -76,23 +76,27 @@ route('*', function()
 
           // Add the HTML to the UL element
           data.context = tpl.appendTo(ul);
+          setTimeout(function() { tpl.fadeOut(500, function() { $(this).remove(); }); }, 5000);
 
         }
+
         else if(response.status == 'ok')
         {
           // Append edit url
           // tpl.find('span').append(response.edit);
           $(tpl).addClass('hint--left hint--success').attr('data-hint', response.title);
 
-
           // Add the HTML to the UL element
           data.context = tpl.appendTo(ul);
-          reDraw();
 
+          // fadeOut notify and after 2 milisecond of success upload redraw and remove element
+          setTimeout(function() {
+            tpl.fadeOut(300, function() { $(this).remove(); }); 
+            reDraw();
+          }, 2000);
         }
 
       });
-
     },
 
     progress: function(e, data){
