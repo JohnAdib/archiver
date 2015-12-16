@@ -25,13 +25,14 @@ class view extends \mvc\view
 
 				case 'tags':
 					$this->data->datatable = $this->model()->draw_tags();
+					// var_dump($this->data->datatable);
+					// $this->data->datatable = null;
 					break;
 
 				default:
 					$this->data->datatable = array();
 					break;
 			}
-			
 		}
 		else
 		{

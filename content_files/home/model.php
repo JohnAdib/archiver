@@ -202,6 +202,7 @@ class model extends \mvc\model
 		return $this->draw_fix($datatable);
 	}
 
+
 	/**
 	 * fetch list of favorite items from database and retun it
 	 * @return [array] datatable contain list of items
@@ -213,6 +214,29 @@ class model extends \mvc\model
 
 		return $this->draw_fix($qry);
 	}
+
+
+	/**
+	 * fetch list of favorite items from database and retun it
+	 * @return [array] datatable contain list of items
+	 */
+	public function draw_tags()
+	{
+		$qry = $this->sql()->table('terms')
+			->where('term_type', 'tag')
+			->field('term_title', 'id');
+
+		$qry->joinTermusages()->on('term_id', '#terms.id')
+			->and('termusage_foreign', '#"attachments"');
+			// ->and('termusage_id', $myId);
+
+		// $qry  = $this->qryCreator(['status', 'fav', 'field']);
+		$qry = $qry->select()->allassoc();
+		return $qry;
+
+		// return $this->draw_fix($qry);
+	}
+
 
 	/**
 	 * fix datatable for showing it
