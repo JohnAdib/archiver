@@ -19,7 +19,7 @@ class view extends \mvc\view
 		$this->data->datatable      = $this->model()->draw();
 		if($this->data->location == '' && count($this->data->datatable) == 0)
 		{
-			$this->data->intro = true;
+			$this->data->bodyclass = $this->data->bodyclass. ' first-time';
 		}
 		
 		$this->data->site['title']  = T_("Archiver");
