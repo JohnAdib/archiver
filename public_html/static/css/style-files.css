@@ -23,12 +23,14 @@ body{height: 100%;overflow:hidden;}
 #header #send-to-app:hover .vertical-menu, #header #send-to-app:focus .vertical-menu, #header #send-to-app:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 #header #languages:hover .vertical-menu, #header #languages:focus .vertical-menu, #header #languages:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 
+#header #more .vertical-menu a i{width:35px;} 
 #header .button{background-color:#3F5162}
 #header .button:hover{color: #fff;}
 #header .button:hover .icon {color: #ffffff; opacity: 1;}
 #header #newfolder:hover i{color:#ffe78f;}
 #header #upload:hover i{color:#5FC5DA;}
 #header #remove:hover i{color:#F55030;}
+#header #more-remove:hover i{color:#F55030;}
 
 #header #languages .vertical-menu{margin-left:-15px;}
 #header #languages{text-align:center;width:6.382978vw;}
@@ -44,7 +46,7 @@ body{height: 100%;overflow:hidden;}
 /*.vertical-menu .default{background-color: #33414e}*/
 .vertical-menu >.default:after{content:"\f00c";display:inline-block;color:#5cb85c;font: normal normal normal 14px/1 FontAwesome;float:right;}
 .rtl .vertical-menu >.default:after{float: left;}
-.vertical-menu a{display:block;color:#ddd;padding:5px 10px;font-size:1.5em;border-top:1px solid #33414E;;min-width:150px}
+.vertical-menu a{display:block;color:#ddd;padding:5px 10px;font-size:1.5em;border-top:1px solid #33414E;;min-width:150px;cursor:pointer;}
 .vertical-menu a:hover{color:#fff;background:rgba(0,0,0,0.2)}
 .vertical-menu .fa{padding:0 10px;}
 .vertical-menu input{display:none;}
@@ -77,6 +79,7 @@ body{height: 100%;overflow:hidden;}
 /* Prop box*/
 #prop-box{height: 100%; background-color: #eee;font-size:1.2em;overflow-y:auto }
 #prop-box h3{padding:2% 5%;border-bottom: 1px solid #ccc;}
+#prop-box >div{display:none}
 #prop-box li {padding:2% 5%;}
 #prop-box li div, #prop-box-ul li img {display: block; margin:0 auto;}
 #prop-box i{vertical-align:middle;}
@@ -97,7 +100,7 @@ body{height: 100%;overflow:hidden;}
 
 
 /* Explorer*/
-#explorer{height:100%;}
+#explorer{height:90%;min-height:50%; height:calc(100% - 50px);}
 #explorer>ul{margin: 2% 0; overflow-y:auto;height:100%;clear:both}
 #explorer>ul>li{padding:0.5% 1%; border: 1px solid transparent;}
 #explorer>ul>li.selected{background-color:#CCE8FF; border: 1px dotted #99D1FF}

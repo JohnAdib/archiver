@@ -45,12 +45,6 @@
        </a>
     </li>
 
-    <li>
-     <a class="labeled icon button" id="remove" data-action="/$/remove" data-method="post" data-step='34' data-intro='{%trans "Remove an items, first we put file in trash and if you want to remove it again, we delete it"%}! {%trans "for delete items directly, you can hold shift and then press this key or DEL in your keyboard"%}.'>
-      <i class="icon fa fa-times"></i>{%trans "Delete"%}
-     </a>
-    </li>
-
     <li id="more">
       <a class="labeled icon button" data-step='35' data-intro='{%trans "More funtions like Select all, Cut, Rename and ... is exist in this menu"%}' data-position="bottom">
        <i class="icon fa fa-bars"></i>{%trans "More ..."%}
@@ -60,6 +54,7 @@
        <a id="more-copy" href="#" class="hide"><i class="fa fa-files-o"></i> {%trans "Copy"%}</a>
        <a id="more-move" href="#"><i class="fa fa-scissors"></i> {%trans "Cut"%}</a>
        <a id="more-rename" href="#"><i class="fa fa-pencil-square-o"></i> {%trans "Rename"%}</a>
+       <a id="more-remove" data-action="/$/remove" data-method="post"><i class="icon fa fa-times"></i> {%trans "Delete"%}</a>
        <a id="more-show" href="#"><i class="fa fa-trash-o"></i>{%trans "Don't show deleted items"%}</a>
       </nav>
     </li>
@@ -122,7 +117,7 @@
      </span>
 
     <nav class="vertical-menu">
-     <a id="profile-me" href="{{url.base}}profile"><i class="fa fa-user"></i> {%trans "My Profile"%}</a>
+     <a id="profile-me" href="/$/profile"><i class="fa fa-user"></i> {%trans "My Profile"%}</a>
      <a id="profile-changepass" href="{{url.protocol}}://account.{{url.raw}}/changepass?cp=1&from=cp" target="_blank"><i class="fa fa-exchange"></i> {%trans "Change Password"%}</a>
      <a id="profile-logout" href="http://{{url.raw}}/logout"><i class="fa fa-sign-out"></i> {%trans "Logout"%}</a>
     </nav>
@@ -144,7 +139,7 @@
 {%set introOption%}
 .setOptions({ 'nextLabel': '{%trans "Next →"%}', 'prevLabel': '{%trans "← Back"%}', 'skipLabel': '{%trans "Skip"%}', 'doneLabel': '{%trans "Done"%}', 'showStepNumbers': 'false', 'showProgress': 'true', 'tooltipPosition': '{{dir.right}}' })
 {%endset%}
-  <a class='hint--right' id='ifaq' data-hint='{%trans "Present system and all part of it to you"%}.' data-options="{{introOption}}" href="#"><i class="fa fa-lg fa-question"></i></a>
+  <a class='hint--right' id='ifaq' data-hint='{%trans "Present system and all part of it to you"%}' data-options="{{introOption}}" href="#"><i class="fa fa-lg fa-question"></i></a>
 
   <a class='hint--right' id='ianalytics' data-hint='{%trans "Analytics"%}' href="#" data-step='16' data-intro='{%trans "Show your account analytics"%}'><i class="fa fa-lg fa-line-chart"></i></a>
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ermile\n"
-"POT-Creation-Date: 2015-12-16 15:05+0330\n"
-"PO-Revision-Date: 2015-12-16 15:06+0330\n"
+"POT-Creation-Date: 2015-12-19 17:20+0330\n"
+"PO-Revision-Date: 2015-12-19 17:21+0330\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -25,86 +25,82 @@ msgstr "شما ابتدا باید وارد سیستم شوید!"
 msgid "Fail on get current location"
 msgstr "خطا در دستیابی به آدرس فعلی"
 
-#: ../../../.././content_files/home/model.php:273
+#: ../../../.././content_files/home/model.php:353
 #: ../../../.././includes/languages/trans_addon.php:291
 msgid "Fail on tranfering file"
 msgstr "خطا در انتقال فایل"
 
-#: ../../../.././content_files/home/model.php:397
-#: ../../../.././content_files/home/model.php:453
-#: ../../../.././content_files/home/model.php:500
-#: ../../../.././content_files/home/model.php:549
-#: ../../../.././content_files/home/model.php:583
-#: ../../../.././content_files/home/model.php:612
+#: ../../../.././content_files/home/model.php:476
+#: ../../../.././content_files/home/model.php:532
+#: ../../../.././content_files/home/model.php:579
+#: ../../../.././content_files/home/model.php:628
+#: ../../../.././content_files/home/model.php:662
+#: ../../../.././content_files/home/model.php:691
 #: ../../../.././includes/languages/trans_addon.php:292
 msgid "Error"
 msgstr "خطا"
 
-#: ../../../.././content_files/home/model.php:445
+#: ../../../.././content_files/home/model.php:524
 msgid "New folder created Successfully"
 msgstr "پوشه جدید با موفقیت ساخته شد"
 
-#: ../../../.././content_files/home/model.php:451
+#: ../../../.././content_files/home/model.php:530
 msgid "Error on createding new folder!"
 msgstr "خطا در ساخت پوشه جدید!"
 
-#: ../../../.././content_files/home/model.php:491
-#: ../../../.././content_files/home/model.php:712
+#: ../../../.././content_files/home/model.php:570
+#: ../../../.././content_files/home/model.php:791
 #: ../../../.././includes/languages/trans_addon.php:190
 msgid "Delete Successfully"
 msgstr "حذف با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:498
-#: ../../../.././content_files/home/model.php:547
-#: ../../../.././content_files/home/model.php:581
-#: ../../../.././content_files/home/model.php:610
+#: ../../../.././content_files/home/model.php:577
+#: ../../../.././content_files/home/model.php:626
+#: ../../../.././content_files/home/model.php:660
+#: ../../../.././content_files/home/model.php:689
 msgid "Error: "
 msgstr "خطا: "
 
-#: ../../../.././content_files/home/model.php:540
+#: ../../../.././content_files/home/model.php:619
 #: ../../../.././includes/languages/trans_addon.php:244
 msgid "Successfully"
 msgstr "با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:550
+#: ../../../.././content_files/home/model.php:629
 msgid "Move Unsuccessful!"
 msgstr "انتقال ناموفق بود!"
 
-#: ../../../.././content_files/home/model.php:574
+#: ../../../.././content_files/home/model.php:653
 msgid "Rename Successfully"
 msgstr "تغییرنام با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:603
-msgid "Set Favorites Successfully"
-msgstr "تغییر وضعیت علاقمندی با موفقیت انجام شد"
-
-#: ../../../.././content_files/home/model.php:680
+#: ../../../.././content_files/home/model.php:759
 #: ../../../.././includes/languages/trans_addon.php:186
 msgid "Insert Successfully"
 msgstr "افزودن با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:686
-#: ../../../.././content_files/home/model.php:718
+#: ../../../.././content_files/home/model.php:765
+#: ../../../.././content_files/home/model.php:797
 #: ../../../.././includes/languages/trans_addon.php:192
 msgid "Transaction error"
 msgstr "خطای در تراکنش"
 
-#: ../../../.././content_files/home/view.php:25
+#: ../../../.././content_files/home/view.php:47
 #: ../../../.././includes/mvc/view.php:10
 msgid "Archiver"
 msgstr "سامانه آرشیو"
 
-#: ../../../.././content_files/home/view.php:26
+#: ../../../.././content_files/home/view.php:48
 #: ../../../.././includes/mvc/view.php:11
 msgid "Archiver is new"
 msgstr "سامانه آرشیو جدید است"
 
-#: ../../../.././content_files/home/view.php:27
+#: ../../../.././content_files/home/view.php:49
 #: ../../../.././includes/mvc/view.php:12
 msgid "Ermile is our company"
 msgstr "ارمایل نام شرکت ماست"
 
-#: ../../../.././content_files/home/view.php:31
+#: ../../../.././content_files/home/view.php:53
 #: ../../../.././includes/mvc/view.php:15
 msgid "Archiver is another archive system!"
 msgstr "سامانه آرشیو یک سرویس آرشیو دیگر است!"
@@ -430,7 +426,7 @@ msgstr "داده"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:102
 msgid "notifications"
-msgstr "آگاه سازی ها"
+msgstr "آگاه سازی‌ها"
 
 #: ../../../.././includes/cls/database/archiver/translation.php:103
 msgid "notification"
@@ -1996,7 +1992,7 @@ msgstr "انتقال به صفحه نخست اکانت"
 
 #: ../../../.././includes/languages/trans_twig.php:40
 msgid "favorites"
-msgstr "علاقمندی ها"
+msgstr "علاقمندی‌ها"
 
 #: ../../../.././includes/languages/trans_twig.php:41
 msgid "Show your favorites item"
@@ -2089,6 +2085,9 @@ msgstr "افزودن"
 #: ../../../.././includes/languages/trans_twig.php:66
 msgid "Properties"
 msgstr "خصیصه‌ها"
+
+#~ msgid "Set Favorites Successfully"
+#~ msgstr "تغییر وضعیت علاقمندی با موفقیت انجام شد"
 
 #~ msgid "You can work in your own language"
 #~ msgstr "شما می"

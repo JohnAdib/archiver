@@ -542,7 +542,8 @@ class model extends \mvc\model
 	 */
 	public function post_remove()
 	{
-		$qry = $this->qryCreator(['id', 'location']);
+		$qry   = $this->qryCreator(['id', 'location']);
+		$shift = utility::post('shift');
 
 		if($shift)
 		{
@@ -666,7 +667,7 @@ class model extends \mvc\model
 
 	public function post_favorites()
 	{
-		$qry         = $this->qryCreator(['id', 'location', 'status']);
+		$qry         = $this->qryCreator(['id', 'status']);
 		$myFavStatus = '#'.utility::post('status');
 		
 		$qry         = $qry->set('attachment_fav', $myFavStatus);
@@ -801,7 +802,7 @@ class model extends \mvc\model
 
 	public function post_prop()
 	{
-		$qry   = $this->qryCreator(['id', 'location', 'status', 'order']);
+		$qry   = $this->qryCreator(['id', 'status', 'order']);
 
 		$qry   = $qry->field('id',
 							'#attachment_title as title',
