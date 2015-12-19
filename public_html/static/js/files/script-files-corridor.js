@@ -15,7 +15,7 @@ function event_corridor(e, _self, _key)
   var shift  = e.shiftKey ? 'shift' : '';
   var alt    = e.altKey   ? 'alt'   : '';
   var mytxt  = String(_key) + ctrl + alt + shift;
-  // console.log(mytxt);
+  console.log(mytxt);
 
   switch(mytxt)
   {
@@ -329,8 +329,16 @@ function event_corridor(e, _self, _key)
       ex_clipboard('copy');
       break;
 
-    case '78ctrl':          // n + ctrl
-      ex_newFolder();
+    // case '78ctrl':          // n + ctrl
+      // ex_newFolder();
+      // break;
+
+    case '78shift':
+      if ( !$('body').hasClass('editing') )
+      {
+        e.preventDefault();
+        ex_newFolder();       // n + shift
+      }
       break;
 
     case '86ctrl':          // v + ctrl

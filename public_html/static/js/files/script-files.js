@@ -161,7 +161,8 @@ function reDraw(_path)
   if (_path == undefined)
   {
     _path = CURRENTPATH;
-    setTimeout(function() { Navigate({ url: _path }) }, 300);
+    // setTimeout(function() { Navigate({ url: _path }) }, 300);
+    Navigate({ url: _path });
   }
   else
   {

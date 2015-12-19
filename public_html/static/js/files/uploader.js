@@ -93,7 +93,7 @@ route('*', function()
           setTimeout(function() {
             tpl.fadeOut(300, function() { $(this).remove(); });
             reDraw();
-          }, 300);
+          }, 500);
         }
 
       });
