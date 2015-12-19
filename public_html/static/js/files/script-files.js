@@ -395,14 +395,21 @@ function ex_paste()
  */
 function ex_dblClickItems(_self)
 {
-  if($(_self).hasClass('folder') || $(_self).hasClass('up'))
+  if($(_self).hasClass('folder'))
   {
-    var selfCut = $(_self).attr('data-id');
-    var index   = CLIPBOARD.indexOf(selfCut);
-    if (index > -1)
+    if($('body').hasClass('cut'))
     {
-      CLIPBOARD.splice(index, 1);
+      var index   = CLIPBOARD.indexOf($(_self).attr('data-id'));
+      if (index > -1)
+      {
+        CLIPBOARD.splice(index, 1);
+      }
     }
+
+    ex_navigate(_self);
+  }
+  else if($(_self).hasClass('up'))
+  {
     ex_navigate(_self);
   }
   else
