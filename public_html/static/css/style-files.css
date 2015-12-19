@@ -97,8 +97,8 @@ body{height: 100%;overflow:hidden;}
 
 
 /* Explorer*/
-#explorer{height:100%;overflow-y:auto;}
-#explorer>ul{margin: 2% 0;}
+#explorer{height:100%;}
+#explorer>ul{margin: 2% 0; overflow-y:auto;height:100%;}
 #explorer>ul>li{padding:0.5% 1%; border: 1px solid transparent;}
 #explorer>ul>li.selected{background-color:#CCE8FF; border: 1px dotted #99D1FF}
 #explorer>ul>li.focused{border: 1px dotted #99D1FF}
@@ -132,29 +132,6 @@ body{height: 100%;overflow:hidden;}
 
 
 body.dragover {background:#eee}
-
-/*#header{background: url('../images/pattern.png') repeat;height: 60px;width: 100%;position: relative;padding:0;overflow: hiddens}
-#header > div{float:left;margin-right:30px;}
-#header .logo img{width:40px;margin:5px;}
-#header .logo span{line-height:60px;font-size:2em;}
-
-#header .controls a{margin:0 1px;}
-#header .controls .bottom{position:absolute;bottom: 3px;}
-#header .controls .button{display:inline-block;}
-#header .controls .fa-upload{color: #d04332;}
-#header .controls .fa-folder{color: #d2b43e;}
-#header #breadcrumb-wrapper{padding:5px 0;}
-#header .right{float:right;margin-right:1em}
-.labeled.icon.button > .icon {font-size: 1.2em}
-#header .link{font-size: 2em;color:#7c7c7c;}
-#header .link:hover{color:#999;}
-
-.rtl #header > div{float:right;}
-.rtl #header .logo img{float:left;}
-.rtl #header .logo span{margin-right:15px;}
-.rtl #files {direction: ltr;}
-.rtl #tree-wrapper {direction: ltr;}*/
-
 input.upload {
   position: absolute;
   top: 0;
@@ -189,19 +166,6 @@ input.upload {
 
 .files-box{padding: 0;}
 .files-box .span10{box-sizing: border-box;border-top: 1px solid #B64436;border-left: 1px solid #333;}
-
-
-/*-------------------------
-	Breadcrumps
--------------------------*/
-.fbreadcrumb{margin:0;padding:0;float:left}
-.fbreadcrumb,.fbreadcrumb a{color:#7c7c7c;background:none;font-size:13px}
-.fbreadcrumb a:hover,.fbreadcrumb li:last-child a{color:#56ba87}
-.fbreadcrumb li{float:left;display:inline;margin-left:5px}
-.fbreadcrumb .fa{font-size:10px;margin-right:5px}
-
-.rtl .fbreadcrumb li{float:right;margin-right:5px;margin-left:0}
-.rtl .fbreadcrumb .fa{margin-left:5px;margin-right:0}
 
 
 /*-------------------------
@@ -465,13 +429,13 @@ input.upload {
 /* intro js rtl style*/
 .rtl .introjs-tooltipbuttons{text-align:left}.rtl .introjs-skipbutton{margin-left:5px;float:right;}.rtl .introjs-tooltip{direction:rtl}.rtl .introjs-prevbutton{float:left;}.rtl .introjs-nextbutton{float:left;}.rtl .introjs-tooltiptext{line-height: 1.9em;}.rtl .introjs-arrow.top{left:20%;}
 
-.breadcrumb {width: 100%;padding: 6px 15px;display:inline-block;}
+.breadcrumb {width: 100%;padding: 10px 15px 0;display:inline-block;}
 .breadcrumb a{font-size: 1em;line-height:12px;color: #99a0aa;float:left;}
 .rtl .breadcrumb a{float:right;}
 .breadcrumb a:hover {color: #656d78;}
 .breadcrumb a:last-child {color: #656d78;}
-.breadcrumb > a + a:before {font-family: "FontAwesome";content: "\f105";color: #99a0aa;padding: 0px 8px;float:left;}
-.rtl .breadcrumb > a + a:before {content: "\f104";float:right;}
+.breadcrumb a + a:before {font-family: "FontAwesome";content: "\f105";color: #99a0aa;padding: 0px 8px;float:left;}
+.rtl .breadcrumb a + a:before {content: "\f104";float:right;}
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .span1 {

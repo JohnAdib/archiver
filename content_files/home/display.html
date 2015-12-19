@@ -27,6 +27,12 @@
 
 
 
+{%block breadcrumb%}
+{{breadcrumb() | raw}}
+{%endblock%}
+
+
+
 {%block properties%}
   <ul id="prop-box-ul" data-action="$/prop" data-method="post"></ul>
 {%endblock%}
