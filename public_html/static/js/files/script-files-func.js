@@ -109,6 +109,14 @@ function ex_checkBody()
   {
 
   }
+  if ( $('body').hasClass('prop-edit') )
+  {
+    ex_propAdd();
+  }
+  if ( $('body').hasClass('tag-edit') )
+  {
+    ex_addTag($('#addTag'));
+  }
 }
 
 
@@ -127,6 +135,15 @@ function ex_escape()
   {
     ex_inputSubmit(false);
   }
+  else if ( $('body').hasClass('prop-edit') )
+  {
+    ex_propAdd();
+  }
+  else if ( $('body').hasClass('tag-edit') )
+  {
+    ex_addTag($('#addTag'));
+  }
+
 }
 
 
@@ -135,7 +152,7 @@ function ex_escape()
  */
 function ex_selectAll()
 {
-  if($('body').hasClass('editing'))
+  if ($('body').hasClass('editing') || $('body').hasClass('prop-edit'))
     return;
 
   if ($('#explorer>ul').hasClass('select-all'))

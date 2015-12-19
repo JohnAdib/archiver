@@ -38,12 +38,28 @@ $(document).ready(function()
 
   ex_tagInit();
 
-  $('#add-prop').click(function(event) {
-    $(this).children('.fa').toggleClass('fa-plus fa-times');
-    $('#prop-box-new').slideToggle(300);
+  $('#add-prop').click(function() {
+    ex_propAdd();
   });
 
 });
+
+
+/**
+ * Toggle add property form
+ */
+function ex_propAdd()
+{
+  if ( $('body').hasClass('tag-edit') )
+  {
+    ex_addTag($('#addTag'));
+  }
+  $('body').toggleClass('prop-edit');
+  $('#add-prop').children('.fa').toggleClass('fa-plus fa-times');
+  $('#prop-box-new').slideToggle(300, function() {
+    $('#prop_add_name').select();
+  });
+}
 
 
 
@@ -227,10 +243,12 @@ function ex_favorites(_self)
  * click on add tag
  * @return {[type]} [description]
  */
-function ex_addTag(_self)
+function ex_addTag()
 {
   $('#tagInput').slideToggle(300);
-  $(_self).toggleClass('fa-plus fa-times');
+  $('#addTag').toggleClass('fa-plus fa-times');
+  $('body').toggleClass('tag-edit');
+  $('#tag-add').focus().select();
   // $(this).parents('li.row.auto').children('span.span8').append('<input type="text">')
 }
 

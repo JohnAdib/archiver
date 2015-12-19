@@ -15,7 +15,7 @@ function event_corridor(e, _self, _key)
   var shift  = e.shiftKey ? 'shift' : '';
   var alt    = e.altKey   ? 'alt'   : '';
   var mytxt  = String(_key) + ctrl + alt + shift;
-  console.log(mytxt);
+  // console.log(mytxt);
 
   switch(mytxt)
   {
@@ -355,8 +355,26 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '84shift':           // t + shift
+    case '80shift':
+      if ( !$('body').hasClass('prop-edit') )
+      {
+        e.preventDefault();
+        ex_propAdd();           // p + shift
+      }
 
+      break;
+
+    case '84shift':           // t + shift
+      if ( !$('body').hasClass('tag-edit') )
+      {
+        e.preventDefault();
+        ex_addTag($('#addTag'));
+      }
+      break;
+
+    case '84ctrl':          // w + ctrl     close current tab
+      console.log("you can't close this tab")
+      e.preventDefault();
       break;
 
     case '85shift':
@@ -366,11 +384,6 @@ function event_corridor(e, _self, _key)
     case '86shift':         // v + shift
     case '86ctrl':          // v + ctrl
       ex_paste();
-      break;
-
-    case '84ctrl':          // w + ctrl     close current tab
-      console.log("you can't close this tab")
-      e.preventDefault();
       break;
 
     case '88shift':         // x + shift
