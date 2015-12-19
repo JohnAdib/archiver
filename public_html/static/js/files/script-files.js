@@ -399,7 +399,8 @@ function ex_dblClickItems(_self)
   }
   else
   {
-    console.log('click on file!');
+    document.getElementById("download-link").click();
+    // console.log('click on file!');
   }
 }
 

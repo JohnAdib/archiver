@@ -679,7 +679,7 @@ class model extends \mvc\model
 		// if query run without error means commit
 		$this->commit(function()
 		{
-			debug::true(T_("Set Favorites Successfully"));
+			// debug::true(T_("Set Favorites Successfully"));
 			debug::property('status', 'ok');
 		});
 

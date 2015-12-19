@@ -355,10 +355,13 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------------------- mouse
     case 'click':           // click
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(cid);
-      ex_checkBody();
-      ex_showProp();
+      if(! $(e.toElement).parent().hasClass('fav'))
+      {
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(cid);
+        ex_checkBody();
+        ex_showProp();
+      }
       break;
 
 
@@ -385,9 +388,12 @@ function event_corridor(e, _self, _key)
 
 
     case 'dblclick':           // Double click
-      if ($(e.toElement).parent().hasClass('fav')) {
-        console.log('fav');
-      } else {
+      if ($(e.toElement).parent().hasClass('fav'))
+      {
+        // console.log('fav');
+      }
+      else
+      {
         ex_dblClickItems(_self);
         ex_checkBody();
       }
