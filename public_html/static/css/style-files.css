@@ -255,6 +255,8 @@ input.upload {
     width: 23.404251999999996%;
     right: 0;
     z-index: 1001;
+    max-height: 50vh;
+    overflow-y: auto;
 }
 .rtl #upload-notify{
     left: 0;
@@ -274,7 +276,7 @@ input.upload {
 
     /*border-top:1px solid #3d4043;*/
     /*border-bottom:1px solid #2b2e31;*/
-    height: 62px;
+    height: 40px;
     position: relative;
     /*opacity: 0.6;*/
     transition: all .2s ease-in;-webkit-transition: all .2s ease-in;-o-transition: all .2s ease-in;-moz-transition: all .2s ease-in;
@@ -293,14 +295,13 @@ input.upload {
     text-align: left;
     white-space: nowrap;
     color: #EEE;
-    font-size: 1.2em;
-    line-height: 150%;
-    font-weight: bold;
+    font-size: 1em;
+    line-height: 120%;
     position: absolute;
-    top: 10px;
     left: 70px;
     width: 50%;
     text-overflow: ellipsis;
+    margin: 0;
 }
 
 #upload-notify li i{
@@ -325,7 +326,7 @@ input.upload {
     line-height: 2rem;
     padding: 0 10px;
 }
-#upload-notify li > i{position: absolute;width:30px;float:right;font-size:3rem;font-family: "FontAwesome";top:15px;right:10px;text-align:center;cursor:pointer;}
+#upload-notify li > i{position: absolute;width:25px;float:right;font-size:2em;font-family: "FontAwesome";top:7px;right:10px;text-align:center;cursor:pointer;}
 #upload-notify li > i:after{
   content: "\f00c";
   color: #24C279;
