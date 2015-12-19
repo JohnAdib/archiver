@@ -120,7 +120,7 @@ function ex_escape()
   if ( $('body').hasClass('cut') )
   {
     $('body').removeClass('cut');
-    $('#explorer>ul li.selected').removeClass('cutted');
+    $('#explorer>ul li.cutted').removeClass('cutted');
     $('#paste').fadeOut(100, function() { $(this).addClass('hide') });
   }
   else if($('body').hasClass('editing'))
@@ -181,7 +181,7 @@ function ex_itemFocus(_id)
 function ex_itemSelectedFocusedZero(_id)
 {
   ex_addClass('selected focused zero', _id);
-  
+
   // if user select a file then fill file addr to sent-app value for future use
   var myAddr = $('#explorer>ul li:eq('+ _id +')').data('addr');
   if(myAddr)

@@ -1,6 +1,7 @@
 // global variable definition
 var CURRENTPATH;
 var CLIPBOARD;
+var STARTPATH;
 
 
 $(document).ready(function()
@@ -344,6 +345,7 @@ function ex_clipboard(_action)
     $('#explorer>ul li.selected').each(function() {
       CLIPBOARD.push( $(this).data('id') );
     });
+    STARTPATH = CURRENTPATH;
   }
 
   $('#paste').fadeIn(300).removeClass('hide').css('display', 'inline-block');
@@ -361,15 +363,16 @@ function ex_paste()
   {
     myType = 'cut';
     $('body').removeClass('cut');
+
+    $('#explorer > ul li.cutted').removeClass('cutted');
   }
   else if ( $('body').hasClass('copy') )
   {
     myType = 'copy';
     $('body').removeClass('copy');
   }
-  console.log(CLIPBOARD);
-  console.log(myType);
-  if ( myType != 'undefined' )
+
+  if ( myType != 'undefined' && CURRENTPATH != STARTPATH )
   {
     $('#paste').ajaxify({
       ajax: {
@@ -380,11 +383,10 @@ function ex_paste()
         }
       }
     });
+    reDraw();
   }
 
-  // $('#paste').parents('li').addClass('hide');
   $('#paste').fadeOut(100, function() { $(this).addClass('hide') });
-  reDraw();
 }
 
 
@@ -395,12 +397,18 @@ function ex_dblClickItems(_self)
 {
   if($(_self).hasClass('folder') || $(_self).hasClass('up'))
   {
+    var selfCut = $(_self).attr('data-id');
+    var index   = CLIPBOARD.indexOf(selfCut);
+    if (index > -1)
+    {
+      CLIPBOARD.splice(index, 1);
+    }
     ex_navigate(_self);
   }
   else
   {
+    // Trigger download link on dbl click items
     document.getElementById("download-link").click();
-    // console.log('click on file!');
   }
 }
 
