@@ -325,13 +325,27 @@ function event_corridor(e, _self, _key)
       ex_selectAll();
       break;
 
+    case '67shift':
     case '67ctrl':          // c + ctrl
       ex_clipboard('copy');
       break;
 
-    // case '78ctrl':          // n + ctrl
-      // ex_newFolder();
-      // break;
+    case '68shift':
+      __self = $(_self).children('.fav').children('.fa');
+      ex_favorites(__self);
+      break;
+
+    case '68altshift':
+      reDraw('$/favorites');  // d + alt + shift (favorites page)
+      break;
+
+    case '72shift':
+      reDraw('/');          // h + shift
+      break;
+
+    case '76shift':
+      ex_intro();          // l + shift (show intro.js)
+      break;
 
     case '78shift':
       if ( !$('body').hasClass('editing') )
@@ -341,6 +355,15 @@ function event_corridor(e, _self, _key)
       }
       break;
 
+    case '84shift':           // t + shift
+
+      break;
+
+    case '85shift':
+      $('#modal_upload').toggleClass('visible');
+      break;
+
+    case '86shift':         // v + shift
     case '86ctrl':          // v + ctrl
       ex_paste();
       break;
@@ -350,6 +373,7 @@ function event_corridor(e, _self, _key)
       e.preventDefault();
       break;
 
+    case '88shift':         // x + shift
     case '88ctrl':          // x + ctrl
       ex_clipboard('cut');
       break;

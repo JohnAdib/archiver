@@ -73,6 +73,7 @@ route('*', function()
  */
 function ex_intro()
 {
+  introJs().exit();
   var str = 'introJs()' + $('#ifaq').data('options').toString() + '.start()';
   var fn = new Function(str);
   fn();
