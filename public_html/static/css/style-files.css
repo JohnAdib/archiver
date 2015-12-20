@@ -447,9 +447,9 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
 
 
 
-.input-error { background-color: #EC407A
- }
-
+.input-error { background-color: #EC407A }
+#prop-box-ul .fa-times { color: red; opacity: 0; }
+#prop-box-ul li:hover .fa-times, #prop-box-ul li:focus .fa-times { opacity: 1 }
 
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {

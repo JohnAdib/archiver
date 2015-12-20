@@ -24,6 +24,27 @@ $(document).ready(function()
   $('#showAddProp')   .click(function() { ex_showPropAdd();     });
   $('#showAddTag')    .click(function() { ex_showAddTag();      });
   $('#tag-add-btn')   .click(function() { addTag();             });
+  $('#modal_result .negative').click(function() {
+    window.close();
+  });
+  $('#modal_result .positive').click(function() {
+
+  });
+
+  $('#prop-box-ul').on('click', '.span4', function( ) {
+    if ( $(this).children().length > 0 )
+    {
+      // console.log($(this).parent().data('id'));
+      $(this).parent().ajaxify({
+        ajax: {
+          data: {
+            items: $('#prop-box').attr('data-id'),
+            id: $(this).parent().data('id')
+          }
+        }
+      });
+    }
+  });
 
   // handle all keydown on keyboard
   $(document).keydown(function(e) { event_corridor.call(this, e, $('#explorer>ul li.focused')[0], e.which ); });
@@ -469,7 +490,7 @@ function ex_showProp()
                 var _prop = prop[p];
                 for (var pp in _prop)
                 {
-                  var element = '<li class="row auto" data-id="' + p + '"><span class="span4">' + pp + '</span><span class="span8"> ' + _prop[pp] + ' </span></li>';
+                  var element = '<li class="row auto" data-action="$/propremove" data-method="post" data-id="' + p + '"><span class="span4">' + pp + ' <i class="fa fa-times"></i></span><span class="span8"> ' + _prop[pp] + ' </span></li>';
                   elements += element;
                 }
               }
@@ -529,6 +550,9 @@ function ex_addProp()
   }
   else if ( _name.length !== 0 && _value.length !== 0 )
   {
+    var element = '<li class="row auto" style="display:none"><span class="span4">' + _name + '</span><span class="span8">' + _value + '</span></li>'
+    $(element).appendTo('#prop-box-ul').slideDown(300);
+
     $('#prop-box-new').ajaxify({
       ajax: {
         data: {
