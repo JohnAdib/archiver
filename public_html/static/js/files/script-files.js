@@ -493,31 +493,19 @@ function ex_showProp()
 
 function ex_addProp()
 {
-  var _name, _value = '';
-  $('#prop-box-new > li').children('input').each(function(index, el) {
-    if ( $(el).attr('name') === 'name' )
-    {
-      if ( !$.trim($(el).val()).length === 0 )
-      {
-        _name = $(el).attr('name');
-      }
-    }
-    else if ( $(el).attr('name') === 'value' )
-    {
-      if ( !$.trim($(el).val()).length === 0 )
-      {
-        _value = $(el).attr('name');
-      }
-    }
-  });
+  var _name  = $.trim($('#prop-box-new input[name="name"]').val());
+  var _value = $.trim($('#prop-box-new input[name="value"]').val());
 
-  $('#prop-box-new').ajaxify({
-    ajax: {
-      data: {
-        name: _name,
-        value: _value,
-        items: $('#prop-box').attr('data-id')
+  if ( _name.length !== 0 && _value.length !== 0 )
+  {
+    $('#prop-box-new').ajaxify({
+      ajax: {
+        data: {
+          name: _name,
+          value: _value,
+          items: $('#prop-box').attr('data-id')
+        }
       }
-    }
-  });
+    });
+  }
 }
