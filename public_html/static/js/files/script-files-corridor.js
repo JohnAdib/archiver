@@ -50,6 +50,8 @@ function event_corridor(e, _self, _key)
 
         // edit property
         case 2:
+          ex_addProp();
+          preventDefault();
           break;
 
         // edit tag
@@ -97,7 +99,7 @@ function event_corridor(e, _self, _key)
     case '33ctrl':          // PageUP + ctrl
       if(ex_editing())
         return;
-      
+
       next = cid > 10 ? cid - 10 : 0;
       ex_removeClass('focused');
       ex_itemFocus(next);

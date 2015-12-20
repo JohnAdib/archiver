@@ -11,7 +11,7 @@ class controller extends \mvc\controller
 			$this->redirector(null, false)->set_domain($this->url('AccountService'))->set_url('login?cp=1')->redirect();
 			exit();
 		}
-		
+
 		$myurl   = $this->url('path',-1);
 
 
@@ -34,7 +34,8 @@ class controller extends \mvc\controller
 					case 'prop':
 					case 'tagadd':
 					case 'tagremove':
-					case 'propnew':
+					case 'propadd':
+					case 'propremove':
 						// var_dump($myurl[1]);
 						// $this->get()->ALL();
 						$this->post($myurl[1])->ALL();

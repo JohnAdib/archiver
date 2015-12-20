@@ -15,7 +15,7 @@ class model extends \mvc\model
 		if($_location === false)
 		{
 			$_location = utility::post('location');
-			if(!empty($_location) && strpos($_SERVER['HTTP_REFERER'], $_location) === false) 
+			if(!empty($_location) && strpos($_SERVER['HTTP_REFERER'], $_location) === false)
 			{
 				debug::property('status', 'fail');
 				debug::property('error', T_('Fail on get current location'). $_location);
@@ -75,7 +75,7 @@ class model extends \mvc\model
 	 * create a start of query for current item to use in another functions
 	 * @param  [type]  $_need   pass your need in array and we process it
 	 * @param  boolean $_order  pass the field and type of order
-	 * @param  boolean $_status pass status that want it 
+	 * @param  boolean $_status pass status that want it
 	 * @return [type]           return the sql object for nex step
 	 */
 	private function qryCreator($_need, $_order = false, $_status = false)
@@ -89,7 +89,7 @@ class model extends \mvc\model
 		if(!$myLocation)
 			return false;
 
-		
+
 
 		// --------------------------------------------------------- user_id
 		$myQry = $this->sql()
@@ -264,9 +264,9 @@ class model extends \mvc\model
 					break;
 
 				case 'file':
-					$_dbtable[$key]['icon'] = 'file-o';				
-					
-					if(isset($_dbtable[$key]['meta']) && 
+					$_dbtable[$key]['icon'] = 'file-o';
+
+					if(isset($_dbtable[$key]['meta']) &&
 						isset($_dbtable[$key]['meta']['type']) &&
 						$_dbtable[$key]['meta']['type'] !== 'file'
 					)
@@ -282,7 +282,7 @@ class model extends \mvc\model
 					break;
 
 				default:
-					$_dbtable[$key]['icon'] = 'file-o';					
+					$_dbtable[$key]['icon'] = 'file-o';
 					break;
 			}
 		}
@@ -355,7 +355,7 @@ class model extends \mvc\model
 				$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 				return false;
 			}
-			
+
 		}
 
 		// 4. transfer file to project folder with new name
@@ -669,7 +669,7 @@ class model extends \mvc\model
 	{
 		$qry         = $this->qryCreator(['id', 'status']);
 		$myFavStatus = '#'.utility::post('status');
-		
+
 		$qry         = $qry->set('attachment_fav', $myFavStatus);
 		$qry         = $qry->update();
 
@@ -802,6 +802,73 @@ class model extends \mvc\model
 		return true;
 	}
 
+
+	public function post_propadd()
+	{
+		$myId = $this->getItems(true);
+		if(!is_numeric($myId))
+			return false;
+
+		$myName  = utility::post('name');
+		$myValue = utility::post('value');
+		$myType  = utility::post('type');
+		if(!$myType)
+			$myType = 'manual';
+		// return if name or value is null
+		if(strlen($myName) == 0 || strlen($myValue) == 0)
+			return;
+
+		$qry_prop = $this->sql()->table('attachmentmetas')
+			->set('attachment_id',        $myId)
+			->set('attachmentmeta_cat',   'property_'.$myType)
+			->set('attachmentmeta_meta',  $this->login('id'))
+			->set('attachmentmeta_key',   $myName)
+			->set('attachmentmeta_value', $myValue);
+
+		// var_dump($qry_prop->insertString());exit();
+		$qry_prop->insert();
+
+		$this->commit(function()
+		{
+			debug::true(T_("Insert Successfully"));
+		});
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::title(T_("Transaction error").': ');
+		} );
+		return true;
+
+	}
+
+
+	public function post_propremove()
+	{
+		$myId = $this->getItems(true);
+		if(!is_numeric($myId))
+			return false;
+
+
+		$qry_prop = $this->sql()->table('attachmentmetas')
+			->where('attachment_id',      $myId)
+			->and('attachmentmeta_meta',  $this->login('id'));
+
+
+		$this->commit(function()
+		{
+			debug::true(T_("Insert Successfully"));
+		});
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::title(T_("Transaction error").': ');
+		} );
+		return true;
+	}
+
+
 	public function post_prop()
 	{
 		$qry   = $this->qryCreator(['id', 'status', 'order']);
@@ -821,7 +888,7 @@ class model extends \mvc\model
 							'#attachment_meta as meta'
 						);
 		$datatable = $qry->select('id');
-		
+
 		if($datatable->num()<1)
 			return false;
 
@@ -912,7 +979,7 @@ class model extends \mvc\model
 				case 'video-type':
 				case 'video-type':
 					break;
-				
+
 				case 'size':
 				case 'title':
 				case 'description':
@@ -930,11 +997,11 @@ class model extends \mvc\model
 		// return;
 
 
-		// add tags to properties
+		// ============= add tags to properties
 		$myId = $this->getItems(true);
 		// if(!is_numeric($myId))
 			// return false;
-	
+
 		$qry = $this->sql()->table('terms')
 			->where('term_type', 'tag')
 			->field('term_title');
@@ -948,6 +1015,28 @@ class model extends \mvc\model
 		$qry = $qry? implode($qry, ', ').', ' : null;
 
 		$datatable['tags'] = $qry;
+
+
+		// ============= add custom prop to properties
+		$qry_prop = $this->sql()->table('attachmentmetas')
+			->where('attachment_id', $myId )
+			->and('attachmentmeta_meta', $this->login('id'))
+			->field(
+				'id',
+				'#attachmentmeta_key as mykey',
+				'#attachmentmeta_value as myvalue'
+				)
+			->select();
+
+		$qry_prop       = $qry_prop->allassoc();
+		$datatable_prop = array();
+		foreach ($qry_prop as $key => $row)
+		{
+
+			$datatable_prop[$row['id']] = [$row['mykey'] => $row['myvalue']];
+		}
+		$datatable['prop'] = $datatable_prop;
+
 
 		debug::property('datatable', $datatable);
 	}
