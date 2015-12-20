@@ -497,11 +497,17 @@ function ex_addProp()
   $('#prop-box-new > li').children('input').each(function(index, el) {
     if ( $(el).attr('name') === 'name' )
     {
-      _name = $(el).val();
+      if ( !$.trim($(el).val()).length === 0 )
+      {
+        _name = $(el).attr('name');
+      }
     }
     else if ( $(el).attr('name') === 'value' )
     {
-      _value = $(el).val();
+      if ( !$.trim($(el).val()).length === 0 )
+      {
+        _value = $(el).attr('name');
+      }
     }
   });
 
