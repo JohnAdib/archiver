@@ -23,6 +23,11 @@ class view extends \mvc\view
 					// var_dump($this->data->datatable);
 					break;
 
+				case 'search':
+					$this->data->datatable = $this->model()->draw_search();
+					// var_dump($this->data->datatable);
+					break;
+
 				case 'tags':
 					$this->data->datatable = $this->model()->draw_tags();
 					// var_dump($this->data->datatable);

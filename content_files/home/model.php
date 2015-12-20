@@ -149,6 +149,30 @@ class model extends \mvc\model
 		}
 
 
+		// --------------------------------------------------------- Search
+		// create search query
+		if(in_array('search', $_need))
+		{
+			/**
+			Shwo unique result
+			 */
+			$q = utility::get('q');
+			// $myQry = $myQry->and('MATCH(`attachment_name`, `attachment_meta`)', 'AGAINST' ,"('".$q."')");
+			$myQry = $myQry->groupOpen('g_search');
+
+			$myQry = $myQry->and("attachment_name", 'LIKE', "'%$q%'");
+			$myQry = $myQry->or( "attachment_meta", 'LIKE', "'%$q%'");
+
+			$myQry = $myQry->groupClose('g_search');
+
+
+			// $myQry->join('attachmentmetas')->on('attachment_id', '#attachmentmeta.id')
+				// ->and("attachmentmeta_key", 'LIKE', "'%$q%'");
+
+				// ->and('termusage_foreign', '#"attachments"');
+
+		}
+
 
 		// --------------------------------------------------------- order by type
 		// add order to query string if user needif
@@ -236,6 +260,16 @@ class model extends \mvc\model
 
 		// return $this->draw_fix($qry);
 	}
+
+	function draw_search()
+	{
+		$qry  = $this->qryCreator(['status', 'search', 'field']);
+		// var_dump($qry->selectString());exit();
+		$qry = $qry->select()->allassoc();
+
+		return $this->draw_fix($qry);
+	}
+
 
 
 	/**
@@ -1101,21 +1135,5 @@ class model extends \mvc\model
 		}
 		return null;
 	}
-
-	function post_search()
-	{
-		$this->commit(function()
-		{
-			debug::true(T_("Search"));
-		});
-
-		// if a query has error or any error occour in any part of codes, run roolback
-		$this->rollback(function()
-		{
-			debug::title(T_("Transaction error").': ');
-		} );
-	}
-
-
 }
 ?>
