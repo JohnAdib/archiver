@@ -106,7 +106,7 @@ function ex_tagRemove(_self)
     ajax: {
       data: {
         tags: span.text(),
-        items: $('#itemID').data('id')
+        items: $('#prop-box').attr('data-id')
       }
     }
   });

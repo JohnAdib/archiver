@@ -742,7 +742,6 @@ class model extends \mvc\model
 			$myId = $this->getItems(true);
 			if(!is_numeric($myId))
 				return false;
-		// var_dump($myId);
 
 			$qry_tagusages = $this->sql()->table('termusages');
 			foreach ($tags_id as $value)
@@ -783,9 +782,12 @@ class model extends \mvc\model
 		$myTags  = $this->cp_tag_id($myTags);
 
 		if(count(explode(',', $myTags)) === 1)
-			$qry_term_del = $qry_term_del->and('term_id', '=', $myTags)->delete();
+			$qry_term_del = $qry_term_del->and('term_id', '=', $myTags);
 		else
-			$qry_term_del = $qry_term_del->and('term_id', 'in', "(". $myTags .")" )->delete();
+			$qry_term_del = $qry_term_del->and('term_id', 'in', "(". $myTags .")" );
+
+		// var_dump($qry_term_del->deleteString());
+		$qry_term_del = $qry_term_del->delete();
 
 		$this->commit(function()
 		{
