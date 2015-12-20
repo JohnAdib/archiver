@@ -146,12 +146,17 @@ function ex_navigate(_self)
     // name of the double clicked folder
     newLocation = CURRENTPATH + "/" + $('.name', _self).text();
   }
-  // if(newLocation.length == 0 )
-    // newLocation = '/';
 
   // redraw if new location and old one is different!
   if(CURRENTPATH !== newLocation)
+  {
+    // console.log(CURRENTPATH);
+    // console.log(newLocation);
+    if(newLocation.length == 0 )
+      newLocation = '/';
+    // redraw with new address
     reDraw(newLocation);
+  }
 }
 
 
@@ -162,12 +167,12 @@ function ex_navigate(_self)
 function reDraw(_path)
 {
   ex_propHide();
+  $("#explorer ul").fadeOut(100);
 
   if (_path == undefined)
   {
     _path = CURRENTPATH;
   }
-
   Navigate({ url: _path });
 }
 
@@ -288,7 +293,7 @@ function ex_clipboard(_action)
 {
   CLIPBOARD = [];
 
-  if ( $('#explorer>ul li.selected').length != 0 )
+  if ( $('#explorer>ul li.selected').length > 0)
   {
     if ( _action == 'copy' )
     {
@@ -352,6 +357,9 @@ function ex_paste()
  */
 function ex_dblClickItems(_self)
 {
+  if(!$(_self).hasClass('selected'))
+    return;
+
   if($(_self).hasClass('folder'))
   {
     if($('body').hasClass('cut'))
@@ -465,14 +473,16 @@ function ex_showProp()
               ex_tagInit();
             }
           }
+          // $('#prop-box-ul').hide().html(elements).fadeIn();
           $('#prop-box-ul').hide().html(elements).fadeIn();
           ex_propShow();
           
           // if prop box has image, after load showing with fade 
           $('.img-container img').on('load', function ()
           {
-            // $(this).fadeToggle();
-            $(this).fadeIn();
+
+            // $(this).parent().slideDown(500).fadeIn(300);
+            $(this).parent().fadeIn(300);
           });
         }
       }

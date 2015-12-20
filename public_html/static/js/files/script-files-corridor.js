@@ -21,41 +21,46 @@ function event_corridor(e, _self, _key)
   {
     // ---------------------------------------------------------- BackSpace
     case '8':               // Back Space
-      console.log( $(document.activeElement));
-      if(ex_editing())
-        return;
-
-      else if($(document.activeElement).is('#tag-add'))
-        return;
-
-      else
+      switch (ex_editing())
       {
-        ex_navigate(_self);
-        e.preventDefault();
-      }
+        // edit explorer
+        case 1:
+        // edit property
+        case 2:
+        // edit tag
+        case 3:
+          break;
 
+        default:
+          ex_navigate(_self);
+          e.preventDefault();
+          break;
+      }
       break;
 
 
     // ---------------------------------------------------------- Enter
     case '13':              // Enter
-      if($('#explorer>ul li').is('#new-folder'))
+      switch (ex_editing())
       {
-        // item-new-name
-        // ex_inputSubmit();
-        // console.log($('button.btn-fa-check').parent().html());
-        ex_inputSubmit.call($('button.btn-fa-check').parent()[0].innerHTML(), true);
-      }
-      else if($(document.activeElement).is('#tag-add'))
-      {
-        addTag();
-        e.preventDefault();
-        return;
-      }
-      else
-      {
-        console.log('enter');
-        ex_dblClickItems(_self);
+        // edit explorer
+        case 1:
+          ex_inputSubmit.call($('button.btn-fa-check').parent()[0].innerHTML(), true);
+          break;
+
+        // edit property
+        case 2:
+          break;
+
+        // edit tag
+        case 3:
+          addTag();
+          e.preventDefault();
+          break;
+
+        default:
+          ex_dblClickItems(_self);
+          break;
       }
       break;
 
@@ -70,6 +75,7 @@ function event_corridor(e, _self, _key)
     case '32':              // space
     case '32shift':         // space + shift
       _self.addClass('selected');
+      ex_showProp();
       break;
 
     case '32ctrl':          // space + ctrl
@@ -156,21 +162,33 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------- End
     case '35':              // End
+      if(ex_editing())
+        return;
+
       ex_removeClass('selected focused zero');
       ex_itemSelectedFocusedZero(lastid);
       break;
 
     case '35ctrl':          // End + Ctrl
+      if(ex_editing())
+        return;
+
       ex_removeClass('focused');
       ex_itemFocus(lastid);
       break;
 
     case '35shift':         // End + Shift
+      if(ex_editing())
+        return;
+
       ex_removeClass('selected focused');
       ex_items_select_focus_until(lastid);
       break;
 
     case '35ctrlshift':     // End + Ctrl + Shift
+      if(ex_editing())
+        return;
+
       ex_removeClass('focused');
       ex_items_select_focus_until(lastid);
       break;
@@ -178,21 +196,33 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------- Home
     case '36':              // Home
+      if(ex_editing())
+        return;
+
       ex_removeClass('selected focused zero');
       ex_itemSelectedFocusedZero(0);
       break;
 
     case '36ctrl':          // Home + Ctrl
+      if(ex_editing())
+        return;
+
       ex_removeClass('focused');
       ex_itemFocus(0);
       break;
 
     case '36shift':         // Home + Ctrl
+      if(ex_editing())
+        return;
+
       ex_removeClass('selected focused');
       ex_items_select_focus_until(0);
       break;
 
     case '36ctrlshift':     // Home + Ctrl + Shift
+      if(ex_editing())
+        return;
+
       ex_removeClass('focused');
       ex_items_select_focus_until(0);
       break;

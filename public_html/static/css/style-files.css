@@ -84,8 +84,9 @@ body{height: 100%;overflow:hidden;}
 #prop-box li {padding:2% 5%;}
 #prop-box li div, #prop-box-ul li img {display: block; margin:0 auto;}
 #prop-box i{vertical-align:middle;}
-#prop-box .img-container:hover {background: #eee;}
-#prop-box .img-container img {width: 100%;display:none}
+#prop-box .img-container{display:none}
+#prop-box .img-container img {width:100%;}
+#prop-box .img-container:hover {background:#eee;}
 #prop-box-ul video, #prop-box-ul audio{max-width:100%;width:98%;margin:5px auto 0;display:block}
 #prop-box-ul li.row span.span8 {text-align: left;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 #prop-box-ul li:hover {background-color:#ddd}
