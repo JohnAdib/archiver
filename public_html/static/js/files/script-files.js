@@ -496,7 +496,23 @@ function ex_addProp()
   var _name  = $.trim($('#prop-box-new input[name="name"]').val());
   var _value = $.trim($('#prop-box-new input[name="value"]').val());
 
-  if ( _name.length !== 0 && _value.length !== 0 )
+  if ( _name.length === 0 )
+  {
+    $('#prop-box-new input[name="name"]').addClass('input-error');
+
+    var backgroundInterval = setTimeout(function(){
+      $('#prop-box-new input[name="name"]').removeClass('input-error');
+    }, 300);
+  }
+  else if ( _value.length === 0 )
+  {
+    $('#prop-box-new input[name="value"]').addClass('input-error');
+
+    var backgroundInterval = setTimeout(function(){
+      $('#prop-box-new input[name="value"]').removeClass('input-error');
+    }, 300);
+  }
+  else if ( _name.length !== 0 && _value.length !== 0 )
   {
     $('#prop-box-new').ajaxify({
       ajax: {
@@ -507,5 +523,9 @@ function ex_addProp()
         }
       }
     });
+
+    // After adding property
+    $('#prop-box-new input[name="name"]').val('');
+    $('#prop-box-new input[name="value"]').val('');
   }
 }
