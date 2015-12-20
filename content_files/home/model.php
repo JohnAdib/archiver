@@ -373,7 +373,7 @@ class model extends \mvc\model
 			case 'gif':
 				$url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
 				utility\Image::load($url_full);
-				utility\Image::thumb(200, 200);
+				utility\Image::thumb(250, 250);
 				utility\Image::save($url_thumb);
 				break;
 

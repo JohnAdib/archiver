@@ -405,7 +405,10 @@ function event_corridor(e, _self, _key)
       {
         ex_removeClass('selected focused zero');
         ex_itemSelectedFocusedZero(cid);
-        ex_checkBody();
+        if(ex_editing())
+        {
+          ex_checkBody();
+        }
         ex_showProp();
       }
       break;

@@ -465,10 +465,15 @@ function ex_showProp()
               ex_tagInit();
             }
           }
-          $('#prop-box-ul').html(elements);
+          $('#prop-box-ul').hide().html(elements).fadeIn();
           ex_propShow();
-          // $('#prop-box-tags').removeClass('hide');
-          // $('#prop-box').show('fast');
+          
+          // if prop box has image, after load showing with fade 
+          $('.img-container img').on('load', function ()
+          {
+            // $(this).fadeToggle();
+            $(this).fadeIn();
+          });
         }
       }
     });
