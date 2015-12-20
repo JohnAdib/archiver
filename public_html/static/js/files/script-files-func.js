@@ -167,7 +167,7 @@ function ex_escape()
  */
 function ex_selectAll()
 {
-  if ($('body').hasClass('editing') || $('body').hasClass('prop-edit'))
+  if(ex_editing())
     return;
 
   if ($('#explorer>ul').hasClass('select-all'))
@@ -187,7 +187,23 @@ function ex_selectAll()
   $('#explorer>ul').toggleClass('select-all');
 }
 
+/**
+ * return false if not editing else return number for each type of editin
+ * @return false or number for each type
+ */
+function ex_editing()
+{
+  if ($('body').hasClass('editing'))
+    return 1;
 
+  if ($('body').hasClass('prop-edit'))
+    return 2;
+
+  if ($('body').hasClass('tag-edit'))
+    return 3;
+
+  return false;
+}
 
 // remove input class from all of items
 function ex_removeClass(_className)
