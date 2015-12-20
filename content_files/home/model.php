@@ -545,16 +545,16 @@ class model extends \mvc\model
 		$qry   = $this->qryCreator(['id', 'location']);
 		$shift = utility::post('shift');
 
-		if($shift)
+		if($shift == 'true')
+		{
+			$qry = $qry->set('attachment_status', 'deleted');
+		}
+		else
 		{
 			$qry = $qry->set('attachment_status', '#CASE
 				WHEN attachment_status = "normal" THEN "trash"
 				WHEN attachment_status = "trash" THEN "deleted"
 				END', 'aaa');
-		}
-		else
-		{
-			$qry = $qry->set('attachment_status', 'deleted');
 		}
 
 		// var_dump($qry->updateString()); exit();
