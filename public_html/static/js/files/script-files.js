@@ -467,10 +467,15 @@ function ex_showProp()
               elements += element;
             }
 
-            else if (key = 'tags')
+            else if (key == 'tags')
             {
               $('#sp-tags').val( myData['tags'] );
               ex_tagInit();
+            }
+
+            else if (key == 'prop')
+            {
+              console.log('Yohooo');
             }
           }
           // $('#prop-box-ul').hide().html(elements).fadeIn();
@@ -498,7 +503,7 @@ function ex_addProp()
 
   if ( _name.length === 0 )
   {
-    $('#prop-box-new input[name="name"]').addClass('input-error');
+    $('#prop-box-new input[name="name"]').addClass('input-error').select();
 
     var backgroundInterval = setTimeout(function(){
       $('#prop-box-new input[name="name"]').removeClass('input-error');
@@ -506,7 +511,7 @@ function ex_addProp()
   }
   else if ( _value.length === 0 )
   {
-    $('#prop-box-new input[name="value"]').addClass('input-error');
+    $('#prop-box-new input[name="value"]').addClass('input-error').select();
 
     var backgroundInterval = setTimeout(function(){
       $('#prop-box-new input[name="value"]').removeClass('input-error');

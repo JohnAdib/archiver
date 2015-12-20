@@ -433,7 +433,8 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
 
 
 
-.input-error { background-color: red }
+.input-error { background-color: #EC407A
+ }
 
 
 
