@@ -82,6 +82,7 @@ function transtext()
 	echo T_('Ext');
 	echo T_('App result');
 	echo T_('Submit');
+	echo T_('Result');
 
 
 

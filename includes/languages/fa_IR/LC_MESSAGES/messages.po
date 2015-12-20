@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ermile\n"
-"POT-Creation-Date: 2015-12-20 19:12+0330\n"
-"PO-Revision-Date: 2015-12-20 19:12+0330\n"
+"POT-Creation-Date: 2015-12-20 20:06+0330\n"
+"PO-Revision-Date: 2015-12-20 20:06+0330\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -89,22 +89,27 @@ msgstr "افزودن با موفقیت انجام شد"
 msgid "Transaction error"
 msgstr "خطای در تراکنش"
 
-#: ../../../.././content_files/home/view.php:69
+#: ../../../.././content_files/home/view.php:35
+#: ../../../.././includes/languages/static_translation.php:85
+msgid "Result"
+msgstr "نتیجه"
+
+#: ../../../.././content_files/home/view.php:70
 #: ../../../.././includes/mvc/view.php:10
 msgid "Archiver"
 msgstr "سامانه آرشیو"
 
-#: ../../../.././content_files/home/view.php:70
+#: ../../../.././content_files/home/view.php:71
 #: ../../../.././includes/mvc/view.php:11
 msgid "Archiver is new"
 msgstr "سامانه آرشیو جدید است"
 
-#: ../../../.././content_files/home/view.php:71
+#: ../../../.././content_files/home/view.php:72
 #: ../../../.././includes/mvc/view.php:12
 msgid "Ermile is our company"
 msgstr "ارمایل نام شرکت ماست"
 
-#: ../../../.././content_files/home/view.php:75
+#: ../../../.././content_files/home/view.php:76
 #: ../../../.././includes/mvc/view.php:15
 msgid "Archiver is another archive system!"
 msgstr "سامانه آرشیو یک سرویس آرشیو دیگر است!"

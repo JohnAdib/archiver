@@ -8,7 +8,7 @@
   	form{margin:20px 10px;}
   	input{padding:10px 30px;background-color:#ddd;}
     img{max-height:300px;display:block; margin:0 auto;}
-    code{font-family:monospace,monospace;font-size:0.7em;margin: 10px 5%;}
+    code{font-family:monospace,monospace;font-size:0.7em;margin: 10px 5%;display:block}
   </style>
  </head>
 
@@ -26,6 +26,7 @@
     if(isset($_GET['addr']))
     {
       echo "<code>". $_GET['addr'] .'</code>';
+      echo "<code>AuthCode: ". $_GET['authcode'] .'</code>';
       switch (substr($_GET['addr'], -4))
       {
         case '.png':
@@ -65,7 +66,8 @@
    <input type="hidden" name="value2" value="<?php echo $_GET['app']; ?>">
 
    <input type="hidden" name="result" value="return custom result! this text is ... به فارسی هم میتواند پاسخ دهد!">
-   <input type="submit" name="return">
+   <input type="hidden" name="authcode" value="<?php echo $_GET['authcode']; ?>">
+   <input type="submit">
   </form>
 
   <h2><?php if(isset($_POST['result'])) echo '<hr />'.$_POST['result'];?></h2>

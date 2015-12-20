@@ -30,25 +30,30 @@ class view extends \mvc\view
 					break;
 
 				case 'result':
-					$this->data->appResult = array();
+					$appAuthCode = \lib\utility::get('authcode');
+					$appResult   = \lib\utility::get('result');
+					$this->data->appResult =
+					[
+						T_('Result') => $appResult,
+						T_('AuthCode') => $appAuthCode,
+					];
 					// $appPost = \lib\utility::post();
-					// $appGet = \lib\utility::get();
-					for ($i=1; $i <= 5; $i++)
+
+					if( $appAuthCode && $appResult)
 					{
-						$appKey   = \lib\utility::get('key'.$i);
-						$appValue = \lib\utility::get('value'.$i);
-						if($appKey && $appValue)
+						// read get and show in modal
+						for ($i=1; $i <= 5; $i++)
 						{
-							$this->data->appResult[$appKey] = $appValue;
+							$appKey   = \lib\utility::get('key'.$i);
+							$appValue = \lib\utility::get('value'.$i);
+							if($appKey && $appValue)
+							{
+								$this->data->appResult[$appKey] = $appValue;
+							}
 						}
 					}
+
 					// var_dump($this->data->appResult);
-
-					// var_dump($appGet);
-
-
-					// var_dump($this->data->datatable);
-					// $this->data->datatable = null;
 					break;
 
 				default:

@@ -74,7 +74,7 @@
          <form action="{{url.static}}page/app.php" data-action id="more-app1" target="_blank">
           <input type="hidden" name="data" value="Address of file1 - to app1">
           <input type="hidden" name="app" value='{%trans "Image Processing"%}'>
-          <input type="hidden" name="fileid" id="sent-id" value="">
+          <input type="hidden" name="authcode" id="sent-id" value="">
           <input type="hidden" name="addr" id="sent-addr" value="">
           <input type="submit" value=''>
          </form>
@@ -84,7 +84,7 @@
          <form action="{{url.static}}page/app.php" data-action id="more-app2" target="_blank">
           <input type="hidden" name="data" value="Address of file 2 - to app2">
           <input type="hidden" name="app" value='{%trans "Text Mining"%}'>
-          <input type="hidden" name="fileid" id="sent-id" value="">
+          <input type="hidden" name="authcode" id="sent-id" value="">
           <input type="hidden" name="addr" id="sent-addr" value="">
           <input type="submit" value=''>
          </form>
@@ -93,7 +93,7 @@
         <a href="javascript:{}" onclick="document.getElementById('more-app3').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} Google
          <form action="http://www.google.com/search" data-action id="more-app3" target="_blank">
           <input type="hidden" name="q" size="31" maxlength="255" value="Iran">
-          <input type="hidden" name="fileid" id="sent-id" value="">
+          <input type="hidden" name="authcode" id="sent-id" value="">
           <input type="hidden" name="addr" id="sent-addr" value="">
           <input type="submit" value=''>
          </form>
