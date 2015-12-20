@@ -32,6 +32,17 @@ body{height: 100%;overflow:hidden;}
 #header #remove:hover i{color:#F55030;}
 #header #more-remove:hover i{color:#F55030;}
 
+#header #search input{
+background-color: transparent;
+border:none;
+color: #fff;
+}
+#header #search .button{
+padding: 0;
+}
+#header .button{height: 25px;}
+
+
 #header #languages .vertical-menu{margin-left:-15px;}
 #header #languages{text-align:center;width:6.382978vw;}
 #header #languages i{vertical-align:middle;cursor:pointer;}

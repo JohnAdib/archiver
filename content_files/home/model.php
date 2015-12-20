@@ -849,15 +849,20 @@ class model extends \mvc\model
 		if(!is_numeric($myId))
 			return false;
 
+		$myRowID  = utility::post('id');
+		if(!$myRowID)
+			return;
 
 		$qry_prop = $this->sql()->table('attachmentmetas')
-			->where('attachment_id',      $myId)
-			->and('attachmentmeta_meta',  $this->login('id'));
+			->where('id',                $myRowID)
+			->and('attachment_id',       $myId)
+			->and('attachmentmeta_meta', $this->login('id'));
 
+		$qry_prop = $qry_prop->delete();
 
 		$this->commit(function()
 		{
-			debug::true(T_("Insert Successfully"));
+			debug::true(T_("Remove Successfully"));
 		});
 
 		// if a query has error or any error occour in any part of codes, run roolback
@@ -1096,6 +1101,21 @@ class model extends \mvc\model
 		}
 		return null;
 	}
+
+	function post_search()
+	{
+		$this->commit(function()
+		{
+			debug::true(T_("Search"));
+		});
+
+		// if a query has error or any error occour in any part of codes, run roolback
+		$this->rollback(function()
+		{
+			debug::title(T_("Transaction error").': ');
+		} );
+	}
+
 
 }
 ?>

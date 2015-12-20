@@ -43,6 +43,7 @@ class controller extends \mvc\controller
 					case 'profile':
 					case 'favorites':
 					case 'tags':
+					case 'search':
 						$this->route_check_true = true;
 						$this->get()->ALL();
 						$this->post($myurl[1])->ALL();

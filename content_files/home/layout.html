@@ -27,9 +27,10 @@
      </nav>
     </li>
 
-    <li id="search">
+    <li id="search" data-action="$/search" data-method="get" data-action>
      <a class="labeled icon button" data-step='30' data-intro='{%trans "Search in your files, folders, properties and tags"%}'>
-      <i class="icon fa fa-search"></i>{%trans "Search"%}
+      <i class="icon fa fa-search"></i>
+      <input type="text" name="q" autocomplete="off" placeholder='{%trans "Search"%}' />
      </a>
     </li>
 

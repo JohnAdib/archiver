@@ -15,7 +15,7 @@ function event_corridor(e, _self, _key)
   var shift  = e.shiftKey ? 'shift' : '';
   var alt    = e.altKey   ? 'alt'   : '';
   var mytxt  = String(_key) + ctrl + alt + shift;
-  // console.log(mytxt);
+  console.log(mytxt);
 
   switch(mytxt)
   {
@@ -29,6 +29,8 @@ function event_corridor(e, _self, _key)
         case 2:
         // edit tag
         case 3:
+        // search
+        case 4:
           break;
 
         default:
@@ -57,6 +59,11 @@ function event_corridor(e, _self, _key)
         // edit tag
         case 3:
           addTag();
+          e.preventDefault();
+          break;
+        // search
+        case 4:
+          ex_search();
           e.preventDefault();
           break;
 
@@ -391,6 +398,16 @@ function event_corridor(e, _self, _key)
 
       e.preventDefault();
       ex_showPropAdd();
+      break;
+
+    case '81ctrl':          // q + ctrl
+    case '81shift':         // q + shift
+    case '83shift':         // s + shift
+      if(ex_editing())
+        return;
+
+      e.preventDefault();
+      $("#search input").focus().select();
       break;
 
     case '82shift':         // r + shift

@@ -24,6 +24,7 @@ $(document).ready(function()
   $('#showAddProp')   .click(function() { ex_showPropAdd();     });
   $('#showAddTag')    .click(function() { ex_showAddTag();      });
   $('#tag-add-btn')   .click(function() { addTag();             });
+  $("#search i")      .click(function() { ex_search();          });
 
 
   $('#modal_result .negative').click(function() {
@@ -32,6 +33,16 @@ $(document).ready(function()
   $('#modal_result .positive').click(function() {
     reDraw('/');
   });
+
+
+  $("#search").focusin(function()
+  {
+    $('body').addClass('search');
+  }).focusout(function(){
+    $('body').removeClass('search');
+  });
+
+
 
   $('#prop-box-ul').on('click', '.span4', function( ) {
     if ( $(this).children().length > 0 )
@@ -83,6 +94,16 @@ route('*', function()
   // Update hidden input value in upload modal to CURRENTPATH
   $('#form_uploader input[name="location"]').val(CURRENTPATH);
 });
+
+
+/**
+ * Navigate user to search page
+ */
+function ex_search()
+{
+  var q = $("#search input").val();
+  reDraw('$/search?q=' + q);
+}
 
 
 function addTag()

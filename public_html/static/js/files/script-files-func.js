@@ -203,6 +203,9 @@ function ex_editing()
   if ($('body').hasClass('tag-edit'))
     return 3;
 
+  if ($('body').hasClass('search'))
+    return 4;
+
   return false;
 }
 
