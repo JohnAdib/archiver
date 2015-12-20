@@ -476,8 +476,8 @@ function ex_showProp()
           // $('#prop-box-ul').hide().html(elements).fadeIn();
           $('#prop-box-ul').hide().html(elements).fadeIn();
           ex_propShow();
-          
-          // if prop box has image, after load showing with fade 
+
+          // if prop box has image, after load showing with fade
           $('.img-container img').on('load', function ()
           {
 
@@ -493,11 +493,24 @@ function ex_showProp()
 
 function ex_addProp()
 {
-  $('#form_prop').ajaxify({
+  var _name, _value = '';
+  $('#prop-box-new > li').children('input').each(function(index, el) {
+    if ( $(el).attr('name') === 'name' )
+    {
+      _name = $(el).val();
+    }
+    else if ( $(el).attr('name') === 'value' )
+    {
+      _value = $(el).val();
+    }
+  });
+
+  $('#prop-box-new').ajaxify({
     ajax: {
       data: {
-        location: CURRENTPATH,
-        items: $('#form_prop').serialize()
+        name: _name,
+        value: _value,
+        items: $('#prop-box').attr('data-id')
       }
     }
   });
