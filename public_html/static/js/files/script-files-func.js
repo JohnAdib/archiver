@@ -241,11 +241,12 @@ function ex_itemSelectedFocusedZero(_id)
 
     $('#download a').attr('href', myAddr);
     var myName = $('#explorer>ul li:eq('+ _id +') .name').html();
+    var myID = $('#explorer>ul li:eq('+ _id +')').data('id');
     // console.log(myName);
 
     $('#download a').attr('download', myName);
     $('#send-to-app #sent-addr').attr('value', myAddr);
-    $('#send-to-app #sent-id')  .attr('value', _id);
+    $('#send-to-app #sent-id')  .attr('value', myID);
   }
   else
   {

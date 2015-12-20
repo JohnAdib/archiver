@@ -24,11 +24,13 @@ $(document).ready(function()
   $('#showAddProp')   .click(function() { ex_showPropAdd();     });
   $('#showAddTag')    .click(function() { ex_showAddTag();      });
   $('#tag-add-btn')   .click(function() { addTag();             });
+
+
   $('#modal_result .negative').click(function() {
-    window.close();
+    reDraw('/');
   });
   $('#modal_result .positive').click(function() {
-
+    reDraw('/');
   });
 
   $('#prop-box-ul').on('click', '.span4', function( ) {
