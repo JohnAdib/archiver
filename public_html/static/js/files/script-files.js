@@ -21,6 +21,9 @@ $(document).ready(function()
   $('#remove')        .click(function() { ex_delete(false);     });
   $('#prop-submit')   .click(function() { ex_addProp();         });
   $('#ifaq')          .click(function() { ex_intro();           });
+  $('#showAddProp')   .click(function() { ex_showPropAdd();     });
+  $('#showAddTag')    .click(function() { ex_showAddTag();      });
+  $('#tag-add-btn')   .click(function() { addTag();             });
 
   // handle all keydown on keyboard
   $(document).keydown(function(e) { event_corridor.call(this, e, $('#explorer>ul li.focused')[0], e.which ); });
@@ -29,39 +32,11 @@ $(document).ready(function()
   $('#explorer').on("click", ".btn-fa-check",    function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
   $('#explorer').on("click", "#item-new-name",   function(e) { e.preventDefault(); });
   $('#explorer').on("click", ".fav i",           function(e) { ex_favorites(this); });
-  $('#prop-box').on("click", "#addTag",          function(e) { ex_addTag(this) });
-
-  $('#prop-box').on('click', '#tag-add-btn',     function( ) { addTag(); });
   // remove item on click times icon
-  $('#prop-box').on('click', '#tag-list span i', function( ) {
-    ex_tagRemove($(this));
-  });
+  $('#prop-box').on('click', '#tag-list span i', function( ) { ex_tagRemove($(this));});
 
   ex_tagInit();
-
-  $('#add-prop').click(function() {
-    ex_propAdd();
-  });
-
 });
-
-
-/**
- * Toggle add property form
- */
-function ex_propAdd()
-{
-  if ( $('body').hasClass('tag-edit') )
-  {
-    ex_addTag($('#addTag'));
-  }
-  $('body').toggleClass('prop-edit');
-  $('#add-prop').children('.fa').toggleClass('fa-plus fa-times');
-  $('#prop-box-new').slideToggle(300, function() {
-    $('#prop_add_name').select();
-  });
-}
-
 
 
 /**
@@ -85,34 +60,6 @@ route('*', function()
   $('#form_uploader input[name="location"]').val(CURRENTPATH);
 });
 
-/**
- * Run intro.js
- */
-function ex_intro()
-{
-  introJs().exit();
-  var str = 'introJs()' + $('#ifaq').data('options').toString() + '.start()';
-  var fn = new Function(str);
-  fn();
-}
-
-/**
- * init tag and fill taglist
- * @return {[type]} [description]
- */
-function ex_tagInit()
-{
-  var tagDefault = $('#sp-tags').val();
-  $('#tag-list').text('');
-  if(tagDefault)
-  {
-    $.each(tagDefault.split(', '),function(t, item)
-    {
-      if(item.trim())
-        $('#tag-list').append( "<span><i class='fa fa-times'></i>"+item+"</span>" );
-    });
-  }
-}
 
 function addTag()
 {
@@ -167,9 +114,6 @@ function ex_tagRemove(_self)
 }
 
 
-
-
-
 /**
  * redraw explorer items
  * @return {[type]} [description]
@@ -189,37 +133,6 @@ function reDraw(_path)
   ex_propHide();
 }
 
-/**
- * Empty prop box with effect
- */
-function ex_propHide()
-{
-  $('#prop-box').children().each( function() {
-      // $(this).fadeOut(100, function() { $(this).addClass('hide') });
-      if(! $(this).is('#upload-notify'))
-      {
-        $(this).fadeOut(100);
-      }
-    });
-}
-
-/**
- * Empty prop box with effect
- */
-function ex_propShow()
-{
-  $('#prop-box').children().each( function() {
-      // $(this).fadeIn(100, function() { $(this).addClass('hide') });
-      $(this).fadeIn(100);
-      $(this).removeClass('hide');
-    });
-
-  // $('#prop-box > h3').removeClass('hide');
-  // $('#prop-box-tags').removeClass('hide');
-  // $('#prop-box-ul').fadeIn(300, function() { $(this).removeClass('hide') });
-  // $('#prop-box-ul').hide().fadeIn(100);
-  // $('#prop-box-ul').empty();
-}
 
 
 /**
@@ -238,19 +151,6 @@ function ex_favorites(_self)
       }
     }
   });
-}
-
-/**
- * click on add tag
- * @return {[type]} [description]
- */
-function ex_addTag()
-{
-  $('#tagInput').slideToggle(300);
-  $('#addTag').toggleClass('fa-plus fa-times');
-  $('body').toggleClass('tag-edit');
-  $('#tag-add').focus().select();
-  // $(this).parents('li.row.auto').children('span.span8').append('<input type="text">')
 }
 
 
@@ -550,13 +450,6 @@ function ex_showProp()
   }
 }
 
-function ImageExist(_url)
-{
-  return true;
-  var img = new Image();
-  img.src = _url;
-  return img.height != 0;
-}
 
 function ex_addProp()
 {

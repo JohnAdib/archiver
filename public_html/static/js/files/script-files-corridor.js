@@ -90,7 +90,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '33ctrl':         // PageUP + ctrl
+    case '33ctrl':          // PageUP + ctrl
       if ( !$('body').hasClass('editing') )
       {
         next = cid > 10 ? cid - 10 : 0;
@@ -99,7 +99,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '33shift':        // PageUP + Shift
+    case '33shift':         // PageUP + Shift
       if ( !$('body').hasClass('editing') )
       {
         next = cid > 10 ? cid - 10 : 0;
@@ -108,7 +108,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '33ctrlshift':    // PageUP + Ctrl + Shift
+    case '33ctrlshift':     // PageUP + Ctrl + Shift
       if ( !$('body').hasClass('editing') )
       {
         next = cid > 10 ? cid - 10 : 0;
@@ -128,7 +128,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '34ctrl':         // PageDown + Ctrl
+    case '34ctrl':          // PageDown + Ctrl
       if ( !$('body').hasClass('editing') )
       {
         next = cid + 10 >= lastid ? lastid : cid + 10;
@@ -146,7 +146,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '34ctrlshift':    // PageDown + Ctrl + Shift
+    case '34ctrlshift':     // PageDown + Ctrl + Shift
       if ( !$('body').hasClass('editing') )
       {
         next = cid + 10 >= lastid ? lastid : cid + 10;
@@ -162,7 +162,7 @@ function event_corridor(e, _self, _key)
       ex_itemSelectedFocusedZero(lastid);
       break;
 
-    case '35ctrl':         // End + Ctrl
+    case '35ctrl':          // End + Ctrl
       ex_removeClass('focused');
       ex_itemFocus(lastid);
       break;
@@ -172,29 +172,29 @@ function event_corridor(e, _self, _key)
       ex_items_select_focus_until(lastid);
       break;
 
-    case '35ctrlshift':    // End + Ctrl + Shift
+    case '35ctrlshift':     // End + Ctrl + Shift
       ex_removeClass('focused');
       ex_items_select_focus_until(lastid);
       break;
 
 
     // ---------------------------------------------------------- Home
-    case '36':             // Home
+    case '36':              // Home
       ex_removeClass('selected focused zero');
       ex_itemSelectedFocusedZero(0);
       break;
 
-    case '36ctrl':        // Home + Ctrl
+    case '36ctrl':          // Home + Ctrl
       ex_removeClass('focused');
       ex_itemFocus(0);
       break;
 
-    case '36shift':      // Home + Ctrl
+    case '36shift':         // Home + Ctrl
       ex_removeClass('selected focused');
       ex_items_select_focus_until(0);
       break;
 
-    case '36ctrlshift':  // Home + Ctrl + Shift
+    case '36ctrlshift':     // Home + Ctrl + Shift
       ex_removeClass('focused');
       ex_items_select_focus_until(0);
       break;
@@ -225,7 +225,7 @@ function event_corridor(e, _self, _key)
       ex_navigate(_self);
       break;
 
-    case '38ctrl':           // up + ctrl
+    case '38ctrl':          // up + ctrl
       if ( !$('body').hasClass('editing') )
       {
         next = cid > 0 ? cid - 1 : 0;
@@ -234,7 +234,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '38shift':          // up + shift
+    case '38shift':         // up + shift
       if ( !$('body').hasClass('editing') )
       {
         next = cid > 0 ? cid - 1 : 0;
@@ -243,7 +243,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '38ctrlshift':      // up + ctrl + shift
+    case '38ctrlshift':     // up + ctrl + shift
       if ( !$('body').hasClass('editing') )
       {
         next = cid > 0 ? cid - 1 : 0;
@@ -275,7 +275,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '40ctrl':           // down + ctrl
+    case '40ctrl':          // down + ctrl
       if ( !$('body').hasClass('editing') )
       {
         next = cid >= lastid ? lastid : cid + 1;
@@ -284,7 +284,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '40shift':          // down + shift
+    case '40shift':         // down + shift
       if ( !$('body').hasClass('editing') )
       {
         next = cid >= lastid ? lastid : cid + 1;
@@ -335,40 +335,40 @@ function event_corridor(e, _self, _key)
       ex_favorites(__self);
       break;
 
-    case '68altshift':
-      reDraw('$/favorites');  // d + alt + shift (favorites page)
+    case '68altshift':      // d + alt + shift (favorites page)
+      reDraw('$/favorites');
       break;
 
-    case '72shift':
-      reDraw('/');          // h + shift
+    case '72shift':         // h + shift (Home page)
+      reDraw('/');
       break;
 
-    case '76shift':
-      ex_intro();          // l + shift (show intro.js)
+    case '76shift':         // l + shift (show intro.js)
+      ex_intro();
       break;
 
-    case '78shift':
+    case '78shift':         // n + shift
       if ( !$('body').hasClass('editing') )
       {
         e.preventDefault();
-        ex_newFolder();       // n + shift
+        ex_newFolder();
       }
       break;
 
-    case '80shift':
+    case '80shift':         // p + shift
       if ( !$('body').hasClass('prop-edit') )
       {
         e.preventDefault();
-        ex_propAdd();           // p + shift
+        ex_showPropAdd();
       }
 
       break;
 
-    case '84shift':           // t + shift
+    case '84shift':         // t + shift
       if ( !$('body').hasClass('tag-edit') )
       {
         e.preventDefault();
-        ex_addTag($('#addTag'));
+        ex_showAddTag();
       }
       break;
 
@@ -432,7 +432,7 @@ function event_corridor(e, _self, _key)
       break;
 
 
-    case 'dblclick':           // Double click
+    case 'dblclick':        // Double click
       if ($(e.toElement).parent().hasClass('fav'))
       {
         // console.log('fav');
@@ -447,8 +447,8 @@ function event_corridor(e, _self, _key)
       break;
 
 
-    default:
-      return; // exit this handler for other keys
+    default:                // exit this handler for other keys
+      return;
   }
 
 

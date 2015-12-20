@@ -90,33 +90,43 @@ function ex_inputCreate(_type, _value, _item)
 
 /**
  * check body class status and if needed update it
+ * remove and cancel all operation
  */
 function ex_checkBody()
 {
-  if ( $('body').hasClass('cut') )
-  {
+  // console.log($('body').attr('class'));
 
-  }
-  if ( $('body').hasClass('copy') )
+  var classList = $('body').attr('class').split(/\s+/);
+  $.each(classList, function(index, item)
   {
+    switch (item)
+    {
+      case 'selectall':
+        ex_selectAll();
+        break;
 
-  }
-  if ( $('body').hasClass('editing') )
-  {
-    ex_inputSubmit(false);
-  }
-  if ( $('body').hasClass('selectall') )
-  {
+      // do nothing
+      case 'cut':
+      case 'copy':
+        // $('body').removeClass(item);
+        // $('#explorer>ul li.cutted').removeClass('cutted');
+        // $('#paste').fadeOut(100, function() { $(this).addClass('hide') });
+        break;
 
-  }
-  if ( $('body').hasClass('prop-edit') )
-  {
-    ex_propAdd();
-  }
-  if ( $('body').hasClass('tag-edit') )
-  {
-    ex_addTag($('#addTag'));
-  }
+      case 'editing':
+        $('body').removeClass(item);
+        ex_inputSubmit(false);
+        break;
+
+      case 'prop-edit':
+        ex_showPropAdd();
+        break;
+
+      case 'tag-edit':
+        ex_showAddTag();
+        break;
+    }
+  });
 }
 
 
@@ -125,25 +135,30 @@ function ex_checkBody()
  */
 function ex_escape()
 {
-  if ( $('body').hasClass('cut') )
-  {
-    $('body').removeClass('cut');
-    $('#explorer>ul li.cutted').removeClass('cutted');
-    $('#paste').fadeOut(100, function() { $(this).addClass('hide') });
-  }
-  else if($('body').hasClass('editing'))
+  if($('body').hasClass('editing'))
   {
     ex_inputSubmit(false);
   }
   else if ( $('body').hasClass('prop-edit') )
   {
-    ex_propAdd();
+    ex_checkBody();
   }
   else if ( $('body').hasClass('tag-edit') )
   {
-    ex_addTag($('#addTag'));
+    ex_checkBody();
   }
 
+  else if ( $('body').hasClass('cut') )
+  {
+    $('body').removeClass('cut');
+    $('#explorer>ul li.cutted').removeClass('cutted');
+    $('#paste').fadeOut(100, function() { $(this).addClass('hide') });
+  }
+  // at the end empty propbox
+  else
+  {
+    ex_propHide();
+  }
 }
 
 
@@ -243,6 +258,111 @@ function ex_items_select_focus_until(_id)
 function ex_showTrash()
 {
   $('body').toggleClass('hide-trash');
+}
+
+
+/**
+ * Empty prop box with effect
+ */
+function ex_propHide()
+{
+  $('#prop-box').children().each( function() {
+      // $(this).fadeOut(100, function() { $(this).addClass('hide') });
+      if(! $(this).is('#upload-notify'))
+      {
+        $(this).fadeOut(100);
+      }
+    });
+}
+
+
+/**
+ * Fill prop box with effect
+ */
+function ex_propShow()
+{
+  $('#prop-box').children().each( function() {
+      $(this).fadeIn(100);
+      $(this).removeClass('hide');
+    });
+}
+
+
+// check images exist or not
+function ImageExist(_url)
+{
+  return true;
+  var img = new Image();
+  img.src = _url;
+  return img.height != 0;
+}
+
+
+/**
+ * Run intro.js
+ */
+function ex_intro()
+{
+  introJs().exit();
+  var str = 'introJs()' + $('#ifaq').data('options').toString() + '.start()';
+  var fn = new Function(str);
+  fn();
+}
+
+
+/**
+ * init tag and fill taglist
+ * @return {[type]} [description]
+ */
+function ex_tagInit()
+{
+  var tagDefault = $('#sp-tags').val();
+  $('#tag-list').text('');
+  if(tagDefault)
+  {
+    $.each(tagDefault.split(', '),function(t, item)
+    {
+      if(item.trim())
+        $('#tag-list').append( "<span><i class='fa fa-times'></i>"+item+"</span>" );
+    });
+  }
+}
+
+
+/**
+ * click on add tag
+ * @return {[type]} [description]
+ */
+function ex_showAddTag()
+{
+  if($('body').hasClass('prop-edit'))
+  {
+    ex_showPropAdd();
+  }
+  $('body').toggleClass('tag-edit');
+  $('#showAddTag').toggleClass('fa-plus fa-times');
+  $('#prop-box-tags #tagInput').slideToggle(300, function()
+  {
+    $('#tag-add').focus().select();
+  });
+}
+
+
+/**
+ * Toggle add property form
+ */
+function ex_showPropAdd()
+{
+  if($('body').hasClass('tag-edit'))
+  {
+    ex_showAddTag();
+  }
+  $('body').toggleClass('prop-edit');
+  $('#showAddProp').toggleClass('fa-plus fa-times');
+  $('#prop-box-new').slideToggle(300, function()
+  {
+    $('#prop-box-new input[name="name"]').focus().select();
+  });
 }
 
 
