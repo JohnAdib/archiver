@@ -23,7 +23,7 @@ body{height: 100%;overflow:hidden;}
 #header #send-to-app:hover .vertical-menu, #header #send-to-app:focus .vertical-menu, #header #send-to-app:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 #header #languages:hover .vertical-menu, #header #languages:focus .vertical-menu, #header #languages:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 
-#header #more .vertical-menu a i{width:35px;} 
+#header #more .vertical-menu a i{width:35px;}
 #header .button{background-color:#3F5162}
 #header .button:hover{color: #fff;}
 #header .button:hover .icon {color: #ffffff; opacity: 1;}
@@ -74,7 +74,8 @@ body{height: 100%;overflow:hidden;}
 
 .body {position: absolute;top:45px;bottom: 0;}
 #footer{max-height: 50px}
-#formError{min-width:23.404251999999996%;width:auto;}
+#formError{min-width:23.404251999999996%;width:auto;bottom:10px;font-size:1.3em;}
+.rtl #formError{bottom:10px;text-align: center;}
 #formError ul li{padding:1% 5%;cursor:pointer;}
 
 /* Prop box*/
@@ -140,7 +141,6 @@ body{height: 100%;overflow:hidden;}
 
 
 
-body.dragover {background:#eee}
 input.upload {
   position: absolute;
   top: 0;
@@ -211,7 +211,7 @@ input.upload {
     width:95%;
     padding:30px;
     border-radius:3px;
-    margin:10px auto 10vh;
+    margin:10px auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -228,9 +228,7 @@ input.upload {
     transition: all .5s ease-in;-webkit-transition: all .5s ease-in;-o-transition: all .5s ease-in;-moz-transition: all .5s ease-in;
 }
 
-#form_uploader #drop.dragover{
-  border-color:#A1ABB0;
-}
+body.in #form_uploader #drop{border-color:#A1ABB0;}
 
 #form_uploader #drop a{
     background-color:#007a96;
@@ -432,6 +430,11 @@ input.upload {
 .breadcrumb a:last-child {color: #656d78;text-decoration:none;}
 .breadcrumb a + a:before {font-family: "FontAwesome";content: "\f105";color: #99a0aa;padding: 0px 8px;float:left;}
 .rtl .breadcrumb a + a:before {content: "\f104";float:right;}
+
+
+
+
+
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .span1 {

@@ -16,150 +16,218 @@ route('*', function()
   var ul = $('#upload-notify');
   $('#drop a').unbind('click.uploader');
   $('#drop a').bind('click.uploader', function(){
-    // Simulate a click on the file input button
-    // to show the file browser dialog
-    $(this).parent().find('input').click();
+  // Simulate a click on the file input button
+  // to show the file browser dialog
+  $(this).parent().find('input').click();
   });
 
   // Initialize the jQuery File Upload plugin
   $('#form_uploader').fileupload({
 
-    // This element will accept file drag/drop uploading
-    dropZone: $('body'),
+  // This element will accept file drag/drop uploading
+  dropZone: $('body'),
 
-    // This function is called when a file is added to the queue;
-    // either via the browse button, or via drag/drop:
-    add: function (e, data)
+  // This function is called when a file is added to the queue;
+  // either via the browse button, or via drag/drop:
+  add: function (e, data)
+  {
+
+    var tpl = $('<li class="working"><input type="text" value="0" data-width="25" data-height="25"'+
+    ' data-fgColor="#03A9F4" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span><i></i></li>');
+
+    // Append the file name and file size
+    tpl.find('p').text(data.files[0].name).attr('title', data.files[0].name)
+       .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+
+    // Add the HTML to the UL element
+    data.context = tpl.appendTo(ul);
+
+    // Initialize the knob plugin
+    tpl.find('input').knob();
+
+    // Listen for clicks on the cancel icon
+    tpl.find('i').click(function()
     {
 
-      var tpl = $('<li class="working"><input type="text" value="0" data-width="25" data-height="25"'+
-        ' data-fgColor="#03A9F4" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span><i></i></li>');
+    if(tpl.hasClass('working')){
+      jqXHR.abort();
+    }
 
-      // Append the file name and file size
-      tpl.find('p').text(data.files[0].name).attr('title', data.files[0].name)
-             .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+    tpl.fadeOut(function(){
+      tpl.remove();
+    });
+
+    });
+
+    // Automatically upload the file once it is added to the queue
+    var jqXHR = data.submit();
+
+    jqXHR.then(function()
+    {
+    var response = JSON.parse(jqXHR.responseText);
+    // console.log(response);
+    if(response.status == 'fail')
+    {
+      data.context.addClass('error');
+      hintClass = response.class? response.class: 'hint--warning';
+
+      // Append error
+      $(tpl).addClass('hint--left '+ hintClass).attr('data-hint', response.error);
+
+      // Add the HTML to the UL element
+      data.context = tpl.appendTo(ul);
+      setTimeout(function() { tpl.fadeOut(500, function() { $(this).remove(); }); }, 5000);
+
+    }
+
+    else if(response.status == 'ok')
+    {
+      // Append edit url
+      // tpl.find('span').append(response.edit);
+      $(tpl).addClass('hint--left hint--success').attr('data-hint', response.title);
 
       // Add the HTML to the UL element
       data.context = tpl.appendTo(ul);
 
-      // Initialize the knob plugin
-      tpl.find('input').knob();
-
-      // Listen for clicks on the cancel icon
-      tpl.find('i').click(function()
-      {
-
-        if(tpl.hasClass('working')){
-          jqXHR.abort();
-        }
-
-        tpl.fadeOut(function(){
-          tpl.remove();
-        });
-
-      });
-
-      // Automatically upload the file once it is added to the queue
-      var jqXHR = data.submit();
-
-      jqXHR.then(function()
-      {
-        var response = JSON.parse(jqXHR.responseText);
-        // console.log(response);
-        if(response.status == 'fail')
-        {
-          data.context.addClass('error');
-          hintClass = response.class? response.class: 'hint--warning';
-
-          // Append error
-          $(tpl).addClass('hint--left '+ hintClass).attr('data-hint', response.error);
-
-          // Add the HTML to the UL element
-          data.context = tpl.appendTo(ul);
-          setTimeout(function() { tpl.fadeOut(500, function() { $(this).remove(); }); }, 5000);
-
-        }
-
-        else if(response.status == 'ok')
-        {
-          // Append edit url
-          // tpl.find('span').append(response.edit);
-          $(tpl).addClass('hint--left hint--success').attr('data-hint', response.title);
-
-          // Add the HTML to the UL element
-          data.context = tpl.appendTo(ul);
-
-          // fadeOut notify and after 2 milisecond of success upload redraw and remove element
-          setTimeout(function() {
-            tpl.fadeOut(300, function() { $(this).remove(); });
-            reDraw();
-          }, 500);
-        }
-
-      });
-    },
-
-    progress: function(e, data){
-
-      // Calculate the completion percentage of the upload
-      var progress = parseInt(data.loaded / data.total * 100, 10);
-
-      // Update the hidden input field and trigger a change
-      // so that the jQuery knob plugin knows to update the dial
-      data.context.find('input').val(progress).change();
-
-      if(progress == 100){
-        data.context.removeClass('working');
-      }
-    },
-
-    fail:function(e, data){
-      // Something has gone wrong!
-      data.context.addClass('error');
+      // fadeOut notify and after 2 milisecond of success upload redraw and remove element
+      setTimeout(function() {
+      tpl.fadeOut(300, function() { $(this).remove(); });
+      reDraw();
+      }, 500);
     }
+
+    });
+  },
+
+  progress: function(e, data){
+
+    // Calculate the completion percentage of the upload
+    var progress = parseInt(data.loaded / data.total * 100, 10);
+
+    // Update the hidden input field and trigger a change
+    // so that the jQuery knob plugin knows to update the dial
+    data.context.find('input').val(progress).change();
+
+    if(progress == 100){
+    data.context.removeClass('working');
+    }
+  },
+
+  fail:function(e, data){
+    // Something has gone wrong!
+    data.context.addClass('error');
+  }
 
   });
 
+});
 
-  // Prevent the default action when a file is dropped on the window
-  $(document).on('drop dragover', function (e) {
+
+// Prevent the default action when a file is dropped on the window
+// $(document).on('drop dragover', function (e)
+// {
+//  var dt = e.originalEvent.dataTransfer;
+//  if(dt.types != null && (dt.types.indexOf ? dt.types.indexOf('Files') != -1 : dt.types.contains('application/x-moz-file')))
+//  {
+//    $('#drop').addClass('dragover');
+
+//  }
+//  e.preventDefault();
+// });
+
+// Prevent the default action when a file is dropped on the window
+// $(document).on('drop dragleave', function (e)
+// {
+//  e.preventDefault();
+// });
+
+// Prevent the default action when a file is dropped on the window
+// $(document).on('drop drop', function (e)
+// {
+//     $('#drop').addClass('dragover');
+//     $('#drop').removeClass('dragover');
+//     e.preventDefault();
+// });
+
+
+
+// Prevent the default action when a file is dropped on the window
+$(document).bind('drop dragover', function (e) {
+    e.preventDefault();
+});
+
+// show upload modal on dragover
+$(document).bind('dragover', function (e)
+{
+  var dropZone = $('body'),
+    timeout = window.dropZoneTimeout;
+  if (!timeout)
+  {
     var dt = e.originalEvent.dataTransfer;
     if(dt.types != null && (dt.types.indexOf ? dt.types.indexOf('Files') != -1 : dt.types.contains('application/x-moz-file')))
     {
-      $('#drop').addClass('dragover');
+      $('#modal_upload').addClass("visible");
     }
-    e.preventDefault();
-  });
-
-  // Prevent the default action when a file is dropped on the window
-  $(document).on('drop dragleave', function (e) {
-    $('#drop').removeClass('dragover');
-    e.preventDefault();
-  });
-
-  // Prevent the default action when a file is dropped on the window
-  // $(document).on('drop drop', function (e) {
-  //     $('#drop').addClass('dragover');
-  //     $('#drop').removeClass('dragover');
-  //     e.preventDefault();
-  // });
-
-
-  // Helper function that formats the file sizes
-  function formatFileSize(bytes) {
-    if (typeof bytes !== 'number') {
-      return '';
+    dropZone.addClass('in');
+  }
+  else
+  {
+    clearTimeout(timeout);
+  }
+  var found = false,
+    node = e.target;
+  do
+  {
+    if (node === dropZone[0])
+    {
+      found = true;
+      break;
     }
+    node = node.parentNode;
+  }
+  while (node != null);
 
-    if (bytes >= 1000000000) {
-      return (bytes / 1000000000).toFixed(2) + ' GB';
-    }
+  if (found)
+  {
+    dropZone.addClass('hover');
+  }
+  else
+  {
+    dropZone.removeClass('hover');
+  }
+  window.dropZoneTimeout = setTimeout(function ()
+  {
+    window.dropZoneTimeout = null;
+    dropZone.removeClass('in hover');
+    $('#modal_upload').removeClass("visible");
+  }, 100);
+});
 
-    if (bytes >= 1000000) {
-      return (bytes / 1000000).toFixed(2) + ' MB';
-    }
 
-    return (bytes / 1000).toFixed(2) + ' KB';
+
+
+
+
+
+
+
+// Helper function that formats the file sizes
+function formatFileSize(bytes)
+{
+  if (typeof bytes !== 'number')
+  {
+    return '';
   }
 
-});
+  if (bytes >= 1000000000)
+  {
+    return (bytes / 1000000000).toFixed(2) + ' GB';
+  }
+
+  if (bytes >= 1000000)
+  {
+    return (bytes / 1000000).toFixed(2) + ' MB';
+  }
+
+  return (bytes / 1000).toFixed(2) + ' KB';
+}
