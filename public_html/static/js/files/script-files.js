@@ -34,7 +34,6 @@ $(document).ready(function()
   $('#prop-box-ul').on('click', '.span4', function( ) {
     if ( $(this).children().length > 0 )
     {
-      // console.log($(this).parent().data('id'));
       $(this).parent().ajaxify({
         ajax: {
           data: {
@@ -43,6 +42,8 @@ $(document).ready(function()
           }
         }
       });
+
+      $(this).parent().fadeOut(300).remove();
     }
   });
 
