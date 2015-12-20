@@ -146,8 +146,8 @@ function ex_navigate(_self)
     // name of the double clicked folder
     newLocation = CURRENTPATH + "/" + $('.name', _self).text();
   }
-  if(newLocation.length == 0 )
-    newLocation = '/';
+  // if(newLocation.length == 0 )
+    // newLocation = '/';
 
   // redraw if new location and old one is different!
   if(CURRENTPATH !== newLocation)
