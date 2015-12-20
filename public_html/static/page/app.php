@@ -14,7 +14,7 @@
 
  <body>
   <h1>
-  <?php 
+  <?php
     if(isset($_GET['app']))
     {
       echo $_GET['app'];
@@ -22,7 +22,7 @@
     ?>
   </h1>
   <h3><?php if(isset($_GET['data'])) { echo "Data: ". $_GET['data'];}?></h3>
-  <?php 
+  <?php
     if(isset($_GET['addr']))
     {
       echo "<code>". $_GET['addr'] .'</code>';
@@ -44,24 +44,24 @@
       }
     }
     ?>
-  
+
   <form method="post" name="analyse">
    <input type="submit" name="analyse" value="Analyse">
    <input type="hidden" name="result" value="<?php echo $_GET['app']; ?>">
 
-   <input type="hidden" name="tag1" value="location">
+   <input type="hidden" name="key1" value="location">
    <input type="hidden" name="value1" value="sea">
 
-   <input type="hidden" name="tag2" value="app">
+   <input type="hidden" name="key2" value="app">
    <input type="hidden" name="value2" value="<?php echo $_GET['app']; ?>">
   </form>
 
 
-  <form method="get" name="analyse" action="http://files.<?php echo $_SERVER['HTTP_HOST']; ?>/$/result">  
-   <input type="hidden" name="tag1" value="location">
+  <form method="get" name="analyse" action="http://files.<?php echo $_SERVER['HTTP_HOST']; ?>/$/result">
+   <input type="hidden" name="key1" value="location">
    <input type="hidden" name="value1" value="sea">
 
-   <input type="hidden" name="tag2" value="app">
+   <input type="hidden" name="key2" value="app">
    <input type="hidden" name="value2" value="<?php echo $_GET['app']; ?>">
 
    <input type="hidden" name="result" value="return custom result! this text is ... به فارسی هم میتواند پاسخ دهد!">
@@ -70,13 +70,13 @@
 
   <h2><?php if(isset($_POST['result'])) echo '<hr />'.$_POST['result'];?></h2>
   <h3>Tag1 [
-   <?php if(isset($_POST['tag1'])) echo $_POST['tag1'] .': ';?> 
+   <?php if(isset($_POST['key1'])) echo $_POST['key1'] .': ';?>
    <?php if(isset($_POST['value1'])) echo $_POST['value1'];?>
    ]
   </h3>
 
   <h3>Tag2 [
-   <?php if(isset($_POST['tag2'])) echo $_POST['tag2'] .': ';?> 
+   <?php if(isset($_POST['key2'])) echo $_POST['key2'] .': ';?>
    <?php if(isset($_POST['value2'])) echo $_POST['value2'];?>
    ]
   </h3>

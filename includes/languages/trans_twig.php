@@ -14,63 +14,65 @@ function transtext()
 	echo T_("Upload");                                                                // Line 38
 	echo T_("Creating a new folder and organize your files");                         // Line 43
 	echo T_("Create new folder");                                                     // Line 44
-	echo T_("Remove an items, first we put file in trash and if you want to remove it again, we delete it");// Line 49
-	echo T_("for delete items directly, you can hold shift and then press this key or DEL in your keyboard");// Line 49
-	echo T_("Delete");                                                                // Line 50
-	echo T_("More funtions like Select all, Cut, Rename and ... is exist in this menu");// Line 55
-	echo T_("More ...");                                                              // Line 56
-	echo T_("Select All");                                                            // Line 59
-	echo T_("Copy");                                                                  // Line 60
-	echo T_("Cut");                                                                   // Line 61
-	echo T_("Rename");                                                                // Line 62
-	echo T_("Don't show deleted items");                                              // Line 63
-	echo T_("Download");                                                              // Line 69
-	echo T_("If you have a permission, you can send your files to an app and after process, if you want we can save result in file metadata");// Line 74
-	echo T_("Send to app");                                                           // Line 98
-	echo T_("Image Processing");                                                      // Line 81
-	echo T_("Text Mining");                                                           // Line 91
-	echo T_("Paste");                                                                 // Line 113
-	echo T_("Go to your profile, change password or logout from system");             // Line 119
-	echo T_("My Profile");                                                            // Line 125
-	echo T_("Change Password");                                                       // Line 126
-	echo T_("Logout");                                                                // Line 127
-	echo T_("Use this menu for navigating to some part of system");                   // Line 135
-	echo T_("Home");                                                                  // Line 137
-	echo T_("Navigate to home directory of your account");                            // Line 137
-	echo T_("favorites");                                                             // Line 139
-	echo T_("Show your favorites item");                                              // Line 139
-	echo T_("Tags");                                                                  // Line 192
-	echo T_("Show your tags");                                                        // Line 141
-	echo T_("Categories");                                                            // Line 143
-	echo T_("Next →");                                                              // Line 145
-	echo T_("← Back");                                                              // Line 145
-	echo T_("Skip");                                                                  // Line 145
-	echo T_("Done");                                                                  // Line 145
-	echo T_("Present system and all part of it to you");                              // Line 147
-	echo T_("Analytics");                                                             // Line 149
-	echo T_("Show your account analytics");                                           // Line 149
-	echo T_("Options");                                                               // Line 151
-	echo T_("your items like folder and files is show in this place");                // Line 155
-	echo T_("You can navigate between items with keyboard Up, Down, PageUp, PageDown, Home and End key.");// Line 155
-	echo T_("Also you can use Shift, Ctrl and Alt and we try to give you all functions that you need");// Line 155
-	echo T_("After selecting item we show you properties of this item in sidebar");   // Line 155
-	echo T_("On double click you entering to folders");                               // Line 155
-	echo T_("Finally you can use all keyboard shortcut for example Ctrl+X and Ctrl+V for copy and paste item to new location");// Line 155
-	echo T_("The properties of selected item appear in this place");                  // Line 161
-	echo T_("You can add a new metadata or property to selected items");              // Line 161
-	echo T_("Also you can remove your properties");                                   // Line 161
-	echo T_("You allow to add tag to items manually and we collect tags and show you in tags page");// Line 161
-	echo T_("Name");                                                                  // Line 167
-	echo T_("Value");                                                                 // Line 168
-	echo T_("Add it");                                                                // Line 170
-	echo T_("Properties");                                                            // Line 177
-	echo T_("Enter Tags");                                                            // Line 187
-	echo T_("Add");                                                                   // Line 188
-	echo T_("Enter Tags here");                                                       // Line 189
-	echo T_("Drag & Drop Files Here");                                                // Line 207
-	echo T_("or");                                                                    // Line 207
-	echo T_("Choose File");                                                           // Line 207
-	echo T_("Maximum size allowed");                                                  // Line 210
+	echo T_("More funtions like Select all, Cut, Rename and ... is exist in this menu");// Line 49
+	echo T_("More ...");                                                              // Line 50
+	echo T_("Select All");                                                            // Line 53
+	echo T_("Copy");                                                                  // Line 54
+	echo T_("Cut");                                                                   // Line 55
+	echo T_("Rename");                                                                // Line 56
+	echo T_("Delete");                                                                // Line 57
+	echo T_("Don't show deleted items");                                              // Line 58
+	echo T_("Download");                                                              // Line 64
+	echo T_("If you have a permission, you can send your files to an app and after process, if you want we can save result in file metadata");// Line 69
+	echo T_("Send to app");                                                           // Line 93
+	echo T_("Image Processing");                                                      // Line 76
+	echo T_("Text Mining");                                                           // Line 86
+	echo T_("Paste");                                                                 // Line 108
+	echo T_("Go to your profile, change password or logout from system");             // Line 114
+	echo T_("My Profile");                                                            // Line 120
+	echo T_("Change Password");                                                       // Line 121
+	echo T_("Logout");                                                                // Line 122
+	echo T_("Use this menu for navigating to some part of system");                   // Line 130
+	echo T_("Home");                                                                  // Line 132
+	echo T_("Navigate to home directory of your account");                            // Line 132
+	echo T_("favorites");                                                             // Line 134
+	echo T_("Show your favorites item");                                              // Line 134
+	echo T_("Tags");                                                                  // Line 191
+	echo T_("Show your tags");                                                        // Line 136
+	echo T_("Next →");                                                              // Line 139
+	echo T_("← Back");                                                              // Line 139
+	echo T_("Skip");                                                                  // Line 139
+	echo T_("Done");                                                                  // Line 139
+	echo T_("Present system and all part of it to you");                              // Line 141
+	echo T_("Analytics");                                                             // Line 143
+	echo T_("Show your account analytics");                                           // Line 143
+	echo T_("Options");                                                               // Line 145
+	echo T_("your items like folder and files is show in this place");                // Line 149
+	echo T_("You can navigate between items with keyboard Up, Down, PageUp, PageDown, Home and End key.");// Line 149
+	echo T_("Also you can use Shift, Ctrl and Alt and we try to give you all functions that you need");// Line 149
+	echo T_("After selecting item we show you properties of this item in sidebar");   // Line 149
+	echo T_("On double click you entering to folders");                               // Line 149
+	echo T_("Finally you can use all keyboard shortcut for example Ctrl+X and Ctrl+V for copy and paste item to new location");// Line 149
+	echo T_("View your current location and navigate to parent of it");               // Line 151
+	echo T_("The properties of selected item appear in this place");                  // Line 162
+	echo T_("You can add a new metadata or property to selected items");              // Line 162
+	echo T_("Also you can remove your properties");                                   // Line 162
+	echo T_("You allow to add tag to items manually and we collect tags and show you in tags page");// Line 162
+	echo T_("Name");                                                                  // Line 168
+	echo T_("Value");                                                                 // Line 226
+	echo T_("Add it");                                                                // Line 171
+	echo T_("Properties");                                                            // Line 178
+	echo T_("Enter Tags");                                                            // Line 186
+	echo T_("Add");                                                                   // Line 187
+	echo T_("Enter Tags here");                                                       // Line 188
+	echo T_("Drag & Drop Files Here");                                                // Line 206
+	echo T_("or");                                                                    // Line 238
+	echo T_("Choose File");                                                           // Line 206
+	echo T_("Maximum size allowed");                                                  // Line 209
+	echo T_("App result");                                                            // Line 222
+	echo T_("Key");                                                                   // Line 225
+	echo T_("Cancel");                                                                // Line 237
+	echo T_("Submit");                                                                // Line 239
 
 }
 ?>

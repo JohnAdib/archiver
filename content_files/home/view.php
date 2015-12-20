@@ -29,6 +29,28 @@ class view extends \mvc\view
 					// $this->data->datatable = null;
 					break;
 
+				case 'result':
+					$this->data->appResult = array();
+					// $appPost = \lib\utility::post();
+					// $appGet = \lib\utility::get();
+					for ($i=1; $i <= 5; $i++)
+					{
+						$appKey   = \lib\utility::get('key'.$i);
+						$appValue = \lib\utility::get('value'.$i);
+						if($appKey && $appValue)
+						{
+							$this->data->appResult[$appKey] = $appValue;
+						}
+					}
+					// var_dump($this->data->appResult);
+
+					// var_dump($appGet);
+
+
+					// var_dump($this->data->datatable);
+					// $this->data->datatable = null;
+					break;
+
 				default:
 					$this->data->datatable = array();
 					break;

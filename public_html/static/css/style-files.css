@@ -378,7 +378,21 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
   width: 70%;
 
 }
-
+#modal_result .modal-dialog
+{
+  min-width: 40%;
+  font-size: 1.4em;
+}
+#modal_result .modal-dialog .row{
+  text-align: left;
+  padding: 10px;
+}
+#modal_result .modal-dialog .row:hover{
+  background-color: #eee
+}
+.rtl #modal_result .modal-dialog .row{
+  text-align: right;
+}
 .modal form {width:500px;}
 .modal form .buttons {margin-top: 20px}
 

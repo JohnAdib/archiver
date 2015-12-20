@@ -80,6 +80,8 @@ function transtext()
 	**/
 	echo T_('Report');
 	echo T_('Ext');
+	echo T_('App result');
+	echo T_('Submit');
 
 
 

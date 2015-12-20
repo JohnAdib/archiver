@@ -71,7 +71,7 @@
       </a>
       <nav class="vertical-menu">
         <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1 - {%trans "Image Processing"%}
-         <form action="{{url.static}}page/app.php" data-action id="more-app1">
+         <form action="{{url.static}}page/app.php" data-action id="more-app1" target="_blank">
           <input type="hidden" name="data" value="Address of file1 - to app1">
           <input type="hidden" name="app" value='{%trans "Image Processing"%}'>
           <input type="hidden" name="fileid" id="sent-id" value="">
@@ -81,7 +81,7 @@
         </a>
 
         <a href="javascript:{}" onclick="document.getElementById('more-app2').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 2 - {%trans "Text Mining"%}
-         <form action="{{url.static}}page/app.php" data-action id="more-app2">
+         <form action="{{url.static}}page/app.php" data-action id="more-app2" target="_blank">
           <input type="hidden" name="data" value="Address of file 2 - to app2">
           <input type="hidden" name="app" value='{%trans "Text Mining"%}'>
           <input type="hidden" name="fileid" id="sent-id" value="">
@@ -91,7 +91,7 @@
         </a>
 
         <a href="javascript:{}" onclick="document.getElementById('more-app3').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} Google
-         <form action="http://www.google.com/search" data-action id="more-app3">
+         <form action="http://www.google.com/search" data-action id="more-app3" target="_blank">
           <input type="hidden" name="q" size="31" maxlength="255" value="Iran">
           <input type="hidden" name="fileid" id="sent-id" value="">
           <input type="hidden" name="addr" id="sent-addr" value="">
@@ -216,14 +216,30 @@
   </div>
  </div>
 
- <div class='modal' id="modal_result">
+{%if appResult%}
+ <div class='modal visible' id="modal_result">
   <div class='modal-dialog'>
+   <div class='modal-header'><h2>{%trans "App result"%}</h2></div>
    <div class='modal-body'>
+    <div class="row auto">
+     <div class="span4">{%trans "Key"%}</div>
+     <div class="span8">{%trans "Value"%}</div>
+    </div>
+    <hr />
+{%for key, value in appResult%}
+    <div class="row auto">
+     <div class="span4">{{key}}</div>
+     <div class="span8">{{value}}</div>
+    </div>
+{% endfor %}
    </div>
    <div class='modal-footer buttons'>
-     <a class="button negative" data-cancel>{% trans"Cancel" %}</a>
+    <a class='button' data-cancel>{%trans "Cancel"%}</a>
+    <div class='or' data-text='{%trans "or"%}'></div>
+    <a class='button positive' data-ajaxify data-ok>{%trans "Submit"%}</a>
    </div>
   </div>
  </div>
+{%endif%}
 
 {%endblock%}
