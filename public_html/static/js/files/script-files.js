@@ -461,6 +461,20 @@ function ex_showProp()
               $('#prop-box').attr('data-id', myData[key]);
             }
 
+            else if (key == 'prop')
+            {
+              var prop = myData[key];
+              for (var p in prop)
+              {
+                var _prop = prop[p];
+                for (var pp in _prop)
+                {
+                  var element = '<li class="row auto" data-id="' + p + '"><span class="span4">' + pp + '</span><span class="span8"> ' + _prop[pp] + ' </span></li>';
+                  elements += element;
+                }
+              }
+            }
+
             else if (key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type' && key != 'tags')
             {
               var element = '<li class="row auto"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
@@ -473,10 +487,6 @@ function ex_showProp()
               ex_tagInit();
             }
 
-            else if (key == 'prop')
-            {
-              console.log('Yohooo');
-            }
           }
           // $('#prop-box-ul').hide().html(elements).fadeIn();
           $('#prop-box-ul').hide().html(elements).fadeIn();
