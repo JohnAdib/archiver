@@ -115,24 +115,61 @@ function ex_tagRemove(_self)
 
 
 /**
+ * Navigate to new location with redraw func by giving item
+ * @param  {[type]} _self item element
+ */
+function ex_navigate(_self)
+{
+  // first init, if pass up going one level up
+  var newLocation = CURRENTPATH;
+  if(_self === 'up')
+  {
+    // if url has / remove it from end of url
+    if (CURRENTPATH.substr(-1) == '/')
+    {
+      newLocation = newLocation.substr(0, newLocation.length - 2);
+    }
+    // splite url with slash into array
+    newLocation = newLocation.split('/');
+    // remove last element of array
+    newLocation.pop();
+    // if has $ in url remove another level
+    if (/^(\$)(.*)/g.test(CURRENTPATH))
+    {
+      newLocation.pop();
+    }
+    // convert array to string wigh slash seperator
+    newLocation = newLocation.join('/');
+  }
+  else
+  {
+    // name of the double clicked folder
+    newLocation = CURRENTPATH + "/" + $('.name', _self).text();
+  }
+  if(newLocation.length == 0 )
+    newLocation = '/';
+
+  // redraw if new location and old one is different!
+  if(CURRENTPATH !== newLocation)
+    reDraw(newLocation);
+}
+
+
+/**
  * redraw explorer items
  * @return {[type]} [description]
  */
 function reDraw(_path)
 {
+  ex_propHide();
+
   if (_path == undefined)
   {
     _path = CURRENTPATH;
-    // setTimeout(function() { Navigate({ url: _path }) }, 300);
-    Navigate({ url: _path });
   }
-  else
-  {
-    Navigate({ url: _path });
-  }
-  ex_propHide();
-}
 
+  Navigate({ url: _path });
+}
 
 
 /**
@@ -220,11 +257,11 @@ function ex_delete(_trash)
 
   if (_trash)
   {
-    $('#explorer>ul li.selected').hide(300);
+    $('#explorer>ul li.selected').hide(300, function() { $(this).remove(); });
   }
   else
   {
-    $('#explorer>ul li.selected.trash').hide(300);
+    $('#explorer>ul li.selected.trash').hide(300, function() { $(this).remove(); });
     $('#explorer>ul li.selected').addClass('trash');
   }
 
@@ -304,10 +341,9 @@ function ex_paste()
         }
       }
     });
-    reDraw();
   }
 
-  $('#paste').fadeOut(100, function() { $(this).addClass('hide') });
+  $('#paste').fadeOut(300, function() { $(this).addClass('hide'); reDraw(); });
 }
 
 
@@ -338,17 +374,6 @@ function ex_dblClickItems(_self)
     // Trigger download link on dbl click items
     document.getElementById("download-link").click();
   }
-}
-
-function ex_navigate(_self)
-{
-  var execName = $('.name', _self).text();    // name of the double clicked folder
-  if (/^(\$)(.*)/g.test(CURRENTPATH))
-  {
-    execName += '/..';
-  }
-  newlocation  = CURRENTPATH + "/" + execName; // new location
-  reDraw(newlocation);
 }
 
 

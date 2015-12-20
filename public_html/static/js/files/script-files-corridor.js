@@ -361,6 +361,10 @@ function event_corridor(e, _self, _key)
       ex_showPropAdd();
       break;
 
+    case '82shift':         // r + shift
+      reDraw();
+      break;
+
     case '84shift':         // t + shift
       if(ex_editing())
         return;
