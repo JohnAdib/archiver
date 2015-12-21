@@ -368,6 +368,7 @@ function ex_showAddTag()
     ex_showPropAdd();
   }
 
+
   if ($('#explorer>ul li.selected').length > 0)
   {
     $('body').toggleClass('tag-edit');
@@ -375,6 +376,10 @@ function ex_showAddTag()
     $('#prop-box-tags #tagInput').slideToggle(300, function()
     {
       $('#tag-add').focus().select();
+      if($('body').hasClass('tag-edit'))
+      {
+        $("#prop-box").animate({ scrollTop: $('#prop-box').prop("scrollHeight")}, 500);
+      }
     });
   }
 }

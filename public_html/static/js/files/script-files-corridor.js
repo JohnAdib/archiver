@@ -15,7 +15,7 @@ function event_corridor(e, _self, _key)
   var shift  = e.shiftKey ? 'shift' : '';
   var alt    = e.altKey   ? 'alt'   : '';
   var mytxt  = String(_key) + ctrl + alt + shift;
-  console.log(mytxt);
+  // console.log(mytxt);
 
   switch(mytxt)
   {

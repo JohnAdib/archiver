@@ -50,7 +50,9 @@ width: 150px;
 .ltr #header #search i{right:0; left: inherit;}
 #header #search .button{padding: 0;}
 #header .button{min-height: 27px;vertical-align: middle;}
-
+#header-nav > li#send-to-app > a > span, #header-nav > li#more > a > span{display: none;}
+#header-nav #send-to-app .button, #header-nav #more .button{padding:0!important;min-width:40px;width:auto;}
+#header-nav #send-to-app .button i, #header-nav #more .button i{font-size:1.5em}
 
 #header #languages .vertical-menu{margin-left:-15px;}
 #header #languages{text-align:center;width:6.382978vw;min-width:40px;}
@@ -107,7 +109,7 @@ width: 150px;
 #prop-box li div, #prop-box-ul li img {display: block; margin:0 auto;}
 #prop-box i{vertical-align:middle;}
 #prop-box .img-container{display:none}
-#prop-box .img-container img {width:100%;}
+#prop-box .img-container img {width:100%;max-width:250px;}
 #prop-box .img-container:hover {background:#eee;}
 
 #prop-box-ul video, #prop-box-ul audio{max-width:100%;width:98%;margin:5px auto 0;display:block}
@@ -482,7 +484,9 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
 
 
 @media screen and (min-width: 1400px){
-
+  #header-nav > li#send-to-app > a > span, #header-nav > li#more > a > span{display: inline-block;}
+  #header-nav #send-to-app .button, #header-nav #more .button{padding: 8px 1.5em 8px 4.07142em !important;min-width:40px;width:auto;}
+  #header-nav #send-to-app .button i, #header-nav #more .button i{font-size:1em}
 }
 
 
@@ -506,12 +510,15 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
   #header-nav #search .button{min-width: 100px}
   #profile span{display: none}
   #modal_upload .modal-dialog{width:90%}
+  #header-nav #send-to-app .button, #header-nav #more .button{min-width:30px}
+
+
   body{overflow-y:auto }
   .body{position:initial;}
-
-  .span1 {
-    display: none;
-  }
+  .body>.span1 {display: none;}
+  #prop-box-ul .row > .span4{width: 30% !important;}
+  #prop-box-ul .row > .span8{width: 70% !important;}
+  #formError{min-width:200px;}
 }
 
 
@@ -520,22 +527,27 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
   #explorer .name {width:55%;}
   #explorer .size {width:20%}
   #explorer .date {display:none}
+  #header{overflow:hidden;}
   #header-nav > li > a > span{display: none}
   #header-nav .button{padding:0!important;min-width:25px;width:auto;}
   #header-nav .button i{font-size:1.2em;}
-  #header-nav #search .button{min-width: 120px}
+  #header-nav #search .button{min-width: 50px}
   #header-nav #search input:focus{width: 150px;}
   #profile span{display: none}
+  #header-nav #send-to-app .button, #header-nav #more .button{min-width:30px}
 
   .vertical-menu{left:0;right:0}
   #header-nav > li{padding:0 1px}
   #header #languages .vertical-menu{margin:0;}
   .rtl #header #profile .vertical-menu{right:0;}
-  #modal_upload .modal-dialog{width:90%}
+  #modal_upload .modal-dialog{width:90%;top:50%;}
 
-  .span1 {
-    display: none;
-  }
+  body{overflow-y:auto }
+  .body{position:initial;}
+  .body>.span1 {display: none;}
+  #prop-box-ul .row > .span4{width: 30% !important;}
+  #prop-box-ul .row > .span8{width: 70% !important;}
+  #formError{min-width:200px;}
 }
 
 
