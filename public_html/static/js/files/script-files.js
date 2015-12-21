@@ -27,12 +27,11 @@ $(document).ready(function()
   $("#search i")      .click(function() { ex_search();          });
 
 
-  $('#modal_result .negative').click(function() {
-    reDraw('/');
-  });
-  $('#modal_result .positive').click(function() {
-    reDraw('/');
-  });
+  // prevent closing modal result
+  $(document.body).children('.modal#modal_result').addBack().off("click");
+  // on click buttons redirect to root
+  $('#modal_result .button').click(function() { reDraw('/'); });
+
 
 
   $("#search").focusin(function()

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ermile\n"
-"POT-Creation-Date: 2015-12-20 20:06+0330\n"
-"PO-Revision-Date: 2015-12-20 20:06+0330\n"
+"POT-Creation-Date: 2015-12-21 09:16+0330\n"
+"PO-Revision-Date: 2015-12-21 09:18+0330\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -25,91 +25,98 @@ msgstr "شما ابتدا باید وارد سیستم شوید!"
 msgid "Fail on get current location"
 msgstr "خطا در دستیابی به آدرس فعلی"
 
-#: ../../../.././content_files/home/model.php:353
+#: ../../../.././content_files/home/model.php:387
 #: ../../../.././includes/languages/trans_addon.php:293
 msgid "Fail on tranfering file"
 msgstr "خطا در انتقال فایل"
 
-#: ../../../.././content_files/home/model.php:476
-#: ../../../.././content_files/home/model.php:532
-#: ../../../.././content_files/home/model.php:580
-#: ../../../.././content_files/home/model.php:629
+#: ../../../.././content_files/home/model.php:510
+#: ../../../.././content_files/home/model.php:566
+#: ../../../.././content_files/home/model.php:614
 #: ../../../.././content_files/home/model.php:663
-#: ../../../.././content_files/home/model.php:692
+#: ../../../.././content_files/home/model.php:697
+#: ../../../.././content_files/home/model.php:726
 #: ../../../.././includes/languages/trans_addon.php:294
 msgid "Error"
 msgstr "خطا"
 
-#: ../../../.././content_files/home/model.php:524
+#: ../../../.././content_files/home/model.php:558
 msgid "New folder created Successfully"
 msgstr "پوشه جدید با موفقیت ساخته شد"
 
-#: ../../../.././content_files/home/model.php:530
+#: ../../../.././content_files/home/model.php:564
 msgid "Error on createding new folder!"
 msgstr "خطا در ساخت پوشه جدید!"
 
-#: ../../../.././content_files/home/model.php:571
-#: ../../../.././content_files/home/model.php:794
+#: ../../../.././content_files/home/model.php:605
+#: ../../../.././content_files/home/model.php:828
 #: ../../../.././includes/languages/trans_addon.php:190
 msgid "Delete Successfully"
 msgstr "حذف با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:578
-#: ../../../.././content_files/home/model.php:627
+#: ../../../.././content_files/home/model.php:612
 #: ../../../.././content_files/home/model.php:661
-#: ../../../.././content_files/home/model.php:690
+#: ../../../.././content_files/home/model.php:695
+#: ../../../.././content_files/home/model.php:724
 msgid "Error: "
 msgstr "خطا: "
 
-#: ../../../.././content_files/home/model.php:620
+#: ../../../.././content_files/home/model.php:654
 #: ../../../.././includes/languages/trans_addon.php:244
 msgid "Successfully"
 msgstr "با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:630
+#: ../../../.././content_files/home/model.php:664
 msgid "Move Unsuccessful!"
 msgstr "انتقال ناموفق بود!"
 
-#: ../../../.././content_files/home/model.php:654
+#: ../../../.././content_files/home/model.php:688
 msgid "Rename Successfully"
 msgstr "تغییرنام با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:759
-#: ../../../.././content_files/home/model.php:833
-#: ../../../.././content_files/home/model.php:860
+#: ../../../.././content_files/home/model.php:793
+#: ../../../.././content_files/home/model.php:867
 #: ../../../.././includes/languages/trans_addon.php:186
 msgid "Insert Successfully"
 msgstr "افزودن با موفقیت انجام شد"
 
-#: ../../../.././content_files/home/model.php:765
-#: ../../../.././content_files/home/model.php:800
-#: ../../../.././content_files/home/model.php:839
-#: ../../../.././content_files/home/model.php:866
+#: ../../../.././content_files/home/model.php:799
+#: ../../../.././content_files/home/model.php:834
+#: ../../../.././content_files/home/model.php:873
+#: ../../../.././content_files/home/model.php:905
 #: ../../../.././includes/languages/trans_addon.php:192
 msgid "Transaction error"
 msgstr "خطای در تراکنش"
 
-#: ../../../.././content_files/home/view.php:35
+#: ../../../.././content_files/home/model.php:899
+msgid "Remove Successfully"
+msgstr "حذف با موفقیت انجام شد"
+
+#: ../../../.././content_files/home/view.php:42
 #: ../../../.././includes/languages/static_translation.php:85
 msgid "Result"
 msgstr "نتیجه"
 
-#: ../../../.././content_files/home/view.php:70
+#: ../../../.././content_files/home/view.php:43
+msgid "AuthCode"
+msgstr "کد اعتبارسنجی"
+
+#: ../../../.././content_files/home/view.php:79
 #: ../../../.././includes/mvc/view.php:10
 msgid "Archiver"
 msgstr "سامانه آرشیو"
 
-#: ../../../.././content_files/home/view.php:71
+#: ../../../.././content_files/home/view.php:80
 #: ../../../.././includes/mvc/view.php:11
 msgid "Archiver is new"
 msgstr "سامانه آرشیو جدید است"
 
-#: ../../../.././content_files/home/view.php:72
+#: ../../../.././content_files/home/view.php:81
 #: ../../../.././includes/mvc/view.php:12
 msgid "Ermile is our company"
 msgstr "ارمایل نام شرکت ماست"
 
-#: ../../../.././content_files/home/view.php:76
+#: ../../../.././content_files/home/view.php:85
 #: ../../../.././includes/mvc/view.php:15
 msgid "Archiver is another archive system!"
 msgstr "سامانه آرشیو یک سرویس آرشیو دیگر است!"
@@ -826,7 +833,7 @@ msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ن
 
 #: ../../../.././includes/languages/static_translation.php:55
 #: ../../../.././includes/languages/trans_addon.php:134
-#: ../../../.././includes/languages/trans_twig.php:74
+#: ../../../.././includes/languages/trans_twig.php:75
 msgid "Cancel"
 msgstr "انصراف"
 
@@ -923,7 +930,7 @@ msgid "App result"
 msgstr "نتیجه برنامه"
 
 #: ../../../.././includes/languages/static_translation.php:84
-#: ../../../.././includes/languages/trans_twig.php:75
+#: ../../../.././includes/languages/trans_twig.php:76
 msgid "Submit"
 msgstr "تایید"
 
@@ -2095,6 +2102,10 @@ msgstr "افزودن"
 #: ../../../.././includes/languages/trans_twig.php:64
 msgid "Properties"
 msgstr "خصیصه‌ها"
+
+#: ../../../.././includes/languages/trans_twig.php:74
+msgid "Do you want to save result of this app as property of file?"
+msgstr "آیا مایل به ذخیره نتیجه برنامه به عنوان یک خصیصه برای فایل هستید؟"
 
 #~ msgid ""
 #~ "Remove an items, first we put file in trash and if you want to remove it "

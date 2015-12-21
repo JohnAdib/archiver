@@ -65,7 +65,7 @@
    <input type="hidden" name="key2" value="app">
    <input type="hidden" name="value2" value="<?php echo $_GET['app']; ?>">
 
-   <input type="hidden" name="result" value="return custom result! this text is ... به فارسی هم میتواند پاسخ دهد!">
+   <input type="hidden" name="result" value="return custom result! this is text. به فارسی هم میتواند پاسخ دهد!">
    <input type="hidden" name="authcode" value="<?php echo $_GET['authcode']; ?>">
    <input type="submit">
   </form>
