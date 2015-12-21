@@ -198,7 +198,38 @@ class model extends \mvc\model
 
 		if(in_array('field', $_need))
 		{
-			$myQry = $myQry->field(
+			$myQry = $this->qryCreatorField($myQry);
+			// $myQry = $myQry->field(
+			// 			'id',
+			// 			'file_id',
+			// 			'#attachment_title as title',
+			// 			'#attachment_desc as description',
+			// 			'#attachment_type as type',
+			// 			// '#attachment_addr as address',
+			// 			'#attachment_name as name',
+			// 			'#attachment_ext as ext',
+			// 			'#attachment_size as size',
+			// 			'#attachment_meta as meta',
+			// 			'#attachment_parent as parent',
+			// 			// '#attachment_order as order',
+			// 			'#attachment_fav as fav',
+			// 			'#attachment_status as status',
+			// 			'#attachment_date as date'
+			// 		);
+		}
+
+		return $myQry;
+	}
+
+
+	/**
+	 * Add field to query string
+	 * @param  query string without field
+	 * @return query string with added field
+	 */
+	private function qryCreatorField($_qry)
+	{
+		return $_qry->field(
 						'id',
 						'file_id',
 						'#attachment_title as title',
@@ -215,9 +246,6 @@ class model extends \mvc\model
 						'#attachment_status as status',
 						'#attachment_date as date'
 					);
-		}
-
-		return $myQry;
 	}
 
 
@@ -277,8 +305,7 @@ class model extends \mvc\model
 
 			$qry->join('attachments')->on('id', '#termusages.termusage_id')
 				->field(false)
-				->and('user_id', $uid )
-			;
+				->and('user_id', $uid );
 
 			// $qry    = $qry->groupby('term_id', '#ip');
 				// ->and('termusage_id', $myId);
@@ -294,8 +321,41 @@ class model extends \mvc\model
 		{
 			$myTag = \lib\utility::get('name');
 
+			$qry = $this->sql()->table('terms')
+				->where('term_type', 'tag')
+				->and('term_title', $myTag)
+				->field(false);
 
-			return false;
+
+			$qry->join('termusages')->on('term_id', '#terms.id')
+				->field(false)
+				->and('termusage_foreign', '#"attachments"');
+
+			$qry->join('attachments')->on('id', '#termusages.termusage_id')
+				->field(
+						'id',
+						'file_id',
+						'#attachment_title as title',
+						'#attachment_desc as description',
+						'#attachment_type as type',
+						// '#attachment_addr as address',
+						'#attachment_name as name',
+						'#attachment_ext as ext',
+						'#attachment_size as size',
+						'#attachment_meta as meta',
+						'#attachment_parent as parent',
+						// '#attachment_order as order',
+						'#attachment_fav as fav',
+						'#attachment_status as status',
+						'#attachment_date as date'
+					)
+				->and('user_id', $uid );
+
+			// var_dump($qry->selectString());exit();
+			$qry = $qry->select()->allassoc();
+
+			// return $qry;
+			return $this->draw_fix($qry);
 		}
 	}
 
@@ -324,7 +384,6 @@ class model extends \mvc\model
 			{
 				$_dbtable[$key]['meta']   = json_decode($row['meta'], true);
 			}
-
 			$_dbtable[$key]['cid']    = utility\ShortURL::encode($row['id']);
 			$_dbtable[$key]['fav']    = $_dbtable[$key]['fav']? 'fa-star': 'fa-star-o';
 			$_dbtable[$key]['status'] = $_dbtable[$key]['status'] == 'normal'? '': $_dbtable[$key]['status'];
