@@ -171,11 +171,17 @@ class model extends \mvc\model
 			$myQry = $myQry->and("attachment_name", 'LIKE', "'%$q%'");
 			$myQry = $myQry->or( "attachment_meta", 'LIKE', "'%$q%'");
 
-			$myQry = $myQry->groupClose('g_search');
+			// $myQry = $myQry->groupClose('g_search');
 
 
-			// $myQry->join('attachmentmetas')->on('attachment_id', '#attachmentmeta.id')
-				// ->and("attachmentmeta_key", 'LIKE', "'%$q%'");
+			$myQry->join('attachmentmetas')->on('attachment_id', '#attachments.id')
+				// ->groupOpen('g_searchmeta')
+				->field(false)
+				->and("attachmentmeta_key", 'LIKE', "'%$q%'")
+				->or("attachmentmeta_value", 'LIKE', "'%$q%'")
+				// ->groupClose('g_searchmeta');
+				->groupClose('g_search');
+
 
 				// ->and('termusage_foreign', '#"attachments"');
 
@@ -359,14 +365,52 @@ class model extends \mvc\model
 		}
 	}
 
-
+	/**
+	 * Query String of search that search in 2 table attachments and attachmentmetas
+	 * and find related data in these tables
+	 * @return [type] [description]
+	 */
 	function draw_search()
 	{
-		$qry  = $this->qryCreator(['status', 'search', 'field']);
-		// var_dump($qry->selectString());exit();
-		$qry = $qry->select()->allassoc();
+		$q = utility::get('q');
+		// search query string
+		$qString = "SELECT
+				`attachments`.`id`,
+				`attachments`.`file_id`,
+				attachment_title 	as title,
+				attachment_desc 	as description,
+				attachment_type 	as type,
+				attachment_name 	as name,
+				attachment_ext 		as ext,
+				attachment_size 	as size,
+				attachment_meta 	as meta,
+				attachment_parent 	as parent,
+				attachment_fav 		as fav,
+				attachment_status 	as status,
+				attachment_date 	as date
+				FROM `attachments`
 
-		return $this->draw_fix($qry);
+				INNER JOIN attachmentmetas ON `attachmentmetas`.`attachment_id` = `attachments`.`id`
+
+				WHERE `attachments`.`user_id` = 1
+				AND attachment_status IN ('normal', 'trash')
+				AND
+				(
+						attachment_name LIKE '%$q%'
+					OR 	attachment_meta LIKE '%$q%'
+					OR 	attachmentmeta_key LIKE '%$q%'
+					OR 	attachmentmeta_value LIKE '%$q%'
+				)
+			";
+		$sQry = $this->sql()->query($qString);
+		$sQry = $sQry->allassoc();
+
+		return $this->draw_fix($sQry);
+
+		// $qry  = $this->qryCreator(['status', 'search', 'field']);
+		// var_dump($qry->selectString());exit();
+		// $qry = $qry->select()->allassoc();
+		// return $this->draw_fix($qry);
 	}
 
 
