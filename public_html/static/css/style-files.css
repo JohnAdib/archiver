@@ -291,7 +291,6 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
     right: 0;
     z-index: 1001;
     max-height: 50vh;
-    overflow-y: auto;
 }
 .rtl #upload-notify{
     left: 0;

@@ -42,10 +42,10 @@
     <p class="alert alert-info fade">{%trans "First you need to set some item as favorites"%}</p>
   {%elseif child == 'tags'%}
    {%if tagstable%}
+    <p class="alert alert-info fade">{%trans "List of tags used in your account"%}</p>
     <div id="tags-list">
-     <p class="alert alert-info fade">{%trans "List of tags used in your account"%}</p>
     {%for key, row in tagstable%}
-     <a href="/$/tags/{{row.url}}"><span>{{row.countuse}}</span>{{row.title}}</a>
+     <a href="/$/tags?tag={{row.url}}"><span>{{row.countuse}}</span>{{row.title}}</a>
     {% endfor %}
     </div>
    {%else%}
