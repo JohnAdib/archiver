@@ -36,11 +36,16 @@ body{height: 100%;overflow:hidden;}
 background-color: transparent;
 border:none;
 color: #fff;
+height: 27px;
+width: 70px;
+}
+#header #search input:focus{
+width: 150px;
 }
 #header #search .button{
 padding: 0;
 }
-#header .button{height: 25px;}
+#header .button{min-height: 27px;vertical-align: middle;}
 
 
 #header #languages .vertical-menu{margin-left:-15px;}

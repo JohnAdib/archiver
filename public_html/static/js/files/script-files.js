@@ -101,7 +101,10 @@ route('*', function()
 function ex_search()
 {
   var q = $("#search input").val();
-  reDraw('$/search?q=' + q);
+  if(q)
+  {
+    reDraw('$/search?q=' + q);
+  }
 }
 
 

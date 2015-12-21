@@ -239,8 +239,8 @@ function ex_itemSelectedFocusedZero(_id)
   if(myAddr)
   {
     myAddr = location.protocol + "//" + location.host + '/'+ myAddr;
-    $('#send-to-app').fadeIn(300).removeClass('hide').css('display', 'inline-block');
     $('#download').fadeIn(300).removeClass('hide').css('display', 'inline-block');
+    $('#send-to-app').fadeIn(300).removeClass('hide').css('display', 'inline-block');
 
     $('#download a').attr('href', myAddr);
     var myName = $('#explorer>ul li:eq('+ _id +') .name').html();
@@ -253,10 +253,11 @@ function ex_itemSelectedFocusedZero(_id)
   }
   else
   {
-    $('#send-to-app').fadeOut(300, function() { $(this).addClass('hide') });
     $('#download').fadeOut(300, function() { $(this).addClass('hide') });
     $('#download a').attr('href', null);
+    $('#send-to-app').fadeOut(300, function() { $(this).addClass('hide') });
   }
+  $('#more').fadeIn(300).removeClass('hide').css('display', 'inline-block');
 }
 
 
