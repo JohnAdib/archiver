@@ -29,8 +29,16 @@ class view extends \mvc\view
 					break;
 
 				case 'tags':
-					$this->data->tagstable = $this->model()->draw_tags();
-					// var_dump($this->data->tagstable);
+					$myTag = \lib\utility::get('name');
+					if($myTag)
+					{
+						$this->data->datatable = $this->model()->draw_tags();
+					}
+					else
+					{
+						$this->data->tagstable = $this->model()->draw_tags('list');
+						// var_dump($this->data->tagstable);
+					}
 					break;
 
 				case 'result':

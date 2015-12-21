@@ -252,29 +252,53 @@ class model extends \mvc\model
 	 * fetch list of favorite items from database and retun it
 	 * @return [array] datatable contain list of items
 	 */
-	public function draw_tags()
+	public function draw_tags($_type = false)
 	{
+		// add current user to query string
+		$uid       = $this->login('id');
+		if(!$uid)
+			return false;
+
 		/**
 		for Show tags
 		first we need to get current user, then join qry with terms and termusages tbl
 		 */
-		$qry = $this->sql()->table('terms')
-			->where('term_type', 'tag')
-			->field('id', '#term_title as title', '#term_url as url');
+		// fetch the list of tags of current user
+		if($_type === 'list')
+		{
+			$qry = $this->sql()->table('terms')
+				->where('term_type', 'tag')
+				->field('id', '#term_title as title', '#term_url as url');
 
 
-		$qry->join('termusages')->on('term_id', '#terms.id')
-			->field('#id')
-			// ->field('#count(*) as countuse')
-			->and('termusage_foreign', '#"attachments"');
-		// $qry    = $qry->groupby('term_id', '#ip');
-			// ->and('termusage_id', $myId);
+			$qry->join('termusages')->on('term_id', '#terms.id')
+				->field(false)
+				->and('termusage_foreign', '#"attachments"');
 
-		// $qry  = $this->qryCreator(['status', 'fav', 'field']);
-		// var_dump($qry->selectString());exit();
-		$qry = $qry->select()->allassoc();
-		return $qry;
+			$qry->join('attachments')->on('id', '#termusages.termusage_id')
+				->field(false)
+				->and('user_id', $uid )
+			;
+
+			// $qry    = $qry->groupby('term_id', '#ip');
+				// ->and('termusage_id', $myId);
+
+			// $qry  = $this->qryCreator(['status', 'fav', 'field']);
+			// var_dump($qry->selectString());exit();
+			$qry = $qry->select()->allassoc();
+			return $qry;
+
+		}
+		// fetch the list of items of current user in this tag name
+		else
+		{
+			$myTag = \lib\utility::get('name');
+
+
+			return false;
+		}
 	}
+
 
 	function draw_search()
 	{
@@ -346,8 +370,15 @@ class model extends \mvc\model
 	public function post_upload()
 	{
 		$_location = $this->getLocation();
-		if(!$_location)
+
+		if(!$_location || strpos($_location, '/$/') !== false)
+		{
+			debug::property('status','fail');
+			debug::property('error', 'fail on upload');
+
+			$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 			return false;
+		}
 
 		$FOLDER_SIZE = 1000;
 		$SERVER_SIZE = 1000000;		// 1 milion file can save in each server

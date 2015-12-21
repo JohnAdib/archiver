@@ -45,6 +45,7 @@ class controller extends \mvc\controller
 					case 'tags':
 					case 'search':
 					case 'result':
+					case 'analytics':
 						$this->route_check_true = true;
 						$this->get()->ALL();
 						$this->post($myurl[1])->ALL();
