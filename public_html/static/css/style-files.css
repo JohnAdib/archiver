@@ -150,7 +150,9 @@ padding: 0;
 #explorer .fa-star-o {color: #FCA375;color: #FDCC37;display: none;}
 #explorer .fa-star {color: #FDCC37;text-shadow: 0 0 1px #000;}
 
-
+#explorer #tags-list{font-size:1.3em}
+#explorer #tags-list a{padding:5px 10px;display:inline-block;border-radius:1px;margin-bottom:10px}
+#explorer #tags-list a:hover{background-color: #eee}
 
 input.upload {
   position: absolute;
@@ -393,12 +395,13 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
 #modal_result .modal-dialog
 {
   min-width: 50%;
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 #modal_result .modal-dialog .row{
   text-align: left;
   padding: 10px;
 }
+#modal_result .modal-dialog .row .span4{text-align:left;font-weight:bold;padding:0 10px;color: #000;}
 #modal_result .modal-dialog .row:hover{
   background-color: #eee
 }

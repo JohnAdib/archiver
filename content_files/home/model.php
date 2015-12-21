@@ -74,11 +74,12 @@ class model extends \mvc\model
 	/**
 	 * create a start of query for current item to use in another functions
 	 * @param  [type]  $_need   pass your need in array and we process it
+	 * @param  boolean $_id  	pass the id of item manually
 	 * @param  boolean $_order  pass the field and type of order
 	 * @param  boolean $_status pass status that want it
 	 * @return [type]           return the sql object for nex step
 	 */
-	private function qryCreator($_need, $_order = false, $_status = false)
+	private function qryCreator($_need, $_id = false, $_order = false, $_status = false)
 	{
 		// add current user to query string
 		$uid       = $this->login('id');
@@ -132,20 +133,27 @@ class model extends \mvc\model
 		// different for array and strings
 		if(in_array('id', $_need))
 		{
-			$myId = $this->getItems(true);
-			// if only has one id
-			if(is_numeric($myId))
+			if($_id)
 			{
-				$myQry = $myQry->and('id', $myId);
+				$myQry = $myQry->and('id', $_id);
 			}
-			// if contain more than one id
-			elseif($myId)
-			{
-				$myQry = $myQry->and('id', 'IN' ,"(".$myId.")");
-			}
-			// the id is not correct
 			else
-				return false;
+			{
+				$myId = $this->getItems(true);
+				// if only has one id
+				if(is_numeric($myId))
+				{
+					$myQry = $myQry->and('id', $myId);
+				}
+				// if contain more than one id
+				elseif($myId)
+				{
+					$myQry = $myQry->and('id', 'IN' ,"(".$myId.")");
+				}
+				// the id is not correct
+				else
+					return false;
+			}
 		}
 
 
@@ -257,6 +265,7 @@ class model extends \mvc\model
 
 		$qry->join('termusages')->on('term_id', '#terms.id')
 			->field('#id')
+			// ->field('#count(*) as countuse')
 			->and('termusage_foreign', '#"attachments"');
 		// $qry    = $qry->groupby('term_id', '#ip');
 			// ->and('termusage_id', $myId);
@@ -667,7 +676,7 @@ class model extends \mvc\model
 			debug::title(T_("Error: "));
 			debug::property('status', 'fail');
 			debug::property('error', T_('Error'));
-			debug::fail(T_('Move Unsuccessful!'));
+			debug::error(T_('Move Unsuccessful!'));
 		});
 	}
 
@@ -735,40 +744,6 @@ class model extends \mvc\model
 
 		return true;
 	}
-
-	/**
-	 * Save result of custom app as property of file
-	 * @return [type] [description]
-	 */
-	function post_result($_type)
-	{
-
-		$appAuthCode = \lib\utility::get('authcode');
-		$appResult   = \lib\utility::get('result');
-		$this->data->appResult =
-		[
-			T_('Result') => $appResult,
-			T_('AuthCode') => $appAuthCode,
-		];
-		// $appPost = \lib\utility::post();
-
-		if( $appAuthCode && $appResult)
-		{
-			// read get and show in modal
-			for ($i=1; $i <= 5; $i++)
-			{
-				$appKey   = \lib\utility::get('key'.$i);
-				$appValue = \lib\utility::get('value'.$i);
-				if($appKey && $appValue)
-				{
-					$this->data->appResult[$appKey] = $appValue;
-				}
-			}
-		}
-
-		// post_tagadd();
-	}
-
 
 	public function post_tagadd()
 	{
@@ -877,34 +852,147 @@ class model extends \mvc\model
 	}
 
 
-	public function post_propadd()
+	/**
+	 * Save result of custom app as property of file
+	 * @return [type] [description]
+	 */
+	function post_result($_type = 'return')
 	{
-		$myId = $this->getItems(true);
-		if(!is_numeric($myId))
+		$appAuthCode = \lib\utility::post('authcode');
+
+		if($appAuthCode)
+		{
+			$appType = 'post';
+		}
+		elseif(\lib\utility::get('authcode'))
+		{
+			$appAuthCode = \lib\utility::get('authcode');
+			$appType = 'get';
+		}
+		else
+		{
+			return false;
+		}
+
+		// check if authcode is correct! then continue else return false
+		$myID          = utility\ShortURL::decode($appAuthCode);
+		$authCodeExist = $this->qryCreator(['id', 'status'], $myID);
+		if($authCodeExist->select()->num() <1)
+		{
+			return false;
+		}
+
+		$appResult = \lib\utility::{$appType}('result');
+
+		if($appAuthCode && $appResult)
+		{
+			$appResult =
+			[
+				T_('AuthCode')	=> $appAuthCode,
+				T_('Result')	=> $appResult,
+			];
+
+			for ($i=1; $i <= 5; $i++)
+			{
+				$appKey   = \lib\utility::{$appType}('key'.$i);
+				$appValue = \lib\utility::{$appType}('value'.$i);
+				if($appKey && $appValue)
+				{
+					$appResult[$appKey] = $appValue;
+					// run save func for saving result of app in property of file
+					if($_type !== 'return')
+					{
+						$appResult['id']    = $myID;
+						$appResult['type']  = 'auto';
+						$appResult['key']   = $appKey;
+						$appResult['value'] = $appValue;
+						$this->post_propadd($appResult);
+					}
+				}
+			}
+			if($_type === 'return')
+			{
+				return $appResult;
+			}
+		}
+		else
+			return false;
+	}
+
+
+	public function post_propadd($_data)
+	{
+		// add current user to query string
+		$uid       = $this->login('id');
+		if(!$uid)
 			return false;
 
-		$myName  = utility::post('name');
-		$myValue = utility::post('value');
-		$myType  = utility::post('type');
-		if(!$myType)
-			$myType = 'manual';
+		if(is_array($_data) && isset($_data['type']) && $_data['type'] === 'auto')
+		{
+			$myId    = $_data['id'];
+			$myType  = $_data['type'];
+			$myKey   = $_data['key'];
+			$myValue = $_data['value'];
+		}
+		else
+		{
+			$myId = $this->getItems(true);
+			if(!is_numeric($myId))
+				return false;
+
+			$myKey  = utility::post('name');
+			$myValue = utility::post('value');
+			$myType  = utility::post('type');
+			if(!$myType)
+				$myType = 'manual';
+
+		}
 		// return if name or value is null
-		if(strlen($myName) == 0 || strlen($myValue) == 0)
+		if(strlen($myKey) == 0 || strlen($myValue) == 0)
 			return;
 
-		$qry_prop = $this->sql()->table('attachmentmetas')
-			->set('attachment_id',        $myId)
-			->set('attachmentmeta_cat',   'property_'.$myType)
-			->set('attachmentmeta_meta',  $this->login('id'))
-			->set('attachmentmeta_key',   $myName)
-			->set('attachmentmeta_value', $myValue);
+		$qry_prop_exist = $this->sql()->table('attachmentmetas')
+			->where('attachment_id',     $myId)
+			->and('attachmentmeta_cat',  'property_'.$myType)
+			->and('attachmentmeta_meta', $uid)
+			->and('attachmentmeta_key',  $myKey)
+			;
 
-		// var_dump($qry_prop->insertString());exit();
-		$qry_prop->insert();
+
+
+		$prop_exist_count = $qry_prop_exist->select()->num();
+		// property exist only one time
+		if($prop_exist_count == 1)
+		{
+			// if exist in table only update value of this item
+			$qry_prop_exist = $qry_prop_exist->set('attachmentmeta_value', $myValue);
+			// var_dump($qry_prop->updateString());exit();
+			$qry_prop_exist->update();
+
+		}
+		// property exist more than one times!
+		elseif ($prop_exist_count > 1)
+		{
+			debug::error(T_("This propery is exist many times!"));
+			return false;
+		}
+		// property does not exist in db
+		else
+		{
+			$qry_prop = $this->sql()->table('attachmentmetas')
+				->set('attachment_id',        $myId)
+				->set('attachmentmeta_cat',   'property_'.$myType)
+				->set('attachmentmeta_meta',  $uid)
+				->set('attachmentmeta_key',   $myKey)
+				->set('attachmentmeta_value', $myValue);
+			// var_dump($qry_prop->insertString());exit();
+			$qry_prop->insert();
+		}
+
 
 		$this->commit(function()
 		{
-			debug::true(T_("Insert Successfully"));
+			debug::true(T_("Save New Property Successfully"));
 		});
 
 		// if a query has error or any error occour in any part of codes, run roolback

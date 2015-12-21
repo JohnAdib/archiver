@@ -20,9 +20,9 @@
      <i class="fa fa-language fa-2x" data-step='1' data-intro='{%trans "You can use in your own language"%}!'></i>
      <nav class="vertical-menu">
 {%for key, value in site.langlist%}{%if key == global.lang%}
-      <a href="{{url.base}}{{url.path}}?lang={{key}}" class="default not-active">{{value}}</a>
+      <a href="{{url.base}}?lang={{key}}" class="default not-active">{{value}}</a>
 {%else%}
-      <a href="{{url.base}}{{url.path}}?lang={{key}}">{{value}}</a>
+      <a href="{{url.base}}?lang={{key}}">{{value}}</a>
 {%endif%}{% endfor %}
      </nav>
     </li>
@@ -238,7 +238,7 @@
    <div class='modal-footer buttons'>
     <a class='button negative' data-cancel>{%trans "Cancel"%}</a>
     <div class='or' data-text='{%trans "or"%}'></div>
-    <a class='button positive' data-ajaxify data-action="$/result" data-method="post" data-ok2>{%trans "Submit"%}</a>
+    <a class='button positive' data-ajaxify data-action="$/result" data-method="post" data-ok>{%trans "Submit"%}</a>
    </div>
   </div>
  </div>

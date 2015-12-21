@@ -34,29 +34,7 @@ class view extends \mvc\view
 					break;
 
 				case 'result':
-					$appAuthCode = \lib\utility::get('authcode');
-					$appResult   = \lib\utility::get('result');
-					$this->data->appResult =
-					[
-						T_('AuthCode') => $appAuthCode,
-						T_('Result') => $appResult,
-					];
-					// $appPost = \lib\utility::post();
-
-					if( $appAuthCode && $appResult)
-					{
-						// read get and show in modal
-						for ($i=1; $i <= 5; $i++)
-						{
-							$appKey   = \lib\utility::get('key'.$i);
-							$appValue = \lib\utility::get('value'.$i);
-							if($appKey && $appValue)
-							{
-								$this->data->appResult[$appKey] = $appValue;
-							}
-						}
-					}
-
+					$this->data->appResult = $this->model()->post_result();
 					// var_dump($this->data->appResult);
 					break;
 

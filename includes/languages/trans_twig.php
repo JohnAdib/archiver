@@ -10,11 +10,13 @@ function transtext()
 	echo T_("Hello!");                                                                // Line 30
 	echo T_("You can create a folder or upload new file to this location");           // Line 30
 	echo T_("No Results");                                                            // Line 34
-	echo T_("Save the result of app");                                                // Line 36
-	echo T_("First you need to set some item as favorites");                          // Line 38
-	echo T_("First you need to set tag for some item");                               // Line 46
-	echo T_("You are not allow to be here!");                                         // Line 49
-	echo T_("This folder is empty.");                                                 // Line 53
+	echo T_("Save the result of app");                                                // Line 37
+	echo T_("The result is invalid!");                                                // Line 39
+	echo T_("First you need to set some item as favorites");                          // Line 42
+	echo T_("List of tags used in your account");                                     // Line 46
+	echo T_("First you need to set tag for some item");                               // Line 52
+	echo T_("You are not allow to be here!");                                         // Line 55
+	echo T_("This folder is empty.");                                                 // Line 59
 
 	//--------------------------------------------------content_files\home\layout.html
 	echo T_("You can use in your own language");                                      // Line 20

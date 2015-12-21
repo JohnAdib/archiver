@@ -33,14 +33,21 @@
   {%if child == 'search'%}
     <p class="alert alert-error fade">{%trans "No Results"%}</p>
   {%elseif child == 'result'%}
-    <p class="alert alert-success">{%trans "Save the result of app"%}</p>
+   {%if appResult%}
+    <p class="alert alert-success fade">{%trans "Save the result of app"%}</p>
+   {%else%}
+    <p class="alert alert-danger">{%trans "The result is invalid!"%}</p>
+   {%endif%}
   {%elseif child == 'favorites'%}
     <p class="alert alert-info fade">{%trans "First you need to set some item as favorites"%}</p>
   {%elseif child == 'tags'%}
    {%if tagstable%}
+    <div id="tags-list">
+     <p class="alert alert-info fade">{%trans "List of tags used in your account"%}</p>
     {%for key, row in tagstable%}
-    <a href="/$/tags/{{row.url}}">{{row.title}}</a>
+     <a href="/$/tags/{{row.url}}"><span>{{row.countuse}}</span>{{row.title}}</a>
     {% endfor %}
+    </div>
    {%else%}
     <p class="alert alert-info fade">{%trans "First you need to set tag for some item"%}</p>
    {%endif%}
