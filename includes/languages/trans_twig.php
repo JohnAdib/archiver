@@ -6,6 +6,16 @@ function transtext()
 	echo T_("Comming Soon");                                                          // Line 11
 	echo T_("Powered by Saloos");                                                     // Line 11
 
+	//-------------------------------------------------content_files\home\display.html
+	echo T_("Hello!");                                                                // Line 30
+	echo T_("You can create a folder or upload new file to this location");           // Line 30
+	echo T_("No Results");                                                            // Line 34
+	echo T_("Save the result of app");                                                // Line 36
+	echo T_("First you need to set some item as favorites");                          // Line 38
+	echo T_("First you need to set tag for some item");                               // Line 46
+	echo T_("You are not allow to be here!");                                         // Line 49
+	echo T_("This folder is empty.");                                                 // Line 53
+
 	//--------------------------------------------------content_files\home\layout.html
 	echo T_("You can use in your own language");                                      // Line 20
 	echo T_("Search in your files, folders, properties and tags");                    // Line 31
@@ -59,7 +69,7 @@ function transtext()
 	echo T_("Also you can remove your properties");                                   // Line 163
 	echo T_("You allow to add tag to items manually and we collect tags and show you in tags page");// Line 163
 	echo T_("Name");                                                                  // Line 169
-	echo T_("Value");                                                                 // Line 227
+	echo T_("Value");                                                                 // Line 226
 	echo T_("Add it");                                                                // Line 172
 	echo T_("Properties");                                                            // Line 179
 	echo T_("Enter Tags");                                                            // Line 187
@@ -70,7 +80,7 @@ function transtext()
 	echo T_("Choose File");                                                           // Line 207
 	echo T_("Maximum size allowed");                                                  // Line 210
 	echo T_("App result");                                                            // Line 223
-	echo T_("Key");                                                                   // Line 226
+	echo T_("Key");                                                                   // Line 225
 	echo T_("Do you want to save result of this app as property of file?");           // Line 237
 	echo T_("Cancel");                                                                // Line 239
 	echo T_("Submit");                                                                // Line 241

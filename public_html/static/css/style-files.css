@@ -389,9 +389,10 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
   width: 70%;
 
 }
+#modal_result h2{padding-bottom:10px;font-weight: bold}
 #modal_result .modal-dialog
 {
-  min-width: 40%;
+  min-width: 50%;
   font-size: 1.4em;
 }
 #modal_result .modal-dialog .row{
@@ -404,6 +405,7 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
 .rtl #modal_result .modal-dialog .row{
   text-align: right;
 }
+#modal_result .modal-header .row{background-color: #ddd;border-bottom: 3px solid #aaa;padding-bottom: 10px}
 .modal form {width:500px;}
 .modal form .buttons {margin-top: 20px}
 

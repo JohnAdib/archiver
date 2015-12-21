@@ -11,6 +11,7 @@
     </li>
 {%endif%}
 
+{%if datatable%}
 {%for key, row in datatable%}
     <li data-id="{{row.cid}}" class="{{row.type}} {{row.status}}" data-addr='{{row.meta.file}}'>
       <span class='type fa fa-{{row.icon}}'></span>
@@ -22,6 +23,36 @@
       </span>
     </li>
 {% endfor %}
+
+{%else%}
+
+ {%if module == 'home'%}
+    <p class="alert alert-info"><strong>{%trans "Hello!"%}</strong> {%trans "You can create a folder or upload new file to this location"%}</p>
+ {%elseif module == '$'%}
+
+  {%if child == 'search'%}
+    <p class="alert alert-error fade">{%trans "No Results"%}</p>
+  {%elseif child == 'result'%}
+    <p class="alert alert-success">{%trans "Save the result of app"%}</p>
+  {%elseif child == 'favorites'%}
+    <p class="alert alert-info fade">{%trans "First you need to set some item as favorites"%}</p>
+  {%elseif child == 'tags'%}
+   {%if tagstable%}
+    {%for key, row in tagstable%}
+    <a href="/$/tags/{{row.url}}">{{row.title}}</a>
+    {% endfor %}
+   {%else%}
+    <p class="alert alert-info fade">{%trans "First you need to set tag for some item"%}</p>
+   {%endif%}
+  {%else%}
+    <p class="alert alert-danger">{%trans "You are not allow to be here!"%}</p>
+  {%endif%}
+
+ {%else%}
+    <p class="alert alert-info fade">{%trans "This folder is empty."%}</p>
+ {%endif%}
+
+{%endif%}
   </ul>
 {%endblock%}
 

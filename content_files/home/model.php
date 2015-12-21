@@ -246,19 +246,25 @@ class model extends \mvc\model
 	 */
 	public function draw_tags()
 	{
+		/**
+		for Show tags
+		first we need to get current user, then join qry with terms and termusages tbl
+		 */
 		$qry = $this->sql()->table('terms')
 			->where('term_type', 'tag')
-			->field('term_title', 'id');
+			->field('id', '#term_title as title', '#term_url as url');
 
-		$qry->joinTermusages()->on('term_id', '#terms.id')
+
+		$qry->join('termusages')->on('term_id', '#terms.id')
+			->field('#id')
 			->and('termusage_foreign', '#"attachments"');
+		// $qry    = $qry->groupby('term_id', '#ip');
 			// ->and('termusage_id', $myId);
 
 		// $qry  = $this->qryCreator(['status', 'fav', 'field']);
+		// var_dump($qry->selectString());exit();
 		$qry = $qry->select()->allassoc();
 		return $qry;
-
-		// return $this->draw_fix($qry);
 	}
 
 	function draw_search()
@@ -730,6 +736,40 @@ class model extends \mvc\model
 		return true;
 	}
 
+	/**
+	 * Save result of custom app as property of file
+	 * @return [type] [description]
+	 */
+	function post_result($_type)
+	{
+
+		$appAuthCode = \lib\utility::get('authcode');
+		$appResult   = \lib\utility::get('result');
+		$this->data->appResult =
+		[
+			T_('Result') => $appResult,
+			T_('AuthCode') => $appAuthCode,
+		];
+		// $appPost = \lib\utility::post();
+
+		if( $appAuthCode && $appResult)
+		{
+			// read get and show in modal
+			for ($i=1; $i <= 5; $i++)
+			{
+				$appKey   = \lib\utility::get('key'.$i);
+				$appValue = \lib\utility::get('value'.$i);
+				if($appKey && $appValue)
+				{
+					$this->data->appResult[$appKey] = $appValue;
+				}
+			}
+		}
+
+		// post_tagadd();
+	}
+
+
 	public function post_tagadd()
 	{
 		$myTags  = utility::post('tags');
@@ -1135,5 +1175,6 @@ class model extends \mvc\model
 		}
 		return null;
 	}
+
 }
 ?>

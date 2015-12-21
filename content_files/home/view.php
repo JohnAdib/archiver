@@ -29,9 +29,8 @@ class view extends \mvc\view
 					break;
 
 				case 'tags':
-					$this->data->datatable = $this->model()->draw_tags();
-					// var_dump($this->data->datatable);
-					// $this->data->datatable = null;
+					$this->data->tagstable = $this->model()->draw_tags();
+					// var_dump($this->data->tagstable);
 					break;
 
 				case 'result':
@@ -39,8 +38,8 @@ class view extends \mvc\view
 					$appResult   = \lib\utility::get('result');
 					$this->data->appResult =
 					[
-						T_('Result') => $appResult,
 						T_('AuthCode') => $appAuthCode,
+						T_('Result') => $appResult,
 					];
 					// $appPost = \lib\utility::post();
 
@@ -70,11 +69,18 @@ class view extends \mvc\view
 		{
 			$this->data->datatable = $this->model()->draw();
 		}
-
-		if(count($this->data->location) == 0 && count($this->data->datatable) == 0)
+		// datatable has no item
+		if(!isset($this->data->datatable) || count($this->data->datatable) == 0)
 		{
-			$this->data->bodyclass = $this->data->bodyclass. ' first-time';
+			// on home page we have no file, show intro
+			if(count($this->data->location) == 0)
+			{
+				$this->data->bodyclass = $this->data->bodyclass . ' first-time';
+			}
+
+			$this->data->bodyclass = $this->data->bodyclass . ' empty';
 		}
+
 
 		$this->data->site['title']  = T_("Archiver");
 		$this->data->site['desc']   = T_("Archiver is new");

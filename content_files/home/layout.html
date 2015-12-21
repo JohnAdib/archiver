@@ -220,13 +220,13 @@
 {%if appResult%}
  <div class='modal visible' id="modal_result">
   <div class='modal-dialog'>
-   <div class='modal-header'><h2>{%trans "App result"%}</h2></div>
-   <div class='modal-body'>
+   <div class='modal-header'><h2>{%trans "App result"%}</h2>
     <div class="row auto">
      <div class="span4">{%trans "Key"%}</div>
      <div class="span8">{%trans "Value"%}</div>
     </div>
-    <hr />
+   </div>
+   <div class='modal-body'>
 {%for key, value in appResult%}
     <div class="row auto">
      <div class="span4">{{key}}</div>
@@ -238,7 +238,7 @@
    <div class='modal-footer buttons'>
     <a class='button negative' data-cancel>{%trans "Cancel"%}</a>
     <div class='or' data-text='{%trans "or"%}'></div>
-    <a class='button positive' data-ajaxify data-action="$/result" data-method="post" data-ok>{%trans "Submit"%}</a>
+    <a class='button positive' data-ajaxify data-action="$/result" data-method="post" data-ok2>{%trans "Submit"%}</a>
    </div>
   </div>
  </div>

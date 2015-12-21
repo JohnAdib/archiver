@@ -44,15 +44,10 @@ class controller extends \mvc\controller
 					case 'favorites':
 					case 'tags':
 					case 'search':
-						$this->route_check_true = true;
-						$this->get()->ALL();
-						$this->post($myurl[1])->ALL();
-						break;
-
 					case 'result':
 						$this->route_check_true = true;
 						$this->get()->ALL();
-						$this->post()->ALL();
+						$this->post($myurl[1])->ALL();
 						break;
 
 					default:

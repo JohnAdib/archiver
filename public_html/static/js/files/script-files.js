@@ -28,9 +28,9 @@ $(document).ready(function()
 
 
   // prevent closing modal result
-  $(document.body).children('.modal#modal_result').addBack().off("click");
+  // $(document.body).children('.modal#modal_result').addBack().off("click");
   // on click buttons redirect to root
-  $('#modal_result .button').click(function() { reDraw('/'); });
+  // $('#modal_result .button').click(function() { reDraw('/'); });
 
 
 
