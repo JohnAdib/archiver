@@ -370,7 +370,7 @@ function ex_showAddTag()
   if ($('#explorer>ul li.selected').length > 0)
   {
     $('body').toggleClass('tag-edit');
-    $('#showAddTag').toggleClass('fa-plus fa-times');
+    $('#prop-box-tags .span4 i').toggleClass('fa-plus fa-times');
     $('#prop-box-tags #tagInput').slideToggle(300, function()
     {
       $('#tag-add').focus().select();
@@ -391,7 +391,7 @@ function ex_showPropAdd()
   if ($('#explorer>ul li.selected').length > 0)
   {
     $('body').toggleClass('prop-edit');
-    $('#showAddProp').toggleClass('fa-plus fa-times');
+    $('#prop-box h3 i').toggleClass('fa-plus fa-times');
     $('#prop-box-new').slideToggle(300, function()
     {
       $('#prop-box-new input[name="name"]').focus().select();

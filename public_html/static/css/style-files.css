@@ -91,24 +91,28 @@ padding: 0;
 
 /* Prop box*/
 #prop-box{height: 100%; background-color: #eee;font-size:1.2em;overflow-y:auto }
-#prop-box h3{padding:2% 5%;border-bottom: 1px solid #ccc;}
+#prop-box h3{padding:2% 5%;border-bottom: 1px solid #ccc;cursor:pointer}
 #prop-box >div{display:none}
 #prop-box li {padding:2% 5%;}
+#prop-box li#tagInput:hover{background-color:initial;}
 #prop-box li div, #prop-box-ul li img {display: block; margin:0 auto;}
 #prop-box i{vertical-align:middle;}
 #prop-box .img-container{display:none}
 #prop-box .img-container img {width:100%;}
 #prop-box .img-container:hover {background:#eee;}
+
 #prop-box-ul video, #prop-box-ul audio{max-width:100%;width:98%;margin:5px auto 0;display:block}
 #prop-box-ul li.row span.span8 {text-align: left;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+#prop-box-ul [data-id] .span4{cursor: pointer;}
 #prop-box-ul li:hover {background-color:#ddd}
-#prop-box li#tagInput:hover{background-color:initial;}
 
-#prop-box #showAddProp {cursor: pointer;}
-#prop-box #showAddProp.fa-plus { color: #21b384;}
-#prop-box #showAddProp.fa-times {color: red;}
+#prop-box h3 i {cursor: pointer;}
+#prop-box h3 i.fa-plus { color: #21b384;}
+#prop-box h3 i.fa-times {color: red;}
+
 
 #prop-box-tags{display: none}
+#prop-box-tags .span4{cursor:pointer;}
 #prop-box-tags .span4 >i { padding: 0 5px; cursor: pointer; display: inline;}
 #prop-box-tags .span4 i.fa-times{color: #B34E4D}
 #prop-box-new { text-align: center; display: none; background: #ddd;}

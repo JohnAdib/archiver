@@ -10,21 +10,21 @@ $(document).ready(function()
   if ($('body').hasClass('first-time')) { ex_intro(); }
 
   // call from menu or static menu
-  $('#newfolder')     .click(function() { ex_newFolder();       });
-  $('#more-selectall').click(function() { ex_selectAll();       });
-  $('#more-rename')   .click(function() { ex_rename();          });
-  $('#more-move')     .click(function() { ex_clipboard('cut');  });
-  $('#more-copy')     .click(function() { ex_clipboard('copy'); });
-  $('#more-show')     .click(function() { ex_showTrash();       });
-  $('#more-remove')   .click(function() { ex_delete(false);     });
-  $('#paste')         .click(function() { ex_paste();           });
-  $('#remove')        .click(function() { ex_delete(false);     });
-  $('#prop-submit')   .click(function() { ex_addProp();         });
-  $('#ifaq')          .click(function() { ex_intro();           });
-  $('#showAddProp')   .click(function() { ex_showPropAdd();     });
-  $('#showAddTag')    .click(function() { ex_showAddTag();      });
-  $('#tag-add-btn')   .click(function() { addTag();             });
-  $("#search i")      .click(function() { ex_search();          });
+  $('#newfolder')           .click(function() { ex_newFolder();       });
+  $('#more-selectall')      .click(function() { ex_selectAll();       });
+  $('#more-rename')         .click(function() { ex_rename();          });
+  $('#more-move')           .click(function() { ex_clipboard('cut');  });
+  $('#more-copy')           .click(function() { ex_clipboard('copy'); });
+  $('#more-show')           .click(function() { ex_showTrash();       });
+  $('#more-remove')         .click(function() { ex_delete(false);     });
+  $('#paste')               .click(function() { ex_paste();           });
+  $('#remove')              .click(function() { ex_delete(false);     });
+  $('#prop-submit')         .click(function() { ex_addProp();         });
+  $('#ifaq')                .click(function() { ex_intro();           });
+  $('#prop-box h3')         .click(function() { ex_showPropAdd();     });
+  $('#prop-box-tags .span4').click(function() { ex_showAddTag();      });
+  $('#tag-add-btn')         .click(function() { addTag();             });
+  $("#search i")            .click(function() { ex_search();          });
 
 
   // prevent closing modal result
