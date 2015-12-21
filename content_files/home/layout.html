@@ -36,19 +36,19 @@
 
     <li>
      <a class="labeled icon button" id="upload" data-modal="modal_upload" data-step='31' data-intro='{%trans "Press this key and upload your file or drop your file in browser and we detect it"%}!'>
-      <i class="icon fa fa-cloud-upload"></i>{%trans "Upload"%}
+      <i class="icon fa fa-cloud-upload"></i><span>{%trans "Upload"%}</span>
      </a>
     </li>
 
     <li>
        <a class="labeled icon button" id="newfolder" data-step='32' data-intro='{%trans "Creating a new folder and organize your files"%}'>
-        <i class="icon fa fa-folder"></i>{%trans "Create new folder"%}
+        <i class="icon fa fa-folder"></i><span>{%trans "Create new folder"%}</span>
        </a>
     </li>
 
     <li id="more" class="hide">
       <a class="labeled icon button" data-step='35' data-intro='{%trans "More funtions like Select all, Cut, Rename and ... is exist in this menu"%}' data-position="bottom">
-       <i class="icon fa fa-bars"></i>{%trans "More ..."%}
+       <i class="icon fa fa-bars"></i><span>{%trans "More ..."%}</span>
       </a>
       <nav class="vertical-menu">
        <a id="more-selectall" href="#"><i class="fa fa-check-square-o"></i> {%trans "Select All"%}</a>
@@ -62,13 +62,13 @@
 
     <li id="download" class="hide">
      <a class="labeled icon button" id="download-link" target="_blank">
-      <i class="icon fa fa-download"></i>{%trans "Download"%}
+      <i class="icon fa fa-download"></i><span>{%trans "Download"%}</span>
      </a>
     </li>
 
     <li id="send-to-app" class="hide">
       <a class="labeled icon button" data-step='36' data-intro='{%trans "If you have a permission, you can send your files to an app and after process, if you want we can save result in file metadata"%}' data-position="bottom">
-       <i class="icon fa fa-paper-plane-o"></i>{%trans "Send to app"%}
+       <i class="icon fa fa-paper-plane-o"></i><span>{%trans "Send to app"%}</span>
       </a>
       <nav class="vertical-menu">
         <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1 - {%trans "Image Processing"%}
@@ -113,9 +113,8 @@
    </ul>
 
    <div id="profile" data-step='37' data-intro='{%trans "Go to your profile, change password or logout from system"%}' data-position="{{dir.left}}">
-    <span>{%set dname = login.displayname%}{%trans dname%}
-     <i class="fa fa-user"></i>
-     </span>
+    <span>{%set dname = login.displayname%}{%trans dname%}</span>
+    <i class="fa fa-user"></i>
 
     <nav class="vertical-menu">
      <a id="profile-me" href="/$/profile"><i class="fa fa-user"></i> {%trans "My Profile"%}</a>
