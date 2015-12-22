@@ -1277,7 +1277,7 @@ class model extends \mvc\model
 				case 'filetype':
 				case 'audio':
 				case 'audio-type':
-				case 'video-type':
+				case 'video':
 				case 'video-type':
 					break;
 
