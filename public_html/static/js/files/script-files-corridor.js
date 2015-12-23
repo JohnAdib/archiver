@@ -284,7 +284,7 @@ function event_corridor(e, _self, _key)
       }
       break;
 
-    case '38alt':
+    case '38alt':           // up + alt
       ex_navigate('up');
       break;
 
@@ -396,7 +396,10 @@ function event_corridor(e, _self, _key)
       ex_clipboard('copy');
       break;
 
-    case '68shift':
+    case '68shift':         // d + shift
+      if(ex_editing())
+        return;
+
       __self = $(_self).children('.fav').children('.fa');
       ex_favorites(__self);
       break;
@@ -409,9 +412,9 @@ function event_corridor(e, _self, _key)
       reDraw('/');
       break;
 
-    case '76shift':         // l + shift (show intro.js)
-      ex_intro();
-      break;
+    // case '76shift':         // l + shift (show intro.js)
+    //   ex_intro();
+    //   break;
 
     case '78shift':         // n + shift
       if(ex_editing())
@@ -470,12 +473,31 @@ function event_corridor(e, _self, _key)
       ex_clipboard('cut');
       break;
 
+    case '112':             // f1
+      e.preventDefault();
+      ex_intro();
+      break;
 
     case '113':             // f2
       ex_rename();
       break;
 
+    case '114':             // f3
+      e.preventDefault();
+      if(ex_editing())
+        return;
 
+      $("#search input").focus().select();
+      break;
+
+    case '116':             // f5
+      e.preventDefault();
+      reDraw();
+      break;
+
+   case '123':              // f12
+      e.preventDefault();
+      break;
 
     // ---------------------------------------------------------------------- mouse
     case 'click':           // click
