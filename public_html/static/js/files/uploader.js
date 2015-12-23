@@ -116,10 +116,7 @@ route('*', function()
   fail:function(e, data){
     // Something has gone wrong!
     data.context.addClass('error');
-    console.log(e);
-    console.log(data);
-    data.context.addClass('hint--left hint--danger').attr('data-hint', 'aa');
-
+    data.context.addClass('hint--left hint--danger').attr('data-hint', data.textStatus + ': ' + data.errorThrown);
   }
 
   });
