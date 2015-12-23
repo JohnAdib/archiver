@@ -26,6 +26,7 @@ class controller extends \mvc\controller
 				switch ($myurl[1])
 				{
 					case 'upload':
+						// $this->model_name = 'content_files\\'.$myurl[1].'\model';
 					case 'paste':
 					case 'remove':
 					case 'createfolder':

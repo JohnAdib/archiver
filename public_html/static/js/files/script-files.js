@@ -133,8 +133,10 @@ function addTag()
       $('#sp-tags').val( $('#sp-tags').val() + newTag+', ' );
 
       $('#tagInput').ajaxify({
-        ajax: {
-          data: {
+        ajax:
+        {
+          data:
+          {
             tags:  newTag,
             items: $('#prop-box').attr('data-id')
           }
@@ -464,17 +466,23 @@ function ex_showProp()
 
     var myItem = $('#explorer>ul>li.selected').data('id');
 
-    $('#prop-box-ul').ajaxify({
-      ajax: {
-        data: {
+    $('#prop-box-ul').ajaxify(
+    {
+      ajax:
+      {
+        data:
+        {
           location: CURRENTPATH,
           items: myItem
         },
-        success: function(e, data, x) {
+        abort: true,
+        success: function(e, data, x)
+        {
           var myData = x.responseJSON.datatable;
           var elements = '';
           // console.log(myData);
-          if(myData == undefined || myData == '') {
+          if(myData == undefined || myData == '')
+          {
             return;
           }
           if(myData['audio'] != undefined)
@@ -533,7 +541,6 @@ function ex_showProp()
               $('#sp-tags').val( myData['tags'] );
               ex_tagInit();
             }
-
           }
           // $('#prop-box-ul').hide().html(elements).fadeIn();
           $('#prop-box-ul').hide().html(elements).fadeIn();
@@ -542,7 +549,6 @@ function ex_showProp()
           // if prop box has image, after load showing with fade
           $('.img-container img').on('load', function ()
           {
-
             // $(this).parent().slideDown(500).fadeIn(300);
             $(this).parent().fadeIn(300);
           });
