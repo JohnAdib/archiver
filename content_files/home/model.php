@@ -9,7 +9,7 @@ class model extends \mvc\model
 	 * if correct pass the complete location contain uid
 	 * @return [type] [description]
 	 */
-	private function getLocation($_location = false)
+	protected function getLocation($_location = false)
 	{
 		// var_dump($_location);
 		if($_location === false)
@@ -41,7 +41,7 @@ class model extends \mvc\model
 	 * get items send via js then decode and return it
 	 * @return [type] [description]
 	 */
-	private function getItems($_raw = false)
+	protected function getItems($_raw = false)
 	{
 		$items = utility::post('items');
 
@@ -79,7 +79,7 @@ class model extends \mvc\model
 	 * @param  boolean $_status pass status that want it
 	 * @return [type]           return the sql object for nex step
 	 */
-	private function qryCreator($_need, $_id = false, $_order = false, $_status = false)
+	protected function qryCreator($_need, $_id = false, $_order = false, $_status = false)
 	{
 		// add current user to query string
 		$uid       = $this->login('id');
@@ -233,7 +233,7 @@ class model extends \mvc\model
 	 * @param  query string without field
 	 * @return query string with added field
 	 */
-	private function qryCreatorField($_qry)
+	protected function qryCreatorField($_qry)
 	{
 		return $_qry->field(
 						'id',
