@@ -83,13 +83,21 @@ function event_corridor(e, _self, _key)
     // ---------------------------------------------------------- Space
     case '32':              // space
     case '32shift':         // space + shift
-      _self.addClass('selected');
-      ex_showProp();
+      if(!_self.hasClass('selected'))
+      {
+        ex_removeClass('selected focused zero');
+        _self.addClass('selected');
+        ex_showProp();
+      }
       break;
 
     case '32ctrl':          // space + ctrl
     case '32ctrlshift':     // space + ctrl + shift
       _self.toggleClass('selected');
+      if(_self.hasClass('selected'))
+      {
+        ex_showProp();
+      }
       break;
 
 
@@ -99,8 +107,12 @@ function event_corridor(e, _self, _key)
         return;
 
       next = cid > 10 ? cid - 10 : 0;
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(next);
+      if(cid !== next)
+      {
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(next);
+        ex_showProp();
+      }
       break;
 
     case '33ctrl':          // PageUP + ctrl
@@ -137,8 +149,12 @@ function event_corridor(e, _self, _key)
         return;
 
       next = cid + 10 >= lastid ? lastid : cid + 10;
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(next);
+      if(cid !== next)
+      {
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(next);
+        ex_showProp();
+      }
       break;
 
     case '34ctrl':          // PageDown + Ctrl
@@ -174,8 +190,12 @@ function event_corridor(e, _self, _key)
       if(ex_editing())
         return;
 
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(lastid);
+      if(cid !== lastid)
+      {
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(lastid);
+        ex_showProp();
+      }
       break;
 
     case '35ctrl':          // End + Ctrl
@@ -207,9 +227,12 @@ function event_corridor(e, _self, _key)
     case '36':              // Home
       if(ex_editing())
         return;
-
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(0);
+      if(cid !== 0)
+      {
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(0);
+        ex_showProp();
+      }
       break;
 
     case '36ctrl':          // Home + Ctrl
@@ -253,9 +276,12 @@ function event_corridor(e, _self, _key)
         return;
 
       next = cid > 0 ? cid - 1 : 0;
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(next);
-      ex_showProp();
+      if(cid !== next)
+      {
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(next);
+        ex_showProp();
+      }
       break;
 
     case '38alt':
@@ -307,9 +333,12 @@ function event_corridor(e, _self, _key)
         return;
 
       next = cid >= lastid ? lastid : cid + 1;
-      ex_removeClass('selected focused zero');
-      ex_itemSelectedFocusedZero(next);
-      ex_showProp();
+      if(cid !== next)
+      {
+        ex_removeClass('selected focused zero');
+        ex_itemSelectedFocusedZero(next);
+        ex_showProp();
+      }
       break;
 
     case '40ctrl':          // down + ctrl
@@ -452,13 +481,16 @@ function event_corridor(e, _self, _key)
     case 'click':           // click
       if(! $(e.toElement).parent().hasClass('fav'))
       {
-        ex_removeClass('selected focused zero');
-        ex_itemSelectedFocusedZero(cid);
-        if(ex_editing())
+        if(!_self.hasClass('selected'))
         {
-          ex_checkBody();
+          ex_removeClass('selected focused zero');
+          ex_itemSelectedFocusedZero(cid);
+          if(ex_editing())
+          {
+            ex_checkBody();
+          }
+          ex_showProp();
         }
-        ex_showProp();
       }
       break;
 
