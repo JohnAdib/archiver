@@ -27,7 +27,7 @@
      </nav>
     </li>
 
-    <li id="search" data-action="$/search" data-method="get" data-action>
+    <li id="search" data-action="/$/search" data-method="get" data-action>
      <a class="labeled icon button" data-step='30' data-intro='{%trans "Search in your files, folders, properties and tags"%}'>
       <i class="icon fa fa-search"></i>
       <input type="text" name="q" autocomplete="off" placeholder='{%trans "Search"%}' />
@@ -163,7 +163,7 @@
 
 
   <div>
-   <ul id="prop-box-new" data-action="$/propadd" data-method="post" delay='1000'>
+   <ul id="prop-box-new" data-action="/$/propadd" data-method="post" delay='1000'>
     <li class="row auto">
      <input type="text" name="name" class='span5' autocomplete="off" placeholder='{%trans "Name"%}'/>
      <input type="text" name="value" class='span6' autocomplete="off" placeholder='{%trans "Value"%}'/>
@@ -217,7 +217,7 @@
  </div>
 
 {%if appResult%}
- <div class='modal visible' id="modal_result">
+ <div class='modal visible' id="modal_result" data-always>
   <div class='modal-dialog'>
    <div class='modal-header'><h2>{%trans "App result"%}</h2>
     <div class="row auto">
