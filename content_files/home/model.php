@@ -507,9 +507,11 @@ class model extends \mvc\model
 		$folder_name   = 'data/' . $folder_id;
 		$file_id       = $qry_count % $FOLDER_SIZE + 1;
 		$file_ext      = utility\Upload::$fileExt;
+		$file_url      = "$folder_name/$file_id";
+		// $file_dl       = utility\Upload::$fileFullName. '.'. $file_ext;
+		// $url_full      = "$folder_name/$file_id";
 		// $url_full      = "$folder_name/$file_id-" . utility\Upload::$fileFullName;
 		// $url_full      = "$folder_name/$file_id." . $file_ext;
-		$url_full      = "$folder_name/$file_id";
 
 
 
@@ -531,7 +533,7 @@ class model extends \mvc\model
 		else
 		{
 			// 3.5. transfer file to project folder with new name
-			if(!utility\Upload::transfer($url_full, $folder_name))
+			if(!utility\Upload::transfer($file_url, $folder_name))
 			{
 				debug::property('status', 'fail');
 				debug::property('error', T_('Fail on tranfering file'));
@@ -539,15 +541,28 @@ class model extends \mvc\model
 				$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 				return false;
 			}
-
 		}
 
 		// 4. transfer file to project folder with new name
 		$url_thumb = null;
-		$url_file  = null;
+		// $url_file  = null;
 
-		$extlen    = strlen(utility\Upload::$fileExt)+1;
-		$url_file  = substr($url_full, 0, -$extlen);
+		// $extlen    = strlen(utility\Upload::$fileExt)+1;
+		// $url_file  = substr($file_url, 0, -$extlen);
+
+		// $url_file  = $url_file.'.'.utility\Upload::$fileExt;
+
+		// 5. get filemeta data
+		$file_meta = [
+						'url'    => $file_url,
+						// 'ext'    => $file_ext,
+						'type'   => utility\Upload::$fileType,
+						// 'mime'   => utility\Upload::$fileMime,
+						// 'thumb'  => $url_thumb,
+						'file'   => utility\Upload::$fileFullName,
+					 ];
+		$page_url  = $file_meta['type'].'/'.substr($file_url, strlen($folder_prefix));
+
 
 		switch ($file_ext)
 		{
@@ -556,31 +571,20 @@ class model extends \mvc\model
 			case 'png':
 			case 'gif':
 				// $url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
-				$url_thumb  = $url_full.'-thumb';
-				utility\Image::load($url_full);
+				$url_thumb  = $file_url.'-thumb';
+				utility\Image::load($file_url);
 				utility\Image::thumb(250, 250);
 				utility\Image::save($url_thumb);
+				$file_meta['thumb'] = $url_thumb;
+				if( strpos($file_meta['mime'], 'image') !== false)
+					list($file_meta['width'], $file_meta['height'])= getimagesize($file_url);
+
 				break;
 
 			default:
 				break;
 
 		}
-		$url_file  = $url_file.'.'.utility\Upload::$fileExt;
-
-		// 5. get filemeta data
-		$file_meta = [
-						'url'    => $url_full,
-						'file'   => $url_file,
-						'ext'    => $file_ext,
-						'type'   => utility\Upload::$fileType,
-						// 'mime'   => utility\Upload::$fileMime,
-						'thumb'  => $url_thumb,
-					 ];
-		$page_url  = $file_meta['type'].'/'.substr($url_full, strlen($folder_prefix));
-
-		if( strpos($file_meta['mime'], 'image') !== false)
-			list($file_meta['width'], $file_meta['height'])= getimagesize($url_full);
 		$file_meta = json_encode($file_meta);
 		// var_dump($file_meta);exit();
 
