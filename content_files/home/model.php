@@ -477,7 +477,7 @@ class model extends \mvc\model
 		if(!$_location || strpos($_location, '/$/') !== false)
 		{
 			debug::property('status','fail');
-			debug::property('error', 'fail on upload');
+			debug::property('error', T_("You can't upload in this location!"));
 
 			$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
 			return false;
@@ -486,10 +486,10 @@ class model extends \mvc\model
 		$FOLDER_SIZE = 1000;
 		$SERVER_SIZE = 1000000;		// 1 milion file can save in each server
 		$server_id   = 1;
-		utility\Upload::$extentions = 'all';
+		// utility\Upload::$extentions = 'all';
 
 		// 1. check upload process and validate it
-		$invalid = utility\Upload::invalid('upfile', 100000000);
+		$invalid = utility\Upload::invalid('upfile');
 		if($invalid)
 		{
 			debug::property('status','fail');
@@ -503,12 +503,13 @@ class model extends \mvc\model
 		// 2. Generate file_id, folder_id and url
 		$qry_count     = $this->sql()->table('files')->select('id')->num();
 		$folder_prefix = "data/";
-		$folder_id     = ceil(($qry_count+1) / $FOLDER_SIZE);
-		$folder_name   = $folder_prefix . $folder_id;
+		$folder_id     = ceil(($qry_count + 1) / $FOLDER_SIZE);
+		$folder_name   = 'data/' . $folder_id;
 		$file_id       = $qry_count % $FOLDER_SIZE + 1;
 		$file_ext      = utility\Upload::$fileExt;
 		// $url_full      = "$folder_name/$file_id-" . utility\Upload::$fileFullName;
-		$url_full      = "$folder_name/$file_id." . $file_ext;
+		// $url_full      = "$folder_name/$file_id." . $file_ext;
+		$url_full      = "$folder_name/$file_id";
 
 
 
@@ -554,7 +555,8 @@ class model extends \mvc\model
 			case 'jpeg':
 			case 'png':
 			case 'gif':
-				$url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
+				// $url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
+				$url_thumb  = $url_full.'-thumb';
 				utility\Image::load($url_full);
 				utility\Image::thumb(250, 250);
 				utility\Image::save($url_thumb);
@@ -568,11 +570,11 @@ class model extends \mvc\model
 
 		// 5. get filemeta data
 		$file_meta = [
-						'mime'   => utility\Upload::$fileMime,
-						'type'   => utility\Upload::$fileType,
+						'url'    => $url_full,
 						'file'   => $url_file,
 						'ext'    => $file_ext,
-						'url'    => $url_full,
+						'type'   => utility\Upload::$fileType,
+						// 'mime'   => utility\Upload::$fileMime,
 						'thumb'  => $url_thumb,
 					 ];
 		$page_url  = $file_meta['type'].'/'.substr($url_full, strlen($folder_prefix));
