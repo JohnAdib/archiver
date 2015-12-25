@@ -466,6 +466,35 @@ class model extends \mvc\model
 	}
 
 
+	protected function upload_fileID($_md5 = null)
+	{
+		if(!$_md5)
+		{
+			$_md5 = utility\Upload::$fileMd5;
+		}
+
+		$qry_FileID = $this->sql()
+			->table('files')
+			->where('file_code', $_md5)
+			->select('id');
+
+		if($qry_FileID->num() == 1)
+		{
+			return $qry_FileID->assoc('id');
+			$file_exist = true;
+			// file exist in db files, use old one and dont use new file
+			// $new_file_id = $qry_FileID->assoc('id');
+			// $id = $qry_FileID->assoc('id');
+			// debug::property('status','ok');
+			// $link = '<a target="_blank" href=/attachments/edit='. $id. '>'. T_('Duplicate - File exist').'</a>';
+			// debug::property('error', $link);
+
+			// $this->_processor(['force_json'=>true, 'not_redirect'=>true]);
+			// return false;
+		}
+		return false;
+	}
+
 	/**
 	 * doing upload process
 	 * @return [boolean] if status is false, return it
@@ -516,11 +545,12 @@ class model extends \mvc\model
 
 
 		// 3. Check for record exist in db or not then if not exist transfer it to data folder
-		$qry_count2    = $this->sql()->table('files')->where('file_code', utility\Upload::$fileMd5)->select('id');
-		$file_exist    = false;
+		$qry_count2 = $this->sql()->table('files')->where('file_code', utility\Upload::$fileMd5)->select('id');
+		$file_exist = false;
 		if($qry_count2->num())
 		{
 			$file_exist = true;
+			// file exist in db files, use old one and dont use new file
 			$new_file_id = $qry_count2->assoc('id');
 			// $id = $qry_count2->assoc('id');
 			// debug::property('status','ok');
@@ -568,31 +598,31 @@ class model extends \mvc\model
 		{
 			case 'jpg':
 			case 'jpeg':
+			case 'tiff':
 			case 'png':
 			case 'gif':
-				// $url_thumb  = $url_file.'-thumb.'.utility\Upload::$fileExt;
-				$url_thumb  = $file_url.'-thumb';
+				// $url_thumb          = $url_file.'-thumb.'.utility\Upload::$fileExt;
+				$url_thumb          = $file_url.'-thumb';
+				$file_meta['thumb'] = $url_thumb;
 				utility\Image::load($file_url);
 				utility\Image::thumb(250, 250);
 				utility\Image::save($url_thumb);
-				$file_meta['thumb'] = $url_thumb;
-				if( strpos($file_meta['mime'], 'image') !== false)
-					list($file_meta['width'], $file_meta['height'])= getimagesize($file_url);
-
+				list($file_meta['width'], $file_meta['height']) = getimagesize($file_url);
 				break;
 
 			default:
 				break;
-
 		}
 		$file_meta = json_encode($file_meta);
+		// var_dump($file_meta);
+		$file_meta = str_replace('"', '\"', $file_meta);
 		// var_dump($file_meta);exit();
 
 		if(!$file_exist)
 		{
 			// 6. add uploaded file to files table in db
-			$qry = $this->sql();
-			$qry = $qry->table('files')
+			$qry_files = $this->sql();
+			$qry_files = $qry_files->table('files')
 						->set('id',               $qry_count + 1)
 						->set('file_server',      $server_id)
 						->set('file_folder',      $folder_id)
@@ -601,14 +631,23 @@ class model extends \mvc\model
 						->set('file_meta',        $file_meta)
 						->set('file_status',      'ready')
 						->set('file_createdate',  date('Y-m-d H:i:s'));
-			$qry         = $qry->insert();
-			$new_file_id = $qry->LAST_INSERT_ID();
+			$qry_files   = $qry_files->insert();
+			$new_file_id = $qry_files->LAST_INSERT_ID();
+			$new_file_id = $this->upload_fileID();
+			// var_dump($new_file_id); exit();
+		}
+
+		if(!$new_file_id)
+		{
+			debug::property('status', 'fail');
+			debug::property('error', T_('Fail on registering file'));
+
+			$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
+			return false;
 		}
 
 
 		// 7. add uploaded file record attachment table in db
-		$current_url = $this->url('path');
-
 		$qry = $this->sql();
 		$qry = $qry->table('attachments')
 					->set('file_id',           $new_file_id)
@@ -625,38 +664,15 @@ class model extends \mvc\model
 		$attachment_id = $qry->LAST_INSERT_ID();
 
 
-		// // 7. add uploaded file record to db
-		// $qry = $this->sql();
-		// $qry = $qry->table('posts')
-		// 			->set('post_title',       utility\Upload::$fileName)
-		// 			->set('post_slug',        utility\Upload::$fileMd5)
-		// 			->set('post_meta',        $file_meta)
-		// 			->set('post_type',        'attachment')
-		// 			->set('post_url',         $page_url)
-		// 			->set('user_id',          $this->login('id'))
-		// 			->set('post_status',      'draft')
-		// 			->set('post_publishdate', date('Y-m-d H:i:s'));
-
-		// $qry         = $qry->insert();
-		// $post_new_id = $qry->LAST_INSERT_ID();
-
-
-
-
-
-
 		// 8. commit all changes or rollback and remove file
 		// ======================================================
 		// you can manage next event with one of these variables,
 		// commit for successfull and rollback for failed
 		// if query run without error means commit
-		$this->commit(function($_id, $_url)
+		$this->commit(function()
 		{
 			debug::property('status', 'ok');
-			// $link = '<a target="_blank" href=/attachments/edit='.$_id.'>'. T_('Edit').'</a>';
-			// debug::property('edit', $link);
-
-		}, $attachment_id, $page_url);
+		});
 
 		// if a query has error or any error occour in any part of codes, run roolback
 		$this->rollback(function()
@@ -667,11 +683,6 @@ class model extends \mvc\model
 		});
 
 		$this->_processor(['force_json'=>true, 'not_redirect'=>true]);
-
-
-		// var_dump('upload');
-		// return false;
-		# code...
 	}
 
 	/**
