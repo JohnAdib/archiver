@@ -9,6 +9,7 @@ body{height: 100%;overflow:hidden;}
 #header-nav > li{display:inline-block;padding:0 5px;}
 /*#header-nav > li:hover{background:#3d4e5d;color:#fff;}*/
 #header-nav > li > a{display:inline-block;color:#ddd;height:100%;}
+.text-ltr{direction:ltr;}
 
 #header #profile{float:right;height:100%;cursor:pointer;}
 .rtl #header #profile{float:left;}
@@ -108,9 +109,9 @@ width: 150px;
 #prop-box li#tagInput:hover{background-color:initial;}
 #prop-box li div, #prop-box-ul li img {display: block; margin:0 auto;}
 #prop-box i{vertical-align:middle;}
-#prop-box .img-container{display:none}
-#prop-box .img-container img {width:100%;max-width:250px;}
-#prop-box .img-container:hover {background:#eee;}
+#prop-box .media-container{display:none;padding:0}
+#prop-box .media-container img {width:100%;max-width:250px;}
+#prop-box .media-container:hover {background:#eee;}
 
 #prop-box-ul video, #prop-box-ul audio{max-width:100%;width:98%;margin:5px auto 0;display:block}
 #prop-box-ul li.row span.span8 {text-align: left;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}

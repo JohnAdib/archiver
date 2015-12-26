@@ -83,6 +83,9 @@ function event_corridor(e, _self, _key)
     // ---------------------------------------------------------- Space
     case '32':              // space
     case '32shift':         // space + shift
+      // if player exist do right thing!
+      ex_player('space');
+
       if(!_self.hasClass('selected'))
       {
         ex_removeClass('selected focused zero');
@@ -262,13 +265,19 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------- Left
     case '37':              // left
-      console.log('left');
+      // if player exist do right thing!
+      ex_player('backward');
       break;
+
     case '37alt':           // left + Alt
       history.back();
       e.preventDefault();
       break;
 
+    case '37ctrl':          // left + ctrl
+      // if player exist do right thing!
+      ex_player('fastbackward');
+      break;
 
     // ---------------------------------------------------------- Up
     case '38':              // up
@@ -318,7 +327,8 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------- Right
     case '39':              // right
-      console.log('right');
+      // if player exist do right thing!
+      ex_player('forward');
       break;
 
     case '39alt':           // right + Alt
@@ -326,6 +336,10 @@ function event_corridor(e, _self, _key)
       e.preventDefault();
       break;
 
+    case '39ctrl':          // right + ctrl
+      // if player exist do right thing!
+      ex_player('fastforward');
+      break;
 
     // ---------------------------------------------------------- Down
     case '40':              // down
@@ -408,6 +422,10 @@ function event_corridor(e, _self, _key)
       reDraw('$/favorites');
       break;
 
+    case '70':              // f
+      ex_player('fullscreen')
+      break;
+
     case '72shift':         // h + shift (Home page)
       reDraw('/');
       break;
@@ -415,6 +433,10 @@ function event_corridor(e, _self, _key)
     // case '76shift':         // l + shift (show intro.js)
     //   ex_intro();
     //   break;
+
+    case '77':              // m
+      ex_player('muted')
+      break;
 
     case '78shift':         // n + shift
       if(ex_editing())
@@ -493,6 +515,10 @@ function event_corridor(e, _self, _key)
     case '116':             // f5
       e.preventDefault();
       reDraw();
+      break;
+
+   case '122shift':         // f11
+      ex_player('fullscreen');
       break;
 
    case '123':              // f12

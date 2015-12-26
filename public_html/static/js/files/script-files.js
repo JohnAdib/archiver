@@ -485,71 +485,80 @@ function ex_showProp()
           {
             return;
           }
-          if(myData['audio'] != undefined)
-          {
-            elements = '<audio controls><source src="' + myData['audio'] + '" type="' + myData['audio-type'] + '"></audio>';
-          }
-          else if(myData['video'] != undefined)
-          {
-            elements = '<video controls><source src="' + myData['video'] + '" type="' + myData['video-type'] + '"></video>';
-          }
 
           for (var key in myData)
           {
-            if (key == 'thumb')
+            var el_new = null;
+            switch (key)
             {
-              if ( ImageExist(myData[key]) )
-              {
-                var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
-              }
-              else
-              {
-                myData[key] = 'static/images/error.png';
-                var element = '<li class="img-container"><span class="fa-stack fa-lg fa-3x"><i class="fa fa-picture-o fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></li>';
-                var element = '<li class="img-container"><img src="' + myData[key] + '" /></li>';
-              }
-              elements += element;
-            }
-
-            else if (key == 'id')
-            {
-              $('#prop-box').attr('data-id', myData[key]);
-            }
-
-            else if (key == 'prop')
-            {
-              var prop = myData[key];
-              for (var p in prop)
-              {
-                var _prop = prop[p];
-                for (var pp in _prop)
+              // for thumb create thumb shower element
+              case 'thumb':
+                if ( ImageExist(myData[key]) )
                 {
-                  var element = '<li class="row auto" data-action="$/propremove" data-method="post" data-id="' + p + '"><span class="span4">' + pp + ' <i class="fa fa-times"></i></span><span class="span8"> ' + _prop[pp] + ' </span></li>';
-                  elements += element;
+                  el_new = '<li class="media-container"><img src="' + myData[key] + '" /></li>';
                 }
-              }
+                else
+                {
+                  myData[key] = 'static/images/error.png';
+                  // var el_new = '<li class="media-container"><span class="fa-stack fa-lg fa-3x"><i class="fa fa-picture-o fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></li>';
+                  el_new = '<li class="media-container"><img src="' + myData[key] + '" /></li>';
+                }
+                elements = el_new + elements;
+                break;
+
+              // skip on these two type
+              case 'audio-type':
+              case 'video-type':
+                continue;
+                break;
+
+              // on audio type create audio element
+              // on video type create video element
+              case 'audio':
+              case 'video':
+                el_new = '<' + key + ' controls id="player"><source src="' + myData[ key ] + '" type="' + myData[ key +'-type'] + '"></' + key + '>';
+                elements = el_new + elements;
+                break;
+
+              // copy id to propbox data-id attribute
+              case 'id':
+                $('#prop-box').attr('data-id', myData[key]);
+                break;
+
+              // for porp box show the data of propbox
+              case 'prop':
+                var prop = myData[key];
+                for (var p in prop)
+                {
+                  var _prop = prop[p];
+                  for (var pp in _prop)
+                  {
+                    el_new = '<li class="row auto" data-action="$/propremove" data-method="post" data-id="' + p + '"><span class="span4">' + pp + ' <i class="fa fa-times"></i></span><span class="span8"> ' + _prop[pp] + ' </span></li>';
+                    elements += el_new;
+                  }
+                }
+                break;
+
+              // fill tags and init tag func
+              case 'tags':
+                $('#sp-tags').val( myData['tags'] );
+                ex_tagInit();
+                break;
+
+              default:
+                el_new = '<li class="row auto"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
+                elements += el_new;
+                break;
             }
 
-            else if (key != 'audio' && key != 'audio-type' && key != 'video' && key != 'video-type' && key != 'tags')
-            {
-              var element = '<li class="row auto"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';
-              elements += element;
-            }
-
-            else if (key == 'tags')
-            {
-              $('#sp-tags').val( myData['tags'] );
-              ex_tagInit();
-            }
           }
           // $('#prop-box-ul').hide().html(elements).fadeIn();
           $('#prop-box-ul').hide().html(elements).fadeIn();
           ex_propShow();
 
           // if prop box has image, after load showing with fade
-          $('.img-container img').on('load', function ()
+          $('.media-container img').on('load', function ()
           {
-            // $(this).parent().slideDown(500).fadeIn(300);
             $(this).parent().fadeIn(300);
           });
         }

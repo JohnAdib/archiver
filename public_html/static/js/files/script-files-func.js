@@ -406,6 +406,80 @@ function ex_showPropAdd()
 }
 
 
+function ex_player(_key)
+{
+  if(ex_editing())
+    return;
+
+  // if player exist do right thing!
+  if($('#prop-box-ul #player').length)
+  {
+    var player = $('#prop-box-ul #player').get(0);
+    switch (_key)
+    {
+      case 'space':
+        if(player.paused)
+          player.play();
+        else
+          player.pause();
+        break;
+
+      case 'muted':
+        if(player.muted)
+          player.muted = false;
+        else
+          player.muted = true;
+        break;
+
+      case 'fullscreen':
+        ex_fullscreen(player);
+        break;
+
+      case 'fastforward':
+        var sTime = 10;
+      case 'forward':
+        sTime = sTime? sTime: 1;
+      case 'fastbackward':
+        sTime = sTime? sTime: -10;
+      case 'backward':
+        sTime = sTime? sTime: -1;
+
+        var seekToTime = player.currentTime + sTime;
+        if( seekToTime < 0 || seekToTime > player.duration )
+            return;
+
+        player.currentTime = seekToTime;
+        break;
+
+    }
+    return true;
+  }
+  // if player does not exist
+  else
+  {
+    return false;
+  }
+}
+
+/**
+ * Fullscreen requested element
+ */
+function ex_fullscreen(_el)
+{
+  if (_el.requestFullscreen)
+  {
+    _el.requestFullscreen();
+  }
+   else if (_el.mozRequestFullScreen)
+  {
+    _el.mozRequestFullScreen();
+  }
+  else if (_el.webkitRequestFullscreen)
+  {
+    _el.webkitRequestFullscreen();
+  }
+}
+
 
 // intro js v1.1.1
 (function(B,n){"object"===typeof exports?n(exports):"function"===typeof define&&define.amd?define(["exports"],n):n(B)})(this,function(B){function n(a){this._targetElement=a;this._options={nextLabel:"Next &rarr;",prevLabel:"&larr; Back",skipLabel:"Skip",doneLabel:"Done",tooltipPosition:"bottom",tooltipClass:"",highlightClass:"",exitOnEsc:!0,exitOnOverlayClick:!0,showStepNumbers:!0,keyboardNavigation:!0,showButtons:!0,showBullets:!0,showProgress:!1,scrollToElement:!0,overlayOpacity:0.8,positionPrecedence:["bottom",
