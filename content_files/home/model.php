@@ -551,7 +551,12 @@ class model extends \mvc\model
 		{
 			$file_exist = true;
 			// file exist in db files, use old one and dont use new file
+
 			$new_file_id = $qry_count2->assoc('id');
+			$file_id     = $new_file_id;
+			$file_url    = "$folder_name/$file_id";
+
+
 			// $id = $qry_count2->assoc('id');
 			// debug::property('status','ok');
 			// $link = '<a target="_blank" href=/attachments/edit='. $id. '>'. T_('Duplicate - File exist').'</a>';
@@ -587,7 +592,7 @@ class model extends \mvc\model
 						'url'    => $file_url,
 						// 'ext'    => $file_ext,
 						'type'   => utility\Upload::$fileType,
-						// 'mime'   => utility\Upload::$fileMime,
+						'mime'   => utility\Upload::$fileMime,
 						// 'thumb'  => $url_thumb,
 						'file'   => utility\Upload::$fileFullName,
 					 ];
@@ -632,6 +637,7 @@ class model extends \mvc\model
 						->set('file_status',      'ready')
 						->set('file_createdate',  date('Y-m-d H:i:s'));
 			$qry_files   = $qry_files->insert();
+			// below line can't fetch last id!!
 			$new_file_id = $qry_files->LAST_INSERT_ID();
 			$new_file_id = $this->upload_fileID();
 			// var_dump($new_file_id); exit();
@@ -1257,6 +1263,7 @@ class model extends \mvc\model
 			case 'audio/mpeg':
 			case 'audio/wav':
 				$datatable['audio']      = $datatable['meta']['file'];
+				$datatable['audio']      = $datatable['meta']['url'];
 				$datatable['audio-type'] = $datatable['meta']['mime'];
 				break;
 
@@ -1264,6 +1271,7 @@ class model extends \mvc\model
 			case 'video/webm':
 			case 'video/ogg':
 				$datatable['video']      = $datatable['meta']['file'];
+				$datatable['video']      = $datatable['meta']['url'];
 				$datatable['video-type'] = $datatable['meta']['mime'];
 				break;
 
