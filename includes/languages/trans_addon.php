@@ -12,7 +12,7 @@ function transtext()
 	echo T_("Sign In");                                                               // Line 6
 
 	//---------------------------------addon\content_account\verification\display.html
-	echo T_("we send a verification code for you");                                   // Line 218 Seperate
+	echo T_("we send a verification code for you");                                   // Line 221 Seperate
 	echo T_("please check your mobile and enter the code");                           // Line 7
 	echo T_("don't receive message?");                                                // Line 8
 
@@ -34,7 +34,7 @@ function transtext()
 	echo T_("Users");                                                                 // Line 91 Seperate
 	echo T_("Top Visited Page");                                                      // Line 93
 	echo T_("Visit");                                                                 // Line 112
-	echo T_("Page Views");                                                            // Line 179 Seperate
+	echo T_("Page Views");                                                            // Line 182 Seperate
 	echo T_("Bots");                                                                  // Line 137
 
 	//-------------------------------------------addon\content_cp\home\layout-xhr.html
@@ -47,7 +47,7 @@ function transtext()
 	echo T_("Books");                                                                 // Line 14
 	echo T_("Visitors");                                                              // Line 18
 	echo T_("Social networks");                                                       // Line 21
-	echo T_("Utilities");                                                             // Line 25
+	echo T_("Tools");                                                                 // Line 146 Seperate
 	echo T_("Permissions");                                                           // Line 26
 	echo T_("Options");                                                               // Line 76 Seperate
 	echo T_("Homepage");                                                              // Line 72 Seperate
@@ -59,7 +59,7 @@ function transtext()
 	echo T_("You can work with control panel in your language");                      // Line 43
 	echo T_("Go to your profile, change password or logout from conrtol panel");      // Line 55
 	echo T_("My Profile");                                                            // Line 92 Seperate
-	echo T_("Change Password");                                                       // Line 208 Seperate
+	echo T_("Change Password");                                                       // Line 211 Seperate
 	echo T_("Lock Screen");                                                           // Line 94 Seperate
 	echo T_("Logout");                                                                // Line 95 Seperate
 	echo T_("We glad to working for you and hope you enjoy using our system");        // Line 85
@@ -129,7 +129,7 @@ function transtext()
 
 	//----------------------------------addon\content_cp\templates\module_display.html
 	echo T_("Actions");                                                               // Line 78 Seperate
-	echo T_("Data not exist!");                                                       // Line 147 Seperate
+	echo T_("Data not exist!");                                                       // Line 150 Seperate
 	echo T_("delete record");                                                         // Line 80 Seperate
 	echo T_("seriously, are you sure? There's no coming back.");                      // Line 81 Seperate
 	echo T_("Cancel");                                                                // Line 82 Seperate
@@ -137,7 +137,7 @@ function transtext()
 	echo T_("Delete");                                                                // Line 84 Seperate
 
 	//----------------------------------addon\content_cp\templates\module_profile.html
-	echo T_("Mobile");                                                                // Line 149 Seperate
+	echo T_("Mobile");                                                                // Line 152 Seperate
 	echo T_("Email");                                                                 // Line 21
 	echo T_("Display Name");                                                          // Line 15
 	echo T_("Save Changes");                                                          // Line 49
@@ -178,14 +178,14 @@ function transtext()
 	echo T_("Edit your site general options");                                        // Line 54
 
 	//------------------------------addon\content_cp\templates\static_permissions.html
-	echo T_("list of current permissions is listed here, for edit click on it");      // Line 44
+	echo T_("list of current permissions is listed here, for edit click on it");      // Line 45
 	echo T_("Define new permission");                                                 // Line 18
 	echo T_("Permission Name");                                                       // Line 22
 	echo T_("Insert new permission type");                                            // Line 25
-	echo T_("for define new type of permission fill the name and click on insert");   // Line 30
-	echo T_("After insert you can edit your custom permission");                      // Line 30
-	echo T_("list of permissions");                                                   // Line 35
-	echo T_("delete permission");                                                     // Line 50 Seperate
+	echo T_("for define new type of permission fill the name and click on insert");   // Line 29
+	echo T_("After insert you can edit your custom permission");                      // Line 29
+	echo T_("list of permissions");                                                   // Line 34
+	echo T_("delete permission");                                                     // Line 51 Seperate
 
 	//------------------------------------addon\content_cp\templates\static_tools.html
 	echo T_("You can use our tools");                                                 // Line 6
@@ -196,8 +196,6 @@ function transtext()
 	echo T_("Show server info");                                                      // Line 14
 	echo T_("Show PHP info");                                                         // Line 15
 	echo T_("social networks");                                                       // Line 17
-
-	//----------------------------------addon\content_cp\templates\static_utility.html
 
 	//--------------------------------------addon\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate
@@ -238,7 +236,7 @@ function transtext()
 	echo T_("id does not exist!");                                                    // Line 51 Seperate
 	echo T_("all require fields must fill");                                          // Line 52 Seperate
 	echo T_("some fields must be change for update!");                                // Line 53 Seperate
-	echo T_("Ermile");                                                                // Line 158 Seperate
+	echo T_("Ermile");                                                                // Line 161 Seperate
 	echo T_("ermile");                                                                // Line 55 Seperate
 	echo T_("made in iran");                                                          // Line 56 Seperate
 	echo T_("Iran");                                                                  // Line 57 Seperate
@@ -300,63 +298,65 @@ function transtext()
 	echo T_("Writer");                                                                // Line 143 Seperate
 	echo T_("utility");                                                               // Line 144 Seperate
 	echo T_("Utility");                                                               // Line 145 Seperate
-	echo T_("Chart must be contain at least 2 column!");                              // Line 146 Seperate
-	echo T_("Password");                                                              // Line 150 Seperate
-	echo T_("between 5-40 character");                                                // Line 151 Seperate
-	echo T_("between 5-40 character. be tricky!");                                    // Line 152 Seperate
-	echo T_("Login");                                                                 // Line 153 Seperate
-	echo T_("Create an account");                                                     // Line 154 Seperate
-	echo T_("Change password");                                                       // Line 155 Seperate
-	echo T_("SMS Delivery");                                                          // Line 156 Seperate
-	echo T_("SMS Callback");                                                          // Line 157 Seperate
-	echo T_("edit");                                                                  // Line 159 Seperate
-	echo T_("book");                                                                  // Line 160 Seperate
-	echo T_("books");                                                                 // Line 161 Seperate
-	echo T_("Book Categories");                                                       // Line 162 Seperate
-	echo T_("Bookcategories");                                                        // Line 163 Seperate
-	echo T_("bookcategory");                                                          // Line 164 Seperate
-	echo T_("Use categories to define sections of your site and group related books");// Line 165 Seperate
-	echo T_("Use book to define important parts to use in posts");                    // Line 166 Seperate
-	echo T_("Duplicate - File exist");                                                // Line 167 Seperate
-	echo T_("Fail on tranfering file");                                               // Line 168 Seperate
-	echo T_("Error");                                                                 // Line 169 Seperate
-	echo T_("Invalid parameters");                                                    // Line 170 Seperate
-	echo T_("No file sent");                                                          // Line 171 Seperate
-	echo T_("Exceeded filesize limit");                                               // Line 172 Seperate
-	echo T_("Unknown errors");                                                        // Line 173 Seperate
-	echo T_("We don't support this type of file");                                    // Line 174 Seperate
-	echo T_("Publish new post in social networks");                                   // Line 176 Seperate
-	echo T_("Socialnetwork");                                                         // Line 177 Seperate
-	echo T_("socialnetwork");                                                         // Line 178 Seperate
-	echo T_("Description");                                                           // Line 180 Seperate
-	echo T_("Title");                                                                 // Line 181 Seperate
-	echo T_("Date");                                                                  // Line 182 Seperate
-	echo T_("Size");                                                                  // Line 183 Seperate
-	echo T_("Enter your registered mobile");                                          // Line 189 Seperate
-	echo T_("Enter your password");                                                   // Line 190 Seperate
-	echo T_("Recovery");                                                              // Line 193 Seperate
-	echo T_("your recovery code is");                                                 // Line 194 Seperate
-	echo T_("recovery failed!");                                                      // Line 195 Seperate
-	echo T_("Mobile number is incorrect");                                            // Line 196 Seperate
-	echo T_("Verificate");                                                            // Line 199 Seperate
-	echo T_("Verification");                                                          // Line 200 Seperate
-	echo T_("verify successfully.");                                                  // Line 201 Seperate
-	echo T_("please Input your new password");                                        // Line 202 Seperate
-	echo T_("verify failed!");                                                        // Line 203 Seperate
-	echo T_("this data is incorrect");                                                // Line 204 Seperate
-	echo T_("Check your mobile and enter the code");                                  // Line 205 Seperate
-	echo T_("Current Password");                                                      // Line 209 Seperate
-	echo T_("New Password");                                                          // Line 210 Seperate
-	echo T_("Change it");                                                             // Line 211 Seperate
-	echo T_("change password successfully");                                          // Line 212 Seperate
-	echo T_("change password failed!");                                               // Line 213 Seperate
-	echo T_("we send a verification code to this number");                            // Line 219 Seperate
-	echo T_("you account is verified successfully");                                  // Line 220 Seperate
-	echo T_("your verification code is");                                             // Line 221 Seperate
-	echo T_("your password is changed successfully");                                 // Line 222 Seperate
-	echo T_("now we only support Iran!");                                             // Line 223 Seperate
-	echo T_("thanks for using our service");                                          // Line 224 Seperate
-	echo T_(" ");                                                                     // Line 226 Seperate
+	echo T_("tools");                                                                 // Line 147 Seperate
+	echo T_("tool");                                                                  // Line 148 Seperate
+	echo T_("Chart must be contain at least 2 column!");                              // Line 149 Seperate
+	echo T_("Password");                                                              // Line 153 Seperate
+	echo T_("between 5-40 character");                                                // Line 154 Seperate
+	echo T_("between 5-40 character. be tricky!");                                    // Line 155 Seperate
+	echo T_("Login");                                                                 // Line 156 Seperate
+	echo T_("Create an account");                                                     // Line 157 Seperate
+	echo T_("Change password");                                                       // Line 158 Seperate
+	echo T_("SMS Delivery");                                                          // Line 159 Seperate
+	echo T_("SMS Callback");                                                          // Line 160 Seperate
+	echo T_("edit");                                                                  // Line 162 Seperate
+	echo T_("book");                                                                  // Line 163 Seperate
+	echo T_("books");                                                                 // Line 164 Seperate
+	echo T_("Book Categories");                                                       // Line 165 Seperate
+	echo T_("Bookcategories");                                                        // Line 166 Seperate
+	echo T_("bookcategory");                                                          // Line 167 Seperate
+	echo T_("Use categories to define sections of your site and group related books");// Line 168 Seperate
+	echo T_("Use book to define important parts to use in posts");                    // Line 169 Seperate
+	echo T_("Duplicate - File exist");                                                // Line 170 Seperate
+	echo T_("Fail on tranfering file");                                               // Line 171 Seperate
+	echo T_("Error");                                                                 // Line 172 Seperate
+	echo T_("Invalid parameters");                                                    // Line 173 Seperate
+	echo T_("No file sent");                                                          // Line 174 Seperate
+	echo T_("Exceeded filesize limit");                                               // Line 175 Seperate
+	echo T_("Unknown errors");                                                        // Line 176 Seperate
+	echo T_("We don't support this type of file");                                    // Line 177 Seperate
+	echo T_("Publish new post in social networks");                                   // Line 179 Seperate
+	echo T_("Socialnetwork");                                                         // Line 180 Seperate
+	echo T_("socialnetwork");                                                         // Line 181 Seperate
+	echo T_("Description");                                                           // Line 183 Seperate
+	echo T_("Title");                                                                 // Line 184 Seperate
+	echo T_("Date");                                                                  // Line 185 Seperate
+	echo T_("Size");                                                                  // Line 186 Seperate
+	echo T_("Enter your registered mobile");                                          // Line 192 Seperate
+	echo T_("Enter your password");                                                   // Line 193 Seperate
+	echo T_("Recovery");                                                              // Line 196 Seperate
+	echo T_("your recovery code is");                                                 // Line 197 Seperate
+	echo T_("recovery failed!");                                                      // Line 198 Seperate
+	echo T_("Mobile number is incorrect");                                            // Line 199 Seperate
+	echo T_("Verificate");                                                            // Line 202 Seperate
+	echo T_("Verification");                                                          // Line 203 Seperate
+	echo T_("verify successfully.");                                                  // Line 204 Seperate
+	echo T_("please Input your new password");                                        // Line 205 Seperate
+	echo T_("verify failed!");                                                        // Line 206 Seperate
+	echo T_("this data is incorrect");                                                // Line 207 Seperate
+	echo T_("Check your mobile and enter the code");                                  // Line 208 Seperate
+	echo T_("Current Password");                                                      // Line 212 Seperate
+	echo T_("New Password");                                                          // Line 213 Seperate
+	echo T_("Change it");                                                             // Line 214 Seperate
+	echo T_("change password successfully");                                          // Line 215 Seperate
+	echo T_("change password failed!");                                               // Line 216 Seperate
+	echo T_("we send a verification code to this number");                            // Line 222 Seperate
+	echo T_("you account is verified successfully");                                  // Line 223 Seperate
+	echo T_("your verification code is");                                             // Line 224 Seperate
+	echo T_("your password is changed successfully");                                 // Line 225 Seperate
+	echo T_("now we only support Iran!");                                             // Line 226 Seperate
+	echo T_("thanks for using our service");                                          // Line 227 Seperate
+	echo T_(" ");                                                                     // Line 229 Seperate
 
 	//-------------------------------------------------addon\includes\macro\forms.html
 
