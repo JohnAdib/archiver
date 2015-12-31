@@ -167,7 +167,7 @@ function transtext()
 	//----------------------------------addon\content_cp\templates\static_options.html
 	echo T_("For multilanguage sites enter title in English and translate it");       // Line 12
 	echo T_("Site title");                                                            // Line 12
-	echo T_("Explain site and porpose of it in a few words");                         // Line 34
+	echo T_("Explain site and porpose of it in a few words");                         // Line 22
 	echo T_("Site Description");                                                      // Line 17
 	echo T_("Site main URL");                                                         // Line 25
 	echo T_("Site main Address (URL)");                                               // Line 25
@@ -175,17 +175,19 @@ function transtext()
 	echo T_("Allow registration");                                                    // Line 35
 	echo T_("Default permission");                                                    // Line 41
 	echo T_("Select");                                                                // Line 57
-	echo T_("Edit your site general options");                                        // Line 46
+	echo T_("Edit your site general options");                                        // Line 54
 
 	//------------------------------addon\content_cp\templates\static_permissions.html
-	echo T_("list of current permissions is listed here, for edit click on it");      // Line 17
-	echo T_("Define new permission");                                                 // Line 27
-	echo T_("for define new type of permission fill the name below and click on insert");// Line 29
-	echo T_("After insert you can edit your custom permission");                      // Line 29
-	echo T_("Permission Name");                                                       // Line 34
-	echo T_("Insert new permission type");                                            // Line 37
+	echo T_("list of current permissions is listed here, for edit click on it");      // Line 44
+	echo T_("Define new permission");                                                 // Line 18
+	echo T_("Permission Name");                                                       // Line 22
+	echo T_("Insert new permission type");                                            // Line 25
+	echo T_("for define new type of permission fill the name and click on insert");   // Line 30
+	echo T_("After insert you can edit your custom permission");                      // Line 30
+	echo T_("list of permissions");                                                   // Line 35
+	echo T_("delete permission");                                                     // Line 50 Seperate
 
-	//----------------------------------addon\content_cp\templates\static_utility.html
+	//------------------------------------addon\content_cp\templates\static_tools.html
 	echo T_("You can use our tools");                                                 // Line 6
 	echo T_("Regenerate sitemap");                                                    // Line 10
 	echo T_("Extract twig trans func in current project");                            // Line 11
@@ -194,6 +196,8 @@ function transtext()
 	echo T_("Show server info");                                                      // Line 14
 	echo T_("Show PHP info");                                                         // Line 15
 	echo T_("social networks");                                                       // Line 17
+
+	//----------------------------------addon\content_cp\templates\static_utility.html
 
 	//--------------------------------------addon\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate

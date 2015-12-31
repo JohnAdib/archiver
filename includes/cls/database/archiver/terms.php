@@ -10,6 +10,7 @@ class terms
 	public $term_url      = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'url'             ,'type'=>'varchar@200'];
 	public $term_desc     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'desc'            ,'type'=>'mediumtext@'];
 	public $term_meta     = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'meta'            ,'type'=>'mediumtext@'];
+	public $term_status   = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'status'          ,'type'=>'enum@enable,disable,expire'];
 	public $term_parent   = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'parent'          ,'type'=>'int@10'                          ,'foreign'=>'terms@id!term_title'];
 	public $user_id       = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'user'            ,'type'=>'int@10'                          ,'foreign'=>'users@id!user_displayname'];
 	public $date_modified = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'modified'        ,'type'=>'timestamp@'];
@@ -48,6 +49,12 @@ class terms
 	}
 
 	public function term_meta(){}
+
+	public function term_status()
+	{
+		$this->form()->type('radio')->name('status');
+		$this->setChild();
+	}
 
 	public function term_parent()
 	{

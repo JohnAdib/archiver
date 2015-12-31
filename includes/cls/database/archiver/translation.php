@@ -151,6 +151,7 @@ function transtext()
 	echo T_("url");                 // term_url
 	echo T_("desc");                // term_desc
 	echo T_("meta");                // term_meta
+	echo T_("status");              // term_status
 	echo T_("parent");              // term_parent
 
 	// ------------------------------------------------------------ Table termusages
