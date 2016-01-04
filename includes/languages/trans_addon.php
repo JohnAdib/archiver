@@ -88,10 +88,15 @@ function transtext()
 	echo T_("Save Changes");                                                          // Line 49
 	echo T_("You are change this type of permission");                                // Line 30
 	echo T_("Edit permission of");                                                    // Line 37
+	echo T_("Allow or disallow user to access all part of service with full permission!");// Line 44
 	echo T_("All");                                                                   // Line 44
+	echo T_("Allow or disallow user to view all part of service");                    // Line 45
 	echo T_("Select");                                                                // Line 57
+	echo T_("Allow or disallow user to insert in all part of service");               // Line 46
 	echo T_("Add");                                                                   // Line 137 Seperate
+	echo T_("Allow or disallow user to edit all part of service");                    // Line 47
 	echo T_("Edit");                                                                  // Line 138 Seperate
+	echo T_("Allow or disallow user to delete in all part of service");               // Line 48
 	echo T_("Empty");                                                                 // Line 84
 	echo T_("In this section you can edit permission of");                            // Line 89
 
