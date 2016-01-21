@@ -93,9 +93,11 @@ class controller extends \mvc\controller
 	{
 		$mylist	= [
 					'fileManager' => null,
-					'favorites'   => ['admin'],
-					'tags'        => ['admin'],
+					'favorites'   => null,
+					'tags'        => null,
+					'property'    => null,
 					'upload'      => ['admin', 'edit', 'delete'],
+					'newFolder'   => ['admin', 'view', 'edit', 'delete'],
 					'search'      => ['admin', 'add', 'edit', 'delete'],
 					'apps'        => ['admin', 'add', 'edit', 'delete'],
 				];

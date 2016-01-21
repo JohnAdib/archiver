@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ermile\n"
-"POT-Creation-Date: 2016-01-21 12:55+0330\n"
-"PO-Revision-Date: 2016-01-21 12:56+0330\n"
+"POT-Creation-Date: 2016-01-21 21:10+0330\n"
+"PO-Revision-Date: 2016-01-21 21:10+0330\n"
 "Last-Translator: Javad Evazzadeh <J.Evazzadeh@gmail.com>\n"
 "Language-Team: Ermile <J.Evazzadeh@gmail.com>\n"
 "Language: fa_IR\n"
@@ -2299,6 +2299,14 @@ msgstr "برنامه"
 #: ../../../.././includes/languages/trans_twig.php:94
 msgid "apps"
 msgstr "برنامه‌ها"
+
+#: ../../../.././includes/languages/trans_twig.php:95
+msgid "newFolder"
+msgstr "پوشه جدید"
+
+#: ../../../.././includes/languages/trans_twig.php:96
+msgid "property"
+msgstr "خصیصه‌ها"
 
 #~ msgid "insert successfully"
 #~ msgstr "رکورد با موفقیت ثبت شد"
