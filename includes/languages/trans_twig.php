@@ -88,5 +88,10 @@ function transtext()
 	echo T_("Cancel");                                                                // Line 238
 	echo T_("Submit");                                                                // Line 240
 
+	//--------------------------------------------includes\languages\trans_static.html
+	echo T_("fileManager");                                                           // Line 7 Seperate
+	echo T_("app");                                                                   // Line 8 Seperate
+	echo T_("apps");                                                                  // Line 9 Seperate
+
 }
 ?>
