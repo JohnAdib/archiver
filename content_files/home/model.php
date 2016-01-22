@@ -275,6 +275,10 @@ class model extends \mvc\model
 	 */
 	public function draw_favorites()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'favorites', 'view', 'block');
+
 		$qry  = $this->qryCreator(['status', 'fav', 'field']);
 		$qry = $qry->select()->allassoc();
 
@@ -288,6 +292,10 @@ class model extends \mvc\model
 	 */
 	public function draw_tags($_type = false)
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'tags', 'view', 'block');
+
 		// add current user to query string
 		$uid       = $this->login('id');
 		if(!$uid)
@@ -372,6 +380,10 @@ class model extends \mvc\model
 	 */
 	function draw_search()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'search', 'view', 'block');
+
 		$q = utility::get('q');
 		// search query string
 		$qString = "SELECT
@@ -501,6 +513,10 @@ class model extends \mvc\model
 	 */
 	public function post_upload()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'upload', 'add', 'notify');
+
 		$_location = $this->getLocation();
 
 		if(!$_location || strpos($_location, '/$/') !== false)
@@ -697,6 +713,10 @@ class model extends \mvc\model
 	 */
 	public function post_createfolder()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'fileManager', 'add', 'notify');
+
 		$_location = $this->getLocation();
 		if(!$_location)
 			return false;
@@ -748,6 +768,10 @@ class model extends \mvc\model
 	 */
 	public function post_remove()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'fileManager', 'delete', 'notify');
+
 		$qry   = $this->qryCreator(['id', 'location']);
 		$shift = utility::post('shift');
 
@@ -795,6 +819,10 @@ class model extends \mvc\model
 	 */
 	public function post_paste()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'fileManager', 'edit', 'notify');
+
 		// if type is invalid, return false
 		$qry = $this->qryCreator(['id', 'status']);
 		$type  = utility::post('type');
@@ -844,6 +872,10 @@ class model extends \mvc\model
 	 */
 	public function post_rename()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'fileManager', 'edit', 'notify');
+
 		$qry   = $this->qryCreator(['id', 'location', 'status']);
 
 		$fname = utility::post('fname');
@@ -873,6 +905,11 @@ class model extends \mvc\model
 
 	public function post_favorites()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'favorites', 'edit', 'notify');
+
+
 		$qry         = $this->qryCreator(['id', 'status']);
 		$myFavStatus = '#'.utility::post('status');
 
@@ -904,6 +941,10 @@ class model extends \mvc\model
 
 	public function post_tagadd()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'tags', 'add', 'notify');
+
 		$myTags  = utility::post('tags');
 		$myTags  = explode(',', $myTags);
 		foreach ($myTags as $key => $value)
@@ -976,6 +1017,10 @@ class model extends \mvc\model
 
 	public function post_tagremove()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'tags', 'delete', 'notify');
+
 		$myId = $this->getItems(true);
 		if(!is_numeric($myId))
 			return false;
@@ -1015,6 +1060,10 @@ class model extends \mvc\model
 	 */
 	function post_result($_type = 'return')
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'apps', 'add', 'notify');
+
 		$appAuthCode = \lib\utility::post('authcode');
 
 		if($appAuthCode)
@@ -1079,6 +1128,10 @@ class model extends \mvc\model
 
 	public function post_propadd($_data)
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'property', 'add', 'notify');
+
 		// add current user to query string
 		$uid       = $this->login('id');
 		if(!$uid)
@@ -1164,6 +1217,10 @@ class model extends \mvc\model
 
 	public function post_propremove()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'property', 'delete', 'notify');
+
 		$myId = $this->getItems(true);
 		if(!is_numeric($myId))
 			return false;
@@ -1195,6 +1252,10 @@ class model extends \mvc\model
 
 	public function post_prop()
 	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'property', 'view', 'notify');
+
 		$qry   = $this->qryCreator(['id', 'status', 'order']);
 
 		$qry   = $qry->field('id',
