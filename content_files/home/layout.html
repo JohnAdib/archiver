@@ -43,7 +43,7 @@
     </li>
 {%endif%}
 
-{%if perm.newFolder.view%}
+{%if perm.newFolder.add%}
     <li>
        <a class="labeled icon button" id="newfolder" data-step='32' data-intro='{%trans "Creating a new folder and organize your files"%}'>
         <i class="icon fa fa-folder"></i><span>{%trans "Create new folder"%}</span>
@@ -66,12 +66,12 @@
 {%if perm.fileManager.delete%}
        <a id="more-remove" data-action="/$/remove" data-method="post" delay='2000'><i class="icon fa fa-times"></i> {%trans "Delete"%}</a>
 {%endif%}
-       <a id="more-show" href="#"><i class="fa fa-trash-o"></i>{%trans "Don't show deleted items"%}</a>
+       <a class="hide" id="more-show" href="#"><i class="fa fa-trash-o"></i>{%trans "Don't show deleted items"%}</a>
       </nav>
     </li>
 {%if perm.fileManager.view%}
     <li id="download" class="hide">
-     <a class="labeled icon button" id="download-link" target="_blank">
+     <a class="labeled icon button" id="download-link" href="#" download data-action>
       <i class="icon fa fa-download"></i><span>{%trans "Download"%}</span>
      </a>
     </li>
@@ -82,36 +82,26 @@
        <i class="icon fa fa-paper-plane-o"></i><span>{%trans "Send to app"%}</span>
       </a>
       <nav class="vertical-menu">
-        <a href="javascript:{}" onclick="document.getElementById('more-app1').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 1 - {%trans "Image Processing"%}
-         <form action="{{url.static}}page/app.php" data-action id="more-app1" target="_blank">
-          <input type="hidden" name="data" value="Address of file1 - to app1">
-          <input type="hidden" name="app" value='{%trans "Image Processing"%}'>
-          <input type="hidden" name="authcode" id="sent-id" value="">
-          <input type="hidden" name="addr" id="sent-addr" value="">
-          <input type="submit" value=''>
-         </form>
+        <a href="{{url.static}}page/app.php" data-data='custom data'>
+         <i class="fa fa-paper-plane-o"></i>{%trans "Send to app"%} 1 - <span>{%trans "Image Processing"%}</span>
         </a>
 
-        <a href="javascript:{}" onclick="document.getElementById('more-app2').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} 2 - {%trans "Text Mining"%}
-         <form action="{{url.static}}page/app.php" data-action id="more-app2" target="_blank">
-          <input type="hidden" name="data" value="Address of file 2 - to app2">
-          <input type="hidden" name="app" value='{%trans "Text Mining"%}'>
-          <input type="hidden" name="authcode" id="sent-id" value="">
-          <input type="hidden" name="addr" id="sent-addr" value="">
-          <input type="submit" value=''>
-         </form>
+        <a href="{{url.static}}page/app.php" data-data='custom data 2'>
+         <i class="fa fa-paper-plane-o"></i>{%trans "Send to app"%} 2 - <span>{%trans "Text Mining"%}</span>
         </a>
 
-        <a href="javascript:{}" onclick="document.getElementById('more-app3').submit(); return false;"><i class="fa fa-paper-plane-o"></i> {%trans "Send to app"%} Google
-         <form action="http://www.google.com/search" data-action id="more-app3" target="_blank">
-          <input type="hidden" name="q" size="31" maxlength="255" value="Iran">
-          <input type="hidden" name="authcode" id="sent-id" value="">
-          <input type="hidden" name="addr" id="sent-addr" value="">
-          <input type="submit" value=''>
-         </form>
+        <a href="http://google.com/search" data-q='Iran'>
+         <i class="fa fa-paper-plane-o"></i>{%trans "Send to app"%} 3 - <span>{%trans "Google"%}</span>
         </a>
-
-
+        <form action="#" data-action target="_blank">
+          <input type="hidden" name="app" value=''>
+          <input type="hidden" name="authcode" value=''>
+          <input type="hidden" name="addr" value=''>
+          <input type="hidden" name="ext" value=''>
+          <div data-action="/$/auth" data-method="post">
+          </div>
+          <input type="submit" value=''>
+        </form>
       </nav>
     </li>
 {%endif%}

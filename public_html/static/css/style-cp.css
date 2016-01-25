@@ -47,7 +47,7 @@ body {background-color: #f5f5f5;position: relative;color: #656d78;min-height:100
 #header .vertical-menu #profile-me:hover i{color:#5cb85c;}
 #header .vertical-menu #profile-lock:hover i{color:#f0ad4e;}
 #header .vertical-menu #profile-logout:hover i{color:#F0433D;}
- 
+
 #header #profile:hover .vertical-menu{display:block;}
 #header #profile:active .vertical-menu{display:block;}
 

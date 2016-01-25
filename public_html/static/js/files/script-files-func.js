@@ -234,29 +234,40 @@ function ex_itemSelectedFocusedZero(_id)
 {
   ex_addClass('selected focused zero', _id);
 
-  // if user select a file then fill file addr to sent-app value for future use
-  var myAddr = $('#explorer>ul li:eq('+ _id +')').data('addr');
-  if(myAddr)
+  if($('#explorer>ul li:eq('+ _id +')').hasClass('file'))
   {
-    myAddr = location.protocol + "//" + location.host + '/'+ myAddr;
     $('#download').fadeIn(300).removeClass('hide').css('display', 'inline-block');
     $('#send-to-app').fadeIn(300).removeClass('hide').css('display', 'inline-block');
 
-    $('#download a').attr('href', myAddr);
-    var myName = $('#explorer>ul li:eq('+ _id +') .name').html();
-    var myID = $('#explorer>ul li:eq('+ _id +')').data('id');
-    // console.log(myName);
-
-    $('#download a').attr('download', myName);
-    $('#send-to-app #sent-addr').attr('value', myAddr);
-    $('#send-to-app #sent-id')  .attr('value', myID);
   }
   else
   {
     $('#download').fadeOut(300, function() { $(this).addClass('hide') });
-    $('#download a').attr('href', null);
     $('#send-to-app').fadeOut(300, function() { $(this).addClass('hide') });
   }
+
+  // if user select a file then fill file addr to sent-app value for future use
+  // var myAddr = $('#explorer>ul li:eq('+ _id +')').data('addr');
+  // if(myAddr)
+  // {
+  //   myAddr = location.protocol + "//" + location.host + '/'+ myAddr;
+
+  //   $('#download a').attr('href', myAddr);
+  //   var myName = $('#explorer>ul li:eq('+ _id +') .name').html();
+  //   var myID = $('#explorer>ul li:eq('+ _id +')').data('id');
+  //   // console.log(myName);
+
+  //   $('#download a').attr('download', myName);
+  //   $('#send-to-app #sent-addr').attr('value', myAddr);
+  //   $('#send-to-app #sent-id')  .attr('value', myID);
+  // }
+  // else
+  // {
+  //   $('#download').fadeOut(300, function() { $(this).addClass('hide') });
+  //   $('#download a').attr('href', null);
+  //   $('#send-to-app').fadeOut(300, function() { $(this).addClass('hide') });
+  // }
+
   $('#more').fadeIn(300).removeClass('hide').css('display', 'inline-block');
 }
 

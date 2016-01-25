@@ -29,6 +29,8 @@ body{height: 100%;overflow:hidden;}
 #header #send-to-app:hover .vertical-menu, #header #send-to-app:focus .vertical-menu, #header #send-to-app:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 #header #languages:hover .vertical-menu, #header #languages:focus .vertical-menu, #header #languages:active .vertical-menu{visibility:visible;opacity:1;transition-delay:0s;}
 
+#send-to-app form{display: none;}
+
 #header #more .vertical-menu a i{width:35px;}
 #header .button{background-color:#3F5162}
 #header .button:hover{color: #fff;}

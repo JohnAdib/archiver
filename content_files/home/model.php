@@ -44,6 +44,10 @@ class model extends \mvc\model
 	protected function getItems($_raw = false)
 	{
 		$items = utility::post('items');
+		if(!$items)
+		{
+			$items = utility::get('id');
+		}
 
 		$items = explode(',', $items);
 		if(count($items) < 1)
@@ -85,10 +89,6 @@ class model extends \mvc\model
 		$uid       = $this->login('id');
 		if(!$uid)
 			return false;
-		// get location
-		$myLocation = $this->getLocation();
-		if(!$myLocation)
-			return false;
 
 
 
@@ -101,6 +101,10 @@ class model extends \mvc\model
 		// add location to query string
 		if(in_array('location', $_need))
 		{
+			// get location
+			$myLocation = $this->getLocation();
+			if(!$myLocation)
+				return false;
 			$myQry = $myQry->and('attachment_addr', $myLocation);
 		}
 
@@ -1062,7 +1066,7 @@ class model extends \mvc\model
 	{
 		// Check permission and if user can do this operation
 		// allow to do it, else show related message in notify center
-		$this->access('files', 'apps', 'add', 'notify');
+		$this->access('files', 'apps', 'add', 'block');
 
 		$appAuthCode = \lib\utility::post('authcode');
 
@@ -1318,6 +1322,11 @@ class model extends \mvc\model
 		else
 			$datatable['icon'] = 'file-o';
 
+		if(isset($datatable['meta']['file']))
+		{
+			$datatable['icon'] = 'file-'.$datatable['meta']['type'].'-o';
+		}
+
 		switch ($datatable['meta']['mime'])
 		{
 			case 'audio/ogg':
@@ -1428,6 +1437,36 @@ class model extends \mvc\model
 		debug::property('datatable', $datatable);
 	}
 
+	/**
+	 * get the selected item and return auth code and address of it
+	 * @return [array] auth code and address of it
+	 */
+	public function post_auth()
+	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'apps', 'view', 'block');
+
+		$qry = $this->qryCreator(['id', 'status']);
+		$qry = $qry->select();
+		if($qry->num() === 1)
+		{
+			$qry = $qry->assoc();
+			$qry['attachment_meta'] = json_decode($qry['attachment_meta'], true);
+
+			if(isset($qry['attachment_meta']['url']))
+			{
+				$myAddr = $qry['attachment_meta']['url'];
+				$myAddr = $this->url('root'). $myAddr;
+
+				debug::property('addr', $myAddr);
+				debug::property('ext',  $qry['attachment_ext']);
+			}
+
+			debug::property('authcode', utility\ShortURL::encode($qry['id']));
+		}
+	}
+
 	// ----------------------------------------------------------------------- Other Useful Queries
 
 	/**
@@ -1484,5 +1523,29 @@ class model extends \mvc\model
 		return null;
 	}
 
+	public function get_dl()
+	{
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', 'fileManager', 'view', 'notify');
+
+		$qry = $this->qryCreator(['id', 'status', 'field']);
+		$qry = $qry->select()->allassoc();
+		// $sQry = $sQry->allassoc();
+		$qry =  $this->draw_fix($qry);
+
+		foreach ($qry as $key => $row)
+		{
+			if(isset($row['meta']['file']))
+			{
+				\lib\utility\File::download(
+					$row['meta']['url'],
+					$row['meta']['file'],
+					$row['meta']['mime']
+				);
+			}
+
+		}
+	}
 }
 ?>

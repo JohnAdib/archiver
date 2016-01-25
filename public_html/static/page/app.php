@@ -27,17 +27,18 @@
     {
       echo "<code>". $_GET['addr'] .'</code>';
       echo "<code>AuthCode: ". $_GET['authcode'] .'</code>';
-      switch (substr($_GET['addr'], -4))
+
+      switch ($_GET['ext'])
       {
-        case '.png':
-        case '.jpg':
+        case 'png':
+        case 'jpg':
         case 'jpeg':
-        case '.gif':
+        case 'gif':
           echo "<img src='". $_GET['addr']. "' />";
           break;
 
-        case '.txt':
-        case '.xml':
+        case 'txt':
+        case 'xml':
         case 'html':
 
         default:

@@ -10,21 +10,23 @@ $(document).ready(function()
   if ($('body').hasClass('first-time')) { ex_intro(); }
 
   // call from menu or static menu
-  $('#newfolder')           .click(function() { ex_newFolder();       });
-  $('#more-selectall')      .click(function() { ex_selectAll();       });
-  $('#more-rename')         .click(function() { ex_rename();          });
-  $('#more-move')           .click(function() { ex_clipboard('cut');  });
-  $('#more-copy')           .click(function() { ex_clipboard('copy'); });
-  $('#more-show')           .click(function() { ex_showTrash();       });
-  $('#more-remove')         .click(function() { ex_delete(false);     });
-  $('#paste')               .click(function() { ex_paste();           });
-  $('#remove')              .click(function() { ex_delete(false);     });
-  $('#prop-submit')         .click(function() { ex_addProp();         });
-  $('#ifaq')                .click(function() { ex_intro();           });
-  $('#prop-box h3')         .click(function() { ex_showPropAdd();     });
-  $('#prop-box-tags .span4').click(function() { ex_showAddTag();      });
-  $('#tag-add-btn')         .click(function() { addTag();             });
-  $("#search i")            .click(function() { ex_search();          });
+  $('#newfolder')           .click(function()  { ex_newFolder();         });
+  $('#more-selectall')      .click(function()  { ex_selectAll();         });
+  $('#more-rename')         .click(function()  { ex_rename();            });
+  $('#more-move')           .click(function()  { ex_clipboard('cut');    });
+  $('#more-copy')           .click(function()  { ex_clipboard('copy');   });
+  $('#more-show')           .click(function()  { ex_showTrash();         });
+  $('#more-remove')         .click(function()  { ex_delete(false);       });
+  $('#paste')               .click(function()  { ex_paste();             });
+  $('#remove')              .click(function()  { ex_delete(false);       });
+  $('#prop-submit')         .click(function()  { ex_addProp();           });
+  $('#ifaq')                .click(function()  { ex_intro();             });
+  $('#prop-box h3')         .click(function()  { ex_showPropAdd();       });
+  $('#prop-box-tags .span4').click(function()  { ex_showAddTag();        });
+  $('#tag-add-btn')         .click(function()  { addTag();               });
+  $("#search i")            .click(function()  { ex_search();            });
+  $("#download-link")       .click(function()  { ex_download();          });
+  $("#send-to-app a")       .click(function(e) { ex_sendToApps(this, e); });
 
 
   // prevent closing modal result
@@ -92,7 +94,33 @@ route('*', function()
 
   // Update hidden input value in upload modal to CURRENTPATH
   $('#form_uploader input[name="location"]').val(CURRENTPATH);
+
+  $(window).off('statechange');
+  $(window).on('statechange', function()
+  {
+    ex_setButtons();
+  });
 });
+
+
+/**
+ * set button status and disable on system locations
+ */
+function ex_setButtons()
+{
+  if(CURRENTPATH.substr(0, 1) === '$')
+  {
+    $('#upload').parent().fadeOut(300, function() { $(this).addClass('hide') });
+    $('#newfolder').fadeOut(300, function() { $(this).addClass('hide') });
+    $('#paste').addClass('hide');
+  }
+  else
+  {
+    $('#upload').parent().fadeIn(300).removeClass('hide').css('display', 'inline-block');
+    $('#newfolder').fadeIn(300).removeClass('hide').css('display', 'inline-block');
+  }
+}
+ex_setButtons();
 
 
 /**
@@ -112,7 +140,7 @@ function addTag()
 {
   var tag = $('#tag-add');
   var newTag = tag.val().trim();
-  if(newTag && newTag.length>0)
+  if(newTag && newTag.length > 0)
   {
     var exist = false;
     $.each($('#sp-tags').val().split(', '),function(t, item)
@@ -433,7 +461,27 @@ function ex_dblClickItems(_self)
   }
 }
 
+/**
+ * before click download, fill href from selected item for dl button
+ */
+function ex_download()
+{
+  var myItem;
+  if ( $('#explorer>ul>li.selected').length > 1 )
+  {
+    myItem = $('#explorer>ul>li.focused').data('id');
+  }
+  else
+  {
+    myItem = $('#explorer>ul>li.selected').data('id');
+  }
 
+  $('#download-link').attr("href", "/$/dl?id=" + myItem);
+}
+
+/**
+ * shwo property of selected item
+ */
 function ex_showProp()
 {
   if ( $('#explorer>ul>li.selected').length > 1 )
@@ -567,7 +615,9 @@ function ex_showProp()
   }
 }
 
-
+/**
+ * add new property
+ */
 function ex_addProp()
 {
   var _name  = $.trim($('#prop-box-new input[name="name"]').val());
@@ -609,3 +659,89 @@ function ex_addProp()
     $('#prop-box-new input[name="value"]').val('');
   }
 }
+
+/**
+ * prepare form to send to apps
+ */
+function ex_sendToApps(_this, _e)
+{
+  // prevent link to fire!
+  _e.preventDefault();
+
+  // set form action dynamically
+  var appLoc = $(_this).attr('href');
+  if(appLoc)
+  {
+    $('#send-to-app form').attr('action', appLoc);
+
+    // set form input value dynamically from selected app
+    $('#send-to-app form input[name="app"]').val( $(_this).children('span').text().trim());
+    // add data- dynamically to form for sending to app
+    $('#send-to-app form div').text("");
+    var dataAttrs = $(_this).get(0).attributes;
+    for (i = 0; i < dataAttrs.length; i++)
+    {
+      if ( 'data-' === dataAttrs[i].name.substring(0,5) )
+      {
+        var myEl = "<input type='hidden' name='" + dataAttrs[i].name.substring(5)
+          + "' value='" + dataAttrs[i].value + "'>";
+        $('#send-to-app form div').append(myEl);
+      }
+    }
+
+    var myItem;
+    if ( $('#explorer>ul>li.selected').length > 1 )
+    {
+      myItem = $('#explorer>ul>li.focused').data('id');
+    }
+    else
+    {
+      myItem = $('#explorer>ul>li.selected').data('id');
+    }
+
+
+    $('#send-to-app form div').ajaxify(
+    {
+      ajax:
+      {
+        data:
+        {
+          items: myItem,
+        },
+        abort: true,
+        success: function(e, data, x)
+        {
+          var myAddr   = x.responseJSON.addr;
+          var myExt    = x.responseJSON.ext;
+          var myCode   = x.responseJSON.authcode;
+          var propCode = $('#prop-box').attr('data-id');
+
+          if(myCode && myAddr)
+          {
+            if(myCode == propCode && propCode == myItem )
+            {
+              // set auth code and addr of file
+              $('#send-to-app form input[name="authcode"]').val(myCode);
+              $('#send-to-app form input[name="addr"]').val(myAddr);
+              $('#send-to-app form input[name="ext"]').val(myExt);
+              // console.log(myExt);
+              $('#send-to-app form').submit();
+            }
+            else
+            {
+              // something is wrong!
+              console.log('something is wrong!');
+              return;
+            }
+          }
+          else
+          {
+            // cancel, because can't get authcode and addr of file
+            return;
+          }
+        }
+      }
+    });
+  }
+}
+

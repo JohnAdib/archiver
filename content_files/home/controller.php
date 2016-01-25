@@ -37,6 +37,7 @@ class controller extends \mvc\controller
 					case 'tagremove':
 					case 'propadd':
 					case 'propremove':
+					case 'auth':
 						// var_dump($myurl[1]);
 						// $this->get()->ALL();
 						$this->post($myurl[1])->ALL();
@@ -50,6 +51,9 @@ class controller extends \mvc\controller
 						$this->route_check_true = true;
 						$this->get()->ALL();
 						$this->post($myurl[1])->ALL();
+						break;
+					case 'dl':
+						$this->get('dl')->ALL();
 						break;
 
 					default:
@@ -97,9 +101,9 @@ class controller extends \mvc\controller
 					'tags'        => null,
 					'property'    => null,
 					'upload'      => ['admin', 'edit', 'delete'],
+					'apps'        => ['admin', 'edit', 'delete'],
 					'newFolder'   => ['admin', 'view', 'edit', 'delete'],
 					'search'      => ['admin', 'add', 'edit', 'delete'],
-					'apps'        => ['admin', 'add', 'edit', 'delete'],
 				];
 
 		// get features value from view and fix it later
