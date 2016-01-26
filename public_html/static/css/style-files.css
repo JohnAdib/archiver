@@ -92,6 +92,7 @@ width: 150px;
 .rtl #page-sidebar .sidebar-items a{border-right-style: solid;}
 #page-sidebar #ifavorites:hover i{color:#FDCC37;}
 #page-sidebar #ifaq:hover i{color:#18B5DE;}
+#page-sidebar .active{color:#fff;background:rgba(0,0,0,0.3)}
 
 
 #page-sidespace{width:15%;float:left;min-height:100%;}
@@ -107,7 +108,7 @@ width: 150px;
 #prop-box{height: 100%; background-color: #eee;font-size:1.2em;overflow-y:auto }
 #prop-box h3{padding:2% 5%;border-bottom: 1px solid #ccc;cursor:pointer}
 #prop-box >div{display:none}
-#prop-box li {padding:0.4em 5%;}
+#prop-box li {padding:0.4em 5%;transition: all .2s ease-in;}
 #prop-box li#tagInput:hover{background-color:initial;}
 #prop-box li div, #prop-box-ul li img {display: block; margin:0 auto;}
 #prop-box i{vertical-align:middle;}
@@ -138,7 +139,7 @@ width: 150px;
 /* Explorer*/
 #explorer{height:90%;min-height:50%; height:calc(100% - 50px);}
 #explorer>ul{margin: 2% 0; overflow-y:auto;height:100%;clear:both}
-#explorer>ul>li{padding:0.5% 1%; border: 1px solid transparent;}
+#explorer>ul>li{padding:0.5% 1%; border: 1px solid transparent;transition: all .1s ease-in;}
 #explorer>ul>li.selected{background-color:#CCE8FF; border: 1px dotted #99D1FF}
 #explorer>ul>li.focused{border: 1px dotted #99D1FF}
 #explorer>ul>li.cutted{opacity: 0.5}

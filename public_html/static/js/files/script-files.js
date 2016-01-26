@@ -99,8 +99,31 @@ route('*', function()
   $(window).on('statechange', function()
   {
     ex_setButtons();
+    ex_checkLocation();
   });
 });
+
+
+/**
+ * check current location and highligh it
+ */
+function ex_checkLocation()
+{
+  $('#page-sidebar a').removeClass('active');
+  if(CURRENTPATH.indexOf("favorites") > -1)
+  {
+    $('#page-sidebar #ifavorites').addClass('active');
+  }
+  else if(CURRENTPATH.indexOf("tags") > -1)
+  {
+    $('#page-sidebar #itags').addClass('active');
+  }
+  else if(!CURRENTPATH)
+  {
+    $('#page-sidebar #ihome').addClass('active');
+  }
+}
+ex_checkLocation();
 
 
 /**
