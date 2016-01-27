@@ -47,7 +47,7 @@ function event_corridor(e, _self, _key)
       {
         // edit explorer
         case 1:
-          ex_inputSubmit.call($('button.btn-fa-check').parent()[0].innerHTML(), true);
+          $('.btn-fa-check').trigger('click');
           break;
 
         // edit property

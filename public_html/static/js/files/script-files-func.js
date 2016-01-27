@@ -137,7 +137,7 @@ function ex_escape()
 {
   if($('body').hasClass('editing'))
   {
-    ex_inputSubmit(false);
+    $('.btn-fa-times').trigger('click');
   }
   else if ( $('body').hasClass('prop-edit') )
   {

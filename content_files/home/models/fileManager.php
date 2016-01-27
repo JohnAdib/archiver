@@ -36,6 +36,8 @@ trait fileManager
 		// var_dump('create new folder');
 		// return;
 		$fname        = utility::post('fname');
+		if(!$fname)
+			return false;
 		// var_dump($fname);
 		// exit();
 
@@ -86,6 +88,9 @@ trait fileManager
 		$qry   = $this->qryCreator(['id', 'location', 'status']);
 
 		$fname = utility::post('fname');
+		if(!$fname)
+			return false;
+
 		$qry   = $qry->set('attachment_name', $fname);
 		$qry   = $qry->update();
 

@@ -309,7 +309,11 @@ function ex_inputSubmit(_submit)
     // console.log('submit');
     // return;
     var myInputVal = $('#item-new-name').val();
-    if ( myInputVal == '' )
+      console.log(myInputVal);
+    if(myInputVal == 'undefined')
+    {
+    }
+    if(myInputVal == '' )
     {
       myInputVal = 'Untitled Folder';
     }
