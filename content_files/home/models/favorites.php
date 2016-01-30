@@ -16,6 +16,8 @@ trait favorites
 		$this->access('files', 'favorites', 'view', 'block');
 
 		$qry  = $this->qryCreator(['status', 'fav', 'field']);
+		$qry = $qry->and('attachment_type', 'file');
+
 		$qry = $qry->select()->allassoc();
 
 		return $this->draw_fix($qry);

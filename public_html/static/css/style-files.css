@@ -92,7 +92,7 @@ width: 150px;
 .rtl #page-sidebar .sidebar-items a{border-right-style: solid;}
 #page-sidebar #ifavorites:hover i{color:#FDCC37;}
 #page-sidebar #ifaq:hover i{color:#18B5DE;}
-#page-sidebar .active{color:#fff;background:rgba(0,0,0,0.3)}
+#page-sidebar .active, #page-sidebar .active:hover{color:#fff;background:rgba(0,0,0,0.3)}
 
 
 #page-sidespace{width:15%;float:left;min-height:100%;}
@@ -138,7 +138,7 @@ width: 150px;
 
 /* Explorer*/
 #explorer{height:90%;min-height:50%; height:calc(100% - 50px);}
-#explorer>ul{margin: 2% 0; overflow-y:auto;height:100%;clear:both}
+#explorer>ul{margin: 2% 0; overflow-y:auto;height:96%;clear:both}
 #explorer>ul>li{padding:0.5% 1%; border: 1px solid transparent;transition: all .1s ease-in;}
 #explorer>ul>li.selected{background-color:#CCE8FF; border: 1px dotted #99D1FF}
 #explorer>ul>li.focused{border: 1px dotted #99D1FF}
@@ -484,6 +484,8 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
 .input-error { background-color: #EC407A }
 #prop-box-ul .fa-times { color: red; opacity: 0; }
 #prop-box-ul li:hover .fa-times, #prop-box-ul li:focus .fa-times { opacity: 1 }
+#prop-box-tags .span4{width:100%;padding:5px 0;}
+#prop-box-tags .span8{width:100%;}
 
 
 @media screen and (min-width: 1400px){
@@ -500,6 +502,7 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
   #header-nav .button i{font-size:1.5em}
   #header-nav #search .button{min-width: 120px;max-width: 170px}
   #profile span{display: none}
+  #prop-box{font-size: 1em;}
 }
 
 

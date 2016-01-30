@@ -331,9 +331,9 @@ function ex_propShow()
 function ImageExist(_url)
 {
   return true;
-  var img = new Image();
-  img.src = _url;
-  return img.height != 0;
+  // var img = new Image();
+  // img.src = _url;
+  // return img.height != 0;
 }
 
 

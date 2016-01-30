@@ -149,10 +149,13 @@
   <a class='hint--right hide' id='ianalytics' data-hint='{%trans "Analytics"%}' href="/$/analytics" data-step='16' data-intro2='{%trans "Show your account analytics"%}'><i class="fa fa-lg fa-line-chart"></i></a>
 
   <a class='hint--right hide' id='ioptions' data-hint='{%trans "Options"%}' href="#"><i class="fa fa-lg fa-cog"></i></a>
+{%if permContent.cp%}
+  <a class='hint--right' id='icp' target="_blank" data-hint='{%trans "Access to Control Panel"%}' href="{{url.root}}cp"><i class="fa fa-lg fa-desktop"></i></a>
+{%endif%}
   </nav>
  </aside>
 
- <div class="span8" id='explorer' data-step='2' data-intro='{%trans "your items like folder and files is show in this place"%}.{%trans "You can navigate between items with keyboard Up, Down, PageUp, PageDown, Home and End key."%}. {%trans "Also you can use Shift, Ctrl and Alt and we try to give you all functions that you need"%}. {%trans "After selecting item we show you properties of this item in sidebar"%}. {%trans "On double click you entering to folders"%}. {%trans "Finally you can use all keyboard shortcut for example Ctrl+X and Ctrl+V for copy and paste item to new location"%}' data-position='{{dir.right}}'>
+ <div class="span8" id='explorer'>
 
   <div class="breadcrumb" tabindex='-1' data-step='4' data-intro='{%trans "View your current location and navigate to parent of it"%}' data-position='bottom'>
    <nav data-xhr='breadcrumb'>
@@ -160,7 +163,7 @@
    </nav>
   </div>
 
-  <ul data-xhr='explorer'>
+  <ul data-xhr='explorer' data-step='2' data-intro='{%trans "your items like folder and files is show in this place"%}.{%trans "You can navigate between items with keyboard Up, Down, PageUp, PageDown, Home and End key."%}. {%trans "Also you can use Shift, Ctrl and Alt and we try to give you all functions that you need"%}. {%trans "After selecting item we show you properties of this item in sidebar"%}. {%trans "On double click you entering to folders"%}.' data-position='{{dir.right}}'>
 {%block explorer%}{%endblock%}
   </ul>
  </div>
