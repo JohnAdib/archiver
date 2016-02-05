@@ -18,7 +18,7 @@ trait search
 
 		$q = utility::get('q');
 		// search query string
-		$qString = "SELECT
+		$qString = "SELECT DISTINCT
 				`attachments`.`id`,
 				`attachments`.`file_id`,
 				attachment_title 	as title,
@@ -34,7 +34,7 @@ trait search
 				attachment_date 	as date
 				FROM `attachments`
 
-				INNER JOIN attachmentmetas ON `attachmentmetas`.`attachment_id` = `attachments`.`id`
+				LEFT JOIN attachmentmetas ON `attachmentmetas`.`attachment_id` = `attachments`.`id`
 
 				WHERE `attachments`.`user_id` = 1
 				AND attachment_status IN ('normal', 'trash')

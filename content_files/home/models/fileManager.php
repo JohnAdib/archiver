@@ -85,7 +85,7 @@ trait fileManager
 		// allow to do it, else show related message in notify center
 		$this->access('files', 'fileManager', 'edit', 'notify');
 
-		$qry   = $this->qryCreator(['id', 'location', 'status']);
+		$qry   = $this->qryCreator(['id', 'status']);
 
 		$fname = utility::post('fname');
 		if(!$fname)
@@ -126,7 +126,7 @@ trait fileManager
 		// allow to do it, else show related message in notify center
 		$this->access('files', 'fileManager', 'delete', 'notify');
 
-		$qry   = $this->qryCreator(['id', 'location']);
+		$qry   = $this->qryCreator(['id']);
 		$shift = utility::post('shift');
 
 		if($shift == 'true')

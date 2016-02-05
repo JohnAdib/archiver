@@ -427,6 +427,9 @@ function event_corridor(e, _self, _key)
       break;
 
     case '72shift':         // h + shift (Home page)
+      if(ex_editing())
+        return;
+
       reDraw('/');
       break;
 
@@ -435,7 +438,7 @@ function event_corridor(e, _self, _key)
     //   break;
 
     case '77':              // m
-      ex_player('muted')
+      ex_player('muted');
       break;
 
     case '78shift':         // n + shift
@@ -465,6 +468,9 @@ function event_corridor(e, _self, _key)
       break;
 
     case '82shift':         // r + shift
+      if(ex_editing())
+        return;
+
       reDraw();
       break;
 
@@ -482,11 +488,17 @@ function event_corridor(e, _self, _key)
       break;
 
     case '85shift':         // u + shift
+      if(ex_editing())
+        return;
+
       $('#modal_upload').toggleClass('visible');
       break;
 
     case '86shift':         // v + shift
     case '86ctrl':          // v + ctrl
+      if(ex_editing())
+        return;
+
       ex_paste();
       break;
 
@@ -529,16 +541,16 @@ function event_corridor(e, _self, _key)
     case 'click':           // click
       if(! $(e.toElement).parent().hasClass('fav'))
       {
-        if(!_self.hasClass('selected'))
-        {
-          ex_removeClass('selected focused zero');
-          ex_itemSelectedFocusedZero(cid);
+        // if(!_self.hasClass('selected'))
+        // {
           if(ex_editing())
           {
             ex_checkBody();
           }
+          ex_removeClass('selected focused zero');
+          ex_itemSelectedFocusedZero(cid);
           ex_showProp();
-        }
+        // }
       }
       break;
 
@@ -572,8 +584,8 @@ function event_corridor(e, _self, _key)
       }
       else
       {
-        ex_dblClickItems(_self);
         ex_checkBody();
+        ex_dblClickItems(_self);
       }
       // ex_removeClass('selected focused zero');
       // _self.addClass('selected focused zero');
