@@ -158,8 +158,20 @@ function ex_escape()
   else
   {
     ex_propHide();
+    ex_hideOpr();
     $('#explorer>ul li.selected').removeClass('selected');
   }
+}
+
+/**
+ * hide top menu operator btn
+ */
+function ex_hideOpr()
+{
+    $('#download').fadeOut(300, function() { $(this).addClass('hide') });
+    $('#send-to-app').fadeOut(300, function() { $(this).addClass('hide') });
+    $('#more').fadeOut(300, function() { $(this).addClass('hide') });
+    $('#paste').fadeOut(100, function() { $(this).addClass('hide') });
 }
 
 

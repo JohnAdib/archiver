@@ -481,7 +481,7 @@ function event_corridor(e, _self, _key)
       e.preventDefault();
       break;
 
-    case '85shift':
+    case '85shift':         // u + shift
       $('#modal_upload').toggleClass('visible');
       break;
 

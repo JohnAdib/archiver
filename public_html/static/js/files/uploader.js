@@ -91,9 +91,14 @@ route('*', function()
 
       // fadeOut notify and after 2 milisecond of success upload redraw and remove element
       setTimeout(function() {
-      tpl.fadeOut(300, function() { $(this).remove(); });
-      reDraw();
+      	reDraw();
       }, 500);
+
+      setTimeout(function() {
+      	tpl.fadeOut(300, function() { $(this).remove(); });
+      	// reDraw();
+      }, 2000);
+
     }
 
     });

@@ -267,6 +267,8 @@ function ex_navigate(_self)
 function reDraw(_path)
 {
   ex_propHide();
+  ex_hideOpr();
+
   $("#explorer ul").fadeOut(100);
 
   if (_path == undefined)
@@ -619,6 +621,11 @@ function ex_showProp()
                 $('#sp-tags').val( myData['tags'] );
                 ex_tagInit();
                 break;
+
+              case 'description':
+              case 'title':
+                break;
+
 
               default:
                 el_new = '<li class="row auto"><span class="span4">' + key + '</span><span class="span8">' + myData[key] + '</span></li>';

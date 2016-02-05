@@ -62,6 +62,7 @@ trait properties
 			$qry_prop_exist = $qry_prop_exist->set('attachmentmeta_value', $myValue);
 			// var_dump($qry_prop->updateString());exit();
 			$qry_prop_exist->update();
+			debug::true(T_("This propery is exist and updated!"));
 
 		}
 		// property exist more than one times!
@@ -264,9 +265,11 @@ trait properties
 				case 'video-type':
 					break;
 
-				case 'size':
 				case 'title':
 				case 'description':
+					break;
+
+				case 'size':
 				case 'name':
 				case 'ext':
 				case 'date':
