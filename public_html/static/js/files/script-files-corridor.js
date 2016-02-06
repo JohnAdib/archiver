@@ -529,7 +529,7 @@ function event_corridor(e, _self, _key)
       reDraw();
       break;
 
-   case '122shift':         // f11
+   case '122shift':         // f11 + shift
       ex_player('fullscreen');
       break;
 
