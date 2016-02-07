@@ -95,14 +95,12 @@ trait properties
 		{
 			debug::title(T_("Transaction error").': ');
 		} );
-
-		return true;
 	}
 
 
 	/**
 	 * remove selected property from properties of selected item
-	 * @return [boolean] true if no problem occur
+	 * @return [boolean] if have problem on creating new foldr return false
 	 */
 	public function post_propremove()
 	{
@@ -135,7 +133,6 @@ trait properties
 		{
 			debug::title(T_("Transaction error").': ');
 		} );
-		return true;
 	}
 
 

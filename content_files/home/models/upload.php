@@ -7,8 +7,8 @@ trait upload
 {
 	/**
 	 * get file id from files table
-	 * @param  [type] $_md5 [description]
-	 * @return [type]       [description]
+	 * @param  [type] $_md5 md5 of file for search in db
+	 * @return [type]       id of the requested file
 	 */
 	protected function upload_fileID($_md5 = null)
 	{

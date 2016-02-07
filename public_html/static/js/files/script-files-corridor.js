@@ -34,7 +34,8 @@ function event_corridor(e, _self, _key)
           break;
 
         default:
-          ex_navigate(_self);
+          // ex_navigate(_self);
+          // history.back();
           e.preventDefault();
           break;
       }
@@ -119,12 +120,13 @@ function event_corridor(e, _self, _key)
       break;
 
     case '33ctrl':          // PageUP + ctrl
-      if(ex_editing())
-        return;
+      // does not work!
+      // if(ex_editing())
+      //   return;
 
-      next = cid > 10 ? cid - 10 : 0;
-      ex_removeClass('focused');
-      ex_itemFocus(next);
+      // next = cid > 10 ? cid - 10 : 0;
+      // ex_removeClass('focused');
+      // ex_itemFocus(next);
       break;
 
     case '33shift':         // PageUP + Shift
@@ -161,12 +163,13 @@ function event_corridor(e, _self, _key)
       break;
 
     case '34ctrl':          // PageDown + Ctrl
-      if(ex_editing())
-        return;
+      // does not work!
+      // if(ex_editing())
+      //   return;
 
-      next = cid + 10 >= lastid ? lastid : cid + 10;
-      ex_removeClass('focused');
-      ex_itemFocus(next);
+      // next = cid + 10 >= lastid ? lastid : cid + 10;
+      // ex_removeClass('focused');
+      // ex_itemFocus(next);
       break;
 
     case '34shift':         // PageDown + Shift
@@ -407,7 +410,7 @@ function event_corridor(e, _self, _key)
 
     case '67shift':
     case '67ctrl':          // c + ctrl
-      ex_clipboard('copy');
+      // ex_clipboard('copy');
       break;
 
     case '68shift':         // d + shift

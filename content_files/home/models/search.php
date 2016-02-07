@@ -8,7 +8,7 @@ trait search
 	/**
 	 * Query String of search that search in 2 table attachments and attachmentmetas
 	 * and find related data in these tables
-	 * @return [type] [description]
+	 * @return [array] datatable contain list of item match with search
 	 */
 	function draw_search()
 	{

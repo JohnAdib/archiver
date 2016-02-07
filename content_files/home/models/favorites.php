@@ -26,7 +26,7 @@ trait favorites
 
 	/**
 	 * set and uset favorites for selected item
-	 * @return [boolean] true if no problem occur
+	 * @return [boolean] true if no problem occurs
 	 */
 	public function post_favorites()
 	{
@@ -61,7 +61,6 @@ trait favorites
 			// remove file if has problem
 		});
 
-		return true;
 	}
 
 }

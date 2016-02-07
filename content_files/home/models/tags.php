@@ -6,7 +6,7 @@ use \lib\utility;
 trait tags
 {
 	/**
-	 * fetch list of favorite items from database and retun it
+	 * fetch list of items related and return it
 	 * @return [array] datatable contain list of items
 	 */
 	public function draw_tags($_type = false)
@@ -95,7 +95,7 @@ trait tags
 
 	/**
 	 * add new tag to selected item
-	 * @return [boolean] true if no problem occur
+	 * @return [boolean] if have problem on creating new foldr return false
 	 */
 	public function post_tagadd()
 	{
@@ -169,13 +169,12 @@ trait tags
 		{
 			debug::title(T_("Transaction error").': ');
 		} );
-		return true;
 	}
 
 
 	/**
 	 * remove selected tag from selected item
-	 * @return [boolean] true if no problem occur
+	 * @return [boolean] if have problem on creating new foldr return false
 	 */
 	public function post_tagremove()
 	{
@@ -212,7 +211,6 @@ trait tags
 		{
 			debug::title(T_("Transaction error").': ');
 		} );
-		return true;
 	}
 
 
@@ -222,7 +220,7 @@ trait tags
 	 * @param  boolean $_string type of output
 	 * @return [type]           send depending on type of output
 	 */
-	function cp_tag_id($_list, $_string = true )
+	function cp_tag_id($_list, $_string = true)
 	{
 		// get the list of tags
 		$qry_tags  = $this->sql()->table('terms')->where('term_type', 'tag');

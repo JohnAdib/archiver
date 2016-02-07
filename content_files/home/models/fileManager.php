@@ -21,7 +21,7 @@ trait fileManager
 
 	/**
 	 * create a new folder
-	 * @return [type] [description]
+	 * @return [type] if have problem on creating new foldr return false
 	 */
 	public function post_createfolder()
 	{
@@ -76,8 +76,8 @@ trait fileManager
 
 
 	/**
-	 * copy file and folders to new location
-	 * @return [type] [description]
+	 * rename the name of selected item
+	 * @return [type] if have problem on creating new foldr return false
 	 */
 	public function post_rename()
 	{
@@ -118,7 +118,7 @@ trait fileManager
 
 	/**
 	 * remove file and folders
-	 * @return [type] [description]
+	 * @return [type] nothing!
 	 */
 	public function post_remove()
 	{
@@ -169,7 +169,7 @@ trait fileManager
 
 	/**
 	 * paste file and folders to new location
-	 * @return [type] [description]
+	 * @return [type] if have problem on creating new foldr return false
 	 */
 	public function post_paste()
 	{

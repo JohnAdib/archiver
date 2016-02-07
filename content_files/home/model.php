@@ -50,7 +50,7 @@ class model extends \mvc\model
 
 	/**
 	 * get items send via js then decode and return it
-	 * @return [type] [description]
+	 * @return [type] return selected elements in explorer
 	 */
 	protected function getItems($_raw = false)
 	{

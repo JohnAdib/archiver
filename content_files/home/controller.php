@@ -3,6 +3,11 @@ namespace content_files\home;
 
 class controller extends \mvc\controller
 {
+	/**
+	 * handle user requested address and permission
+	 * allow user to access to special page
+	 * and block unwanted address
+	 */
 	function _route()
 	{
 		if(!$this->login())
@@ -70,11 +75,6 @@ class controller extends \mvc\controller
 		{
 			$this->get()->ALL();
 		}
-
-
-
-
-
 
 		// $mymodule = $this->module();
 

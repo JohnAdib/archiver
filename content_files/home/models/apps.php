@@ -7,7 +7,7 @@ trait apps
 {
 	/**
 	 * Save result of custom app as property of file
-	 * @return [type] [description]
+	 * @return [type] result of saving processs
 	 */
 	function post_result($_type = 'return')
 	{

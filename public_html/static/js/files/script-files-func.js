@@ -238,7 +238,7 @@ function ex_addClass(_className, _id)
 
 function ex_itemFocus(_id)
 {
-  ex_addClass('focused', _id);
+  $('#explorer>ul li:eq('+ _id +')').addClass('focused');
 }
 
 
