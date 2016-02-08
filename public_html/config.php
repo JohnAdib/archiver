@@ -69,7 +69,7 @@ define('SaveAsCookie', false);
  *
  * if table exist add to it, else create a table and add a visitor details to it
  */
-define('LogVisitors', true);
+define('LogVisitors', false);
 
 /**
  * ControlPanel
