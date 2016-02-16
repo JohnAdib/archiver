@@ -16,6 +16,9 @@ class controller extends \mvc\controller
 			$this->redirector(null, false)->set_domain($this->url('AccountService'))->set_url('login?cp=1')->redirect();
 			exit();
 		}
+		// Check permission and if user can do this operation
+		// allow to do it, else show related message in notify center
+		$this->access('files', null, null, 'block');
 
 		$myurl   = $this->url('path',-1);
 
