@@ -96,5 +96,7 @@ function transtext()
 	echo T_("newFolder");                                                             // Line 10 Seperate
 	echo T_("property");                                                              // Line 11 Seperate
 
+	//----------------------public_html\static\js\datatable\datatable-langs\index.html
+
 }
 ?>
