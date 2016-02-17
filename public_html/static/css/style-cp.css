@@ -3,7 +3,7 @@
 Description: Ermile Control Panel CSS
 Author: Javad Evazzadeh Karkoudi | Ermile
 Author URI: Evazzade.com
-Version: 1.0.1
+Version: 2.0.3
 */
 @import url("font-awesome.min.css");
 @import url("lightGallery.css");
@@ -43,7 +43,7 @@ body {background-color: #f5f5f5;position: relative;color: #656d78;min-height:100
 #page-content > #content{margin: 0 1%;display: block}
 .rtl #page-content > #content{margin-left:2%;}
 #page-content > #content #page-title{margin:0 1%;border-bottom:1px solid #C7D1DD;margin:10px 0 35px;padding-bottom:5px;}
-#page-content > #content #page-title h2{font-weight:bold;display:inline-block;}
+#page-content > #content #page-title h2{font-weight:bold;display:inline-block;margin:0;}
 #page-title small{font-size:50%;}
 
 #header{width: 100%;z-index: 2;height:45px;line-height:45px;background-color: #33414e;}
@@ -106,7 +106,7 @@ body {background-color: #f5f5f5;position: relative;color: #656d78;min-height:100
 .col_mobile{min-width:100px;direction:ltr;text-align:left}
 .col_url{min-width:100px;width:15%;direction:ltr;text-align:left}
 .col_status{min-width:80px;width:100px;text-align:center;}
-.col_actions{width: 40px;}
+.col_actions{width: 70px;}
 .col_actions a{color:#fff;}
 .col_publishdate, .col_createdate{direction: ltr; min-width: 100px;width:100px}
 .col_filetype{text-align: center;width:50px}
@@ -762,6 +762,11 @@ right: calc(100% + 35px);
   line-height: 26px;
 }
 
+:lang(fa-IR) .rtl .checkbox:checked + label>span:after {
+  right: calc(100% + 12px);
+  content: "فعال";
+}
+
 .checkbox:not(:checked) + label>span:before {
   left: calc(100% + 32px);
   content: "OFF";
@@ -770,8 +775,33 @@ right: calc(100% + 35px);
 .rtl .checkbox:not(:checked) + label>span:before {
   right: calc(100% + 32px);
   left: inherit;
-  line-height: 26px
+  line-height: 26px;
 }
+
+:lang(fa-IR) .rtl .checkbox:not(:checked) + label>span:before {
+  right: calc(100% + 29px);
+  content: "غیرفعال";
+  font-size: 0.8em;
+}
+
+
+.form .radio label {min-width:50px;padding:0 1em 0 3.25em;border-radius: 4px;border: 1px solid #D1D3D4;transition:.3s;color:#888;}
+.rtl .form .radio label{padding:0 3.25em 0 1em;}
+/* hide input */
+.form .radio input:empty {display: none;}
+/* style label */
+.form .radio input:empty ~ label {position: relative;float: left;line-height: 2.5em;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+.form .radio input:empty ~ label:before {position: absolute;display: block;top: 0;bottom: 0;left: 0;content: '';width: 2.5em;background: #D1D3D4;padding:0.1em 0.8em 0;transition:.3s;color:#C2C2C2}
+.form .radio input:empty ~ label:before{left:initial; right:0;}
+/* toggle hover */
+.form .radio .element:hover input:not(:checked) ~ label:before {content:'\2714';}
+/*.form .radio .element:hover input:not(:checked) ~ label {color: #888;}*/
+/* toggle on */
+.form .radio input:checked ~ label:before{content:'\2714';color: #fff;background-color: #34A7C1;}
+.form .radio input:checked ~ label {color:#000;border-color: #34A7C1;}
+/* radio focus */
+.form .radio .element:active label:before {color:#777;}
+
 
 
 
@@ -800,7 +830,6 @@ right: calc(100% + 35px);
 .permission-detail .row .span1{opacity:0.8}
 .permission-detail .row:hover{opacity:1}
 .permission-detail .head div, .permission-detail .span2{cursor:pointer;}
-.permission-detail .opacity5{opacity:0.5};
-.permission-detail .opacity7{opacity:0.7};
-
+.permission-detail .opacity5{opacity:0.5;}
+.permission-detail .opacity7{opacity:0.7;}
 
