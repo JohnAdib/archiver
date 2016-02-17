@@ -1,6 +1,6 @@
 <?php
 namespace database\archiver;
-class visitors 
+class visitors
 {
 	public $id                 = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'bigint@20'];
 	public $visitor_ip         = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'ip'              ,'type'=>'int@10'];
@@ -47,10 +47,7 @@ class visitors
 		$this->setChild();
 	}
 
-	public function visitor_createdate()
-	{
-		$this->form()->type('text')->name('createdate');
-	}
+	public function visitor_createdate(){}
 
 	public function date_modified(){}
 }

@@ -1,6 +1,6 @@
 <?php
 namespace database\archiver;
-class attachments 
+class attachments
 {
 	public $id                = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'bigint@20'];
 	public $file_id           = ['null'=>'YES' ,'show'=>'YES'     ,'label'=>'file'            ,'type'=>'bigint@20'                       ,'foreign'=>'files@id!id'];

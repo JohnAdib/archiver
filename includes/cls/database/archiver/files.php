@@ -1,6 +1,6 @@
 <?php
 namespace database\archiver;
-class files 
+class files
 {
 	public $id              = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'id'              ,'type'=>'bigint@20'];
 	public $file_server     = ['null'=>'NO'  ,'show'=>'YES'     ,'label'=>'server'          ,'type'=>'smallint@5'];
@@ -43,10 +43,7 @@ class files
 		$this->setChild();
 	}
 
-	public function file_createdate()
-	{
-		$this->form()->type('text')->name('createdate')->required();
-	}
+	public function file_createdate(){}
 
 	public function date_modified(){}
 }
