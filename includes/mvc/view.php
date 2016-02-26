@@ -23,6 +23,17 @@ class view extends \lib\mvc\view
 		$this->data->display['files']     = "content_files/home/layout.html";
 	}
 
+	function options()
+	{
+		$this->data->feature['posts']       = false;
+		$this->data->feature['pages']       = false;
+		$this->data->feature['attachments'] = false;
+		$this->data->feature['tags']        = true;
+		$this->data->feature['categories']  = false;
+		$this->data->feature['users']       = true;
+		$this->data->feature['permissions'] = true;
+	}
+
 	function pushState()
 	{
 		$this->data->display['files']     = "content_files/home/layout-xhr.html";

@@ -42,7 +42,7 @@ class model extends \mvc\model
 
 		$uid = $this->login('id');
 		$_location = '/'. $uid.'/'. $_location;
-		// var_dump(htmlspecialchars($_location));
+		$_location = urldecode($_location);
 
 		return $_location;
 	}
