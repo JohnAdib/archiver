@@ -1,3 +1,11 @@
+/*
+@ In the name of Allah
+Description: Files CSS
+Author: Javad Evazzadeh Karkoudi | Ermile
+Author URI: Evazzade.com
+Version: 1.0.0
+*/
+
 @import url("lightGallery.css");
 
 
@@ -479,6 +487,89 @@ body.in #form_uploader #drop{border-color:#A1ABB0;}
 .breadcrumb a + a:before {font-family: "FontAwesome";content: "\f105";color: #99a0aa;padding: 0px 8px;float:left;}
 .rtl .breadcrumb a + a:before {content: "\f104";float:right;}
 
+
+/* buttons */
+/*------------------- Disabled --------------------*/
+.buttons .disabled.button,.disabled.button,.disabled.button:hover,.disabled.active.button{cursor:default;background-color:#dcddde!important;color:rgba(0,0,0,0.4)!important;opacity:.3!important;background-image:none!important;pointer-events:none}
+/* Basic Group With Disabled */
+.basic.buttons .disabled.button {border-color: rgba(39, 41, 43, 0.5);}
+/*------------------- Basic --------------------*/
+.basic.buttons .button,.basic.button{background:transparent!important;background-image:none;color:rgba(0,0,0,0.6)!important;font-weight:400;border-radius:.2857rem;text-transform:none;text-shadow:none!important}
+.basic.buttons{border-radius:.2857rem}
+.basic.buttons .button{border-radius:0}
+.basic.buttons .button:hover,.basic.button:hover{background:#fafafa!important;color:rgba(0,0,0,0.8)!important}
+.basic.buttons .button:active,.basic.button:active{background:#f8f8f8!important;color:rgba(0,0,0,0.8)!important}
+.basic.buttons .active.button,.basic.active.button{background:rgba(0,0,0,0.05)!important;color:rgba(0,0,0,0.8)}
+.basic.buttons .active.button:hover,.basic.active.button:hover{background-color:rgba(0,0,0,0.05)}
+/* Fluid Or */
+.fluid.buttons .or{width:0!important}
+.fluid.buttons .or:after{display:none}
+/*------------------- Primary --------------------*/
+.primary.buttons .button,.primary.button{background-color:#3b83c0;color:#fff;text-shadow:none;background-image:none}
+.primary.buttons .button:hover,.primary.button:hover{background-color:#458ac6;color:#fff;text-shadow:none}
+.primary.buttons .button:active,.primary.button:active{background-color:#3370a5;color:#fff;text-shadow:none}
+.primary.buttons .active.button,.primary.active.button{background-color:#3576ac;color:#fff;text-shadow:none}
+/*------------------- Secondary --------------------*/
+.secondary.buttons .button,.secondary.button{background-color:#1b1c1d;color:#fff;text-shadow:none;background-image:none}
+.secondary.buttons .button:hover,.secondary.button:hover{background-color:#222425;color:#fff;text-shadow:none}
+.secondary.buttons .button:active,.secondary.button:active{background-color:#0a0a0b;color:#fff;text-shadow:none}
+.secondary.buttons .active.button,.secondary.active.button{background-color:#0f0f10;color:#fff;text-shadow:none}
+/******************************* Groups *******************************/
+.buttons{display:inline-block;vertical-align:middle;margin:0 .25em 0 0}
+.buttons > .button:hover,.buttons > .active.button{position:relative}
+.buttons:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.buttons .button:first-child{border-left:none}
+.buttons .button{margin:0;float:left;border-radius:0;margin:0 0 0 0}
+.buttons .button:first-child{margin-left:0;border-top-left-radius:.2857rem;border-bottom-left-radius:.2857rem}
+.buttons .button:last-child{border-top-right-radius:.2857rem;border-bottom-right-radius:.2857rem}
+/*-------------- Loading ---------------*/
+/* Specificity hack */
+.loading.loading.loading.loading.loading.loading.button,.loading-form form .button{position:relative;cursor:default;point-events:none;text-shadow:none!important;color:transparent!important;-webkit-transition:all 0 linear;transition:all 0 linear}
+.loading.button:before,.loading-form form .button:before{position:absolute;content:'';top:50%;left:50%;margin:-.64285em 0 0 -.64285em;width:1.2857em;height:1.2857em;border-radius:500rem;border:.2em solid #000}
+.loading.button:after,.loading-form form .button:after{position:absolute;content:'';top:50%;left:50%;margin:-.64285em 0 0 -.64285em;width:1.2857em;height:1.2857em;-webkit-animation:button-spin .6s linear;animation:button-spin .6s linear;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;border-radius:500rem;border-color:#fff transparent transparent;border-style:solid;border-width:.2em;box-shadow:0 0 0 1px transparent;z-index:10001;cursor:wait}
+.labeled.icon.loading.button .icon,.loading-form form .labeled.icon.button .icon{background-color:transparent;box-shadow:none}
+@-webkit-keyframes button-spin {
+from{-webkit-transform:rotate(0deg);transform:rotate(0deg)}
+to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}
+}
+@keyframes button-spin {
+from{-webkit-transform:rotate(0deg);transform:rotate(0deg)}
+to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}
+}
+.basic.loading.button:not(.inverted):before,.loading-form form .basic.button:not(.inverted):before{border-color:rgba(0,0,0,0.1)}
+.basic.loading.button:not(.inverted):after,.loading-form form .basic.button:not(.inverted):after{border-top-color:#aaa}
+/******************************* Forms*******************************/
+.gender .radio input{height:0}
+.gender .radio label{opacity:.5;display:inline-block;vertical-align:middle;background-color:#eee;padding:.4em 2em;border-radius:3px;border:1px solid rgba(39,41,43,0.05)}
+.gender .radio label:hover{opacity:.6}
+.gender .radio label:focus{opacity:.7}
+.gender .radio label:active{opacity:.9}
+.gender .radio .female label:after{font-family:FontAwesome;font-size:16px;content:" \f182"}
+.gender .radio .male label:after{font-family:FontAwesome;font-size:16px;content:" \f183"}
+.gender .radio input:checked + label{opacity:1}
+/*-------------------- Inverted Colors ---------------------*/
+.inverted.form label,.form .inverted.segment label,.form .inverted.segment .checkbox label,.form .inverted.segment .checkbox .box,.inverted.form .checkbox label,.inverted.form .checkbox .box{color:#fff}
+/*-------------------- Field Groups ---------------------*/
+/* Grouped Vertically */
+.form .grouped.field{margin:0 0 1em}
+.form .grouped.field:last-child{margin-bottom:0}
+.form .grouped.field > label{font-size:.9285em}
+.form .grouped.field .field{display:block;float:none;margin:.5em 0;padding:0}
+/*-------------------- Fields ---------------------*/
+/* Split fields */
+.form .fields{clear:both}
+.form .fields:after{content:' ';display:block;clear:both;visibility:hidden;line-height:0;height:0}
+.form .fields > .field{clear:none;float:left;padding-left:.5em;padding-right:.5em}
+.form .fields > .field:first-child{border-left:none;box-shadow:none}
+.form .field:first-child{padding-left:0}
+.form .field:last-child{padding-right:0}
+/*-------------------- Sizes ---------------------*/
+/* Standard */
+.small.form{font-size:0.875em;}
+/* Large */
+.large.form{font-size:1.125em;}
+/* Huge */
+.huge.form{font-size:1.2em;}
 
 
 .input-error { background-color: #EC407A }
