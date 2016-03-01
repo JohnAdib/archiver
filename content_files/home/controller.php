@@ -27,7 +27,7 @@ class controller extends \mvc\controller
 		{
 			if(count($myurl) === 2 && isset($myurl[1]))
 			{
-				$this->route_check_true = true;
+				// $this->route_check_true = true;
 				// $tmp_url   = $this->url('path');
 				// var_dump($tmp_url);
 
@@ -48,7 +48,7 @@ class controller extends \mvc\controller
 					case 'auth':
 						// var_dump($myurl[1]);
 						// $this->get()->ALL();
-						$this->post($myurl[1])->ALL();
+						$this->post($myurl[1])->ALL('$/'.$myurl[1]);
 						break;
 					case 'profile':
 					case 'favorites':
@@ -56,12 +56,12 @@ class controller extends \mvc\controller
 					case 'search':
 					case 'result':
 					case 'analytics':
-						$this->route_check_true = true;
-						$this->get()->ALL();
-						$this->post($myurl[1])->ALL();
+						// $this->route_check_true = true;
+						$this->get()->ALL('$/'.$myurl[1]);
+						$this->post($myurl[1])->ALL('$/'.$myurl[1]);
 						break;
 					case 'dl':
-						$this->get('dl')->ALL();
+						$this->get('dl')->ALL('$/'.$myurl[1]);
 						break;
 
 					default:
@@ -76,7 +76,7 @@ class controller extends \mvc\controller
 		}
 		else
 		{
-			$this->get()->ALL();
+			$this->get()->ALL('/^.*$/');
 		}
 
 		// $mymodule = $this->module();
