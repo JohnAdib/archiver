@@ -7,13 +7,16 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
  /** The name of the database */
- define("db_name", 'archiver');
+if(!defined('db_name'))
+ define("db_name", '_db_');
 
  /** MySQL database username */
- define("db_user", 'ermile');
+if(!defined('db_user'))
+ define("db_user", '_user_');
 
  /** MySQL database password */
- define("db_pass", 'ermile@#$567');
+if(!defined('db_pass'))
+ define("db_pass", '_pass_');
 
 /**
  * For developers: debugging mode.
@@ -22,7 +25,7 @@
  * Change this to true to enable the display of notices during development.
  * It is strongly recommended that in developement condition use DEBUG in the development environments.
  */
-define('DEBUG', true);
+define('DEBUG', false);
 
 /**
  * For developers: Show comming soon page.
