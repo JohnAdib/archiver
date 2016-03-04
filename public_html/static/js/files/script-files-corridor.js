@@ -48,7 +48,7 @@ function event_corridor(e, _self, _key)
       {
         // edit explorer
         case 1:
-          $('.btn-fa-check').trigger('click');
+          $('#edit-item .btn-fa-check').trigger('click');
           break;
 
         // edit property
@@ -542,7 +542,19 @@ function event_corridor(e, _self, _key)
 
     // ---------------------------------------------------------------------- mouse
     case 'click':           // click
-      if(! $(e.toElement).parent().hasClass('fav'))
+      if($(e.toElement).parent().hasClass('btn-fa-check'))
+      {
+        // press submit
+      }
+      else if($(e.toElement).parent().hasClass('btn-fa-times'))
+      {
+        // press x
+      }
+      else if(typeof $(e.toElement)[0] == 'undefined')
+      {
+        // press enter or another
+      }
+      else if(! $(e.toElement).parent().hasClass('fav'))
       {
         // if(!_self.hasClass('selected'))
         // {

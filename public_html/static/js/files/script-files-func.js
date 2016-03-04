@@ -65,12 +65,12 @@ function ex_inputCreate(_type, _value, _item)
 
 
   var myElement =
-    '<form method="post" action="/$/' + _type + '">' +
+    '<div id="edit-item" data-method="post" data-action="/$/' + _type + '" action="/$/' + _type + '">' +
       '<input id="item-new-name" type="text" name="fname" placeholder="Untitled Folder" ' + myDefaultValue + myOldValue + ' autocomplete="off" />' +
       myItem +
       '<button class="btn-fa-check"><i class="fa fa-check"></i></button>' +
       '<button class="btn-fa-times"><i class="fa fa-times"></i></button>' +
-    '</form>';
+    '</div>';
 
   if(_type == 'createfolder')
   {

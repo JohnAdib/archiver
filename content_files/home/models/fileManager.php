@@ -35,17 +35,15 @@ trait fileManager
 
 		// var_dump('create new folder');
 		// return;
-		$fname        = utility::post('fname');
-		if(!$fname)
+		$value        = utility::post('value');
+		if(!$value)
 			return false;
-		// var_dump($fname);
-		// exit();
 
 		$qry = $this->sql();
 		$qry = $qry->table('attachments')
 					->set('attachment_type',   'folder')
 					->set('attachment_addr',   $_location)
-					->set('attachment_name',   $fname)
+					->set('attachment_name',   $value)
 					->set('attachment_size',   0)
 					->set('attachment_status', 'normal')
 					->set('attachment_date',   date('Y-m-d H:i:s'))
@@ -87,11 +85,11 @@ trait fileManager
 
 		$qry   = $this->qryCreator(['id', 'status']);
 
-		$fname = utility::post('fname');
-		if(!$fname)
+		$value = utility::post('value');
+		if(!$value)
 			return false;
 
-		$qry   = $qry->set('attachment_name', $fname);
+		$qry   = $qry->set('attachment_name', $value);
 		$qry   = $qry->update();
 
 		// commit all changes or rollback and remove file

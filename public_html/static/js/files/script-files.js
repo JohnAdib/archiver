@@ -65,7 +65,7 @@ $(document).ready(function()
   $(document).keydown(function(e) { event_corridor.call(this, e, $('#explorer>ul li.focused')[0], e.which ); });
 
   $('#explorer').on("click", ".btn-fa-times",    function(e) { e.preventDefault(); ex_inputSubmit(false); });
-  $('#explorer').on("click", ".btn-fa-check",    function(e) { e.preventDefault(); ex_inputSubmit.call(this, true); });
+  $('#explorer').on("click", ".btn-fa-check",    function(e) { e.preventDefault(); ex_inputSubmit(true); });
   $('#explorer').on("click", "#item-new-name",   function(e) { e.preventDefault(); });
   $('#explorer').on("click", ".fav i",           function(e) { ex_favorites(this); });
   // remove item on click times icon
@@ -308,10 +308,18 @@ function ex_inputSubmit(_submit)
   // user press submit and want to proceed
   if(typeof _submit === 'undefined' || _submit == true)
   {
-    // console.log('submit');
-    // return;
-    var myInputVal = $('#item-new-name').val();
-      console.log(myInputVal);
+    var myInputVal    = $('#item-new-name').val();
+    var myInputOldVal = $('#item-new-name').attr('data-value');
+    myInputVal        = $.trim(myInputVal);
+    myInputOldVal     = $.trim(myInputOldVal);
+
+    if(myInputVal == myInputOldVal || myInputVal.length < 1)
+    {
+      // console.log('not changed!');
+      ex_inputSubmit(false);
+      return;
+    }
+
     if(myInputVal == 'undefined')
     {
     }
@@ -320,17 +328,21 @@ function ex_inputSubmit(_submit)
       myInputVal = 'Untitled Folder';
     }
 
-    $('#new-folder .name').html(myInputVal);
-    $('#new-folder').removeClass('selected').removeAttr('id');
-
+console.log(myInputVal);
     // send item name as ajax, then redraw items
-    var listForm = $(this).parents('form');
-    listForm.ajaxify({
+    $('#edit-item').ajaxify({
       ajax:
       {
-        data : {location: CURRENTPATH}
+        data :
+        {
+          location: CURRENTPATH,
+          value: myInputVal,
+          items: $('#prop-box').attr('data-id')
+        }
       }
     });
+    $('#new-folder .name').html(myInputVal);
+    $('#new-folder').removeClass('selected').removeAttr('id');
     reDraw();
   }
   // user want to cancel form
