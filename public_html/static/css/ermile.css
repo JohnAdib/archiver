@@ -3,7 +3,7 @@
 Description: Ermile CSS Framework, It's responsive, enjoy!
 Author: Javad Evazzadeh Karkoudi | Ermile
 Author URI: Evazzade.com
-Version: 7.3.4
+Version: 7.4.0
 */
 @charset "utf-8";
 /* IRAN Sans-Serif 4.0 */
@@ -13,8 +13,8 @@ Version: 7.3.4
 @font-face{font-family:IRANSans;font-style:normal;font-weight:200;src:url(../fonts/IRANSans/eot/IRANSansWeb_UltraLight.eot);src:url(../fonts/IRANSans/eot/IRANSansWeb_UltraLight.eot?#iefix) format("embedded-opentype"),url(../fonts/IRANSans/woff2/IRANSansWeb_UltraLight.woff2) format("woff2"),url(../fonts/IRANSans/woff/IRANSansWeb_UltraLight.woff) format("woff"),url(../fonts/IRANSans/ttf/IRANSansWeb_UltraLight.ttf) format("truetype")}
 @font-face{font-family:IRANSans;font-style:normal;font-weight:400;src:url(../fonts/IRANSans/eot/IRANSansWeb.eot);src:url(../fonts/IRANSans/eot/IRANSansWeb.eot?#iefix) format("embedded-opentype"),url(../fonts/IRANSans/woff2/IRANSansWeb.woff2) format("woff2"),url(../fonts/IRANSans/woff/IRANSansWeb.woff) format("woff"),url(../fonts/IRANSans/ttf/IRANSansWeb.ttf) format("truetype")}
 /* CSS Reset and ermile common styles */
-*, *:before, *:after{margin:0;padding:0;outline:none !important;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
-html{font-size:62.5%;min-height:100%;height:100%;font-family:IRANSans, "Roboto Slab", "Open sans", "Segoe UI", Helvetica, sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust: 100%;text-rendering: optimizeLegibility;-webkit-font-smoothing: antialiased;}
+*, *:before, *:after{margin:0;padding:0;outline:none !important;-webkit-box-sizing: inherit;-moz-box-sizing: inherit;box-sizing: inherit;}
+html{font-size:62.5%;min-height:100%;height:100%;font-family:IRANSans, "Roboto Slab", "Open sans", "Segoe UI", Helvetica, sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust: 100%;text-rendering: optimizeLegibility;-webkit-font-smoothing: antialiased;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
 body{overflow-x:hidden;margin:0;direction:ltr;}
 body.rtl{direction:rtl;}
 /* HTML5 display definitions ========================================================================= */
@@ -282,6 +282,11 @@ ul.list li a{padding:0.3em 0.5em;}
 .cursor-help{cursor:help;}
 .not-active {pointer-events: none;cursor:not-allowed;}
 .clear{clear:both}
+.fa.middle::before{position: absolute;width: 100%;top: 50%;left: 0;margin-top: -0.5em}
+.ltr .labeled, .rtl .labeled.reverse{padding-left:2.5em;padding-right:initial;}
+.rtl .labeled, .ltr .labeled.reverse{padding-left:initial;padding-right:2.5em; }
+.labeled .fa, .rtl .labeled.reverse .fa{position: absolute;height: 100%;text-align: center;width: 2.5em;padding:0;margin:0;top:0;left:0;right:initial;}
+.rtl .labeled .fa, .labeled.reverse .fa{left:initial;right:0;}
 /******************************* Button *******************************/
 .button{cursor:pointer;display:block;min-height:1em;outline:none;border:none;vertical-align:baseline;background-color:#e0e0e0;color:rgba(0,0,0,0.6);margin:.3em auto;padding:.78571em 1.5em;padding:8px 1.5em 8px;text-transform:none;text-shadow:none;font-weight:700;line-height:1;font-style:normal;text-align:center;text-decoration:none;background-image:none;border-radius:.2857rem;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-transition:opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;transition:opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;-webkit-tap-highlight-color:transparent;transition:.3s background;}
 /*--------------- Positive ----------------*/
@@ -318,7 +323,7 @@ ul.list li a{padding:0.3em 0.5em;}
 .button:hover{background-color:#e8e8e8;}
 .button:hover .icon{opacity:0.85;}
 /*-------------- Focus ---------------*/
-.button:focus{opacity:.9;color:#000}
+.button:focus{opacity:.9;}
 .button:focus .icon{opacity:.85}
 /*-------------- Down ---------------*/
 .button:active,.active.button:active{background-color:#ccc;color:rgba(0,0,0,0.8)}
@@ -328,6 +333,7 @@ ul.list li a{padding:0.3em 0.5em;}
 .active.button:active{background-color:#d0d0d0;background-image:none}
 /******************************* Forms*******************************/
 label,input,select,textarea,button{font-family:"IRANSans",'Roboto Slab',sans-serif;box-sizing:border-box;transition:border .2s, color .2s, background .2s}
+input[type=url],input[type=email]{direction: ltr;}
 input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .form{position:relative;max-width:98%;padding:1em 1%;font-size:12px;font-size:1.2rem;color:#000;margin:0 auto}
 .rtl .form{font-size:16px;font-size:1.6rem}
@@ -386,14 +392,14 @@ input:focus,select:focus,textarea:focus,button:focus{outline:none}
 .loading-form form:before{position:fixed;display:block;content:'';top:0;bottom:0;left:0;right:0;opacity:.3;width:100%;height:100%;z-index:1000;cursor:wait;background-color:#fff}
 /******************************* Variations *******************************/
 /*-------------------- Inline Field ---------------------*/
-.form.inline label{width:20%;}
+.form.inline label{width:25%;}
 .rtl .form.inline .field > label{text-align:left;padding-left:10px;}
 .form.inline .radio label{width: auto;}
-.form.inline input, .form.inline select, .form.inline .radio, .form.inline .editor{display: inline-block;width:75%;margin-right:5%;font-size: 0.9em;vertical-align:middle;}
-.rtl .form.inline input,.rtl .form.inline select,.rtl .form.inline .radio, .rtl .form.inline .editor{width:70%;margin-right:0;margin-left:10%;}
+.form.inline input, .form.inline select, .form.inline .radio, .form.inline .editor{display:inline-block;width:70%;font-size:0.9em;vertical-align:middle;}
+.rtl .form.inline input,.rtl .form.inline select,.rtl .form.inline .radio, .rtl .form.inline .editor{width:70%;}
 .form.inline select, .rtl .form.inline select{margin:0;}
-.form.autostyle .button{width:75%;margin-left:20%;margin-right:5%;}
-.rtl .form.autostyle .button{width:70%;margin-left:10%;margin-right:20%;}
+.form.autostyle .button{width:70%;margin-left:25%;margin-right:5%;}
+.rtl .form.autostyle .button{width:70%;margin-left:5%;margin-right:25%;}
 /* Form */
 form .error{background: #fff0f0;border-color: #dbb1b1;color: #d95c5c;border-radius: 0 .2857em .2857em 0;box-shadow: 2px 0 0 0 #d95c5c inset;}
 .form input.invalid,.invalid{background-color:#FFDDDD!important;border-color:#dbb1b1!important;color:#9B1111!important;}

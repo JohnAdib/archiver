@@ -1,8 +1,25 @@
 <?php
-function transtext()
+private function transtext()
 {
 
-	//--------------------------------------------------content_files/home/layout.html
+	//-------------------------------------------------------content\home\display.html
+	echo T_("Comming Soon");                                                          // Line 11
+	echo T_("Powered by Saloos");                                                     // Line 11
+
+	//-------------------------------------------------content_files\home\display.html
+	echo T_("Hello!");                                                                // Line 32
+	echo T_("You can create a folder or upload new file to this location");           // Line 32
+	echo T_("No Results");                                                            // Line 36
+	echo T_("Save the result of app");                                                // Line 39
+	echo T_("The result is invalid!");                                                // Line 41
+	echo T_("First you need to set some item as favorites");                          // Line 44
+	echo T_("The analytics of account");                                              // Line 46
+	echo T_("List of tags used in your account");                                     // Line 49
+	echo T_("First you need to set tag for some item");                               // Line 56
+	echo T_("You are not allow to be here!");                                         // Line 59
+	echo T_("This folder is empty.");                                                 // Line 63
+
+	//--------------------------------------------------content_files\home\layout.html
 	echo T_("You can use in your own language");                                      // Line 20
 	echo T_("Search in your files, folders, properties and tags");                    // Line 31
 	echo T_("Search");                                                                // Line 33
@@ -72,31 +89,14 @@ function transtext()
 	echo T_("Cancel");                                                                // Line 257
 	echo T_("Submit");                                                                // Line 259
 
-	//-------------------------------------------------content_files/home/display.html
-	echo T_("Hello!");                                                                // Line 32
-	echo T_("You can create a folder or upload new file to this location");           // Line 32
-	echo T_("No Results");                                                            // Line 36
-	echo T_("Save the result of app");                                                // Line 39
-	echo T_("The result is invalid!");                                                // Line 41
-	echo T_("First you need to set some item as favorites");                          // Line 44
-	echo T_("The analytics of account");                                              // Line 46
-	echo T_("List of tags used in your account");                                     // Line 49
-	echo T_("First you need to set tag for some item");                               // Line 56
-	echo T_("You are not allow to be here!");                                         // Line 59
-	echo T_("This folder is empty.");                                                 // Line 63
-
-	//----------------------public_html/static/js/datatable/datatable-langs/index.html
-
-	//-------------------------------------------------------content/home/display.html
-	echo T_("Comming Soon");                                                          // Line 11
-	echo T_("Powered by Saloos");                                                     // Line 11
-
-	//--------------------------------------------includes/languages/trans_static.html
+	//--------------------------------------------includes\languages\trans_static.html
 	echo T_("fileManager");                                                           // Line 7 Seperate
 	echo T_("app");                                                                   // Line 8 Seperate
 	echo T_("apps");                                                                  // Line 9 Seperate
 	echo T_("newFolder");                                                             // Line 10 Seperate
 	echo T_("property");                                                              // Line 11 Seperate
+
+	//----------------------public_html\static\js\datatable\datatable-langs\index.html
 
 }
 ?>
