@@ -137,7 +137,7 @@ class model extends \mvc\model
 			}
 			else
 			{
-				$myQry = $myQry->and('attachment_status', 'IN', '("normal", "trash")');
+				$myQry = $myQry->and('attachment_status', 'IN', "('normal', 'trash')");
 			}
 		}
 

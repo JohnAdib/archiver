@@ -20,6 +20,40 @@ trait fileManager
 
 
 	/**
+	 * this function find unique name for items
+	 * @param  [type] $_name [description]
+	 * @return [type]        [description]
+	 */
+	public function item_nameChecker($_name)
+	{
+		$notExist = null;
+		$counter  = 0;
+		$newName  = $_name;
+		$qry   = $this->qryCreator(['location', 'status']);
+
+		// loop until find unique name
+		do
+		{
+			$qry_loop = clone($qry);
+			$qry_loop->and('attachment_name', $newName);
+
+			if($qry_loop->select()->num() > 0)
+			{
+				$counter++;
+				$newName = $_name. $counter;
+				$notExist = true;
+			}
+			else
+			{
+				$notExist = false;
+			}
+
+		} while ($notExist);
+
+		return $newName;
+	}
+
+	/**
 	 * create a new folder
 	 * @return [type] if have problem on creating new foldr return false
 	 */
@@ -35,7 +69,8 @@ trait fileManager
 
 		// var_dump('create new folder');
 		// return;
-		$value        = utility::post('value');
+		$value = utility::post('value');
+		$value = $this->item_nameChecker($value);
 		if(!$value)
 			return false;
 
@@ -86,6 +121,7 @@ trait fileManager
 		$qry   = $this->qryCreator(['id', 'status']);
 
 		$value = utility::post('value');
+		$value = $this->item_nameChecker($value);
 		if(!$value)
 			return false;
 

@@ -201,6 +201,10 @@ trait upload
 			return false;
 		}
 
+		$myFileName = utility\Upload::$fileName;
+		$myFileName = $this->item_nameChecker($myFileName);
+
+
 
 		// 7. add uploaded file record attachment table in db
 		$qry = $this->sql();
@@ -208,7 +212,7 @@ trait upload
 					->set('file_id',           $new_file_id)
 					->set('attachment_type',   'file')
 					->set('attachment_addr',   $_location)
-					->set('attachment_name',   utility\Upload::$fileName)
+					->set('attachment_name',   $myFileName)
 					->set('attachment_ext',    $file_ext)
 					->set('attachment_size',   utility\Upload::$fileSize)
 					->set('attachment_meta',   $file_meta)
