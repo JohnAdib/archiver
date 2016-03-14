@@ -162,7 +162,7 @@ trait properties
 							'#attachment_date as date',
 							'#attachment_meta as meta'
 						);
-		$datatable = $qry->select('id');
+		$datatable = $qry->select();
 
 		if($datatable->num()<1)
 			return false;

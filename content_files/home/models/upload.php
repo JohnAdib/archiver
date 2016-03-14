@@ -20,7 +20,7 @@ trait upload
 		$qry_FileID = $this->sql()
 			->table('files')
 			->where('file_code', $_md5)
-			->select('id');
+			->select();
 
 		if($qry_FileID->num() == 1)
 		{
@@ -79,7 +79,7 @@ trait upload
 
 
 		// 2. Generate file_id, folder_id and url
-		$qry_count     = $this->sql()->table('files')->select('id')->num();
+		$qry_count     = $this->sql()->table('files')->select()->num();
 		$folder_prefix = "data/";
 		$folder_id     = ceil(($qry_count + 1) / $FOLDER_SIZE);
 		$folder_name   = 'data/' . $folder_id;
@@ -94,7 +94,7 @@ trait upload
 
 
 		// 3. Check for record exist in db or not then if not exist transfer it to data folder
-		$qry_count2 = $this->sql()->table('files')->where('file_code', utility\Upload::$fileMd5)->select('id');
+		$qry_count2 = $this->sql()->table('files')->where('file_code', utility\Upload::$fileMd5)->select();
 		$file_exist = false;
 		if($qry_count2->num())
 		{
