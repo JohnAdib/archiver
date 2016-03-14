@@ -12,7 +12,7 @@ trait fileManager
 	public function draw()
 	{
 		$qry       = $this->qryCreator(['location', 'status', 'order', 'field']);
-		$qry       = $qry->select('id');
+		$qry       = $qry->select();
 		$datatable = $qry->allassoc();
 
 		return $this->draw_fix($datatable);
