@@ -49,14 +49,16 @@ body{height: 100%;overflow:hidden;}
 #header #more-remove:hover i{color:#F55030;}
 
 #header #search input{
+transition:0.3s;
 background-color: transparent;
 border:none;
 color: #fff;
 height: 27px;
 width: 70px;
 }
-#header #search input:focus{
+#header #search input:focus, #header #search input:hover{
 width: 150px;
+
 }
 .ltr #header #search i{right:0; left: inherit;}
 #header #search .button{padding: 0;}
