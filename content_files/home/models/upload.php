@@ -14,7 +14,7 @@ trait upload
 	{
 		if(!$_md5)
 		{
-			$_md5 = utility\Upload::$fileMd5;
+			$_md5 = utility\upload::$fileMd5;
 		}
 
 		$qry_FileID = $this->sql()
@@ -64,10 +64,10 @@ trait upload
 		$FOLDER_SIZE = 1000;
 		$SERVER_SIZE = 1000000;		// 1 milion file can save in each server
 		$server_id   = 1;
-		// utility\Upload::$extentions = 'all';
+		// utility\upload::$extentions = 'all';
 
 		// 1. check upload process and validate it
-		$invalid = utility\Upload::invalid('upfile');
+		$invalid = utility\upload::invalid('upfile');
 		if($invalid)
 		{
 			debug::property('status','fail');
@@ -84,17 +84,17 @@ trait upload
 		$folder_id     = ceil(($qry_count + 1) / $FOLDER_SIZE);
 		$folder_name   = 'data/' . $folder_id;
 		$file_id       = $qry_count % $FOLDER_SIZE + 1;
-		$file_ext      = utility\Upload::$fileExt;
+		$file_ext      = utility\upload::$fileExt;
 		$file_url      = "$folder_name/$file_id";
-		// $file_dl       = utility\Upload::$fileFullName. '.'. $file_ext;
+		// $file_dl       = utility\upload::$fileFullName. '.'. $file_ext;
 		// $url_full      = "$folder_name/$file_id";
-		// $url_full      = "$folder_name/$file_id-" . utility\Upload::$fileFullName;
+		// $url_full      = "$folder_name/$file_id-" . utility\upload::$fileFullName;
 		// $url_full      = "$folder_name/$file_id." . $file_ext;
 
 
 
 		// 3. Check for record exist in db or not then if not exist transfer it to data folder
-		$qry_count2 = $this->sql()->table('files')->where('file_code', utility\Upload::$fileMd5)->select();
+		$qry_count2 = $this->sql()->table('files')->where('file_code', utility\upload::$fileMd5)->select();
 		$file_exist = false;
 		if($qry_count2->num())
 		{
@@ -117,7 +117,7 @@ trait upload
 		else
 		{
 			// 3.5. transfer file to project folder with new name
-			if(!utility\Upload::transfer($file_url, $folder_name))
+			if(!utility\upload::transfer($file_url, $folder_name))
 			{
 				debug::property('status', 'fail');
 				debug::property('error', T_('Fail on tranfering file'));
@@ -131,19 +131,19 @@ trait upload
 		$url_thumb = null;
 		// $url_file  = null;
 
-		// $extlen    = strlen(utility\Upload::$fileExt)+1;
+		// $extlen    = strlen(utility\upload::$fileExt)+1;
 		// $url_file  = substr($file_url, 0, -$extlen);
 
-		// $url_file  = $url_file.'.'.utility\Upload::$fileExt;
+		// $url_file  = $url_file.'.'.utility\upload::$fileExt;
 
 		// 5. get filemeta data
 		$file_meta = [
 						'url'    => $file_url,
 						// 'ext'    => $file_ext,
-						'type'   => utility\Upload::$fileType,
-						'mime'   => utility\Upload::$fileMime,
+						'type'   => utility\upload::$fileType,
+						'mime'   => utility\upload::$fileMime,
 						// 'thumb'  => $url_thumb,
-						'file'   => utility\Upload::$fileFullName,
+						'file'   => utility\upload::$fileFullName,
 					 ];
 		$page_url  = $file_meta['type'].'/'.substr($file_url, strlen($folder_prefix));
 
@@ -155,12 +155,12 @@ trait upload
 			case 'tiff':
 			case 'png':
 			case 'gif':
-				// $url_thumb          = $url_file.'-thumb.'.utility\Upload::$fileExt;
+				// $url_thumb          = $url_file.'-thumb.'.utility\upload::$fileExt;
 				$url_thumb          = $file_url.'-thumb';
 				$file_meta['thumb'] = $url_thumb;
-				utility\Image::load($file_url);
-				utility\Image::thumb(250, 250);
-				utility\Image::save($url_thumb);
+				utility\image::load($file_url);
+				utility\image::thumb(250, 250);
+				utility\image::save($url_thumb);
 				list($file_meta['width'], $file_meta['height']) = getimagesize($file_url);
 				break;
 
@@ -180,8 +180,8 @@ trait upload
 						->set('id',               $qry_count + 1)
 						->set('file_server',      $server_id)
 						->set('file_folder',      $folder_id)
-						->set('file_code',        utility\Upload::$fileMd5)
-						->set('file_size',        utility\Upload::$fileSize)
+						->set('file_code',        utility\upload::$fileMd5)
+						->set('file_size',        utility\upload::$fileSize)
 						->set('file_meta',        $file_meta)
 						->set('file_status',      'ready')
 						->set('file_createdate',  date('Y-m-d H:i:s'));
@@ -201,7 +201,7 @@ trait upload
 			return false;
 		}
 
-		$myFileName = utility\Upload::$fileName;
+		$myFileName = utility\upload::$fileName;
 		$myFileName = $this->item_nameChecker($myFileName);
 
 
@@ -214,7 +214,7 @@ trait upload
 					->set('attachment_addr',   $_location)
 					->set('attachment_name',   $myFileName)
 					->set('attachment_ext',    $file_ext)
-					->set('attachment_size',   utility\Upload::$fileSize)
+					->set('attachment_size',   utility\upload::$fileSize)
 					->set('attachment_meta',   $file_meta)
 					->set('attachment_status', 'normal')
 					->set('attachment_date',   date('Y-m-d H:i:s'))

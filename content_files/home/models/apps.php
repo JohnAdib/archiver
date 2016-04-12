@@ -32,7 +32,7 @@ trait apps
 		}
 
 		// check if authcode is correct! then continue else return false
-		$myID          = utility\ShortURL::decode($appAuthCode);
+		$myID          = utility\shortURL::decode($appAuthCode);
 		$authCodeExist = $this->qryCreator(['id', 'status'], $myID);
 		if($authCodeExist->select()->num() <1)
 		{

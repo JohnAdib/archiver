@@ -69,7 +69,7 @@ class model extends \mvc\model
 		$myIDs = array();
 		foreach($items as $item)
 		{
-			$myIDs[] = utility\ShortURL::decode($item);
+			$myIDs[] = utility\shortURL::decode($item);
 		}
 
 		if($_raw)
@@ -283,7 +283,7 @@ class model extends \mvc\model
 			{
 				$_dbtable[$key]['meta']   = json_decode($row['meta'], true);
 			}
-			$_dbtable[$key]['cid']    = utility\ShortURL::encode($row['id']);
+			$_dbtable[$key]['cid']    = utility\shortURL::encode($row['id']);
 			$_dbtable[$key]['fav']    = $_dbtable[$key]['fav']? 'fa-star': 'fa-star-o';
 			$_dbtable[$key]['status'] = $_dbtable[$key]['status'] == 'normal'? '': $_dbtable[$key]['status'];
 

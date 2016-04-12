@@ -31,7 +31,7 @@ trait auth
 				debug::property('ext',  $qry['attachment_ext']);
 			}
 
-			debug::property('authcode', utility\ShortURL::encode($qry['id']));
+			debug::property('authcode', utility\shortURL::encode($qry['id']));
 		}
 	}
 

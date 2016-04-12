@@ -24,7 +24,7 @@ trait download
 		{
 			if(isset($row['meta']['file']))
 			{
-				\lib\utility\File::download(
+				\lib\utility\file::download(
 					$row['meta']['url'],
 					$row['meta']['file'],
 					$row['meta']['mime']

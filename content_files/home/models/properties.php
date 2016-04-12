@@ -182,10 +182,10 @@ trait properties
 		if(isset($datatable['meta']['thumb']))
 			$datatable['thumb'] = $datatable['meta']['thumb'];
 
-		$datatable['size']   = \lib\utility\Upload::readableSize($datatable['size'], $datatable['type']);
+		$datatable['size']   = \lib\utility\upload::readableSize($datatable['size'], $datatable['type']);
 
 
-		$datatable['id']     = utility\ShortURL::encode($datatable['id']);
+		$datatable['id']     = utility\shortURL::encode($datatable['id']);
 		$datatable['status'] = $datatable['status'] == 'normal'? '': $datatable['status'];
 
 		if($datatable['type'] == 'folder')
@@ -242,7 +242,7 @@ trait properties
 		unset($datatable['meta']);
 		unset($datatable['icon']);
 
-		// \lib\utility\Upload::readableSize()
+		// \lib\utility\upload::readableSize()
 		foreach ($datatable as $key => $value)
 		{
 			if($value === null)

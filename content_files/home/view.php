@@ -76,7 +76,7 @@ class view extends \mvc\view
 
 		$this->data->page['desc']   = T_("Archiver is another archive system!");
 
-		$this->data->maxSize = \lib\utility\Upload::max_file_upload_in_bytes();
+		$this->data->maxSize = \lib\utility\upload::max_file_upload_in_bytes();
 
 	}
 }
