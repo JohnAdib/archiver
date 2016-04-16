@@ -3,7 +3,7 @@
 Description: Ermile Control Panel CSS
 Author: Javad Evazzadeh Karkoudi | Ermile
 Author URI: Evazzade.com
-Version: 2.1.0
+Version: 2.2.4
 */
 @charset "utf-8";
 @import url("font-awesome.min.css");
@@ -17,9 +17,7 @@ body {background-color: #f5f5f5;position: relative;color: #656d78;min-height:100
 ::-webkit-scrollbar-track {background-color:#e8e8e8;}
 ::-webkit-scrollbar-thumb {background-color: #aaa;}
 
-#page-sidebar{width:15%;position:fixed;background-color:#33414e;opacity:0.9;color:#fff;min-height:100%;height:110%;z-index:1000;overflow-y:scroll;
--moz-appearance: none !important;
-}
+#page-sidebar{width:15%;position:fixed;background-color:#33414e;opacity:0.9;color:#fff;min-height:100%;height:110%;z-index:1000;overflow-y:scroll;-moz-appearance: none !important;}
 #page-sidebar::-webkit-scrollbar {width: 0.3em;}
 #page-sidebar::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);}
 #page-sidebar a{display:block;color:#999;padding:0 5%;line-height:300%;font-weight:700}
@@ -107,7 +105,7 @@ body {background-color: #f5f5f5;position: relative;color: #656d78;min-height:100
 .col_slug{width:100px;direction:ltr;text-align:left}
 .col_email{min-width:150px;direction:ltr;text-align:left}
 .col_mobile{min-width:100px;direction:ltr;text-align:left}
-.col_url{min-width:100px;width:15%;direction:ltr;text-align:left}
+.col_url{min-width:100px;width:15%;direction:ltr;text-align:left;max-width:180px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 .col_status{min-width:80px;width:100px;text-align:center;}
 .col_actions{width: 70px;}
 .col_actions a{color:#fff;}
@@ -238,6 +236,12 @@ to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}
 .form .fields > .field:first-child{border-left:none;box-shadow:none}
 .form .field:first-child{padding-left:0}
 .form .field:last-child{padding-right:0}
+.form .field label span{line-height: 30px;}
+.form .seperator{margin:20px 0 10px;position:relative;}
+.form .seperator label{display:inline-block;text-align:right;width:100%}
+.rtl .form .seperator label{text-align:left;}
+.form .seperator label::before{content:"";display:inline-block;border-bottom:2px solid #ccc;position: absolute;top:70%;right: 0;left: 0;}
+.rtl .form .seperator label::before{top:90%;}
 /*-------------------- Sizes ---------------------*/
 /* Standard */
 .small.form{font-size:0.875em;}
@@ -314,13 +318,14 @@ input:focus, select:focus{border-color:#787878;}
 
 .panel.top-pages .panel-body li{display:block;direction:ltr;text-align: left;}
 .panel.top-pages .panel-body li:hover{background-color:#eee}
-.panel.top-pages .panel-body li span{display:inline-block;min-width:25px}
-.panel.top-pages .panel-body a{}
+.panel.top-pages .panel-body li span{display:inline-block;min-width:30px;text-align:center;color:#33414E;}
+.panel.top-pages .panel-body a{display: block;padding:1px 1em;line-height:1.8em;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 
-.panel-body.summary a{color:inherit;}
+.summary .panel-body a{color:inherit;}
 #home .panel{margin-bottom:1vh;}
-#home .panel-body{padding: 2vh;}
-.panel-body.summary .fa-plus{position:absolute;top:3%;left:3%;opacity:0;transition: all .2s ease-in-out;}
+#home .panel-body{padding: 2vh;padding-bottom: 1vh;}
+#home .panel-body h3{margin: 0;}
+.summary .panel-body .fa-plus{position:absolute;top:3%;left:3%;opacity:0;transition: all .2s ease-in-out;}
 .panel:hover .fa-plus, .panel a:focus .fa-plus{opacity:1;}
 
 .sp-tags{width:100%;border:1px solid #ddd;max-width:100%;max-height:200px;display:none}
