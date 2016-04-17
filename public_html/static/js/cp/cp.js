@@ -1,6 +1,6 @@
 /**
  * Ermile Control Panel JS
- * V 3.0.1
+ * V 3.1.0
  */
 
 
@@ -280,8 +280,8 @@ function addTag()
 function checkInput(_this, _firstTime)
 {
 	var chkID        = $(_this).attr('id');
-  var chkChildrens = $('input[data-parent='+ chkID +']').parent();
-	var chkRelations = $('input[data-relation='+ chkID +']');
+  var chkChildrens = $('[data-parent*='+ chkID +']').parent();
+	var chkRelations = $('input[type=checkbox][data-relation*='+ chkID +']');
 
   if($(_this).is(":checked"))
   {
@@ -501,10 +501,17 @@ function checkLocation()
 {
   var CURRENTPATH = (location.pathname).replace(/^\/+/, '');
   var currentModule = CURRENTPATH;
+  console.log(currentModule);
 
-  if(CURRENTPATH.indexOf('/') > -1)
+
+  if(currentModule.substr(0, 2)  == 'cp')
   {
-    currentModule = CURRENTPATH.substring(0, CURRENTPATH.indexOf('/'));
+    currentModule = currentModule.substr(3);
+  }
+
+  if(currentModule.indexOf('/') > -1)
+  {
+    currentModule = currentModule.substring(0, currentModule.indexOf('/'));
   }
   $('#page-sidebar a').removeClass('active');
 
