@@ -8,15 +8,15 @@
 // ** MySQL settings - You can get this info from your web host ** //
  /** The name of the database */
 if(!defined('db_name'))
- define("db_name", '_db_');
+ define("db_name", 'archiver');
 
  /** MySQL database username */
 if(!defined('db_user'))
- define("db_user", '_user_');
+ define("db_user", 'ermile');
 
  /** MySQL database password */
 if(!defined('db_pass'))
- define("db_pass", '_pass_');
+ define("db_pass", 'Ermile@#$1233');
 
 /**
  * For developers: debugging mode.
