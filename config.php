@@ -22,6 +22,7 @@ if(!defined('db_pass'))
  * For developers: debugging mode.
  * Default: False
  *
+ *
  * Change this to true to enable the display of notices during development.
  * It is strongly recommended that in developement condition use DEBUG in the development environments.
  */
