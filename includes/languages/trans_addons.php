@@ -33,9 +33,9 @@ private function transtext()
 	//--------------------------------------saloos-addons\content_cp\home\display.html
 	echo T_("Hello!");                                                                // Line 7
 	echo T_("Welcome to Saloos control panel.");                                      // Line 7
-	echo T_("Daily Visit Chart");                                                     // Line 26
+	echo T_("Daily Visit Chart");                                                     // Line 69
 	echo T_("Summarized data of site");                                               // Line 19
-	echo T_("No. of");                                                                // Line 104
+	echo T_("No. of");                                                                // Line 243
 	echo T_("Posts");                                                                 // Line 91 Seperate
 	echo T_("Pages");                                                                 // Line 92 Seperate
 	echo T_("Attachments");                                                           // Line 94 Seperate
@@ -43,44 +43,45 @@ private function transtext()
 	echo T_("Categories");                                                            // Line 99
 	echo T_("Users");                                                                 // Line 96 Seperate
 	echo T_("Top Visited Page");                                                      // Line 121
-	echo T_("Visit");                                                                 // Line 112
+	echo T_("Visit");                                                                 // Line 150
 	echo T_("Page Views");                                                            // Line 193 Seperate
-	echo T_("Bots");                                                                  // Line 137
+	echo T_("Bots");                                                                  // Line 175
 
 	//-----------------------------------saloos-addons\content_cp\home\layout-xhr.html
 	echo T_("Add New Record");                                                        // Line 84 Seperate
-	echo T_("View your current location and navigate to parent of it");               // Line 82
+	echo T_("View your current location and navigate to parent of it");               // Line 86
 
 	//---------------------------------------saloos-addons\content_cp\home\layout.html
 	echo T_("Use this menu for navigating to all part of control panel");             // Line 8
 	echo T_("Dashboard");                                                             // Line 90 Seperate
-	echo T_("Books");                                                                 // Line 20
-	echo T_("Visitors");                                                              // Line 26
-	echo T_("Social networks");                                                       // Line 29
-	echo T_("Permissions");                                                           // Line 32
+	echo T_("Polls");                                                                 // Line 17
+	echo T_("Books");                                                                 // Line 23
+	echo T_("Visitors");                                                              // Line 30
+	echo T_("Social networks");                                                       // Line 33
+	echo T_("Permissions");                                                           // Line 36
 	echo T_("Options");                                                               // Line 81 Seperate
 	echo T_("Tools");                                                                 // Line 157 Seperate
 	echo T_("Homepage");                                                              // Line 73 Seperate
-	echo T_("Next →");                                                              // Line 52
-	echo T_("← Back");                                                              // Line 52
-	echo T_("Skip");                                                                  // Line 52
-	echo T_("Done");                                                                  // Line 52
-	echo T_("Help");                                                                  // Line 54
-	echo T_("You can work with control panel in your language");                      // Line 56
-	echo T_("Go to your profile, change password or logout from conrtol panel");      // Line 68
+	echo T_("Next →");                                                              // Line 56
+	echo T_("← Back");                                                              // Line 56
+	echo T_("Skip");                                                                  // Line 56
+	echo T_("Done");                                                                  // Line 56
+	echo T_("Help");                                                                  // Line 58
+	echo T_("You can work with control panel in your language");                      // Line 60
+	echo T_("Go to your profile, change password or logout from conrtol panel");      // Line 72
 	echo T_("My Profile");                                                            // Line 97 Seperate
-	echo T_("Change Password");                                                       // Line 325 Seperate
+	echo T_("Change Password");                                                       // Line 330 Seperate
 	echo T_("Lock Screen");                                                           // Line 99 Seperate
 	echo T_("Logout");                                                                // Line 100 Seperate
-	echo T_("We glad to working for you and hope you enjoy using our system");        // Line 98
-	echo T_("Some right reserved");                                                   // Line 100
-	echo T_("Powered by");                                                            // Line 100
+	echo T_("We glad to working for you and hope you enjoy using our system");        // Line 102
+	echo T_("Some right reserved");                                                   // Line 104
+	echo T_("Powered by");                                                            // Line 104
 	echo T_("Saloos");                                                                // Line 7 Seperate
-	echo T_("Last update on");                                                        // Line 102
+	echo T_("Last update on");                                                        // Line 106
 	echo T_("Version");                                                               // Line 103 Seperate
 
 	//-----------------------------------saloos-addons\content_cp\options\display.html
-	echo T_("General");                                                               // Line 68
+	echo T_("General");                                                               // Line 69
 	echo T_("Config");                                                                // Line 10
 	echo T_("SMS");                                                                   // Line 13
 	echo T_("Social Networks");                                                       // Line 16
@@ -88,12 +89,13 @@ private function transtext()
 	echo T_("Save Changes");                                                          // Line 17
 	echo T_("Edit your site general options");                                        // Line 32
 	echo T_("Edit your site config options");                                         // Line 44
-	echo T_("Edit your site social networks options");                                // Line 62
-	echo T_("Twitter");                                                               // Line 69
-	echo T_("Facebook");                                                              // Line 70
-	echo T_("Telegram");                                                              // Line 71
-	echo T_("Edit SMS settings");                                                     // Line 83
-	echo T_("Edit your site accounting options");                                     // Line 95
+	echo T_("Set default settings");                                                  // Line 45
+	echo T_("Edit your site social networks options");                                // Line 63
+	echo T_("Twitter");                                                               // Line 70
+	echo T_("Facebook");                                                              // Line 71
+	echo T_("Telegram");                                                              // Line 72
+	echo T_("Edit SMS settings");                                                     // Line 84
+	echo T_("Edit your site accounting options");                                     // Line 96
 
 	//-------------------------------saloos-addons\content_cp\permissions\display.html
 	echo T_("Define new permission");                                                 // Line 8
@@ -127,55 +129,59 @@ private function transtext()
 	echo T_("Empty");                                                                 // Line 104
 	echo T_("In this section you can edit permission of");                            // Line 108
 
-	//---------------------------saloos-addons\content_cp\templates\child_display.html
-
-	//-----------------------------saloos-addons\content_cp\templates\child_posts.html
+	//--------------------------------------saloos-addons\content_cp\posts\layout.html
 	echo T_("Enter title here");                                                      // Line 19
-	echo T_("Set the title of your content");                                         // Line 8
-	echo T_("Url of your content appear here, click on it to view");                  // Line 10
-	echo T_("Check result");                                                          // Line 12
-	echo T_("Show in new tab");                                                       // Line 16
+	echo T_("Set the title of your content");                                         // Line 6
+	echo T_("Url of your content appear here, click on it to view");                  // Line 12
+	echo T_("Check result");                                                          // Line 14
+	echo T_("Show in new tab");                                                       // Line 18
 	echo T_("Write your post content here");                                          // Line 20
 	echo T_("Excerpt");                                                               // Line 24
 	echo T_("If excerpt is empty we get it automatically from content");              // Line 26
 	echo T_("Summaries of your content that can be used as page description.");       // Line 28
-	echo T_("Write your tag and press enter to add new keyword to content");          // Line 32
-	echo T_("Enter Tags here");                                                       // Line 35
-	echo T_("Enter Tags");                                                            // Line 36
+	echo T_("Write your tag and press enter to add new keyword to content");          // Line 41
+	echo T_("Enter Tags here");                                                       // Line 44
+	echo T_("Enter Tags");                                                            // Line 45
 	echo T_("Normally, tags are ad-hoc keywords that identify important information in your post (names, subjects, etc) that may or may not recur in other posts, while categories are pre-determined sections.");// Line 15
-	echo T_("View list of tags");                                                     // Line 40
-	echo T_("What’s the difference between posts and pages?");                      // Line 56
-	echo T_("Pages are similar to Posts in that they have a title, body text, and associated metadata, but they are different in that they are not part of the chronological blog stream, kind of like permanent posts.");// Line 56
-	echo T_("Pages are not categorized or tagged, but can have a hierarchy.");        // Line 56
-	echo T_("Publish");                                                               // Line 85
-	echo T_("Slug");                                                                  // Line 57
-	echo T_("Set slug of content for better addressing in your site and increase SEO rate");// Line 57
+	echo T_("View list of tags");                                                     // Line 49
+	echo T_("Slug");                                                                  // Line 55
+	echo T_("Set slug of content for better addressing in your site and increase SEO rate");// Line 55
 	echo T_("Enter slug here");                                                       // Line 67
-	echo T_("Use this shortcode on your posts");                                      // Line 61
-	echo T_("Language");                                                              // Line 65
-	echo T_("Set language of your content to show only in this language");            // Line 66
+	echo T_("ShortURL");                                                              // Line 63
+	echo T_("show short URL of this content");                                        // Line 63
+	echo T_("Enter shortURL here");                                                   // Line 64
+	echo T_("Use this shortcode on your posts");                                      // Line 73
+	echo T_("Language");                                                              // Line 80
+	echo T_("Set language of your content to show only in this language");            // Line 81
 	echo T_("All Languages");                                                         // Line 69
-	echo T_("Status");                                                                // Line 74
-	echo T_("All of content set as draft in default, for showing it to visitors you must set it to publish");// Line 74
-	echo T_("Submit Changes");                                                        // Line 81
-	echo T_("After all changes, you must press this key to Submit");                  // Line 81
+	echo T_("Status");                                                                // Line 93
+	echo T_("All of content set as draft in default, for showing it to visitors you must set it to publish");// Line 93
+	echo T_("Submit Changes");                                                        // Line 104
+	echo T_("After all changes, you must press this key to Submit");                  // Line 104
 	echo T_("Update");                                                                // Line 147 Seperate
+	echo T_("Publish");                                                               // Line 85
 	echo T_("Page Attributes");                                                       // Line 91
 	echo T_("Parent Page");                                                           // Line 38
 	echo T_("Select parent page to create a group of pages");                         // Line 39
 	echo T_("Without parent");                                                        // Line 40
 	echo T_("You can nest Pages under other Pages by making one the “Parent” of the other, creating a group of Pages.");// Line 56
-	echo T_("Select a category of your content");                                     // Line 105
-	echo T_("Enter cat here");                                                        // Line 109
-	echo T_("Add New Category");                                                      // Line 123
-	echo T_("Featured Image");                                                        // Line 129
-	echo T_("This allows you to associate an image with your content.");              // Line 131
-	echo T_("Enter thumb id");                                                        // Line 132
-	echo T_("Set featured image");                                                    // Line 133
-	echo T_("You can see type of your file and click on image to direct access to file");// Line 139
-	echo T_("Click to view");                                                         // Line 148
-	echo T_("Height");                                                                // Line 146
-	echo T_("Width");                                                                 // Line 146
+	echo T_("Select a category of your content");                                     // Line 133
+	echo T_("Enter cat here");                                                        // Line 137
+	echo T_("Add New Category");                                                      // Line 153
+	echo T_("Featured Image");                                                        // Line 162
+	echo T_("This allows you to associate an image with your content.");              // Line 164
+	echo T_("Enter thumb id");                                                        // Line 165
+	echo T_("Set featured image");                                                    // Line 166
+	echo T_("You can see type of your file and click on image to direct access to file");// Line 175
+	echo T_("Click to view");                                                         // Line 183
+	echo T_("Height");                                                                // Line 181
+	echo T_("Width");                                                                 // Line 181
+	echo T_("Define poll");                                                           // Line 197
+	echo T_("Define poll conditions");                                                // Line 224
+
+	//---------------------------saloos-addons\content_cp\templates\child_display.html
+
+	//-----------------------------saloos-addons\content_cp\templates\child_posts.html
 
 	//-----------------------------saloos-addons\content_cp\templates\child_terms.html
 	echo T_("Click to check result");                                                 // Line 11
@@ -195,16 +201,27 @@ private function transtext()
 	echo T_("Edit your profile data");                                                // Line 22
 
 	//-------------------------saloos-addons\content_cp\templates\module_visitors.html
-	echo T_("Change type of chart to");                                               // Line 15
-	echo T_("bar");                                                                   // Line 16
-	echo T_("area");                                                                  // Line 17
-	echo T_("areaspline");                                                            // Line 18
-	echo T_("column");                                                                // Line 19
-	echo T_("View visitor statistics for your website");                              // Line 38
-	echo T_("Pageviews");                                                             // Line 53
-	echo T_("visitors");                                                              // Line 104
+	echo T_("Change type of chart to");                                               // Line 59
+	echo T_("bar");                                                                   // Line 60
+	echo T_("area");                                                                  // Line 61
+	echo T_("areaspline");                                                            // Line 62
+	echo T_("column");                                                                // Line 63
+	echo T_("View signup statistics for your website");                               // Line 36
+	echo T_("Change period of chart");                                                // Line 38
+	echo T_("day");                                                                   // Line 32 Seperate
+	echo T_("week");                                                                  // Line 31 Seperate
+	echo T_("month");                                                                 // Line 30 Seperate
+	echo T_("year");                                                                  // Line 29 Seperate
+	echo T_("View visitor statistics for your website");                              // Line 76
+	echo T_("Pageviews");                                                             // Line 92
+	echo T_("visitors");                                                              // Line 142
+	echo T_("signup");                                                                // Line 67 Seperate
+	echo T_("answered");                                                              // Line 270
 
 	//---------------------------------saloos-addons\content_cp\templates\sidebar.html
+	echo T_("What’s the difference between posts and pages?");                      // Line 56
+	echo T_("Pages are similar to Posts in that they have a title, body text, and associated metadata, but they are different in that they are not part of the chronological blog stream, kind of like permanent posts.");// Line 56
+	echo T_("Pages are not categorized or tagged, but can have a hierarchy.");        // Line 56
 	echo T_("Draft");                                                                 // Line 78
 	echo T_("Deleted");                                                               // Line 79
 	echo T_("Schedule");                                                              // Line 80
@@ -227,7 +244,8 @@ private function transtext()
 	echo T_("Saloos Repository");                                                     // Line 19
 	echo T_("Saloos Addons Repository");                                              // Line 20
 	echo T_("Backup");                                                                // Line 21
-	echo T_("Project Database");                                                      // Line 21
+	echo T_("Project Database");                                                      // Line 22
+	echo T_("Upgrade");                                                               // Line 22
 
 	//------------------------------saloos-addons\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate
@@ -247,10 +265,6 @@ private function transtext()
 	echo T_("Delete Failed!");                                                        // Line 22 Seperate
 	echo T_("Transaction error");                                                     // Line 23 Seperate
 	echo T_("Transaction Error");                                                     // Line 24 Seperate
-	echo T_("year");                                                                  // Line 29 Seperate
-	echo T_("month");                                                                 // Line 30 Seperate
-	echo T_("week");                                                                  // Line 31 Seperate
-	echo T_("day");                                                                   // Line 32 Seperate
 	echo T_("hour");                                                                  // Line 33 Seperate
 	echo T_("minute");                                                                // Line 34 Seperate
 	echo T_("second");                                                                // Line 35 Seperate
@@ -281,7 +295,6 @@ private function transtext()
 	echo T_("add new");                                                               // Line 64 Seperate
 	echo T_("signin");                                                                // Line 65 Seperate
 	echo T_("sign in");                                                               // Line 66 Seperate
-	echo T_("signup");                                                                // Line 67 Seperate
 	echo T_("sign up");                                                               // Line 68 Seperate
 	echo T_("register");                                                              // Line 69 Seperate
 	echo T_("home");                                                                  // Line 70 Seperate
@@ -308,7 +321,7 @@ private function transtext()
 	echo T_("Login Successfully");                                                    // Line 114 Seperate
 	echo T_("Login failed!");                                                         // Line 115 Seperate
 	echo T_("Mobile or password is incorrect");                                       // Line 120 Seperate
-	echo T_("Please forward this message to administrator");                          // Line 307 Seperate
+	echo T_("Please forward this message to administrator");                          // Line 312 Seperate
 	echo T_("Please enter title");                                                    // Line 122 Seperate
 	echo T_("Assign keywords to your posts using tags");                              // Line 123 Seperate
 	echo T_("Use categories to define sections of your site and group related posts");// Line 124 Seperate
@@ -400,94 +413,99 @@ private function transtext()
 	echo T_("Use main account");                                                      // Line 234 Seperate
 	echo T_("Main account");                                                          // Line 235 Seperate
 	echo T_("Default Language");                                                      // Line 236 Seperate
-	echo T_("line number");                                                           // Line 240 Seperate
-	echo T_("apikey");                                                                // Line 241 Seperate
-	echo T_("Github");                                                                // Line 242 Seperate
-	echo T_("Linkedin");                                                              // Line 243 Seperate
-	echo T_("Aparat");                                                                // Line 244 Seperate
-	echo T_("Google Plus");                                                           // Line 245 Seperate
-	echo T_("Status of sms service");                                                 // Line 246 Seperate
-	echo T_("Kavenegar");                                                             // Line 247 Seperate
-	echo T_("SMS service");                                                           // Line 248 Seperate
-	echo T_("service");                                                               // Line 249 Seperate
-	echo T_("ConsumerSecret");                                                        // Line 250 Seperate
-	echo T_("AccessToken");                                                           // Line 251 Seperate
-	echo T_("AccessTokenSecret");                                                     // Line 252 Seperate
-	echo T_("app_id");                                                                // Line 253 Seperate
-	echo T_("app_secret");                                                            // Line 254 Seperate
-	echo T_("redirect_url");                                                          // Line 255 Seperate
-	echo T_("required_scope");                                                        // Line 256 Seperate
-	echo T_("page_id");                                                               // Line 257 Seperate
-	echo T_("access_token");                                                          // Line 258 Seperate
-	echo T_("client_token");                                                          // Line 259 Seperate
-	echo T_("Send message for");                                                      // Line 260 Seperate
-	echo T_("verification");                                                          // Line 261 Seperate
-	echo T_("recovery");                                                              // Line 262 Seperate
-	echo T_("changepass");                                                            // Line 263 Seperate
-	echo T_("Regional restriction");                                                  // Line 264 Seperate
-	echo T_("Message header");                                                        // Line 265 Seperate
-	echo T_("Message footer");                                                        // Line 266 Seperate
-	echo T_("Force one message");                                                     // Line 267 Seperate
-	echo T_("We can't give service to this number");                                  // Line 268 Seperate
-	echo T_("Simulate SMS (Debugging)");                                              // Line 269 Seperate
-	echo T_("Please set apikey and linenumber");                                      // Line 270 Seperate
-	echo T_("send");                                                                  // Line 271 Seperate
-	echo T_(" to ");                                                                  // Line 272 Seperate
-	echo T_("Recovery account");                                                      // Line 273 Seperate
-	echo T_("Send message in custom situation");                                      // Line 274 Seperate
-	echo T_("Message detail");                                                        // Line 275 Seperate
-	echo T_("SMS api detail");                                                        // Line 276 Seperate
-	echo T_("Status of twitter sharing");                                             // Line 277 Seperate
-	echo T_("Status of facebook sharing");                                            // Line 278 Seperate
-	echo T_("Status of telegram sharing");                                            // Line 279 Seperate
-	echo T_("Allow registration");                                                    // Line 283 Seperate
-	echo T_("After login redirect to");                                               // Line 284 Seperate
-	echo T_("Default permission");                                                    // Line 285 Seperate
-	echo T_("Account Status");                                                        // Line 286 Seperate
-	echo T_("Access with pass phrase");                                               // Line 287 Seperate
-	echo T_("Pass phrase key");                                                       // Line 288 Seperate
-	echo T_("Pass phrase value");                                                     // Line 289 Seperate
-	echo T_("Allow recovery account");                                                // Line 290 Seperate
-	echo T_("Status of account service");                                             // Line 291 Seperate
-	echo T_("Increase account security");                                             // Line 292 Seperate
-	echo T_("Signup Settings");                                                       // Line 293 Seperate
-	echo T_("Enter your registered mobile");                                          // Line 300 Seperate
-	echo T_("Enter your password");                                                   // Line 301 Seperate
-	echo T_("Mobile number exist!");                                                  // Line 304 Seperate
-	echo T_("Register successfully");                                                 // Line 305 Seperate
-	echo T_("Register failed!");                                                      // Line 306 Seperate
-	echo T_("Recovery");                                                              // Line 310 Seperate
-	echo T_("your recovery code is");                                                 // Line 311 Seperate
-	echo T_("recovery failed!");                                                      // Line 312 Seperate
-	echo T_("Mobile number is incorrect");                                            // Line 313 Seperate
-	echo T_("Verificate");                                                            // Line 316 Seperate
-	echo T_("Verification");                                                          // Line 317 Seperate
-	echo T_("verify successfully.");                                                  // Line 318 Seperate
-	echo T_("please Input your new password");                                        // Line 319 Seperate
-	echo T_("verify failed!");                                                        // Line 320 Seperate
-	echo T_("this data is incorrect");                                                // Line 321 Seperate
-	echo T_("Check your mobile and enter the code");                                  // Line 322 Seperate
-	echo T_("Current Password");                                                      // Line 326 Seperate
-	echo T_("New Password");                                                          // Line 327 Seperate
-	echo T_("Change it");                                                             // Line 328 Seperate
-	echo T_("change password successfully");                                          // Line 329 Seperate
-	echo T_("change password failed!");                                               // Line 330 Seperate
-	echo T_("First you must enter name of permission");                               // Line 334 Seperate
-	echo T_("This permission name exist!");                                           // Line 335 Seperate
-	echo T_("You can edit this permission");                                          // Line 336 Seperate
-	echo T_("Define or edit user permissions to allow or block access to special pages");// Line 337 Seperate
-	echo T_("You are editing permission");                                            // Line 338 Seperate
-	echo T_("We send a verification code for you");                                   // Line 342 Seperate
-	echo T_("We send a verification code to this number");                            // Line 343 Seperate
-	echo T_("You account is verified successfully");                                  // Line 344 Seperate
-	echo T_("Your verification code is");                                             // Line 345 Seperate
-	echo T_("Your password is changed successfully");                                 // Line 346 Seperate
-	echo T_("Now we only support IRAN!");                                             // Line 347 Seperate
-	echo T_("Thanks for using our service");                                          // Line 349 Seperate
-	echo T_(" ");                                                                     // Line 352 Seperate
+	echo T_("Feature status");                                                        // Line 237 Seperate
+	echo T_("Use fake subdomain");                                                    // Line 238 Seperate
+	echo T_("Use SMS service");                                                       // Line 239 Seperate
+	echo T_("Use social networks");                                                   // Line 240 Seperate
+	echo T_("Use account");                                                           // Line 241 Seperate
+	echo T_("line number");                                                           // Line 245 Seperate
+	echo T_("apikey");                                                                // Line 246 Seperate
+	echo T_("Github");                                                                // Line 247 Seperate
+	echo T_("Linkedin");                                                              // Line 248 Seperate
+	echo T_("Aparat");                                                                // Line 249 Seperate
+	echo T_("Google Plus");                                                           // Line 250 Seperate
+	echo T_("Status of sms service");                                                 // Line 251 Seperate
+	echo T_("Kavenegar");                                                             // Line 252 Seperate
+	echo T_("SMS service");                                                           // Line 253 Seperate
+	echo T_("service");                                                               // Line 254 Seperate
+	echo T_("ConsumerSecret");                                                        // Line 255 Seperate
+	echo T_("AccessToken");                                                           // Line 256 Seperate
+	echo T_("AccessTokenSecret");                                                     // Line 257 Seperate
+	echo T_("app_id");                                                                // Line 258 Seperate
+	echo T_("app_secret");                                                            // Line 259 Seperate
+	echo T_("redirect_url");                                                          // Line 260 Seperate
+	echo T_("required_scope");                                                        // Line 261 Seperate
+	echo T_("page_id");                                                               // Line 262 Seperate
+	echo T_("access_token");                                                          // Line 263 Seperate
+	echo T_("client_token");                                                          // Line 264 Seperate
+	echo T_("Send message for");                                                      // Line 265 Seperate
+	echo T_("verification");                                                          // Line 266 Seperate
+	echo T_("recovery");                                                              // Line 267 Seperate
+	echo T_("changepass");                                                            // Line 268 Seperate
+	echo T_("Regional restriction");                                                  // Line 269 Seperate
+	echo T_("Message header");                                                        // Line 270 Seperate
+	echo T_("Message footer");                                                        // Line 271 Seperate
+	echo T_("Force one message");                                                     // Line 272 Seperate
+	echo T_("We can't give service to this number");                                  // Line 273 Seperate
+	echo T_("Simulate SMS (Debugging)");                                              // Line 274 Seperate
+	echo T_("Please set apikey and linenumber");                                      // Line 275 Seperate
+	echo T_("send");                                                                  // Line 276 Seperate
+	echo T_(" to ");                                                                  // Line 277 Seperate
+	echo T_("Recovery account");                                                      // Line 278 Seperate
+	echo T_("Send message in custom situation");                                      // Line 279 Seperate
+	echo T_("Message detail");                                                        // Line 280 Seperate
+	echo T_("SMS api detail");                                                        // Line 281 Seperate
+	echo T_("Status of twitter sharing");                                             // Line 282 Seperate
+	echo T_("Status of facebook sharing");                                            // Line 283 Seperate
+	echo T_("Status of telegram sharing");                                            // Line 284 Seperate
+	echo T_("Allow registration");                                                    // Line 288 Seperate
+	echo T_("After login redirect to");                                               // Line 289 Seperate
+	echo T_("Default permission");                                                    // Line 290 Seperate
+	echo T_("Account Status");                                                        // Line 291 Seperate
+	echo T_("Access with pass phrase");                                               // Line 292 Seperate
+	echo T_("Pass phrase key");                                                       // Line 293 Seperate
+	echo T_("Pass phrase value");                                                     // Line 294 Seperate
+	echo T_("Allow recovery account");                                                // Line 295 Seperate
+	echo T_("Status of account service");                                             // Line 296 Seperate
+	echo T_("Increase account security");                                             // Line 297 Seperate
+	echo T_("Signup Settings");                                                       // Line 298 Seperate
+	echo T_("Enter your registered mobile");                                          // Line 305 Seperate
+	echo T_("Enter your password");                                                   // Line 306 Seperate
+	echo T_("Mobile number exist!");                                                  // Line 309 Seperate
+	echo T_("Register successfully");                                                 // Line 310 Seperate
+	echo T_("Register failed!");                                                      // Line 311 Seperate
+	echo T_("Recovery");                                                              // Line 315 Seperate
+	echo T_("your recovery code is");                                                 // Line 316 Seperate
+	echo T_("recovery failed!");                                                      // Line 317 Seperate
+	echo T_("Mobile number is incorrect");                                            // Line 318 Seperate
+	echo T_("Verificate");                                                            // Line 321 Seperate
+	echo T_("Verification");                                                          // Line 322 Seperate
+	echo T_("verify successfully.");                                                  // Line 323 Seperate
+	echo T_("please Input your new password");                                        // Line 324 Seperate
+	echo T_("verify failed!");                                                        // Line 325 Seperate
+	echo T_("this data is incorrect");                                                // Line 326 Seperate
+	echo T_("Check your mobile and enter the code");                                  // Line 327 Seperate
+	echo T_("Current Password");                                                      // Line 331 Seperate
+	echo T_("New Password");                                                          // Line 332 Seperate
+	echo T_("Change it");                                                             // Line 333 Seperate
+	echo T_("change password successfully");                                          // Line 334 Seperate
+	echo T_("change password failed!");                                               // Line 335 Seperate
+	echo T_("First you must enter name of permission");                               // Line 339 Seperate
+	echo T_("This permission name exist!");                                           // Line 340 Seperate
+	echo T_("You can edit this permission");                                          // Line 341 Seperate
+	echo T_("Define or edit user permissions to allow or block access to special pages");// Line 342 Seperate
+	echo T_("You are editing permission");                                            // Line 343 Seperate
+	echo T_("We send a verification code for you");                                   // Line 347 Seperate
+	echo T_("We send a verification code to this number");                            // Line 348 Seperate
+	echo T_("You account is verified successfully");                                  // Line 349 Seperate
+	echo T_("Your verification code is");                                             // Line 350 Seperate
+	echo T_("Your password is changed successfully");                                 // Line 351 Seperate
+	echo T_("Now we only support IRAN!");                                             // Line 352 Seperate
+	echo T_("Thanks for using our service");                                          // Line 354 Seperate
+	echo T_(" ");                                                                     // Line 357 Seperate
 
 	//-----------------------------------------saloos-addons\includes\macro\forms.html
-	echo T_("Select");                                                                // Line 68
+	echo T_("Select");                                                                // Line 80
 
 }
 ?>
