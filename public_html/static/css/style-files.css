@@ -580,7 +580,8 @@ to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}
 /*#prop-box-tags .span4{width:100%;padding:5px 0;}*/
 /*#prop-box-tags .span8{width:100%;}*/
 #prop-box-tags #tag-list{width:100%;margin:5px 0;}
-
+.rtl .labeled .fa, .labeled.reverse .fa{left:0;right:initial;}
+.fa:before{vertical-align: middle;}
 
 @media screen and (min-width: 1400px){
   #header-nav > li#send-to-app > a > span, #header-nav > li#more > a > span{display: inline-block;}
